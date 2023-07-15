@@ -4,11 +4,11 @@ import java.util.*;
 * Represents the workings of the regular vending machine
 */ 
 class RegularVendingMachine {
-    private Item item;
-    public int totalItems, totalUnique;
-    private int count;
-    public HashMap<Integer, String> itemNumbers;
-    private HashMap<Double, Integer> denominations;
+    protected Item item;
+    protected int totalItems, totalUnique;
+    protected int count;
+    protected HashMap<Integer, String> itemNumbers;
+    protected HashMap<Double, Integer> denominations;
 
     /**
      * Constructs an instance of the RegularVendingMachine class.
