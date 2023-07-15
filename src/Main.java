@@ -43,15 +43,15 @@ public class Main {
         specialVendingMachine.getItem().addItem("Cream Puffs", 6, 30, 180);
         specialVendingMachine.getItem().addItem("Strawberry", 10, 120	, 190);
         
-    	regularVendingMachine.replenishChange(1.0, 1);
-    	regularVendingMachine.replenishChange(5.0, 1);
-    	regularVendingMachine.replenishChange(10.0, 1);
-    	regularVendingMachine.replenishChange(20.0, 1);
-    	regularVendingMachine.replenishChange(50.0, 1);
-    	regularVendingMachine.replenishChange(100.0, 1);
-    	regularVendingMachine.replenishChange(200.0, 1);
-    	regularVendingMachine.replenishChange(500.0, 1);
-    	regularVendingMachine.replenishChange(1000.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(1.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(5.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);
   
     	while (true) {
             System.out.println();
@@ -103,7 +103,7 @@ public class Main {
 
                                     System.out.print("Enter the number of the stock to purchase: ");
                                     number = scan.nextInt();
-                                    while (!regularVendingMachine.receivePayment(regularVendingMachine.itemNumbers.get(number), payment)) {
+                                    while (!regularVendingMachine.getCashBox().receivePayment(regularVendingMachine.getItem(),regularVendingMachine.itemNumbers.get(number), payment)) {
                                         System.out.print("Insert More (20, 50, 100, 200, 500, 1000): ₱");
                                         payment += scan.nextDouble();
                                     }
@@ -147,25 +147,25 @@ public class Main {
                                     case 2: 
                                     	System.out.print("10 Peso coins: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(10.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(10.0, quantity);
                                     	System.out.print("20 Peso coins: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(20.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(20.0, quantity);
                                     	System.out.print("50 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(50.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(50.0, quantity);
                                     	System.out.print("100 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(100.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(100.0, quantity);
                                     	System.out.print("200 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(200.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(200.0, quantity);
                                     	System.out.print("500 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(500.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(500.0, quantity);
                                     	System.out.print("1000 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	regularVendingMachine.replenishChange(1000.0, quantity);
+                                    	regularVendingMachine.getCashBox().replenishChange(1000.0, quantity);
                                     	break;
                                     case 3:
                                         if (regularVendingMachine.getItem().getTotalUnique() < SLOT) {
@@ -195,9 +195,9 @@ public class Main {
                                         break;
                                     case 5:
                                     	System.out.println("Remaining denominations:");
-                                        regularVendingMachine.displayDenominations();
+                                        regularVendingMachine.getCashBox().displayDenominations();
                                         System.lineSeparator();
-                                        regularVendingMachine.printReceipt();
+                                        regularVendingMachine.getCashBox().printReceipt(regularVendingMachine.getItem());
                                         break;
                                     case 6:
                                         break;
@@ -227,7 +227,7 @@ public class Main {
 
                                     System.out.print("Enter the number of the stock to purchase: ");
                                     number = scan.nextInt();
-                                    while (!specialVendingMachine.receivePayment(specialVendingMachine.itemNumbers.get(number), payment)) {
+                                    while (!specialVendingMachine.getCashBox().receivePayment(specialVendingMachine.getItem(),specialVendingMachine.itemNumbers.get(number), payment)) {
                                         System.out.print("Insert More (20, 50, 100, 200, 500, 1000): ₱");
                                         payment += scan.nextDouble();
                                     }
@@ -271,25 +271,25 @@ public class Main {
                                     case 2:
                                     	System.out.print("10 Peso coins: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(10.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(10.0, quantity);
                                     	System.out.print("20 Peso coins: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(20.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(20.0, quantity);
                                     	System.out.print("50 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(50.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(50.0, quantity);
                                     	System.out.print("100 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(100.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(100.0, quantity);
                                     	System.out.print("200 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(200.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(200.0, quantity);
                                     	System.out.print("500 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(500.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(500.0, quantity);
                                     	System.out.print("1000 Peso bills: ");
                                     	quantity = scan.nextInt();
-                                    	specialVendingMachine.replenishChange(1000.0, quantity);
+                                    	specialVendingMachine.getCashBox().replenishChange(1000.0, quantity);
                                     	break;
                                     case 3:
                                         if (specialVendingMachine.getItem().getTotalUnique() < SLOT) {
@@ -319,9 +319,9 @@ public class Main {
                                         break;
                                     case 5:
                                     	System.out.println("Remaining denominations:");
-                                        specialVendingMachine.displayDenominations();
+                                        specialVendingMachine.getCashBox().displayDenominations();
                                         System.lineSeparator();System.lineSeparator();
-                                        specialVendingMachine.printReceipt();
+                                        specialVendingMachine.getCashBox().printReceipt(specialVendingMachine.getItem());
                                         break;
                                     case 6:
                                     	break;
