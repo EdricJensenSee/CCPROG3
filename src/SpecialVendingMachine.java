@@ -1,15 +1,16 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Represents the workings of the special vending machine
- */
 class SpecialVendingMachine extends RegularVendingMachine {
-    private ArrayList<String> recipes;
+    private ArrayList<ArrayList<String>> recipes;
 
     public SpecialVendingMachine() {
         super();
         recipes = new ArrayList<>();
+    }
+
+    public void addRecipe(ArrayList<String> recipe) {
+        recipes.add(recipe);
     }
 
     private int calculateTotalCalories(ArrayList<String> recipe) {
@@ -20,11 +21,41 @@ class SpecialVendingMachine extends RegularVendingMachine {
         return totalCalories;
     }
 
-    public void setRecipes(ArrayList<String> recipe) {
-        recipes = recipe;
+    public void prepareProduct(int productIndex) {
+        if (productIndex >= 0 && productIndex < recipes.size()) {
+            ArrayList<String> recipe = recipes.get(productIndex);
+            HashMap<String, Integer> itemStock = getItem().getItemQuantity();
+
+            for (String itemName : recipe) {
+                if (itemStock.containsKey(itemName)) {
+                    int stockQuantity = itemStock.get(itemName);
+                    if (stockQuantity > 0) {
+                        itemStock.put(itemName, stockQuantity - 1);
+                    } else {
+                        System.out.println("Insufficient quantity of " + itemName + " in stock.");
+                        return;
+                    }
+                } else {
+                    System.out.println("Item " + itemName + " not found in stock.");
+                    return;
+                }
+            }
+            System.out.print("Used\n");
+            for (String itemName : recipe) {
+                System.out.print(itemName + "\n");
+            }
+            int totalCalories = calculateTotalCalories(recipe);
+            System.out.println("\nPreparing Product " + (productIndex + 1) + " - Total Calories: " + totalCalories);
+        } else {
+            System.out.println("Invalid product index.");
+        }
     }
 
-    public ArrayList<String> getRecipes() {
+    public void setRecipes(ArrayList<ArrayList<String>> recipes) {
+        this.recipes = recipes;
+    }
+
+    public ArrayList<ArrayList<String>> getRecipes() {
         return recipes;
     }
 }
