@@ -106,7 +106,8 @@ class SpecialVendingMachine extends RegularVendingMachine {
         for (String itemName : recipes.get(productIndex)) {
             System.out.print("- " + itemName + "\n");
         }
-        System.out.println("\nPreparing Product " + recipeNames.get(productIndex) + " - Total Calories: " + calculateTotalCalories(recipes.get(productIndex)));
+        
+        
     }
     
     private int itemUsedCount(ArrayList<String> recipe, String itemName) {

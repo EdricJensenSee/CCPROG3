@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class tester {
     public static void main(String[] args) {
-        SpecialVendingMachine vendingMachine = new SpecialVendingMachine();
+    	String name = "SpecialVendingMachine";
+    	RegularVendingMachine vendingMachine = new SpecialVendingMachine();
         vendingMachine.getItem().addItem("Chocolate Chip Cookies", 2, 80, 180);
         vendingMachine.getItem().addItem("Cream Filling", 6, 10, 200);
         vendingMachine.getItem().addItem("Frosting", 8, 10, 150);
