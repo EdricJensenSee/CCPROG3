@@ -3,15 +3,18 @@ import java.util.HashMap;
 
 class SpecialVendingMachine extends RegularVendingMachine {
     private ArrayList<ArrayList<String>> recipes;
+    private ArrayList<String> recipeNames;
 
     public SpecialVendingMachine() {
         super();
         recipes = new ArrayList<>();
+        recipeNames = new ArrayList<>();
     }
 
-    public void addRecipe(ArrayList<String> recipe) {
+    public void addRecipe(ArrayList<String> recipe, String recipeName) {
         recipes.add(recipe);
-    }
+        recipeNames.add(recipeName);
+        }
 
     private int calculateTotalCalories(ArrayList<String> recipe) {
         int totalCalories = 0;
@@ -40,12 +43,12 @@ class SpecialVendingMachine extends RegularVendingMachine {
                     return;
                 }
             }
-            System.out.print("Used\n");
+            System.out.print("Used: \n");
             for (String itemName : recipe) {
-                System.out.print(itemName + "\n");
+                System.out.print("- " + itemName + "\n");
             }
-            int totalCalories = calculateTotalCalories(recipe);
-            System.out.println("\nPreparing Product " + (productIndex + 1) + " - Total Calories: " + totalCalories);
+            ;
+            System.out.println("\nPreparing Product " + recipeNames.get(productIndex) + " - Total Calories: " + calculateTotalCalories(recipe));
         } else {
             System.out.println("Invalid product index.");
         }

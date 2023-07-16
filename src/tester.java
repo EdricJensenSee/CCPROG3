@@ -12,22 +12,21 @@ public class tester {
         vendingMachine.getItem().addItem("Cream Puffs", 6, 30, 180);
         vendingMachine.getItem().addItem("Strawberry", 10, 120, 190);
 
-        // Add recipes for different products
         ArrayList<String> recipe1 = new ArrayList<>();
         recipe1.add("Chocolate Chip Cookies");
         recipe1.add("Chocolate");
-        vendingMachine.addRecipe(recipe1);
+        vendingMachine.addRecipe(recipe1, "Hotdog");
 
         ArrayList<String> recipe2 = new ArrayList<>();
         recipe2.add("Cake");
         recipe2.add("Frosting");
         recipe2.add("Cream Filling");
-        vendingMachine.addRecipe(recipe2);
+        vendingMachine.addRecipe(recipe2, "Chicken");
 
         ArrayList<String> recipe3 = new ArrayList<>();
         recipe3.add("Chocolate Chip Cookies");
         recipe3.add("Cream Filling");
-        vendingMachine.addRecipe(recipe3);
+        vendingMachine.addRecipe(recipe3, "Sausage");
 
         vendingMachine.prepareProduct(2); 
         vendingMachine.prepareProduct(1); 
