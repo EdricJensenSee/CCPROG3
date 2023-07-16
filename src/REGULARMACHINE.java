@@ -330,6 +330,19 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_7_1_9.setBounds(25, 33, 57, 13);
 		first_9.add(lblNewLabel_7_1_9);
 		
+		JButton btnNewButton_1_1_2_1 = new JButton("Return");
+		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TestPage open = new TestPage("Regular");
+				open.setVisible(true);
+			}
+		});
+		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNewButton_1_1_2_1.setFocusable(false);
+		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
+		panel.add(btnNewButton_1_1_2_1);
+		
 		JButton btnNewButton_2 = new JButton("100");
 		btnNewButton_2.setBounds(10, 466, 85, 21);
 		contentPane.add(btnNewButton_2);

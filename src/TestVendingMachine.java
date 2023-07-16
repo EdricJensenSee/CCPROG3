@@ -49,6 +49,9 @@ public class TestVendingMachine extends JFrame {
 		JButton btnRegularVendingMachine = new JButton("Regular Vending Machine");
 		btnRegularVendingMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TestPage open= new TestPage("Regular");
+				open.setVisible(true);
 			}
 		});
 		btnRegularVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -57,6 +60,13 @@ public class TestVendingMachine extends JFrame {
 		contentPane.add(btnRegularVendingMachine);
 		
 		JButton btnSpecialVendingMachine = new JButton("Special Vending Machine");
+		btnSpecialVendingMachine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				TestPage open= new TestPage("Special");
+				open.setVisible(true);
+			}
+		});
 		btnSpecialVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSpecialVendingMachine.setFocusable(false);
 		btnSpecialVendingMachine.setBounds(20, 154, 393, 61);

@@ -52,7 +52,6 @@ public class CreateVendingMachine extends JFrame {
 				dispose();
 				CreatePage open= new CreatePage("Regular");
 				open.setVisible(true);
-				
 			}
 		});
 		btnRegularVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));

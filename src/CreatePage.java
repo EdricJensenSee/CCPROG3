@@ -55,17 +55,13 @@ public class CreatePage extends JFrame {
 		btnCreateMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 		        if (machineType.equals("Regular")) {
-		        	main.regularVendingMachine.getItem().addItem("Chicken", 1, 1, 1);
-		        	main.regularVendingMachine.displayStock();
-		           	main.regularVendingMachine = new RegularVendingMachine(); 
-		           	main.regularVendingMachine.displayStock();
+		           	Main.regularVendingMachine = new RegularVendingMachine(); 
 		        } else if (machineType.equals("Special")) {
-		        	main.specialVendingMachine = new SpecialVendingMachine(); 
+		        	Main.specialVendingMachine = new SpecialVendingMachine(); 
 		        }
 		        
 			}
 		});
-
 
 		btnCreateMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCreateMachine.setFocusable(false);
