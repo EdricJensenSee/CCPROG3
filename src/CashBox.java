@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
-class CashBox {
-    private HashMap<Double, Integer> denominations;
+public class CashBox {
+    private static HashMap<Double, Integer> denominations;
 
     public CashBox() {
         denominations = new HashMap<>();
@@ -29,7 +29,7 @@ class CashBox {
         return true;
     }
 
-    private void dispenseChange(double change) {
+    public static void dispenseChange(double change) {
         System.out.println("Providing change:");
 
         double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};

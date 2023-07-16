@@ -11,6 +11,16 @@ public class tester {
         vendingMachine.getItem().addItem("Vanilla", 8, 20, 210);
         vendingMachine.getItem().addItem("Cream Puffs", 6, 30, 180);
         vendingMachine.getItem().addItem("Strawberry", 10, 120, 190);
+        
+        vendingMachine.getCashBox().replenishChange(1.0, 1);
+        vendingMachine.getCashBox().replenishChange(5.0, 1);
+        vendingMachine.getCashBox().replenishChange(10.0, 1);
+        vendingMachine.getCashBox().replenishChange(20.0, 1);
+        vendingMachine.getCashBox().replenishChange(50.0, 1);
+        vendingMachine.getCashBox().replenishChange(100.0, 1);
+        vendingMachine.getCashBox().replenishChange(200.0, 1);
+        vendingMachine.getCashBox().replenishChange(500.0, 1);
+        vendingMachine.getCashBox().replenishChange(1000.0, 1);
 
         ArrayList<String> recipe1 = new ArrayList<>();
         recipe1.add("Chocolate Chip Cookies");
@@ -28,9 +38,9 @@ public class tester {
         recipe3.add("Cream Filling");
         vendingMachine.addRecipe(recipe3, "Sausage");
 
-        vendingMachine.prepareProduct(2); 
-        vendingMachine.prepareProduct(1); 
-        vendingMachine.prepareProduct(41);
+        vendingMachine.prepareProduct(2, 100); 
+        vendingMachine.prepareProduct(1, 300); 
+        vendingMachine.prepareProduct(0, 400);
         //vendingMachine.displayStock();
     }
 }
