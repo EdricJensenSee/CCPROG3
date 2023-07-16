@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TestVendingMachine extends JFrame {
 
@@ -33,7 +35,7 @@ public class TestVendingMachine extends JFrame {
 	 */
 	public TestVendingMachine() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 310);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -45,6 +47,10 @@ public class TestVendingMachine extends JFrame {
 		contentPane.add(lblCreateAVending);
 		
 		JButton btnRegularVendingMachine = new JButton("Regular Vending Machine");
+		btnRegularVendingMachine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnRegularVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnRegularVendingMachine.setFocusable(false);
 		btnRegularVendingMachine.setBounds(20, 73, 393, 61);
@@ -57,10 +63,18 @@ public class TestVendingMachine extends JFrame {
 		contentPane.add(btnSpecialVendingMachine);
 		
 		JButton btnReturn = new JButton("RETURN");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MAINPAGE open = new MAINPAGE();
+				open.setVisible(true);
+			}
+		});
 		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnReturn.setFocusable(false);
 		btnReturn.setBounds(301, 225, 125, 38);
 		contentPane.add(btnReturn);
-	}
+		this.setLocationRelativeTo(null);
+		}
 
 }

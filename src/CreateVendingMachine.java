@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateVendingMachine extends JFrame {
 
@@ -33,7 +35,7 @@ public class CreateVendingMachine extends JFrame {
 	 */
 	public CreateVendingMachine() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 312);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,10 +59,18 @@ public class CreateVendingMachine extends JFrame {
 		contentPane.add(btnSpecialVendingMachine);
 		
 		JButton btnReturn = new JButton("RETURN");
+		btnReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MAINPAGE open = new MAINPAGE();
+				open.setVisible(true);
+			}
+		});
 		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnReturn.setFocusable(false);
 		btnReturn.setBounds(301, 225, 125, 38);
 		contentPane.add(btnReturn);
+		this.setLocationRelativeTo(null);
 	}
 
 }
