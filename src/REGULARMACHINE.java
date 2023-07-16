@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
 public class REGULARMACHINE extends JFrame {
 
 	private JPanel contentPane;
-	private JPanel seventh;
 
 	/**
 	 * Launch the application.
@@ -53,59 +52,67 @@ public class REGULARMACHINE extends JFrame {
 		panel_2.setLayout(null);
 		
 		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBounds(27, 373, 72, 35);
+		panel_1_1.setBounds(27, 401, 72, 35);
 		panel_1_1.setForeground(Color.DARK_GRAY);
 		panel_1_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		panel_1_1.setBackground(Color.DARK_GRAY);
 		panel_2.add(panel_1_1);
 		
 		JButton btnNewButton = new JButton("A");
+		btnNewButton.setFocusable(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBounds(10, 38, 45, 35);
+		btnNewButton.setBounds(10, 29, 45, 35);
 		panel_2.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("1");
+		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(65, 38, 45, 35);
+		btnNewButton_1.setBounds(65, 29, 45, 35);
 		panel_2.add(btnNewButton_1);
 		
 		JButton btnB = new JButton("B");
+		btnB.setFocusable(false);
 		btnB.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnB.setBounds(10, 83, 45, 35);
+		btnB.setBounds(10, 74, 45, 35);
 		panel_2.add(btnB);
 		
 		JButton btnC = new JButton("C");
+		btnC.setFocusable(false);
 		btnC.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC.setBounds(10, 128, 45, 35);
+		btnC.setBounds(10, 119, 45, 35);
 		panel_2.add(btnC);
 		
 		JButton btnD = new JButton("D");
+		btnD.setFocusable(false);
 		btnD.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnD.setBounds(10, 173, 45, 35);
+		btnD.setBounds(10, 164, 45, 35);
 		panel_2.add(btnD);
 		
 		JButton btnNewButton_1_1 = new JButton("2");
+		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1.setBounds(65, 83, 45, 35);
+		btnNewButton_1_1.setBounds(65, 74, 45, 35);
 		panel_2.add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("3");
+		btnNewButton_1_1_1.setFocusable(false);
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1_1.setBounds(65, 128, 45, 35);
+		btnNewButton_1_1_1.setBounds(65, 119, 45, 35);
 		panel_2.add(btnNewButton_1_1_1);
 		
 		JButton btnNewButton_1_1_2 = new JButton("4");
+		btnNewButton_1_1_2.setFocusable(false);
 		btnNewButton_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1_2.setBounds(65, 173, 45, 35);
+		btnNewButton_1_1_2.setBounds(65, 164, 45, 35);
 		panel_2.add(btnNewButton_1_1_2);
 		
 		JLabel lblCode = new JLabel("Code");
 		lblCode.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblCode.setBounds(38, 218, 72, 18);
+		lblCode.setBounds(38, 246, 72, 18);
 		panel_2.add(lblCode);
 		
 		JLabel lblNewLabel_12 = new JLabel("A2");
@@ -114,7 +121,7 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_12.setOpaque(true);
 		lblNewLabel_12.setForeground(Color.WHITE);
 		lblNewLabel_12.setBackground(Color.DARK_GRAY);
-		lblNewLabel_12.setBounds(27, 243, 70, 35);
+		lblNewLabel_12.setBounds(27, 271, 70, 35);
 		panel_2.add(lblNewLabel_12);
 		
 		JLabel lblNewLabel_12_1 = new JLabel("200");
@@ -123,18 +130,24 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_12_1.setForeground(Color.WHITE);
 		lblNewLabel_12_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_12_1.setBackground(Color.DARK_GRAY);
-		lblNewLabel_12_1.setBounds(27, 310, 70, 35);
+		lblNewLabel_12_1.setBounds(27, 338, 70, 35);
 		panel_2.add(lblNewLabel_12_1);
 		
 		JLabel lblPrice = new JLabel("Price");
 		lblPrice.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPrice.setBounds(38, 285, 72, 18);
+		lblPrice.setBounds(38, 313, 72, 18);
 		panel_2.add(lblPrice);
 		
 		JLabel lblChange = new JLabel("Change");
 		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblChange.setBounds(30, 350, 72, 18);
+		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
+		
+		JButton btnEnter = new JButton("Enter");
+		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnEnter.setFocusable(false);
+		btnEnter.setBounds(10, 212, 100, 28);
+		panel_2.add(btnEnter);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
@@ -159,9 +172,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem.setBounds(25, 10, 57, 13);
 		first.add(firstItem);
 		
-		JButton btnNewButton_6_1 = new JButton("New button");
-		btnNewButton_6_1.setBounds(0, 28, 103, 33);
-		first.add(btnNewButton_6_1);
+		JLabel lblNewLabel_7_1 = new JLabel("New label");
+		lblNewLabel_7_1.setBounds(25, 33, 57, 13);
+		first.add(lblNewLabel_7_1);
 		
 		JPanel second = new JPanel();
 		second.setLayout(null);
@@ -173,9 +186,9 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_1.setBounds(25, 10, 57, 13);
 		second.add(lblNewLabel_1);
 		
-		JButton btnNewButton_6_1_1 = new JButton("New button");
-		btnNewButton_6_1_1.setBounds(0, 28, 103, 33);
-		second.add(btnNewButton_6_1_1);
+		JLabel lblNewLabel_7_2 = new JLabel("New label");
+		lblNewLabel_7_2.setBounds(25, 33, 57, 13);
+		second.add(lblNewLabel_7_2);
 		
 		JPanel third = new JPanel();
 		third.setLayout(null);
@@ -187,135 +200,135 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_2.setBounds(25, 10, 57, 13);
 		third.add(lblNewLabel_2);
 		
-		JButton btnNewButton_6_1_2 = new JButton("New button");
-		btnNewButton_6_1_2.setBounds(0, 28, 103, 33);
-		third.add(btnNewButton_6_1_2);
+		JLabel lblNewLabel_7_3 = new JLabel("New label");
+		lblNewLabel_7_3.setBounds(25, 33, 57, 13);
+		third.add(lblNewLabel_7_3);
 		
-		JPanel fourth = new JPanel();
-		fourth.setLayout(null);
-		fourth.setBorder(null);
-		fourth.setBounds(13, 110, 106, 71);
-		panel.add(fourth);
+		JPanel first_1 = new JPanel();
+		first_1.setLayout(null);
+		first_1.setBorder(null);
+		first_1.setBounds(13, 112, 106, 71);
+		panel.add(first_1);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(25, 10, 57, 13);
-		fourth.add(lblNewLabel_3);
+		JLabel firstItem_1 = new JLabel("New label");
+		firstItem_1.setBounds(25, 10, 57, 13);
+		first_1.add(firstItem_1);
 		
-		JButton btnNewButton_6_1_3 = new JButton("New button");
-		btnNewButton_6_1_3.setBounds(0, 28, 103, 33);
-		fourth.add(btnNewButton_6_1_3);
+		JLabel lblNewLabel_7_1_1 = new JLabel("New label");
+		lblNewLabel_7_1_1.setBounds(25, 33, 57, 13);
+		first_1.add(lblNewLabel_7_1_1);
 		
-		JPanel fifth = new JPanel();
-		fifth.setLayout(null);
-		fifth.setBorder(null);
-		fifth.setBounds(129, 110, 106, 71);
-		panel.add(fifth);
+		JPanel first_2 = new JPanel();
+		first_2.setLayout(null);
+		first_2.setBorder(null);
+		first_2.setBounds(129, 112, 106, 71);
+		panel.add(first_2);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(25, 10, 57, 13);
-		fifth.add(lblNewLabel_4);
+		JLabel firstItem_2 = new JLabel("New label");
+		firstItem_2.setBounds(25, 10, 57, 13);
+		first_2.add(firstItem_2);
 		
-		JButton btnNewButton_6_1_4 = new JButton("New button");
-		btnNewButton_6_1_4.setBounds(0, 28, 103, 33);
-		fifth.add(btnNewButton_6_1_4);
+		JLabel lblNewLabel_7_1_2 = new JLabel("New label");
+		lblNewLabel_7_1_2.setBounds(25, 33, 57, 13);
+		first_2.add(lblNewLabel_7_1_2);
 		
-		JPanel sixth = new JPanel();
-		sixth.setLayout(null);
-		sixth.setBorder(null);
-		sixth.setBounds(245, 110, 106, 71);
-		panel.add(sixth);
+		JPanel first_3 = new JPanel();
+		first_3.setLayout(null);
+		first_3.setBorder(null);
+		first_3.setBounds(245, 112, 106, 71);
+		panel.add(first_3);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(25, 10, 57, 13);
-		sixth.add(lblNewLabel_5);
+		JLabel firstItem_3 = new JLabel("New label");
+		firstItem_3.setBounds(25, 10, 57, 13);
+		first_3.add(firstItem_3);
 		
-		JButton btnNewButton_6_1_5 = new JButton("New button");
-		btnNewButton_6_1_5.setBounds(0, 28, 103, 33);
-		sixth.add(btnNewButton_6_1_5);
+		JLabel lblNewLabel_7_1_3 = new JLabel("New label");
+		lblNewLabel_7_1_3.setBounds(25, 33, 57, 13);
+		first_3.add(lblNewLabel_7_1_3);
 		
-		seventh = new JPanel();
-		seventh.setLayout(null);
-		seventh.setBorder(null);
-		seventh.setBounds(13, 182, 106, 71);
-		panel.add(seventh);
+		JPanel first_4 = new JPanel();
+		first_4.setLayout(null);
+		first_4.setBorder(null);
+		first_4.setBounds(13, 183, 106, 71);
+		panel.add(first_4);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setBounds(25, 10, 57, 13);
-		seventh.add(lblNewLabel_6);
+		JLabel firstItem_4 = new JLabel("New label");
+		firstItem_4.setBounds(25, 10, 57, 13);
+		first_4.add(firstItem_4);
 		
-		JButton btnNewButton_6_1_6 = new JButton("New button");
-		btnNewButton_6_1_6.setBounds(0, 28, 103, 33);
-		seventh.add(btnNewButton_6_1_6);
+		JLabel lblNewLabel_7_1_4 = new JLabel("New label");
+		lblNewLabel_7_1_4.setBounds(25, 33, 57, 13);
+		first_4.add(lblNewLabel_7_1_4);
 		
-		JPanel eight = new JPanel();
-		eight.setLayout(null);
-		eight.setBorder(null);
-		eight.setBounds(129, 182, 106, 71);
-		panel.add(eight);
+		JPanel first_5 = new JPanel();
+		first_5.setLayout(null);
+		first_5.setBorder(null);
+		first_5.setBounds(13, 254, 106, 71);
+		panel.add(first_5);
 		
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(25, 10, 57, 13);
-		eight.add(lblNewLabel_7);
+		JLabel firstItem_5 = new JLabel("New label");
+		firstItem_5.setBounds(25, 10, 57, 13);
+		first_5.add(firstItem_5);
 		
-		JButton btnNewButton_6_1_7 = new JButton("New button");
-		btnNewButton_6_1_7.setBounds(0, 28, 103, 33);
-		eight.add(btnNewButton_6_1_7);
+		JLabel lblNewLabel_7_1_5 = new JLabel("New label");
+		lblNewLabel_7_1_5.setBounds(25, 33, 57, 13);
+		first_5.add(lblNewLabel_7_1_5);
 		
-		JPanel ninth = new JPanel();
-		ninth.setLayout(null);
-		ninth.setBorder(null);
-		ninth.setBounds(245, 182, 106, 71);
-		panel.add(ninth);
+		JPanel first_6 = new JPanel();
+		first_6.setLayout(null);
+		first_6.setBorder(null);
+		first_6.setBounds(129, 183, 106, 71);
+		panel.add(first_6);
 		
-		JLabel lblNewLabel_8 = new JLabel("New label");
-		lblNewLabel_8.setBounds(25, 10, 57, 13);
-		ninth.add(lblNewLabel_8);
+		JLabel firstItem_6 = new JLabel("New label");
+		firstItem_6.setBounds(25, 10, 57, 13);
+		first_6.add(firstItem_6);
 		
-		JButton btnNewButton_6_1_8 = new JButton("New button");
-		btnNewButton_6_1_8.setBounds(0, 28, 103, 33);
-		ninth.add(btnNewButton_6_1_8);
+		JLabel lblNewLabel_7_1_6 = new JLabel("New label");
+		lblNewLabel_7_1_6.setBounds(25, 33, 57, 13);
+		first_6.add(lblNewLabel_7_1_6);
 		
-		JPanel tenth = new JPanel();
-		tenth.setLayout(null);
-		tenth.setBorder(null);
-		tenth.setBounds(13, 252, 106, 71);
-		panel.add(tenth);
+		JPanel first_7 = new JPanel();
+		first_7.setLayout(null);
+		first_7.setBorder(null);
+		first_7.setBounds(245, 183, 106, 71);
+		panel.add(first_7);
 		
-		JLabel lblNewLabel_9 = new JLabel("New label");
-		lblNewLabel_9.setBounds(25, 10, 57, 13);
-		tenth.add(lblNewLabel_9);
+		JLabel firstItem_7 = new JLabel("New label");
+		firstItem_7.setBounds(25, 10, 57, 13);
+		first_7.add(firstItem_7);
 		
-		JButton btnNewButton_6_1_9 = new JButton("New button");
-		btnNewButton_6_1_9.setBounds(0, 28, 103, 33);
-		tenth.add(btnNewButton_6_1_9);
+		JLabel lblNewLabel_7_1_7 = new JLabel("New label");
+		lblNewLabel_7_1_7.setBounds(25, 33, 57, 13);
+		first_7.add(lblNewLabel_7_1_7);
 		
-		JPanel eleventh = new JPanel();
-		eleventh.setLayout(null);
-		eleventh.setBorder(null);
-		eleventh.setBounds(129, 252, 106, 71);
-		panel.add(eleventh);
+		JPanel first_8 = new JPanel();
+		first_8.setLayout(null);
+		first_8.setBorder(null);
+		first_8.setBounds(129, 254, 106, 71);
+		panel.add(first_8);
 		
-		JLabel lblNewLabel_10 = new JLabel("New label");
-		lblNewLabel_10.setBounds(25, 10, 57, 13);
-		eleventh.add(lblNewLabel_10);
+		JLabel firstItem_8 = new JLabel("New label");
+		firstItem_8.setBounds(25, 10, 57, 13);
+		first_8.add(firstItem_8);
 		
-		JButton btnNewButton_6_1_10 = new JButton("New button");
-		btnNewButton_6_1_10.setBounds(0, 28, 103, 33);
-		eleventh.add(btnNewButton_6_1_10);
+		JLabel lblNewLabel_7_1_8 = new JLabel("New label");
+		lblNewLabel_7_1_8.setBounds(25, 33, 57, 13);
+		first_8.add(lblNewLabel_7_1_8);
 		
-		JPanel twelfth = new JPanel();
-		twelfth.setLayout(null);
-		twelfth.setBorder(null);
-		twelfth.setBounds(245, 252, 106, 71);
-		panel.add(twelfth);
+		JPanel first_9 = new JPanel();
+		first_9.setLayout(null);
+		first_9.setBorder(null);
+		first_9.setBounds(245, 254, 106, 71);
+		panel.add(first_9);
 		
-		JLabel lblNewLabel_11 = new JLabel("New label");
-		lblNewLabel_11.setBounds(25, 10, 57, 13);
-		twelfth.add(lblNewLabel_11);
+		JLabel firstItem_9 = new JLabel("New label");
+		firstItem_9.setBounds(25, 10, 57, 13);
+		first_9.add(firstItem_9);
 		
-		JButton btnNewButton_6_1_11 = new JButton("New button");
-		btnNewButton_6_1_11.setBounds(0, 28, 103, 33);
-		twelfth.add(btnNewButton_6_1_11);
+		JLabel lblNewLabel_7_1_9 = new JLabel("New label");
+		lblNewLabel_7_1_9.setBounds(25, 33, 57, 13);
+		first_9.add(lblNewLabel_7_1_9);
 		
 		JButton btnNewButton_2 = new JButton("100");
 		btnNewButton_2.setBounds(10, 466, 85, 21);
