@@ -47,12 +47,27 @@ public class CreateVendingMachine extends JFrame {
 		contentPane.add(lblCreateAVending);
 		
 		JButton btnRegularVendingMachine = new JButton("Regular Vending Machine");
+		btnRegularVendingMachine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CreatePage open= new CreatePage("Regular");
+				open.setVisible(true);
+				
+			}
+		});
 		btnRegularVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnRegularVendingMachine.setFocusable(false);
 		btnRegularVendingMachine.setBounds(20, 73, 393, 61);
 		contentPane.add(btnRegularVendingMachine);
 		
 		JButton btnSpecialVendingMachine = new JButton("Special Vending Machine");
+		btnSpecialVendingMachine.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CreatePage open= new CreatePage("Special");
+				open.setVisible(true);
+			}
+		});
 		btnSpecialVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSpecialVendingMachine.setFocusable(false);
 		btnSpecialVendingMachine.setBounds(20, 154, 393, 61);

@@ -8,8 +8,8 @@ public class Main {
     public static int CAPACITY_PER_SLOT = 10;
     public static int SLOT = 9;
     private static Scanner scan = new Scanner(System.in);
-    private static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
-    private static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
+    public static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
+    public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     private static int nChoice, number, quantity, calories;
     private static double payment;
     private static float price;
