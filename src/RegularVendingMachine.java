@@ -39,7 +39,7 @@ class RegularVendingMachine {
             calories = item.getItemCalories().get(key);
 
             itemNumbers.put(number, key);
-
+            
             System.out.println(number + ". " + key + " - Quantity: " + quantity + " - Price: ₱" + price + " - Calories: " + calories);
 
             count += quantity;

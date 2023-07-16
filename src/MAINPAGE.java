@@ -7,13 +7,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
 
 public class MAINPAGE extends JFrame {
 
 	private JPanel contentPane;
-	private final JDesktopPane desktopPane = new JDesktopPane();
 
 	/**
 	 * Launch the application.
@@ -64,7 +61,5 @@ public class MAINPAGE extends JFrame {
 		btnExit.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnExit.setBounds(341, 229, 100, 38);
 		contentPane.add(btnExit);
-		desktopPane.setBounds(167, 231, 84, 36);
-		contentPane.add(desktopPane);
 	}
 }

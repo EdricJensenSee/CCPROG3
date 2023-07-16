@@ -52,54 +52,64 @@ class SpecialVendingMachine extends RegularVendingMachine {
     }
     
     public void prepareProduct(int productIndex, double amountPaid) {
+        double totalPrice = 0;
+        int requiredQuantity = 0;
+
         if (productIndex < 0 || productIndex >= recipes.size()) {
             System.out.print("Invalid Product");
             return;
         }
 
-        ArrayList<String> selectedRecipe = recipes.get(productIndex);
-
-        // Check if all items in the recipe are available in the stock
-        for (String itemName : selectedRecipe) {
+        for (String itemName : recipes.get(productIndex)) {
             if (item.getItemQuantity().containsKey(itemName)) {
+            	requiredQuantity = itemUsedCount(recipes.get(productIndex), itemName);
                 int stockQuantity = item.getItemQuantity().get(itemName);
-                if (stockQuantity <= 0) {
+                double itemPrice = item.getItemPrice().get(itemName);
+
+                if (stockQuantity < requiredQuantity) {
                     System.out.println("Insufficient quantity of " + itemName + " in stock.");
                     return;
                 }
+
+                totalPrice += item.getItemPrice().get(itemName);
             } else {
                 System.out.println("Item " + itemName + " not found in stock.");
                 return;
             }
         }
 
-        double totalPrice = selectedRecipe.stream().mapToDouble(itemName -> item.getItemPrice().getOrDefault(itemName, 0.0)).sum();
-
         if (amountPaid < totalPrice) {
             System.out.println("Insufficient payment. Please insert ₱" + (totalPrice - amountPaid) + " more.");
             return;
         } else if (amountPaid > totalPrice) {
             double change = amountPaid - totalPrice;
-           CashBox.dispenseChange(change);
+            CashBox.dispenseChange(change);
         }
 
-        // Update the item stock and sales
-        for (String itemName : selectedRecipe) {
+        for (String itemName : recipes.get(productIndex)) {
             int stockQuantity = item.getItemQuantity().get(itemName);
-            item.getItemQuantity().put(itemName, stockQuantity - 1);
-            item.getItemSold().put(itemName, item.getItemSold().getOrDefault(itemName, 0) + 1);
+
+            item.getItemQuantity().put(itemName, stockQuantity - requiredQuantity);
+            item.getItemSold().put(itemName, item.getItemSold().getOrDefault(itemName, 0) + requiredQuantity);
         }
 
-        // Update the total sales
         item.setTotalSales(item.getTotalSales() + totalPrice);
 
         System.out.print("Used: \n");
-        for (String itemName : selectedRecipe) {
+        for (String itemName : recipes.get(productIndex)) {
             System.out.print("- " + itemName + "\n");
         }
         System.out.println("\nPreparing Product " + recipeNames.get(productIndex) + " - Total Calories: " + calculateTotalCalories(recipes.get(productIndex)));
     }
 
+    private int itemUsedCount(ArrayList<String> recipe, String itemName) {
+        int count = 0;
+        for (int i = 0; i< recipe.size();i++) {
+        	if (recipe.get(i) == itemName)
+        		count++;
+        }
+        return count;
+    }
 
 
     public void setRecipes(ArrayList<ArrayList<String>> recipes) {
