@@ -24,7 +24,7 @@ public class MaintenancePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MaintenancePage frame = new MaintenancePage();
+					MaintenancePage frame = new MaintenancePage("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class MaintenancePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MaintenancePage() {
+	public MaintenancePage(String machineType) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 536);
 		contentPane = new JPanel();
@@ -52,6 +52,12 @@ public class MaintenancePage extends JFrame {
 		panel_2.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Collect Money");
+		btnNewButton.setFocusable(false);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 8));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setBounds(10, 415, 100, 21);
 		panel_2.add(btnNewButton);
 		
@@ -63,28 +69,38 @@ public class MaintenancePage extends JFrame {
 		panel_2.add(panel_1_1);
 		
 		JButton btnNewButton_1 = new JButton("Restock");
+		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.setBounds(10, 60, 100, 41);
 		panel_2.add(btnNewButton_1);
 		
 		JButton btnNewButton_1_1 = new JButton("Add Money");
+		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1_1.setBounds(10, 111, 100, 41);
+		btnNewButton_1_1.setBounds(10, 163, 100, 41);
 		panel_2.add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("Add items");
-		btnNewButton_1_2.setBounds(10, 162, 100, 41);
+		btnNewButton_1_2.setFocusable(false);
+		btnNewButton_1_2.setBounds(10, 111, 100, 41);
 		panel_2.add(btnNewButton_1_2);
 		
-		JButton btnNewButton_1_2_1 = new JButton("Change Prices");
-		btnNewButton_1_2_1.setBounds(10, 214, 100, 41);
-		panel_2.add(btnNewButton_1_2_1);
-		
-		JButton btnNewButton_1_2_1_1 = new JButton("Receipt List");
-		btnNewButton_1_2_1_1.setBounds(10, 268, 100, 41);
+		JButton btnNewButton_1_2_1_1 = new JButton("Receipt");
+		btnNewButton_1_2_1_1.setFocusable(false);
+		btnNewButton_1_2_1_1.setBounds(10, 265, 100, 41);
 		panel_2.add(btnNewButton_1_2_1_1);
+		
+		JButton btnNewButton_1_1_1 = new JButton("<html><center>Change<br>Prices</center></html>");
+		btnNewButton_1_1_1.setFocusable(false);
+		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+
+		btnNewButton_1_1_1.setBounds(10, 214, 100, 41);
+		panel_2.add(btnNewButton_1_1_1);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
@@ -271,7 +287,7 @@ public class MaintenancePage extends JFrame {
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				TestPage open = new TestPage("Regular");
+				TestPage open = new TestPage(machineType);
 				open.setVisible(true);
 			}
 		});
@@ -281,22 +297,27 @@ public class MaintenancePage extends JFrame {
 		panel.add(btnNewButton_1_1_2_1);
 		
 		JButton btnNewButton_2 = new JButton("100");
+		btnNewButton_2.setFocusable(false);
 		btnNewButton_2.setBounds(10, 466, 85, 21);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("50");
+		btnNewButton_2_1.setFocusable(false);
 		btnNewButton_2_1.setBounds(107, 466, 85, 21);
 		contentPane.add(btnNewButton_2_1);
 		
 		JButton btnNewButton_2_2 = new JButton("20");
+		btnNewButton_2_2.setFocusable(false);
 		btnNewButton_2_2.setBounds(205, 466, 85, 21);
 		contentPane.add(btnNewButton_2_2);
 		
 		JButton btnNewButton_2_3 = new JButton("10");
+		btnNewButton_2_3.setFocusable(false);
 		btnNewButton_2_3.setBounds(300, 466, 85, 21);
 		contentPane.add(btnNewButton_2_3);
 		
 		JButton btnNewButton_2_4 = new JButton("5");
+		btnNewButton_2_4.setFocusable(false);
 		btnNewButton_2_4.setBounds(395, 466, 85, 21);
 		contentPane.add(btnNewButton_2_4);
 		

@@ -75,6 +75,13 @@ public class TestPage extends JFrame {
 		contentPane.add(btnFeatureTest);
 		
 		JButton btnMaintance = new JButton("Maintance");
+		btnMaintance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				MaintenancePage open = new MaintenancePage(machineType);
+				open.setVisible(true);
+			}
+		});
 		btnMaintance.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnMaintance.setFocusable(false);
 		btnMaintance.setBounds(82, 143, 271, 61);
