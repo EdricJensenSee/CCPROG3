@@ -52,15 +52,16 @@ class SpecialVendingMachine extends RegularVendingMachine {
     }
     
     public void prepareProduct(int productIndex) {
-        if (productIndex >= 0 && productIndex < recipes.size()) {
-            ArrayList<String> recipe = recipes.get(productIndex);
-            HashMap<String, Integer> itemStock = getItem().getItemQuantity();
-
-            for (String itemName : recipe) {
-                if (itemStock.containsKey(itemName)) {
-                    int stockQuantity = itemStock.get(itemName);
+    		if (productIndex < 0 || productIndex >= recipes.size()) {
+    			System.out.print("Invalid Product");
+    			return;
+    		}
+    			
+            for (String itemName : recipes.get(productIndex)) {
+                if (item.getItemQuantity().containsKey(itemName)) {
+                    int stockQuantity = item.getItemQuantity().get(itemName);
                     if (stockQuantity > 0) {
-                        itemStock.put(itemName, stockQuantity - 1);
+                        item.getItemQuantity().put(itemName, stockQuantity - 1);
                     } else {
                         System.out.println("Insufficient quantity of " + itemName + " in stock.");
                         return;
@@ -71,15 +72,12 @@ class SpecialVendingMachine extends RegularVendingMachine {
                 }
             }
             System.out.print("Used: \n");
-            for (String itemName : recipe) {
+            for (String itemName :  recipes.get(productIndex)) {
                 System.out.print("- " + itemName + "\n");
             }
-            ;
-            System.out.println("\nPreparing Product " + recipeNames.get(productIndex) + " - Total Calories: " + calculateTotalCalories(recipe));
-        } else {
-            System.out.println("Invalid product index.");
-        }
+            System.out.println("\nPreparing Product " + recipeNames.get(productIndex) + " - Total Calories: " + calculateTotalCalories(recipes.get(productIndex)));
     }
+
 
     public void setRecipes(ArrayList<ArrayList<String>> recipes) {
         this.recipes = recipes;

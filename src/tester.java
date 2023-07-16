@@ -28,9 +28,9 @@ public class tester {
         recipe3.add("Cream Filling");
         vendingMachine.addRecipe(recipe3, "Sausage");
 
-        /*vendingMachine.prepareProduct(2); 
+        vendingMachine.prepareProduct(2); 
         vendingMachine.prepareProduct(1); 
-        vendingMachine.prepareProduct(0);*/
-        vendingMachine.displayStock();
+        vendingMachine.prepareProduct(41);
+        //vendingMachine.displayStock();
     }
 }
