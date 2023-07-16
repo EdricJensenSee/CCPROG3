@@ -23,7 +23,34 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
         return totalCalories;
     }
+    
+    public void displayStock() {
+        int number = 1;
+        count = 0;
+        totalUnique = 0;
+        System.out.println("Items: ");
+        for (String key : item.getItemQuantity().keySet()) {
+            int quantity = item.getItemQuantity().get(key);
+            double price = item.getItemPrice().get(key);
+            int calories = item.getItemCalories().get(key);
 
+            itemNumbers.put(number, key);
+
+            System.out.println(number + ". " + key + " - Quantity: " + quantity + " - Price: ₱" + price + " - Calories: " + calories);
+            count += quantity;
+            totalUnique++;
+            number++;
+        }
+        System.out.println("Recipes: ");
+        for (int recipeCount = 0; recipeCount<recipeNames.size(); recipeCount++) {
+        	System.out.println(recipeNames.get(recipeCount));
+            for (String itemName : recipes.get(recipeCount)) {
+                System.out.print("- " + itemName + "\n");
+            }
+        }
+        System.out.println("Current Total Items: " + count + " - Total Recipes: " + recipes.size());
+    }
+    
     public void prepareProduct(int productIndex) {
         if (productIndex >= 0 && productIndex < recipes.size()) {
             ArrayList<String> recipe = recipes.get(productIndex);
