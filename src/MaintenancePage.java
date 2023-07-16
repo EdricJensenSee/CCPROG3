@@ -24,7 +24,7 @@ public class MaintenancePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MaintenancePage frame = new MaintenancePage("");
+					MaintenancePage frame = new MaintenancePage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class MaintenancePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MaintenancePage(String machineType) {
+	public MaintenancePage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 536);
 		contentPane = new JPanel();
