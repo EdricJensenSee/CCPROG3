@@ -1,9 +1,8 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class SpecialVendingMachine extends RegularVendingMachine {
     private ArrayList<ArrayList<String>> recipes;
-    private ArrayList<String> recipeNames;
+    private ArrayList<String> recipeNames;	
 
     public SpecialVendingMachine() {
         super();
@@ -55,18 +54,15 @@ class SpecialVendingMachine extends RegularVendingMachine {
         double totalPrice = 0;
         int requiredQuantity = 0;
 
-        if (productIndex < 0 || productIndex >= recipes.size()) {
-            System.out.print("Invalid Product");
+        if (!isProductIndexValid(productIndex)) {
             return;
         }
 
         for (String itemName : recipes.get(productIndex)) {
             if (item.getItemQuantity().containsKey(itemName)) {
             	requiredQuantity = itemUsedCount(recipes.get(productIndex), itemName);
-                int stockQuantity = item.getItemQuantity().get(itemName);
-                double itemPrice = item.getItemPrice().get(itemName);
 
-                if (stockQuantity < requiredQuantity) {
+                if (item.getItemQuantity().get(itemName) < requiredQuantity) {
                     System.out.println("Insufficient quantity of " + itemName + " in stock.");
                     return;
                 }
@@ -87,21 +83,32 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
 
         for (String itemName : recipes.get(productIndex)) {
-            int stockQuantity = item.getItemQuantity().get(itemName);
 
-            item.getItemQuantity().put(itemName, stockQuantity - requiredQuantity);
+            item.getItemQuantity().put(itemName, item.getItemQuantity().get(itemName) - requiredQuantity);
             item.getItemSold().put(itemName, item.getItemSold().getOrDefault(itemName, 0) + requiredQuantity);
         }
 
         item.setTotalSales(item.getTotalSales() + totalPrice);
 
+        displayUsedItems(productIndex);
+    }
+
+    private boolean isProductIndexValid(int productIndex) {
+        if (productIndex < 0 || productIndex >= recipes.size()) {
+            System.out.print("Invalid Product");
+            return false;
+        }
+        return true;
+    }
+    
+    private void displayUsedItems(int productIndex) {
         System.out.print("Used: \n");
         for (String itemName : recipes.get(productIndex)) {
             System.out.print("- " + itemName + "\n");
         }
         System.out.println("\nPreparing Product " + recipeNames.get(productIndex) + " - Total Calories: " + calculateTotalCalories(recipes.get(productIndex)));
     }
-
+    
     private int itemUsedCount(ArrayList<String> recipe, String itemName) {
         int count = 0;
         for (int i = 0; i< recipe.size();i++) {
