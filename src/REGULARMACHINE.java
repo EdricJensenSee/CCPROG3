@@ -336,5 +336,7 @@ public class REGULARMACHINE extends JFrame {
 		JButton btnNewButton_2_4 = new JButton("5");
 		btnNewButton_2_4.setBounds(395, 466, 85, 21);
 		contentPane.add(btnNewButton_2_4);
+		
+		this.setLocationRelativeTo(null);
 	}
 }
