@@ -42,15 +42,14 @@ public class Main {
         specialVendingMachine.getItem().addItem("Cream Puffs", 6, 30, 180);
         specialVendingMachine.getItem().addItem("Strawberry", 10, 120	, 190);
         
-    	regularVendingMachine.getCashBox().replenishChange(1.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(5.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(5.0, 100);
+    	/*regularVendingMachine.getCashBox().replenishChange(10.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);*/
     	REGULARMACHINE open = new REGULARMACHINE();
     	open.setVisible(true);
     	while (true) {

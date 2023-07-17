@@ -71,7 +71,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel Insert_1 = new JLabel("0");
 		Insert_1.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e) {
-		            int currentIndex = 0;
+		            int currentIndex = 1;
 					currentIndex++;
 		            int size = CashBox.getDenominationsSpent().size();
 		            if (currentIndex >= 0 && currentIndex < size) {

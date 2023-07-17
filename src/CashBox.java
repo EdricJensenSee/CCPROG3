@@ -54,38 +54,37 @@ public class CashBox {
 	}
 
 	public static void dispenseChange(double change) {
-        double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
-        int[] quantityOfDenom = new int[availableDenominations.length];
+	    double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
+	    int[] quantityOfDenom = new int[availableDenominations.length];
 
-        for (int i = 0; i < availableDenominations.length; i++) {
-            double denomination = availableDenominations[i];
-            int num = (int) (change / denomination);
-            if (num > 0) {
-                int numDispensed = Math.min(num, denominations.getOrDefault(denomination, 0));
-                if (numDispensed > 0) {
-                    //System.out.println(numDispensed + " ₱" + denomination + " coins/bills");
-                    change -= numDispensed * denomination;
-                    quantityOfDenom[i] = numDispensed;
-                    denominationsSpent.add(denomination);
-                }
-            }
-            if (change == 0) {
-                break;
-            }
-        }
-        System.out.print(denominationsSpent);
-        if (change == 0) {
-            for (int i = 0; i < availableDenominations.length; i++) {
-                double denomination = availableDenominations[i];
-                if (quantityOfDenom[i] > 0) {
-                    denominations.put(denomination, denominations.getOrDefault(denomination, 0) - quantityOfDenom[i]);
-                }
-            }
-        } else {
-            System.out.println("Sorry, the vending machine doesn't have enough change. Change returned.");
-            denominationsSpent.clear();
-        }
-    }
+	    for (int i = 0; i < availableDenominations.length; i++) {
+	        double denomination = availableDenominations[i];
+	        int num = (int) (change / denomination);
+	        if (num > 0) {
+	            int numDispensed = Math.min(num, denominations.getOrDefault(denomination, 0));
+	            for (int j = 0; j < numDispensed; j++) {
+	                change -= denomination;
+	                quantityOfDenom[i]++;
+	                denominationsSpent.add(denomination);
+	            }
+	        }
+	        if (change == 0) {
+	            break;
+	        }
+	    }
+	    System.out.print(denominationsSpent);
+	    if (change == 0) {
+	        for (int i = 0; i < availableDenominations.length; i++) {
+	            double denomination = availableDenominations[i];
+	            if (quantityOfDenom[i] > 0) {
+	                denominations.put(denomination, denominations.getOrDefault(denomination, 0) - quantityOfDenom[i]);
+	            }
+	        }
+	    } else {
+	        System.out.println("Sorry, the vending machine doesn't have enough change. Change returned.");
+	        denominationsSpent.clear();
+	    }
+	}
     
     public boolean receivePayment(Item item, String itemName, double amountPaid) {
         if (!isItemAvailable(item, itemName)) {
