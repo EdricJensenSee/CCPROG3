@@ -23,7 +23,6 @@ public class Main {
  * @param args the args. 
  */
     public static void main(String[] args) { 
-
     	//Test Values
         regularVendingMachine.getItem().addItem("Chocolate Chip Cookie", 4, 80, 180);
         regularVendingMachine.getItem().addItem("Chocolate Bar", 5, 40, 160);
@@ -52,7 +51,8 @@ public class Main {
     	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);
-  
+    	REGULARMACHINE open = new REGULARMACHINE();
+    	open.setVisible(true);
     	while (true) {
             System.out.println();
             System.out.println("------------------------------------------------");

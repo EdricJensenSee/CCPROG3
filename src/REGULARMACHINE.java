@@ -16,7 +16,8 @@ import java.awt.event.ActionEvent;
 public class REGULARMACHINE extends JFrame {
 
 	private JPanel contentPane;
-
+	private JPanel C1;
+	private boolean modes = true;
 	/**
 	 * Launch the application.
 	 */
@@ -37,8 +38,11 @@ public class REGULARMACHINE extends JFrame {
 	 * Create the frame.
 	 */
 	public REGULARMACHINE() {
+		Main main = new Main();
+		JLabel Insert;
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 510, 536);
+		setBounds(100, 100, 510, 568);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -103,7 +107,7 @@ public class REGULARMACHINE extends JFrame {
 		lblCode.setBounds(38, 246, 72, 18);
 		panel_2.add(lblCode);
 		
-		JLabel lblNewLabel_12 = new JLabel("A2");
+		JLabel lblNewLabel_12 = new JLabel("");
 		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_12.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_12.setOpaque(true);
@@ -112,7 +116,7 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_12.setBounds(27, 271, 70, 35);
 		panel_2.add(lblNewLabel_12);
 		
-		JLabel lblNewLabel_12_1 = new JLabel("200");
+		JLabel lblNewLabel_12_1 = new JLabel("ha");
 		lblNewLabel_12_1.setOpaque(true);
 		lblNewLabel_12_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_12_1.setForeground(Color.WHITE);
@@ -143,10 +147,35 @@ public class REGULARMACHINE extends JFrame {
 		panel_2.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 		panel.setBounds(10, 10, 361, 446);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_3_2 = new JLabel("");
+		lblNewLabel_3_2.setOpaque(true);
+		lblNewLabel_3_2.setBackground(Color.BLACK);
+		lblNewLabel_3_2.setBounds(13, 216, 338, 13);
+		panel.add(lblNewLabel_3_2);
+		
+		JLabel lblNewLabel_3_1 = new JLabel("");
+		lblNewLabel_3_1.setOpaque(true);
+		lblNewLabel_3_1.setBackground(Color.BLACK);
+		lblNewLabel_3_1.setBounds(13, 148, 338, 13);
+		panel.add(lblNewLabel_3_1);
+		
+		JLabel lblNewLabel_3_3 = new JLabel("");
+		lblNewLabel_3_3.setOpaque(true);
+		lblNewLabel_3_3.setBackground(Color.BLACK);
+		lblNewLabel_3_3.setBounds(13, 287, 338, 13);
+		panel.add(lblNewLabel_3_3);
+		
+		JLabel lblNewLabel_3 = new JLabel("");
+		lblNewLabel_3.setBounds(13, 74, 338, 13);
+		panel.add(lblNewLabel_3);
+		lblNewLabel_3.setBackground(Color.BLACK);
+		lblNewLabel_3.setOpaque(true);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
@@ -155,185 +184,278 @@ public class REGULARMACHINE extends JFrame {
 		panel_1.setBounds(76, 346, 217, 71);
 		panel.add(panel_1);
 		
-		JPanel first = new JPanel();
-		first.setBorder(null);
-		first.setBounds(13, 40, 106, 71);
-		panel.add(first);
-		first.setLayout(null);
+		JPanel A1 = new JPanel();
+		A1.setBackground(Color.LIGHT_GRAY);
+		A1.setBorder(null);
+		A1.setBounds(13, 40, 106, 71);
+		panel.add(A1);
+		A1.setLayout(null);
 		
-		JLabel firstItem = new JLabel("New label");
-		firstItem.setBounds(25, 10, 57, 13);
-		first.add(firstItem);
+		JLabel one = new JLabel("New label");
+		one.setHorizontalAlignment(SwingConstants.CENTER);
+		one.setHorizontalTextPosition(SwingConstants.CENTER);
+		one.setBounds(0, 10, 106, 13);
+		A1.add(one);
 		
 		JLabel lblNewLabel_7_1 = new JLabel("A1");
+		lblNewLabel_7_1.setForeground(Color.WHITE);
+		lblNewLabel_7_1.setOpaque(true);
+		lblNewLabel_7_1.setBackground(Color.DARK_GRAY);
 		lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1.setBounds(25, 48, 57, 13);
-		first.add(lblNewLabel_7_1);
+		lblNewLabel_7_1.setBounds(25, 48, 57, 23);
+		A1.add(lblNewLabel_7_1);
 		
-		JPanel second = new JPanel();
-		second.setLayout(null);
-		second.setBorder(null);
-		second.setBounds(129, 40, 106, 71);
-		panel.add(second);
+		JPanel A2 = new JPanel();
+		A2.setBackground(Color.LIGHT_GRAY);
+		A2.setLayout(null);
+		A2.setBorder(null);
+		A2.setBounds(129, 40, 106, 71);
+		panel.add(A2);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(25, 10, 57, 13);
-		second.add(lblNewLabel_1);
+		JLabel two = new JLabel("New label");
+		two.setHorizontalAlignment(SwingConstants.CENTER);
+		two.setHorizontalTextPosition(SwingConstants.CENTER);
+		two.setBounds(0, 10, 106, 13);
+		A2.add(two);
 		
-		JLabel lblNewLabel_7_2 = new JLabel("A2");
-		lblNewLabel_7_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_2.setBounds(25, 48, 57, 13);
-		second.add(lblNewLabel_7_2);
-		
-		JPanel third = new JPanel();
-		third.setLayout(null);
-		third.setBorder(null);
-		third.setBounds(245, 40, 106, 71);
-		panel.add(third);
-		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(25, 10, 57, 13);
-		third.add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_7_3 = new JLabel("A3");
-		lblNewLabel_7_3.setBounds(39, 48, 57, 13);
-		third.add(lblNewLabel_7_3);
-		
-		JPanel first_1 = new JPanel();
-		first_1.setLayout(null);
-		first_1.setBorder(null);
-		first_1.setBounds(13, 112, 106, 71);
-		panel.add(first_1);
-		
-		JLabel firstItem_1 = new JLabel("New label");
-		firstItem_1.setBounds(25, 10, 57, 13);
-		first_1.add(firstItem_1);
-		
-		JLabel lblNewLabel_7_1_1 = new JLabel("B1");
+		JLabel lblNewLabel_7_1_1 = new JLabel("A2");
+		lblNewLabel_7_1_1.setOpaque(true);
 		lblNewLabel_7_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_1.setBounds(25, 48, 57, 13);
-		first_1.add(lblNewLabel_7_1_1);
+		lblNewLabel_7_1_1.setForeground(Color.WHITE);
+		lblNewLabel_7_1_1.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_1.setBounds(25, 48, 57, 23);
+		A2.add(lblNewLabel_7_1_1);
 		
-		JPanel first_2 = new JPanel();
-		first_2.setLayout(null);
-		first_2.setBorder(null);
-		first_2.setBounds(129, 112, 106, 71);
-		panel.add(first_2);
+		JPanel A3 = new JPanel();
+		A3.setBackground(Color.LIGHT_GRAY);
+		A3.setLayout(null);
+		A3.setBorder(null);
+		A3.setBounds(245, 40, 106, 71);
+		panel.add(A3);
 		
-		JLabel firstItem_2 = new JLabel("New label");
-		firstItem_2.setBounds(25, 10, 57, 13);
-		first_2.add(firstItem_2);
+		JLabel three = new JLabel("New label");
+		three.setHorizontalAlignment(SwingConstants.CENTER);
+		three.setHorizontalTextPosition(SwingConstants.CENTER);
+		three.setBounds(0, 10, 106, 13);
+		A3.add(three);
 		
-		JLabel lblNewLabel_7_1_2 = new JLabel("B2");
+		JLabel lblNewLabel_7_1_2 = new JLabel("A3");
+		lblNewLabel_7_1_2.setOpaque(true);
 		lblNewLabel_7_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_2.setBounds(25, 48, 57, 13);
-		first_2.add(lblNewLabel_7_1_2);
+		lblNewLabel_7_1_2.setForeground(Color.WHITE);
+		lblNewLabel_7_1_2.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_2.setBounds(25, 48, 57, 23);
+		A3.add(lblNewLabel_7_1_2);
 		
-		JPanel first_3 = new JPanel();
-		first_3.setLayout(null);
-		first_3.setBorder(null);
-		first_3.setBounds(245, 112, 106, 71);
-		panel.add(first_3);
+		JPanel B1 = new JPanel();
+		B1.setBackground(Color.LIGHT_GRAY);
+		B1.setLayout(null);
+		B1.setBorder(null);
+		B1.setBounds(13, 112, 106, 71);
+		panel.add(B1);
 		
-		JLabel firstItem_3 = new JLabel("New label");
-		firstItem_3.setBounds(25, 10, 57, 13);
-		first_3.add(firstItem_3);
+		JLabel four = new JLabel("New label");
+		four.setHorizontalAlignment(SwingConstants.CENTER);
+		four.setHorizontalTextPosition(SwingConstants.CENTER);
+		four.setBounds(0, 10, 106, 13);
+		B1.add(four);
 		
-		JLabel lblNewLabel_7_1_3 = new JLabel("B3");
+		JLabel lblNewLabel_7_1_3 = new JLabel("B1");
+		lblNewLabel_7_1_3.setOpaque(true);
 		lblNewLabel_7_1_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_3.setBounds(25, 48, 57, 13);
-		first_3.add(lblNewLabel_7_1_3);
+		lblNewLabel_7_1_3.setForeground(Color.WHITE);
+		lblNewLabel_7_1_3.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_3.setBounds(25, 48, 57, 23);
+		B1.add(lblNewLabel_7_1_3);
 		
-		JPanel first_4 = new JPanel();
-		first_4.setLayout(null);
-		first_4.setBorder(null);
-		first_4.setBounds(13, 183, 106, 71);
-		panel.add(first_4);
+		JPanel B2 = new JPanel();
+		B2.setBackground(Color.LIGHT_GRAY);
+		B2.setLayout(null);
+		B2.setBorder(null);
+		B2.setBounds(129, 112, 106, 71);
+		panel.add(B2);
 		
-		JLabel firstItem_4 = new JLabel("C1");
-		firstItem_4.setHorizontalAlignment(SwingConstants.CENTER);
-		firstItem_4.setBounds(25, 10, 57, 13);
-		first_4.add(firstItem_4);
+		JLabel five = new JLabel("New label");
+		five.setHorizontalAlignment(SwingConstants.CENTER);
+		five.setHorizontalTextPosition(SwingConstants.CENTER);
+		five.setBounds(0, 10, 106, 13);
+		B2.add(five);
 		
-		JLabel lblNewLabel_7_1_4 = new JLabel("C1");
+		JLabel lblNewLabel_7_1_4 = new JLabel("B2");
+		lblNewLabel_7_1_4.setOpaque(true);
 		lblNewLabel_7_1_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_4.setBounds(25, 48, 57, 13);
-		first_4.add(lblNewLabel_7_1_4);
+		lblNewLabel_7_1_4.setForeground(Color.WHITE);
+		lblNewLabel_7_1_4.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_4.setBounds(25, 48, 57, 23);
+		B2.add(lblNewLabel_7_1_4);
 		
-		JPanel first_5 = new JPanel();
-		first_5.setLayout(null);
-		first_5.setBorder(null);
-		first_5.setBounds(13, 254, 106, 71);
-		panel.add(first_5);
+		JPanel B3 = new JPanel();
+		B3.setBackground(Color.LIGHT_GRAY);
+		B3.setLayout(null);
+		B3.setBorder(null);
+		B3.setBounds(245, 112, 106, 71);
+		panel.add(B3);
 		
-		JLabel firstItem_5 = new JLabel("New label");
-		firstItem_5.setBounds(25, 10, 57, 13);
-		first_5.add(firstItem_5);
+		JLabel six = new JLabel("New label");
+		six.setHorizontalAlignment(SwingConstants.CENTER);
+		six.setHorizontalTextPosition(SwingConstants.CENTER);
+		six.setBounds(0, 10, 106, 13);
+		B3.add(six);
 		
-		JLabel lblNewLabel_7_1_5 = new JLabel("D1");
+		JLabel lblNewLabel_7_1_5 = new JLabel("B3");
+		lblNewLabel_7_1_5.setOpaque(true);
 		lblNewLabel_7_1_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_5.setBounds(25, 48, 57, 13);
-		first_5.add(lblNewLabel_7_1_5);
+		lblNewLabel_7_1_5.setForeground(Color.WHITE);
+		lblNewLabel_7_1_5.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_5.setBounds(25, 48, 57, 23);
+		B3.add(lblNewLabel_7_1_5);
 		
-		JPanel first_6 = new JPanel();
-		first_6.setLayout(null);
-		first_6.setBorder(null);
-		first_6.setBounds(129, 183, 106, 71);
-		panel.add(first_6);
+		C1 = new JPanel();
+		C1.setBackground(Color.LIGHT_GRAY);
+		C1.setLayout(null);
+		C1.setBorder(null);
+		C1.setBounds(13, 183, 106, 71);
+		panel.add(C1);
 		
-		JLabel firstItem_6 = new JLabel("New label");
-		firstItem_6.setBounds(25, 10, 57, 13);
-		first_6.add(firstItem_6);
+		JLabel seven = new JLabel("C1");
+		seven.setHorizontalTextPosition(SwingConstants.CENTER);
+		seven.setHorizontalAlignment(SwingConstants.CENTER);
+		seven.setBounds(0, 10, 106, 13);
+		C1.add(seven);
 		
-		JLabel lblNewLabel_7_1_6 = new JLabel("C2");
-		lblNewLabel_7_1_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_6.setBounds(25, 48, 57, 13);
-		first_6.add(lblNewLabel_7_1_6);
-		
-		JPanel first_7 = new JPanel();
-		first_7.setLayout(null);
-		first_7.setBorder(null);
-		first_7.setBounds(245, 183, 106, 71);
-		panel.add(first_7);
-		
-		JLabel firstItem_7 = new JLabel("New label");
-		firstItem_7.setBounds(25, 10, 57, 13);
-		first_7.add(firstItem_7);
-		
-		JLabel lblNewLabel_7_1_7 = new JLabel("C3");
-		lblNewLabel_7_1_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_7.setBounds(25, 48, 57, 13);
-		first_7.add(lblNewLabel_7_1_7);
-		
-		JPanel first_8 = new JPanel();
-		first_8.setLayout(null);
-		first_8.setBorder(null);
-		first_8.setBounds(129, 254, 106, 71);
-		panel.add(first_8);
-		
-		JLabel firstItem_8 = new JLabel("New label");
-		firstItem_8.setBounds(25, 10, 57, 13);
-		first_8.add(firstItem_8);
-		
-		JLabel lblNewLabel_7_1_8 = new JLabel("D2");
+		JLabel lblNewLabel_7_1_8 = new JLabel("C1");
+		lblNewLabel_7_1_8.setOpaque(true);
 		lblNewLabel_7_1_8.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_8.setBounds(25, 48, 57, 13);
-		first_8.add(lblNewLabel_7_1_8);
+		lblNewLabel_7_1_8.setForeground(Color.WHITE);
+		lblNewLabel_7_1_8.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_8.setBounds(25, 48, 57, 23);
+		C1.add(lblNewLabel_7_1_8);
 		
-		JPanel first_9 = new JPanel();
-		first_9.setLayout(null);
-		first_9.setBorder(null);
-		first_9.setBounds(245, 254, 106, 71);
-		panel.add(first_9);
+		JPanel D1 = new JPanel();
+		D1.setBackground(Color.LIGHT_GRAY);
+		D1.setLayout(null);
+		D1.setBorder(null);
+		D1.setBounds(13, 254, 106, 71);
+		panel.add(D1);
 		
-		JLabel firstItem_9 = new JLabel("New label");
-		firstItem_9.setBounds(25, 10, 57, 13);
-		first_9.add(firstItem_9);
+		JLabel ten = new JLabel("New label");
+		ten.setHorizontalAlignment(SwingConstants.CENTER);
+		ten.setHorizontalTextPosition(SwingConstants.CENTER);
+		ten.setBounds(0, 10, 106, 13);
+		D1.add(ten);
 		
-		JLabel lblNewLabel_7_1_9 = new JLabel("D3");
+		JLabel lblNewLabel_7_1_9 = new JLabel("D1");
+		lblNewLabel_7_1_9.setOpaque(true);
 		lblNewLabel_7_1_9.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7_1_9.setBounds(25, 48, 57, 13);
-		first_9.add(lblNewLabel_7_1_9);
+		lblNewLabel_7_1_9.setForeground(Color.WHITE);
+		lblNewLabel_7_1_9.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_9.setBounds(25, 48, 57, 23);
+		D1.add(lblNewLabel_7_1_9);
+		
+		JPanel C2 = new JPanel();
+		C2.setBackground(Color.LIGHT_GRAY);
+		C2.setLayout(null);
+		C2.setBorder(null);
+		C2.setBounds(129, 183, 106, 71);
+		panel.add(C2);
+		
+		JLabel eight = new JLabel("New label");
+		eight.setHorizontalAlignment(SwingConstants.CENTER);
+		eight.setHorizontalTextPosition(SwingConstants.CENTER);
+		eight.setBounds(0, 10, 106, 13);
+		C2.add(eight);
+		
+		JLabel lblNewLabel_7_1_7 = new JLabel("C2");
+		lblNewLabel_7_1_7.setOpaque(true);
+		lblNewLabel_7_1_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_7.setForeground(Color.WHITE);
+		lblNewLabel_7_1_7.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_7.setBounds(25, 48, 57, 23);
+		C2.add(lblNewLabel_7_1_7);
+		
+		JPanel C3 = new JPanel();
+		C3.setBackground(Color.LIGHT_GRAY);
+		C3.setLayout(null);
+		C3.setBorder(null);
+		C3.setBounds(245, 183, 106, 71);
+		panel.add(C3);
+		
+		JLabel nine = new JLabel("New label");
+		nine.setHorizontalAlignment(SwingConstants.CENTER);
+		nine.setHorizontalTextPosition(SwingConstants.CENTER);
+		nine.setBounds(0, 10, 106, 13);
+		C3.add(nine);
+		
+		JLabel lblNewLabel_7_1_6 = new JLabel("C3");
+		lblNewLabel_7_1_6.setOpaque(true);
+		lblNewLabel_7_1_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_6.setForeground(Color.WHITE);
+		lblNewLabel_7_1_6.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_6.setBounds(25, 48, 57, 23);
+		C3.add(lblNewLabel_7_1_6);
+		
+		JPanel D2 = new JPanel();
+		D2.setBackground(Color.LIGHT_GRAY);
+		D2.setLayout(null);
+		D2.setBorder(null);
+		D2.setBounds(129, 254, 106, 71);
+		panel.add(D2);
+		
+		JLabel eleven = new JLabel("New label");
+		eleven.setHorizontalAlignment(SwingConstants.CENTER);
+		eleven.setHorizontalTextPosition(SwingConstants.CENTER);
+		eleven.setBounds(0, 10, 106, 13);
+		D2.add(eleven);
+		
+		JLabel lblNewLabel_7_1_10 = new JLabel("D2");
+		lblNewLabel_7_1_10.setOpaque(true);
+		lblNewLabel_7_1_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_10.setForeground(Color.WHITE);
+		lblNewLabel_7_1_10.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_10.setBounds(25, 48, 57, 23);
+		D2.add(lblNewLabel_7_1_10);
+		
+		JPanel D3 = new JPanel();
+		D3.setBackground(Color.LIGHT_GRAY);
+		D3.setLayout(null);
+		D3.setBorder(null);
+		D3.setBounds(245, 254, 106, 71);
+		panel.add(D3);
+		
+		JLabel lblNewLabel_7_1_11 = new JLabel("D4");
+		lblNewLabel_7_1_11.setOpaque(true);
+		lblNewLabel_7_1_11.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_11.setForeground(Color.WHITE);
+		lblNewLabel_7_1_11.setBackground(Color.DARK_GRAY);
+		lblNewLabel_7_1_11.setBounds(25, 48, 57, 23);
+		D3.add(lblNewLabel_7_1_11);
+		
+		JLabel twelve = new JLabel("asasa");
+		twelve.setHorizontalTextPosition(SwingConstants.CENTER);
+		twelve.setHorizontalAlignment(SwingConstants.CENTER);
+		twelve.setBounds(0, 10, 106, 13);
+		D3.add(twelve);
+		int index;
+		JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
+		for (index = 0; index < 12; index++) {
+			labels[index].setText("");
+		}
+		
+		index = 0;
+	    for (String itemName : main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
+	        labels[index].setText(itemName);
+	        index++;
+	    }
+		
+		Insert = new JLabel("0");
+		Insert.setOpaque(true);
+		Insert.setHorizontalAlignment(SwingConstants.CENTER);
+		Insert.setForeground(Color.WHITE);
+		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Insert.setBackground(Color.DARK_GRAY);
+		Insert.setBounds(184, 460, 70, 35);
+		contentPane.add(Insert);
+		
 		
 		JButton btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
@@ -349,24 +471,113 @@ public class REGULARMACHINE extends JFrame {
 		panel.add(btnNewButton_1_1_2_1);
 		
 		JButton btnNewButton_2 = new JButton("100");
-		btnNewButton_2.setBounds(10, 466, 85, 21);
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (modes==true)
+				Main.regularVendingMachine.getCashBox().addTotalAmount(100);
+				else if (modes==false)
+				Main.regularVendingMachine.getCashBox().deductTotalAmount(100);;
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2.setBounds(17, 500, 85, 21);
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("50");
-		btnNewButton_2_1.setBounds(107, 466, 85, 21);
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (modes==true)
+				Main.regularVendingMachine.getCashBox().addTotalAmount(50);
+				else if (modes==false)
+				Main.regularVendingMachine.getCashBox().deductTotalAmount(50);;
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				
+			}
+		});
+		btnNewButton_2_1.setBounds(114, 500, 85, 21);
 		contentPane.add(btnNewButton_2_1);
 		
 		JButton btnNewButton_2_2 = new JButton("20");
-		btnNewButton_2_2.setBounds(205, 466, 85, 21);
+		btnNewButton_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (modes==true)
+				Main.regularVendingMachine.getCashBox().addTotalAmount(20);
+				else if (modes==false)
+				Main.regularVendingMachine.getCashBox().deductTotalAmount(20);;
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_2.setBounds(212, 500, 85, 21);
 		contentPane.add(btnNewButton_2_2);
 		
-		JButton btnNewButton_2_3 = new JButton("10");
-		btnNewButton_2_3.setBounds(300, 466, 85, 21);
+		JButton btnNewButton_2_3 = new JButton("10");	
+		btnNewButton_2_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (modes==true)
+				Main.regularVendingMachine.getCashBox().addTotalAmount(10);
+				else if (modes==false)
+				Main.regularVendingMachine.getCashBox().deductTotalAmount(10);;
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_3.setBounds(307, 500, 85, 21);
 		contentPane.add(btnNewButton_2_3);
 		
 		JButton btnNewButton_2_4 = new JButton("5");
-		btnNewButton_2_4.setBounds(395, 466, 85, 21);
+		btnNewButton_2_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (modes == true)
+				Main.regularVendingMachine.getCashBox().addTotalAmount(5);
+				else if (modes == false)
+				Main.regularVendingMachine.getCashBox().deductTotalAmount(5);;
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_4.setBounds(402, 500, 85, 21);
 		contentPane.add(btnNewButton_2_4);
+		
+		JLabel lblAmountInserted = new JLabel("Amount Inserted:");
+		lblAmountInserted.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblAmountInserted.setBounds(20, 470, 165, 18);
+		contentPane.add(lblAmountInserted);
+		
+		JButton btnNewButton_3 = new JButton("ADD");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modes = true;
+			}
+		});
+		btnNewButton_3.setFocusable(false);
+		btnNewButton_3.setBounds(261, 474, 63, 21);
+		contentPane.add(btnNewButton_3);
+		
+		JButton btnNewButton_3_1 = new JButton("DEL");
+		btnNewButton_3_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modes = false;
+			}
+		});
+		btnNewButton_3_1.setFocusable(false);
+		btnNewButton_3_1.setBounds(334, 474, 63, 21);
+		contentPane.add(btnNewButton_3_1);
+		
+		JButton btnNewButton_3_1_1 = new JButton("Clear");
+		btnNewButton_3_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.regularVendingMachine.getCashBox().resetAmountPaid();
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_3_1_1.setFocusable(false);
+		btnNewButton_3_1_1.setBounds(402, 474, 85, 21);
+		contentPane.add(btnNewButton_3_1_1);
+		
+		JLabel lblModes = new JLabel("Modes");
+		lblModes.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblModes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblModes.setBounds(277, 457, 106, 13);
+		contentPane.add(lblModes);
+		
 		
 		this.setLocationRelativeTo(null);
 	}

@@ -2,7 +2,8 @@ import java.util.HashMap;
 
 public class CashBox {
     private static HashMap<Double, Integer> denominations;
-
+    private double amountPaid = 0.0;
+    
     public CashBox() {
         denominations = new HashMap<>();
     }
@@ -21,15 +22,34 @@ public class CashBox {
     }
 
     private boolean isItemAvailable(Item item, String itemName) {
-        int quantity = item.getItemQuantity().getOrDefault(itemName, 0);
-        if (quantity <= 0) {
+        if (item.getItemQuantity().getOrDefault(itemName, 0) <= 0) {
             System.out.println("Item not found in stock.");
             return false;
         }
         return true;
     }
+    
+    public void addTotalAmount(int amount) {
+    	amountPaid+=amount;
+    }
+    
+    public void deductTotalAmount(int amount) {
+    	amountPaid-=amount;
+    }
+    
+    public void resetAmountPaid() {
+    	amountPaid = 0;
+    }
+    
+    public double getAmountPaid() {
+		return amountPaid;
+	}
 
-    public static void dispenseChange(double change) {
+	public void setAmountPaid(double amountPaid) {
+		this.amountPaid = amountPaid;
+	}
+
+	public static void dispenseChange(double change) {
         System.out.println("Providing change:");
 
         double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
@@ -62,7 +82,7 @@ public class CashBox {
             System.out.println("Sorry, the vending machine doesn't have enough change. Change returned.");
         }
     }
-
+    
     public boolean receivePayment(Item item, String itemName, double amountPaid) {
         if (!isItemAvailable(item, itemName)) {
             return false;
