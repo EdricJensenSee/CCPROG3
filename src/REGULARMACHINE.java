@@ -11,12 +11,14 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.awt.event.ActionEvent;
 
 public class REGULARMACHINE extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
+	private JLabel code;
 	private boolean modes = true;
 	/**
 	 * Launch the application.
@@ -66,41 +68,72 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton.setFocusable(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				code = code + 'A';
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "A");
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBounds(10, 77, 45, 35);
+		btnNewButton.setBounds(10, 44, 45, 35);
 		panel_2.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("1");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
+					code.setText(code.getText() + "1");
+			}
+		});
 		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(65, 77, 45, 35);
+		btnNewButton_1.setBounds(65, 59, 45, 35);
 		panel_2.add(btnNewButton_1);
 		
 		JButton btnB = new JButton("B");
+		btnB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "B");
+			}
+		});
 		btnB.setFocusable(false);
 		btnB.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnB.setBounds(10, 122, 45, 35);
+		btnB.setBounds(10, 85, 45, 35);
 		panel_2.add(btnB);
 		
 		JButton btnC = new JButton("C");
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "C");
+			}
+		});
 		btnC.setFocusable(false);
 		btnC.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC.setBounds(10, 167, 45, 35);
+		btnC.setBounds(10, 126, 45, 35);
 		panel_2.add(btnC);
 		
 		JButton btnNewButton_1_1 = new JButton("2");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
+					code.setText(code.getText() + "2");
+			}
+		});
 		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1.setBounds(65, 122, 45, 35);
+		btnNewButton_1_1.setBounds(65, 104, 45, 35);
 		panel_2.add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("3");
+		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
+					code.setText(code.getText() + "3");
+			}
+		});
 		btnNewButton_1_1_1.setFocusable(false);
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1_1.setBounds(65, 167, 45, 35);
+		btnNewButton_1_1_1.setBounds(65, 149, 45, 35);
 		panel_2.add(btnNewButton_1_1_1);
 		
 		JLabel lblCode = new JLabel("Code");
@@ -108,23 +141,23 @@ public class REGULARMACHINE extends JFrame {
 		lblCode.setBounds(38, 246, 72, 18);
 		panel_2.add(lblCode);
 		
-		JLabel code = new JLabel("a");
+		code = new JLabel("");
 		code.setHorizontalAlignment(SwingConstants.CENTER);
 		code.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		code.setOpaque(true);
 		code.setForeground(Color.WHITE);
-		code.setBackground(Color.DARK_	GRAY);
+		code.setBackground(Color.DARK_GRAY);
 		code.setBounds(27, 271, 70, 35);
 		panel_2.add(code);
 		
-		JLabel lblNewLabel_12_1 = new JLabel("ha");
-		lblNewLabel_12_1.setOpaque(true);
-		lblNewLabel_12_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_12_1.setForeground(Color.WHITE);
-		lblNewLabel_12_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_12_1.setBackground(Color.DARK_GRAY);
-		lblNewLabel_12_1.setBounds(27, 338, 70, 35);
-		panel_2.add(lblNewLabel_12_1);
+		JLabel priceCode = new JLabel("");
+		priceCode.setOpaque(true);
+		priceCode.setHorizontalAlignment(SwingConstants.CENTER);
+		priceCode.setForeground(Color.WHITE);
+		priceCode.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		priceCode.setBackground(Color.DARK_GRAY);
+		priceCode.setBounds(27, 338, 70, 35);
+		panel_2.add(priceCode);
 		
 		JLabel lblPrice = new JLabel("Price");
 		lblPrice.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -135,17 +168,78 @@ public class REGULARMACHINE extends JFrame {
 		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
-		
+		int number = 0;
+		 for (String key : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
+	            Main.regularVendingMachine.getItemNumbers().put(number, key);
+	            number++;
+	        }
+
+	    
+	
 		JButton btnEnter = new JButton("Enter");
+		btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0)) != null) 
+						priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0))));
+				} else if (code.getText().equals("A2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1))));
+				} else if (code.getText().equals("A3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2))));
+				} else if (code.getText().equals("B1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3))));
+				} else if (code.getText().equals("B2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4))));
+				} else if (code.getText().equals("B3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5))));
+				} else if (code.getText().equals("C1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6))));
+				} else if (code.getText().equals("C2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7))));
+				} else if (code.getText().equals("C3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8))));
+				} else if (code.getText().equals("D1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9))));
+				} else if (code.getText().equals("D2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10))));
+				} else if (code.getText().equals("D3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11))));
+				}	
+			}
+		});
 		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnter.setFocusable(false);
 		btnEnter.setBounds(10, 212, 100, 28);
 		panel_2.add(btnEnter);
 		
-		JLabel lblNewLabel = new JLabel("<html><center>Code<br>Buttons</center></html>");
+		JLabel lblNewLabel = new JLabel("<html><center>Code Buttons</center></html>");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(38, 29, 72, 38);
+		lblNewLabel.setBounds(0, 8, 120, 39);
 		panel_2.add(lblNewLabel);
+		
+		JButton btnC_1 = new JButton("D");
+		btnC_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "D");
+			}
+		});
+		btnC_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnC_1.setFocusable(false);
+		btnC_1.setBounds(10, 168, 45, 35);
+		panel_2.add(btnC_1);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
@@ -423,7 +517,7 @@ public class REGULARMACHINE extends JFrame {
 		D3.setBounds(245, 254, 106, 71);
 		panel.add(D3);
 		
-		JLabel lblNewLabel_7_1_11 = new JLabel("D4");
+		JLabel lblNewLabel_7_1_11 = new JLabel("D3");
 		lblNewLabel_7_1_11.setOpaque(true);
 		lblNewLabel_7_1_11.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_7_1_11.setForeground(Color.WHITE);
@@ -542,26 +636,6 @@ public class REGULARMACHINE extends JFrame {
 		lblAmountInserted.setBounds(20, 470, 165, 18);
 		contentPane.add(lblAmountInserted);
 		
-		JButton btnNewButton_3 = new JButton("ADD");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				modes = true;
-			}
-		});
-		btnNewButton_3.setFocusable(false);
-		btnNewButton_3.setBounds(261, 474, 63, 21);
-		contentPane.add(btnNewButton_3);
-		
-		JButton btnNewButton_3_1 = new JButton("DEL");
-		btnNewButton_3_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				modes = false;
-			}
-		});
-		btnNewButton_3_1.setFocusable(false);
-		btnNewButton_3_1.setBounds(334, 474, 63, 21);
-		contentPane.add(btnNewButton_3_1);
-		
 		JButton btnNewButton_3_1_1 = new JButton("Clear");
 		btnNewButton_3_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -573,11 +647,53 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton_3_1_1.setBounds(402, 474, 85, 21);
 		contentPane.add(btnNewButton_3_1_1);
 		
-		JLabel lblModes = new JLabel("Modes");
-		lblModes.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblModes.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModes.setBounds(277, 457, 106, 13);
-		contentPane.add(lblModes);
+		JButton btnC_1_1 = new JButton("BUY");
+		btnC_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0)) != null) 
+						priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0))));
+						Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(0), Double.parseDouble(Insert.getText()));
+				} else if (code.getText().equals("A2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1))));
+				} else if (code.getText().equals("A3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2))));
+				} else if (code.getText().equals("B1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3))));
+				} else if (code.getText().equals("B2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4))));
+				} else if (code.getText().equals("B3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5))));
+				} else if (code.getText().equals("C1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6))));
+				} else if (code.getText().equals("C2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7))));
+				} else if (code.getText().equals("C3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8))));
+				} else if (code.getText().equals("D1")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9))));
+				} else if (code.getText().equals("D2")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10))));
+				} else if (code.getText().equals("D3")) {
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11)) != null) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11))));
+				}	
+			}
+		});
+		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnC_1_1.setFocusable(false);
+		btnC_1_1.setBounds(264, 460, 70, 35);
+		contentPane.add(btnC_1_1);
 		
 		
 		this.setLocationRelativeTo(null);

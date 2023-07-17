@@ -10,7 +10,15 @@ class RegularVendingMachine {
     protected int count;
     protected HashMap<Integer, String> itemNumbers;
 
-    /**
+    public HashMap<Integer, String> getItemNumbers() {
+		return itemNumbers;
+	}
+
+	public void setItemNumbers(HashMap<Integer, String> itemNumbers) {
+		this.itemNumbers = itemNumbers;
+	}
+
+	/**
      * Constructs an instance of the RegularVendingMachine class.
      */
     public RegularVendingMachine() {
