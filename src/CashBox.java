@@ -53,7 +53,7 @@ public class CashBox {
 		this.amountPaid = amountPaid;
 	}
 
-	public static void dispenseChange(double change) {
+	public static boolean dispenseChange(double change) {
 	    double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
 	    int[] quantityOfDenom = new int[availableDenominations.length];
 
@@ -80,9 +80,10 @@ public class CashBox {
 	                denominations.put(denomination, denominations.getOrDefault(denomination, 0) - quantityOfDenom[i]);
 	            }
 	        }
+	       return true;
 	    } else {
-	        System.out.println("Sorry, the vending machine doesn't have enough change. Change returned.");
 	        denominationsSpent.clear();
+	        return false;
 	    }
 	}
     
@@ -98,7 +99,8 @@ public class CashBox {
             return false;
         } else if (amountPaid > price) {
             double change = amountPaid - price;
-            dispenseChange(change);
+            if(!dispenseChange(change))
+            	return false;
             item.getItemQuantity().put(itemName, item.getItemQuantity().get(itemName) - 1);
             item.getItemSold().put(itemName, item.getItemSold().getOrDefault(itemName, 0) + 1);
             item.setTotalSales(item.getTotalSales() + price);
