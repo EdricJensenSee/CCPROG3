@@ -66,6 +66,7 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton.setFocusable(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				code = code + 'A';
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -107,14 +108,14 @@ public class REGULARMACHINE extends JFrame {
 		lblCode.setBounds(38, 246, 72, 18);
 		panel_2.add(lblCode);
 		
-		JLabel lblNewLabel_12 = new JLabel("");
-		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_12.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_12.setOpaque(true);
-		lblNewLabel_12.setForeground(Color.WHITE);
-		lblNewLabel_12.setBackground(Color.DARK_GRAY);
-		lblNewLabel_12.setBounds(27, 271, 70, 35);
-		panel_2.add(lblNewLabel_12);
+		JLabel code = new JLabel("a");
+		code.setHorizontalAlignment(SwingConstants.CENTER);
+		code.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		code.setOpaque(true);
+		code.setForeground(Color.WHITE);
+		code.setBackground(Color.DARK_	GRAY);
+		code.setBounds(27, 271, 70, 35);
+		panel_2.add(code);
 		
 		JLabel lblNewLabel_12_1 = new JLabel("ha");
 		lblNewLabel_12_1.setOpaque(true);
@@ -156,13 +157,13 @@ public class REGULARMACHINE extends JFrame {
 		JLabel lblNewLabel_3_2 = new JLabel("");
 		lblNewLabel_3_2.setOpaque(true);
 		lblNewLabel_3_2.setBackground(Color.BLACK);
-		lblNewLabel_3_2.setBounds(13, 216, 338, 13);
+		lblNewLabel_3_2.setBounds(13, 217, 338, 13);
 		panel.add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("");
 		lblNewLabel_3_1.setOpaque(true);
 		lblNewLabel_3_1.setBackground(Color.BLACK);
-		lblNewLabel_3_1.setBounds(13, 148, 338, 13);
+		lblNewLabel_3_1.setBounds(13, 145, 338, 13);
 		panel.add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_3_3 = new JLabel("");
@@ -265,7 +266,7 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_7_1_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_7_1_3.setForeground(Color.WHITE);
 		lblNewLabel_7_1_3.setBackground(Color.DARK_GRAY);
-		lblNewLabel_7_1_3.setBounds(25, 48, 57, 23);
+		lblNewLabel_7_1_3.setBounds(26, 48, 57, 23);
 		B1.add(lblNewLabel_7_1_3);
 		
 		JPanel B2 = new JPanel();
