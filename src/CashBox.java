@@ -1,11 +1,15 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CashBox {
     private static HashMap<Double, Integer> denominations;
+    private static ArrayList<Double> denominationsSpent;
     private double amountPaid = 0.0;
+    
     
     public CashBox() {
         denominations = new HashMap<>();
+        denominationsSpent = new ArrayList<>();
     }
 
     public void displayDenominations() {
@@ -50,8 +54,6 @@ public class CashBox {
 	}
 
 	public static void dispenseChange(double change) {
-        System.out.println("Providing change:");
-
         double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
         int[] quantityOfDenom = new int[availableDenominations.length];
 
@@ -61,16 +63,17 @@ public class CashBox {
             if (num > 0) {
                 int numDispensed = Math.min(num, denominations.getOrDefault(denomination, 0));
                 if (numDispensed > 0) {
-                    System.out.println(numDispensed + " ₱" + denomination + " coins/bills");
+                    //System.out.println(numDispensed + " ₱" + denomination + " coins/bills");
                     change -= numDispensed * denomination;
                     quantityOfDenom[i] = numDispensed;
+                    denominationsSpent.add(denomination);
                 }
             }
             if (change == 0) {
                 break;
             }
         }
-
+        System.out.print(denominationsSpent);
         if (change == 0) {
             for (int i = 0; i < availableDenominations.length; i++) {
                 double denomination = availableDenominations[i];
@@ -80,6 +83,7 @@ public class CashBox {
             }
         } else {
             System.out.println("Sorry, the vending machine doesn't have enough change. Change returned.");
+            denominationsSpent.clear();
         }
     }
     
@@ -114,7 +118,15 @@ public class CashBox {
         }
     }	
 
-    public void printReceipt(Item item) {
+    public static ArrayList<Double> getDenominationsSpent() {
+		return denominationsSpent;
+	}
+
+	public static void setDenominationsSpent(ArrayList<Double> denominationsSpent) {
+		CashBox.denominationsSpent = denominationsSpent;
+	}
+
+	public void printReceipt(Item item) {
         System.out.println("Receipt:");
         for (String itemName : item.getItemSold().keySet()) {
             int quantitySold = item.getItemSold().get(itemName);

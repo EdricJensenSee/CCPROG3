@@ -9,8 +9,12 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 
@@ -57,12 +61,33 @@ public class REGULARMACHINE extends JFrame {
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setBounds(27, 401, 72, 35);
-		panel_1_1.setForeground(Color.DARK_GRAY);
-		panel_1_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_1_1.setBackground(Color.DARK_GRAY);
-		panel_2.add(panel_1_1);
+		JPanel Change = new JPanel();
+		Change.setBounds(27, 401, 72, 35);
+		Change.setForeground(Color.DARK_GRAY);
+		Change.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		Change.setBackground(Color.DARK_GRAY);
+		panel_2.add(Change);
+		
+		JLabel Insert_1 = new JLabel("0");
+		Insert_1.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		            int currentIndex = 0;
+					currentIndex++;
+		            int size = CashBox.getDenominationsSpent().size();
+		            if (currentIndex >= 0 && currentIndex < size) {
+		                Insert_1.setText(String.valueOf(CashBox.getDenominationsSpent().get(currentIndex)));
+		            } else {
+		                currentIndex = -1; // Reset the index when it exceeds the array size
+		                Insert_1.setText("All denominations displayed. Left-click to restart.");
+		            }
+		    }
+		});
+		Insert_1.setOpaque(true);
+		Insert_1.setHorizontalAlignment(SwingConstants.CENTER);
+		Insert_1.setForeground(Color.WHITE);
+		Insert_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Insert_1.setBackground(Color.DARK_GRAY);
+		Change.add(Insert_1);
 		
 		JButton btnNewButton = new JButton("A");
 		btnNewButton.setFocusable(false);
@@ -687,6 +712,13 @@ public class REGULARMACHINE extends JFrame {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11)) != null) 
 					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(1), Double.parseDouble(Insert.getText()));
 				}	
+				Main.regularVendingMachine.getCashBox();
+
+					Insert_1.setText(String.valueOf(CashBox.getDenominationsSpent().get(0)));
+				//Insert_1.setText(String.valueOf(Double.parseDouble(Insert.getText()) - Double.parseDouble(priceCode.getText())));
+				Insert.setText("");
+				Main.regularVendingMachine.getCashBox().resetAmountPaid();;
+				
 			}
 		});
 		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
