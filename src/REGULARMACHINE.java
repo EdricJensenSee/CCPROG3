@@ -65,50 +65,38 @@ public class REGULARMACHINE extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBounds(10, 29, 45, 35);
+		btnNewButton.setBounds(10, 77, 45, 35);
 		panel_2.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("1");
 		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(65, 29, 45, 35);
+		btnNewButton_1.setBounds(65, 77, 45, 35);
 		panel_2.add(btnNewButton_1);
 		
 		JButton btnB = new JButton("B");
 		btnB.setFocusable(false);
 		btnB.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnB.setBounds(10, 74, 45, 35);
+		btnB.setBounds(10, 122, 45, 35);
 		panel_2.add(btnB);
 		
 		JButton btnC = new JButton("C");
 		btnC.setFocusable(false);
 		btnC.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC.setBounds(10, 119, 45, 35);
+		btnC.setBounds(10, 167, 45, 35);
 		panel_2.add(btnC);
-		
-		JButton btnD = new JButton("D");
-		btnD.setFocusable(false);
-		btnD.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnD.setBounds(10, 164, 45, 35);
-		panel_2.add(btnD);
 		
 		JButton btnNewButton_1_1 = new JButton("2");
 		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1.setBounds(65, 74, 45, 35);
+		btnNewButton_1_1.setBounds(65, 122, 45, 35);
 		panel_2.add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("3");
 		btnNewButton_1_1_1.setFocusable(false);
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1_1.setBounds(65, 119, 45, 35);
+		btnNewButton_1_1_1.setBounds(65, 167, 45, 35);
 		panel_2.add(btnNewButton_1_1_1);
-		
-		JButton btnNewButton_1_1_2 = new JButton("4");
-		btnNewButton_1_1_2.setFocusable(false);
-		btnNewButton_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1_2.setBounds(65, 164, 45, 35);
-		panel_2.add(btnNewButton_1_1_2);
 		
 		JLabel lblCode = new JLabel("Code");
 		lblCode.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -149,6 +137,11 @@ public class REGULARMACHINE extends JFrame {
 		btnEnter.setBounds(10, 212, 100, 28);
 		panel_2.add(btnEnter);
 		
+		JLabel lblNewLabel = new JLabel("<html><center>Code<br>Buttons</center></html>");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(38, 29, 72, 38);
+		panel_2.add(lblNewLabel);
+		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
 		panel.setBounds(10, 10, 361, 446);
@@ -172,8 +165,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem.setBounds(25, 10, 57, 13);
 		first.add(firstItem);
 		
-		JLabel lblNewLabel_7_1 = new JLabel("New label");
-		lblNewLabel_7_1.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1 = new JLabel("A1");
+		lblNewLabel_7_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1.setBounds(25, 48, 57, 13);
 		first.add(lblNewLabel_7_1);
 		
 		JPanel second = new JPanel();
@@ -186,8 +180,9 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_1.setBounds(25, 10, 57, 13);
 		second.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_7_2 = new JLabel("New label");
-		lblNewLabel_7_2.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_2 = new JLabel("A2");
+		lblNewLabel_7_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_2.setBounds(25, 48, 57, 13);
 		second.add(lblNewLabel_7_2);
 		
 		JPanel third = new JPanel();
@@ -200,8 +195,8 @@ public class REGULARMACHINE extends JFrame {
 		lblNewLabel_2.setBounds(25, 10, 57, 13);
 		third.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_7_3 = new JLabel("New label");
-		lblNewLabel_7_3.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_3 = new JLabel("A3");
+		lblNewLabel_7_3.setBounds(39, 48, 57, 13);
 		third.add(lblNewLabel_7_3);
 		
 		JPanel first_1 = new JPanel();
@@ -214,8 +209,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_1.setBounds(25, 10, 57, 13);
 		first_1.add(firstItem_1);
 		
-		JLabel lblNewLabel_7_1_1 = new JLabel("New label");
-		lblNewLabel_7_1_1.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_1 = new JLabel("B1");
+		lblNewLabel_7_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_1.setBounds(25, 48, 57, 13);
 		first_1.add(lblNewLabel_7_1_1);
 		
 		JPanel first_2 = new JPanel();
@@ -228,8 +224,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_2.setBounds(25, 10, 57, 13);
 		first_2.add(firstItem_2);
 		
-		JLabel lblNewLabel_7_1_2 = new JLabel("New label");
-		lblNewLabel_7_1_2.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_2 = new JLabel("B2");
+		lblNewLabel_7_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_2.setBounds(25, 48, 57, 13);
 		first_2.add(lblNewLabel_7_1_2);
 		
 		JPanel first_3 = new JPanel();
@@ -242,8 +239,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_3.setBounds(25, 10, 57, 13);
 		first_3.add(firstItem_3);
 		
-		JLabel lblNewLabel_7_1_3 = new JLabel("New label");
-		lblNewLabel_7_1_3.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_3 = new JLabel("B3");
+		lblNewLabel_7_1_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_3.setBounds(25, 48, 57, 13);
 		first_3.add(lblNewLabel_7_1_3);
 		
 		JPanel first_4 = new JPanel();
@@ -252,12 +250,14 @@ public class REGULARMACHINE extends JFrame {
 		first_4.setBounds(13, 183, 106, 71);
 		panel.add(first_4);
 		
-		JLabel firstItem_4 = new JLabel("New label");
+		JLabel firstItem_4 = new JLabel("C1");
+		firstItem_4.setHorizontalAlignment(SwingConstants.CENTER);
 		firstItem_4.setBounds(25, 10, 57, 13);
 		first_4.add(firstItem_4);
 		
-		JLabel lblNewLabel_7_1_4 = new JLabel("New label");
-		lblNewLabel_7_1_4.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_4 = new JLabel("C1");
+		lblNewLabel_7_1_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_4.setBounds(25, 48, 57, 13);
 		first_4.add(lblNewLabel_7_1_4);
 		
 		JPanel first_5 = new JPanel();
@@ -270,8 +270,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_5.setBounds(25, 10, 57, 13);
 		first_5.add(firstItem_5);
 		
-		JLabel lblNewLabel_7_1_5 = new JLabel("New label");
-		lblNewLabel_7_1_5.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_5 = new JLabel("D1");
+		lblNewLabel_7_1_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_5.setBounds(25, 48, 57, 13);
 		first_5.add(lblNewLabel_7_1_5);
 		
 		JPanel first_6 = new JPanel();
@@ -284,8 +285,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_6.setBounds(25, 10, 57, 13);
 		first_6.add(firstItem_6);
 		
-		JLabel lblNewLabel_7_1_6 = new JLabel("New label");
-		lblNewLabel_7_1_6.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_6 = new JLabel("C2");
+		lblNewLabel_7_1_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_6.setBounds(25, 48, 57, 13);
 		first_6.add(lblNewLabel_7_1_6);
 		
 		JPanel first_7 = new JPanel();
@@ -298,8 +300,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_7.setBounds(25, 10, 57, 13);
 		first_7.add(firstItem_7);
 		
-		JLabel lblNewLabel_7_1_7 = new JLabel("New label");
-		lblNewLabel_7_1_7.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_7 = new JLabel("C3");
+		lblNewLabel_7_1_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_7.setBounds(25, 48, 57, 13);
 		first_7.add(lblNewLabel_7_1_7);
 		
 		JPanel first_8 = new JPanel();
@@ -312,8 +315,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_8.setBounds(25, 10, 57, 13);
 		first_8.add(firstItem_8);
 		
-		JLabel lblNewLabel_7_1_8 = new JLabel("New label");
-		lblNewLabel_7_1_8.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_8 = new JLabel("D2");
+		lblNewLabel_7_1_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_8.setBounds(25, 48, 57, 13);
 		first_8.add(lblNewLabel_7_1_8);
 		
 		JPanel first_9 = new JPanel();
@@ -326,8 +330,9 @@ public class REGULARMACHINE extends JFrame {
 		firstItem_9.setBounds(25, 10, 57, 13);
 		first_9.add(firstItem_9);
 		
-		JLabel lblNewLabel_7_1_9 = new JLabel("New label");
-		lblNewLabel_7_1_9.setBounds(25, 33, 57, 13);
+		JLabel lblNewLabel_7_1_9 = new JLabel("D3");
+		lblNewLabel_7_1_9.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_7_1_9.setBounds(25, 48, 57, 13);
 		first_9.add(lblNewLabel_7_1_9);
 		
 		JButton btnNewButton_1_1_2_1 = new JButton("Return");
