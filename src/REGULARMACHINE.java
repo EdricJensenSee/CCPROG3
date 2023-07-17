@@ -652,41 +652,40 @@ public class REGULARMACHINE extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A1")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0)) != null) 
-						priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0))));
 						Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(0), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("A2")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(1), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("A3")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(2), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("B1")) {
-					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3))));
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3)) != null) 				
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(3), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("B2")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(4), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("B3")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(5), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("C1")) {
-					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6))));
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6)) != null) 				
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(6), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("C2")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(7), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("C3")) {
-					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8))));
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8)) != null) 			
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(8), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("D1")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(9), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("D2")) {
-					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10))));
+					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10)) != null) 		
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(10), Double.parseDouble(Insert.getText()));
 				} else if (code.getText().equals("D3")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11))));
+					Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(1), Double.parseDouble(Insert.getText()));
 				}	
 			}
 		});
