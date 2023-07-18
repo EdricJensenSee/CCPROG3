@@ -32,7 +32,7 @@ public class Main {
         regularVendingMachine.getItem().addItem("Walnut Brownie", 6, 40, 230);
         regularVendingMachine.getItem().addItem("Blueberry Muffin", 10, 30, 190);
         regularVendingMachine.getItem().addItem("Banana Muffin", 4, 30, 210);
-
+        
         specialVendingMachine.getItem().addItem("Chocolate Chip Cookies", 10, 80, 180);
         specialVendingMachine.getItem().addItem("Cream Filling", 6, 10, 200);
         specialVendingMachine.getItem().addItem("Frosting", 8, 10, 150);
@@ -43,13 +43,13 @@ public class Main {
         specialVendingMachine.getItem().addItem("Strawberry", 10, 120	, 190);
         
     	regularVendingMachine.getCashBox().replenishChange(1.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+    	/*regularVendingMachine.getCashBox().replenishChange(10.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);
+    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);*/
     	REGULARMACHINE open = new REGULARMACHINE();
     	open.setVisible(true);
     	while (true) {

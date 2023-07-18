@@ -95,7 +95,6 @@ public class CashBox {
         double price = item.getItemPrice().getOrDefault(itemName, 0.0);
 
         if (amountPaid < price) {
-            System.out.println("Insufficient payment. Please insert ₱" + (price - amountPaid) + " more.");
             return false;
         } else if (amountPaid > price) {
             double change = amountPaid - price;

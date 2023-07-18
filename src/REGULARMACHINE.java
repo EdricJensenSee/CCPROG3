@@ -1,6 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -68,10 +68,17 @@ public class REGULARMACHINE extends JFrame {
 		Change.setBackground(Color.DARK_GRAY);
 		panel_2.add(Change);
 		
-		JLabel Insert_1 = new JLabel("0");
+		JLabel CollectChange = new JLabel("");
+		CollectChange.setHorizontalAlignment(SwingConstants.CENTER);
+		CollectChange.setBounds(340, 475, 49, 18);
+		contentPane.add(CollectChange);
+		CollectChange.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JLabel Insert_1 = new JLabel("");
 		final int[] currentIndex = {0};
 		Insert_1.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e) {
+		        CollectChange.setText("+" + String.valueOf(CashBox.getDenominationsSpent().get(currentIndex[0])));
 		        currentIndex[0]++;
 		        int size = CashBox.getDenominationsSpent().size();
 		        if (currentIndex[0] >= 0 && currentIndex[0] < size) {
@@ -79,7 +86,16 @@ public class REGULARMACHINE extends JFrame {
 		        } else {
 		            currentIndex[0] = -1; 
 		            Insert_1.setText("");
-		        }
+		            CashBox.getDenominationsSpent().clear();
+		            }
+
+		        Timer timer = new Timer(2000, new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                CollectChange.setText("");
+		            }
+		        });
+		        timer.setRepeats(false); 
+		        timer.start();
 		    }
 		});
 
@@ -304,7 +320,26 @@ public class REGULARMACHINE extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel Output = new JLabel("0");
+		JLabel Finish = new JLabel("");
+		Finish.setHorizontalAlignment(SwingConstants.CENTER);
+		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Finish.setBounds(13, 12, 326, 18);
+		panel.add(Finish);
+		
+		JLabel Output = new JLabel("");
+		Output.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
+                Output.setText("");
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Finish.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+			}
+		});
 		Output.setBounds(10, 8, 197, 53);
 		Output.setOpaque(true);
 		Output.setHorizontalAlignment(SwingConstants.CENTER);
@@ -576,7 +611,7 @@ public class REGULARMACHINE extends JFrame {
 	        index++;
 	    }
 		
-		Insert = new JLabel("0");
+		Insert = new JLabel("");
 		Insert.setOpaque(true);
 		Insert.setHorizontalAlignment(SwingConstants.CENTER);
 		Insert.setForeground(Color.WHITE);
@@ -598,6 +633,8 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton_1_1_2_1.setFocusable(false);
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
+		
+
 		
 		JButton btnNewButton_2 = new JButton("100");
 		btnNewButton_2.addActionListener(new ActionListener() {
@@ -684,6 +721,11 @@ public class REGULARMACHINE extends JFrame {
 		JButton btnC_1_1 = new JButton("BUY");
 		btnC_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
+					Finish.setText("Insufficient Payment");
+				}
+				
 				if (code.getText().equals("A1")) {
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(0), Double.parseDouble(Insert.getText())) == true)
@@ -737,19 +779,44 @@ public class REGULARMACHINE extends JFrame {
 				
 				if (CashBox.getDenominationsSpent().size() > 0) {
 				    Insert_1.setText(String.valueOf(CashBox.getDenominationsSpent().get(0)));
+				} else {
+					Finish.setText("Insufficient Change in Machine.");
 				}
+				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
+				    Finish.setText("Insufficient Payment");
 
-				//Insert_1.setText(String.valueOf(Double.parseDouble(Insert.getText()) - Double.parseDouble(priceCode.getText())));
-				Insert.setText("");
-				Main.regularVendingMachine.getCashBox().resetAmountPaid();;
-				
+				    Timer timer = new Timer(2000, new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				            Finish.setText("");
+				        }
+				    });
+				    timer.setRepeats(false);
+				    timer.start();
+				} else {
+				    Insert.setText("");
+				    Main.regularVendingMachine.getCashBox().resetAmountPaid();
+				}
 			}
 		});
 		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnC_1_1.setFocusable(false);
 		btnC_1_1.setBounds(264, 460, 70, 35);
-		contentPane.add(btnC_1_1);
+		contentPane.add(btnC_1_1);		
 		
+		JLabel Insert_2 = new JLabel("");
+		Insert_2.setOpaque(true);
+		Insert_2.setHorizontalAlignment(SwingConstants.CENTER);
+		Insert_2.setForeground(Color.WHITE);
+		Insert_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Insert_2.setBackground(Color.DARK_GRAY);
+		Insert_2.setBounds(340, 474, 52, 21);
+		contentPane.add(Insert_2);
+		
+		JLabel lblWallet = new JLabel("Wallet");
+		lblWallet.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWallet.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblWallet.setBounds(343, 455, 49, 18);
+		contentPane.add(lblWallet);
 		
 		this.setLocationRelativeTo(null);
 	}
