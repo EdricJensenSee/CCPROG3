@@ -53,7 +53,7 @@ public class TestVendingMachine extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (Main.regularVendingMachine == null) {
                     String message = "The vending machine hasn't been created!";
-                    JOptionPane.showMessageDialog(null, message, "Machine Not Created", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, message, "Machine Has Not Been Created", JOptionPane.WARNING_MESSAGE);
                 } else {
                 	dispose();
                 	TestPage open= new TestPage("Regular");

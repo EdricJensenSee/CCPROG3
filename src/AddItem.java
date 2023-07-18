@@ -27,6 +27,7 @@ public class AddItem extends JFrame {
 	private JTextField Name;
 	private JTextField Qty;
 	private JTextField Calories;
+	private static String machineType;
 	/**
 	 * Launch the application.
 	 */
@@ -47,6 +48,7 @@ public class AddItem extends JFrame {
 	 * Create the frame.
 	 */
 	public AddItem(String machineType) {
+		this.machineType = machineType;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 386, 579);
 		contentPane = new JPanel();
@@ -54,12 +56,20 @@ public class AddItem extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		final int[] currentIndex = {0};
 		int number = 0;
-		 for (String key : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	            Main.regularVendingMachine.getItemNumbers().put(number, key);
-	            number++;
-	        }
+
+		if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+		    for (String key : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
+		        Main.regularVendingMachine.getItemNumbers().put(number, key);
+		        number++;
+		    }
+		} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+		    for (String key : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
+		        Main.specialVendingMachine.getItemNumbers().put(number, key);
+		        number++;
+		    }
+		}
+
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
@@ -423,12 +433,16 @@ public class AddItem extends JFrame {
 		contentPane.add(btnAdd);
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAdd.setFocusable(false);
-		btnAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				 Main.regularVendingMachine.getItem().addItem(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
-				 itemAdder();
-			}
-		});
+	    btnAdd.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+	                Main.regularVendingMachine.getItem().addItem(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+	                Main.specialVendingMachine.getItem().addItem(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            }
+	            itemAdder();
+	        }
+	    });
 		
 		JLabel lblPrice = new JLabel("Price");
 		lblPrice.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -464,9 +478,19 @@ public class AddItem extends JFrame {
 
 	    index = 0;
 
-	    // Check if Main.regularVendingMachine is not null and has valid items
-	    if (Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+	    // Check the machineType and use the appropriate VendingMachine instance
+	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
 	        for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
+	            labels[index].setText(itemName);
+	            index++;
+
+	            // Break the loop if we have filled all the labels
+	            if (index >= 12) {
+	                break;
+	            }
+	        }
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
 	            labels[index].setText(itemName);
 	            index++;
 
@@ -477,4 +501,5 @@ public class AddItem extends JFrame {
 	        }
 	    }
 	}
+
 }
