@@ -711,11 +711,13 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton_3_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.regularVendingMachine.getCashBox().resetAmountPaid();
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				if (Main.regularVendingMachine.getCashBox().getAmountPaid() > 0)
+					Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				else Insert.setText("");
 			}
 		});
 		btnNewButton_3_1_1.setFocusable(false);
-		btnNewButton_3_1_1.setBounds(402, 474, 85, 21);
+		btnNewButton_3_1_1.setBounds(402, 476, 85, 21);
 		contentPane.add(btnNewButton_3_1_1);
 		
 		JButton btnC_1_1 = new JButton("BUY");
@@ -777,11 +779,22 @@ public class REGULARMACHINE extends JFrame {
 				}	
 				Main.regularVendingMachine.getCashBox();
 				
-				if (CashBox.getDenominationsSpent().size() > 0) {
-				    Insert_1.setText(String.valueOf(CashBox.getDenominationsSpent().get(0)));
+				if (CashBox.getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
+				    if (!CashBox.getDenominationsSpent().isEmpty()) {
+				        Insert_1.setText(String.valueOf(CashBox.getDenominationsSpent().get(0)));
+				    }
 				} else {
-					Finish.setText("Insufficient Change in Machine.");
+				    Finish.setText("NOT ENOUGH CHANGE IN MACHINE");
+
+				    Timer timer = new Timer(2000, new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				            Finish.setText("");
+				        }
+				    });
+				    timer.setRepeats(false);
+				    timer.start();
 				}
+
 				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
 				    Finish.setText("Insufficient Payment");
 
@@ -794,6 +807,15 @@ public class REGULARMACHINE extends JFrame {
 				    timer.start();
 				} else {
 				    Insert.setText("");
+
+				    Timer timer = new Timer(2000, new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				            code.setText("");       // Set code label to empty string only when needed
+				            priceCode.setText("");  // Set priceCode label to empty string only when needed
+				        }
+				    });
+				    timer.setRepeats(false);
+				    timer.start();
 				    Main.regularVendingMachine.getCashBox().resetAmountPaid();
 				}
 			}
@@ -817,6 +839,17 @@ public class REGULARMACHINE extends JFrame {
 		lblWallet.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblWallet.setBounds(343, 455, 49, 18);
 		contentPane.add(lblWallet);
+		
+		JButton btnNewButton_3_1_1_1 = new JButton("Cancel");
+		btnNewButton_3_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				code.setText("");
+				priceCode.setText("");
+			}
+		});
+		btnNewButton_3_1_1_1.setFocusable(false);
+		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
+		contentPane.add(btnNewButton_3_1_1_1);
 		
 		this.setLocationRelativeTo(null);
 	}
