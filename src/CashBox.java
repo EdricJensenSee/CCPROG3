@@ -25,7 +25,7 @@ public class CashBox {
         denominations.put(denomination, currentQuantity + quantity);
     }
 
-    private boolean isItemAvailable(Item item, String itemName) {
+    public boolean isItemAvailable(Item item, String itemName) {
         if (item.getItemQuantity().getOrDefault(itemName, 0) <= 0) {
             System.out.println("Item not found in stock.");
             return false;

@@ -28,25 +28,28 @@ public class REGULARMACHINE extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					REGULARMACHINE frame = new REGULARMACHINE();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	    EventQueue.invokeLater(new Runnable() {
+	        public void run() {
+	            try {
+	                if (Main.regularVendingMachine == null) {
+	                    String message = "The vending machine hasn't been created!";
+	                    JOptionPane.showMessageDialog(null, message, "Machine Not Created", JOptionPane.WARNING_MESSAGE);
+	                } else if (Main.regularVendingMachine != null) {
+	                    REGULARMACHINE frame = new REGULARMACHINE();
+	                    frame.setVisible(true);
+	                }
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    });
 	}
+
 
 	/**
 	 * Create the frame.
 	 */
 	public REGULARMACHINE() {
-		Main main = new Main();
-		JLabel Insert;
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 568);
 		contentPane = new JPanel();
@@ -606,12 +609,12 @@ public class REGULARMACHINE extends JFrame {
 		}
 		
 		index = 0;
-	    for (String itemName : main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
+	    for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
 	        labels[index].setText(itemName);
 	        index++;
 	    }
 		
-		Insert = new JLabel("");
+		JLabel Insert = new JLabel("");
 		Insert.setOpaque(true);
 		Insert.setHorizontalAlignment(SwingConstants.CENTER);
 		Insert.setForeground(Color.WHITE);
@@ -729,56 +732,113 @@ public class REGULARMACHINE extends JFrame {
 				}
 				
 				if (code.getText().equals("A1")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(0)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(0)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(0), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(0));
+						else;
+						else;
+						else {
+							Finish.setText("Item not found in stock");;
+							
+						}
 				} else if (code.getText().equals("A2")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(1)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(1)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(1), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(1));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("A3")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(2)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(2)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(2), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(2));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("B1")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(3)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(3)) != null) 				
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(3), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(3));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("B2")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(4)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(4)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(4), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(4));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("B3")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(5)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(5)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(5), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(5));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("C1")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(6)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(6)) != null) 				
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(6), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(6));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("C2")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(7)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(7)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(7), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(7));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("C3")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(8)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(8)) != null) 			
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(8), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(8));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("D1")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(9)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(9)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(9), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(9));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("D2")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(10)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(10)) != null) 		
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(10), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(10));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;
 				} else if (code.getText().equals("D3")) {
+					if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(11)))
 					if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(11)) != null) 
 						if(Main.regularVendingMachine.cashbox.receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(11), Double.parseDouble(Insert.getText())) == true)
 							Output.setText(Main.regularVendingMachine.getItemNumbers().get(11));
+						else;
+						else;
+						else Finish.setText("Item not found in stock");;	
 				}	
+			    Timer timer1 = new Timer(2000, new ActionListener() {
+			        public void actionPerformed(ActionEvent e) {
+			            Finish.setText("");
+			        }
+			    });
+			    timer1.setRepeats(false);
+			    timer1.start();
 				Main.regularVendingMachine.getCashBox();
-				
 				if (CashBox.getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
 				    if (!CashBox.getDenominationsSpent().isEmpty()) {
 				        Insert_1.setText(String.valueOf(CashBox.getDenominationsSpent().get(0)));

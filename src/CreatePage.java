@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -44,7 +46,6 @@ public class CreatePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblCreateAVending = new JLabel("Create a Vending Machine");
 		lblCreateAVending_1 = new JLabel("Create a " + machineType + " Vending Machine");
 		lblCreateAVending_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCreateAVending_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -53,25 +54,34 @@ public class CreatePage extends JFrame {
 		
 		JButton btnCreateMachine = new JButton("Create Machine");
 		btnCreateMachine.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		    public void actionPerformed(ActionEvent e) {
 		        if (machineType.equals("Regular")) {
-		           	Main.regularVendingMachine = new RegularVendingMachine(); 
+		            Main.regularVendingMachine = new RegularVendingMachine();
 		        } else if (machineType.equals("Special")) {
-		        	Main.specialVendingMachine = new SpecialVendingMachine(); 
+		            Main.specialVendingMachine = new SpecialVendingMachine();
 		        }
-		        
-			}
-		});
 
+		        String message = machineType + "Vending machine created successfully!";
+		        JOptionPane.showMessageDialog(null, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+		    }
+		});
+		
 		btnCreateMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnCreateMachine.setFocusable(false);
-		btnCreateMachine.setBounds(79, 87, 271, 61);
+		btnCreateMachine.setBounds(79, 87, 271, 38);
 		contentPane.add(btnCreateMachine);
 		
 		JButton btnAddItemsTo = new JButton("Add Items to Machine");
+		btnAddItemsTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AddItem open = new AddItem(machineType);
+				open.setVisible(true);
+			}
+		});
 		btnAddItemsTo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnAddItemsTo.setFocusable(false);
-		btnAddItemsTo.setBounds(79, 168, 271, 61);
+		btnAddItemsTo.setBounds(79, 135, 271, 38);
 		contentPane.add(btnAddItemsTo);
 		
 		JButton btnReturn = new JButton("RETURN");
@@ -86,6 +96,12 @@ public class CreatePage extends JFrame {
 		btnReturn.setFocusable(false);
 		btnReturn.setBounds(301, 239, 125, 38);
 		contentPane.add(btnReturn);
+		
+		JButton btnResetMachine = new JButton("Reset Machine");
+		btnResetMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnResetMachine.setFocusable(false);
+		btnResetMachine.setBounds(79, 183, 271, 38);
+		contentPane.add(btnResetMachine);
 		this.setLocationRelativeTo(null);
 	}
 

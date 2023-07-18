@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -49,9 +51,14 @@ public class TestVendingMachine extends JFrame {
 		JButton btnRegularVendingMachine = new JButton("Regular Vending Machine");
 		btnRegularVendingMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TestPage open= new TestPage("Regular");
-				open.setVisible(true);
+				if (Main.regularVendingMachine == null) {
+                    String message = "The vending machine hasn't been created!";
+                    JOptionPane.showMessageDialog(null, message, "Machine Not Created", JOptionPane.WARNING_MESSAGE);
+                } else {
+                	dispose();
+                	TestPage open= new TestPage("Regular");
+                	open.setVisible(true);
+                }
 			}
 		});
 		btnRegularVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
