@@ -80,7 +80,7 @@ public class CreatePage extends JFrame {
 		                AddItem open = new AddItem(machineType);
 		                open.setVisible(true);
 		            } else {
-		                JOptionPane.showMessageDialog(null, "The " + machineType + " Machine Has Not Been Created", "Error", JOptionPane.ERROR_MESSAGE);
+		                JOptionPane.showMessageDialog(null, machineType + " Vending Machine Has Not Been Created", "Error", JOptionPane.ERROR_MESSAGE);
 		            }
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Machine Has Not Been Created", "Error", JOptionPane.ERROR_MESSAGE);
@@ -109,14 +109,19 @@ public class CreatePage extends JFrame {
 		JButton btnResetMachine = new JButton("Reset Machine");
 		btnResetMachine.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        if (machineType.equals("Regular")) {
-		            Main.regularVendingMachine = new RegularVendingMachine();
-		        } else if (machineType.equals("Special")) {
-		            Main.specialVendingMachine = new SpecialVendingMachine();
+		        if ((machineType.equals("Regular") && Main.regularVendingMachine != null) || (machineType.equals("Special") && Main.specialVendingMachine != null)) {
+		            if (machineType.equals("Regular")) {
+		                Main.regularVendingMachine = new RegularVendingMachine();
+		            } else if (machineType.equals("Special")) {
+		                Main.specialVendingMachine = new SpecialVendingMachine();
+		            }
+		            JOptionPane.showMessageDialog(null, machineType + " Vending Machine reset", "Reset Confirmation", JOptionPane.INFORMATION_MESSAGE);
+		        } else {
+		            JOptionPane.showMessageDialog(null, "Machine Has Not Been Created", "Error", JOptionPane.ERROR_MESSAGE);
 		        }
-		        JOptionPane.showMessageDialog(null, machineType + " Machine reset", "Reset Confirmation", JOptionPane.INFORMATION_MESSAGE);
 		    }
 		});
+
 
 		btnResetMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnResetMachine.setFocusable(false);
