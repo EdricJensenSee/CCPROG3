@@ -8,13 +8,12 @@ public class Main {
     public static int CAPACITY_PER_SLOT = 10;
     public static int SLOT = 9;
     private static Scanner scan = new Scanner(System.in);
-    public static SpecialVendingMachine specialVendingMachine;
+    public static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
     public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     private static int nChoice, number, quantity, calories;
     private static double payment;
     private static float price;
     private static String item;
-
 
 /** 
  *
@@ -25,7 +24,7 @@ public class Main {
     public static void main(String[] args) { 
     	//Test Values
         regularVendingMachine.getItem().addItem("Chocolate Chip Cookie", 1, 80, 180);
-        /*regularVendingMachine.getItem().addItem("Chocolate Bar", 5, 40, 160);
+        regularVendingMachine.getItem().addItem("Chocolate Bar", 5, 40, 160);
         regularVendingMachine.getItem().addItem("Cream Cookie", 9, 20, 200);
         regularVendingMachine.getItem().addItem("Chocolate Muffin", 3, 30, 220);
         regularVendingMachine.getItem().addItem("Fresh Berry", 7, 70, 250);

@@ -50,7 +50,7 @@ public class AddItem extends JFrame {
 	public AddItem(String machineType) {
 		this.machineType = machineType;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 386, 579);
+		setBounds(100, 100, 397, 579);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -481,7 +481,7 @@ public class AddItem extends JFrame {
 	    // Check the machineType and use the appropriate VendingMachine instance
 	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
 	        for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	            labels[index].setText(itemName);
+	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + "</center></html>");
 	            index++;
 
 	            // Break the loop if we have filled all the labels
@@ -491,7 +491,7 @@ public class AddItem extends JFrame {
 	        }
 	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
 	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-	            labels[index].setText(itemName);
+	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + "</center></html>");
 	            index++;
 
 	            // Break the loop if we have filled all the labels

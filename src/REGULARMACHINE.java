@@ -361,7 +361,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel one = new JLabel("New label");
 		one.setHorizontalAlignment(SwingConstants.CENTER);
 		one.setHorizontalTextPosition(SwingConstants.CENTER);
-		one.setBounds(0, 10, 106, 13);
+		one.setBounds(0, 0, 106, 33);
 		A1.add(one);
 		
 		JLabel lblNewLabel_7_1 = new JLabel("A1");
@@ -382,7 +382,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel two = new JLabel("New label");
 		two.setHorizontalAlignment(SwingConstants.CENTER);
 		two.setHorizontalTextPosition(SwingConstants.CENTER);
-		two.setBounds(0, 10, 106, 13);
+		two.setBounds(0, 0, 106, 33);
 		A2.add(two);
 		
 		JLabel lblNewLabel_7_1_1 = new JLabel("A2");
@@ -403,7 +403,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel three = new JLabel("New label");
 		three.setHorizontalAlignment(SwingConstants.CENTER);
 		three.setHorizontalTextPosition(SwingConstants.CENTER);
-		three.setBounds(0, 10, 106, 13);
+		three.setBounds(0, 0, 106, 33);
 		A3.add(three);
 		
 		JLabel lblNewLabel_7_1_2 = new JLabel("A3");
@@ -424,7 +424,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel four = new JLabel("New label");
 		four.setHorizontalAlignment(SwingConstants.CENTER);
 		four.setHorizontalTextPosition(SwingConstants.CENTER);
-		four.setBounds(0, 10, 106, 13);
+		four.setBounds(0, 0, 106, 33);
 		B1.add(four);
 		
 		JLabel lblNewLabel_7_1_3 = new JLabel("B1");
@@ -445,7 +445,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel five = new JLabel("New label");
 		five.setHorizontalAlignment(SwingConstants.CENTER);
 		five.setHorizontalTextPosition(SwingConstants.CENTER);
-		five.setBounds(0, 10, 106, 13);
+		five.setBounds(0, 0, 106, 33);
 		B2.add(five);
 		
 		JLabel lblNewLabel_7_1_4 = new JLabel("B2");
@@ -466,7 +466,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel six = new JLabel("New label");
 		six.setHorizontalAlignment(SwingConstants.CENTER);
 		six.setHorizontalTextPosition(SwingConstants.CENTER);
-		six.setBounds(0, 10, 106, 13);
+		six.setBounds(0, 0, 106, 33);
 		B3.add(six);
 		
 		JLabel lblNewLabel_7_1_5 = new JLabel("B3");
@@ -487,7 +487,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel seven = new JLabel("C1");
 		seven.setHorizontalTextPosition(SwingConstants.CENTER);
 		seven.setHorizontalAlignment(SwingConstants.CENTER);
-		seven.setBounds(0, 10, 106, 13);
+		seven.setBounds(0, 0, 106, 33);
 		C1.add(seven);
 		
 		JLabel lblNewLabel_7_1_8 = new JLabel("C1");
@@ -508,7 +508,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel ten = new JLabel("New label");
 		ten.setHorizontalAlignment(SwingConstants.CENTER);
 		ten.setHorizontalTextPosition(SwingConstants.CENTER);
-		ten.setBounds(0, 10, 106, 13);
+		ten.setBounds(0, 0, 106, 33);
 		D1.add(ten);
 		
 		JLabel lblNewLabel_7_1_9 = new JLabel("D1");
@@ -529,7 +529,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel eight = new JLabel("New label");
 		eight.setHorizontalAlignment(SwingConstants.CENTER);
 		eight.setHorizontalTextPosition(SwingConstants.CENTER);
-		eight.setBounds(0, 10, 106, 13);
+		eight.setBounds(0, 0, 106, 33);
 		C2.add(eight);
 		
 		JLabel lblNewLabel_7_1_7 = new JLabel("C2");
@@ -550,7 +550,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel nine = new JLabel("New label");
 		nine.setHorizontalAlignment(SwingConstants.CENTER);
 		nine.setHorizontalTextPosition(SwingConstants.CENTER);
-		nine.setBounds(0, 10, 106, 13);
+		nine.setBounds(0, 0, 106, 33);
 		C3.add(nine);
 		
 		JLabel lblNewLabel_7_1_6 = new JLabel("C3");
@@ -571,7 +571,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel eleven = new JLabel("New label");
 		eleven.setHorizontalAlignment(SwingConstants.CENTER);
 		eleven.setHorizontalTextPosition(SwingConstants.CENTER);
-		eleven.setBounds(0, 10, 106, 13);
+		eleven.setBounds(0, 0, 106, 33);
 		D2.add(eleven);
 		
 		JLabel lblNewLabel_7_1_10 = new JLabel("D2");
@@ -600,7 +600,7 @@ public class REGULARMACHINE extends JFrame {
 		JLabel twelve = new JLabel("asasa");
 		twelve.setHorizontalTextPosition(SwingConstants.CENTER);
 		twelve.setHorizontalAlignment(SwingConstants.CENTER);
-		twelve.setBounds(0, 10, 106, 13);
+		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
 		int index;
 		JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
@@ -610,7 +610,7 @@ public class REGULARMACHINE extends JFrame {
 		
 		index = 0;
 	    for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	        labels[index].setText(itemName);
+	        labels[index].setText("<html><center>"+itemName + "</center></html>");
 	        index++;
 	    }
 		
