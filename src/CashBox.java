@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class CashBox {
@@ -23,6 +24,7 @@ public class CashBox {
     public void replenishChange(double denomination, int quantity) {
         int currentQuantity = denominations.getOrDefault(denomination, 0);
         denominations.put(denomination, currentQuantity + quantity);
+        Collections.sort(denominationsSpent);
     }
 
     public boolean isItemAvailable(Item item, String itemName) {
@@ -33,7 +35,15 @@ public class CashBox {
         return true;
     }
     
-    public void addTotalAmount(int amount) {
+    public HashMap<Double, Integer> getDenominations() {
+		return denominations;
+	}
+
+	public static void setDenominations(HashMap<Double, Integer> denominations) {
+		CashBox.denominations = denominations;
+	}
+
+	public void addTotalAmount(int amount) {
     	amountPaid+=amount;
     }
     

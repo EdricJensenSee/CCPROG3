@@ -25,11 +25,6 @@ class RegularVendingMachine {
         item = new Item();
         cashbox = new CashBox();
         itemNumbers = new HashMap<>();
-        item.setItemQuantity(new HashMap<>());
-        item.setItemPrice(new HashMap<>());
-        item.setItemCalories(new HashMap<>());
-        item.setItemSold(new HashMap<>());
-        item.setTotalSales(0);
     }
 
     /**

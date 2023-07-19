@@ -77,32 +77,66 @@ public class MaintenancePage extends JFrame {
 		panel_2.setBounds(370, 10, 120, 446);
 		contentPane.add(panel_2);
 		
-		
-		JButton btnNewButton_1_1 = new JButton("Add Money");
-		btnNewButton_1_1.setFocusable(false);
-		btnNewButton_1_1.setBounds(10, 163, 100, 41);
-		panel_2.add(btnNewButton_1_1);
-		
+				
 		JButton btnAdd = new JButton("Add Item");
-	    btnAdd.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-	                Main.regularVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-	            } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-	            	Main.specialVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-	            }
-	            itemAdder();
-	        }
-	    });
+		btnAdd.setVisible(false);
+		btnAdd.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+			    int itemNumber = 0;
+			    String nameText = namefield.getText();
+			    if (!nameText.isEmpty()) {
+			        if (nameText.equals("A1"))
+			            itemNumber = 0;
+			        else if (nameText.equals("A2"))
+			            itemNumber = 1;
+			        else if (nameText.equals("A3"))
+			            itemNumber = 2;
+			        else if (nameText.equals("B1"))
+			            itemNumber = 3;
+			        else if (nameText.equals("B2"))
+			            itemNumber = 4;
+			        else if (nameText.equals("B3"))
+			            itemNumber = 5;
+			        else if (nameText.equals("C1"))
+			            itemNumber = 6;
+			        else if (nameText.equals("C2"))
+			            itemNumber = 7;
+			        else if (nameText.equals("C3"))
+			            itemNumber = 8;
+			        else if (nameText.equals("D1"))
+			            itemNumber = 9;
+			        else if (nameText.equals("D2"))
+			            itemNumber = 10;
+			        else if (nameText.equals("D3"))
+			            itemNumber = 11;
+			    }
+		        if (btnAdd.getText().equals("Add Item")) {
+		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+		                Main.regularVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+		                Main.specialVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            }
+		        } else if (btnAdd.getText().equals("Restock")) {
+				    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+				    	Main.regularVendingMachine.getItem().setItemQuantity(Main.regularVendingMachine.getItemNumbers().get(itemNumber),Main.regularVendingMachine.getItem().getItemQuantity().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) + 1);
+				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+				    	Main.specialVendingMachine.getItem().setItemQuantity(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Main.specialVendingMachine.getItem().getItemQuantity().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) + 1);
+				    }	
+		        } else if (btnAdd.getText().equals("Change")){
+		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+					    	Main.regularVendingMachine.getItem().setItemPrice(Main.regularVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
+					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+					    	Main.specialVendingMachine.getItem().setItemPrice(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
+					    }	
+		        }
+		        itemAdder();
+		    }
+		});
+
 	    
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnAdd.setFocusable(false);
 		btnAdd.setBounds(245, 379, 101, 18);
-		
-		JButton btnNewButton_1_2_1_1 = new JButton("Receipt");
-		btnNewButton_1_2_1_1.setFocusable(false);
-		btnNewButton_1_2_1_1.setBounds(10, 265, 100, 41);
-		panel_2.add(btnNewButton_1_2_1_1);
 				
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
@@ -110,6 +144,191 @@ public class MaintenancePage extends JFrame {
 		panel.setBounds(10, 10, 361, 446);
 		contentPane.add(panel);
 		panel.setLayout(null);
+
+		JLabel Change = new JLabel("");
+		Change.setHorizontalTextPosition(SwingConstants.LEADING);
+		Change.setVerticalAlignment(SwingConstants.TOP);
+		Change.setHorizontalAlignment(SwingConstants.CENTER);
+		Change.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Change.setBounds(10, 311, 100, 125);
+		panel_2.add(Change);
+		
+		JButton b5 = new JButton("5");
+		b5.setVisible(false);
+		b5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	Main.regularVendingMachine.getCashBox().replenishChange(5.0, 1);
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    	Main.specialVendingMachine.getCashBox().replenishChange(5.0, 1);
+			    }	
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }	
+			}
+		});
+		b5.setBounds(170, 372, 85, 21);
+		panel.add(b5);
+		
+		JButton b4 = new JButton("10");
+		b4.setVisible(false);
+		b4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	Main.regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    	Main.specialVendingMachine.getCashBox().replenishChange(10.0, 1);
+			    }			
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }	
+			}
+		});
+		b4.setBounds(78, 372, 85, 21);
+		panel.add(b4);
+		
+		JButton b3 = new JButton("20");
+		b3.setVisible(false);
+		b3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	Main.regularVendingMachine.getCashBox().replenishChange(20.0, 1);
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    	Main.specialVendingMachine.getCashBox().replenishChange(20.0, 1);
+			    }			
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }	
+			}
+		});
+		b3.setBounds(224, 335, 85, 21);
+		panel.add(b3);
+		
+		JButton b2 = new JButton("50");
+		b2.setVisible(false);
+		b2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	Main.regularVendingMachine.getCashBox().replenishChange(50.0, 1);
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    	Main.specialVendingMachine.getCashBox().replenishChange(50.0, 1);
+			    }		
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }	
+			}
+		});
+		b2.setBounds(129, 335, 85, 21);
+		panel.add(b2);
+		
+		JButton b1 = new JButton("100");
+		b1.setVisible(false);
+		b1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	Main.regularVendingMachine.getCashBox().replenishChange(100.0, 1);
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    	Main.specialVendingMachine.getCashBox().replenishChange(100.0, 1);
+			    }			
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }	
+			}
+		});
+		b1.setBounds(34, 335, 85, 21);
+		panel.add(b1);
+		
+
 		
 		JLabel lblNewLabel_3_2 = new JLabel("");
 		lblNewLabel_3_2.setOpaque(true);
@@ -409,39 +628,46 @@ public class MaintenancePage extends JFrame {
 		panel.add(btnNewButton_1_1_2_1);
 		
 		namefield = new JTextField();
+		namefield.setVisible(false);
 		namefield.setColumns(10);
 		namefield.setBounds(68, 349, 50, 19);
 		panel.add(namefield);
 		
 		JLabel name = new JLabel("Item Name");
+		name.setVisible(false);
 		name.setHorizontalTextPosition(SwingConstants.CENTER);
 		name.setHorizontalAlignment(SwingConstants.CENTER);
 		name.setBounds(14, 335, 160, 13);
 		panel.add(name);
 		
 		qtyfield = new JTextField();
+		qtyfield.setVisible(false);
 		qtyfield.setColumns(10);
 		qtyfield.setBounds(184, 349, 50, 19);
 		panel.add(qtyfield);
 		
 		JLabel qty = new JLabel("Quantity");
+		qty.setVisible(false);
 		qty.setHorizontalTextPosition(SwingConstants.CENTER);
 		qty.setHorizontalAlignment(SwingConstants.CENTER);
 		qty.setBounds(184, 335, 50, 13);
 		panel.add(qty);
 		
 		JLabel price = new JLabel("Price");
+		price.setVisible(false);
 		price.setHorizontalTextPosition(SwingConstants.CENTER);
 		price.setHorizontalAlignment(SwingConstants.CENTER);
 		price.setBounds(240, 335, 46, 13);
 		panel.add(price);
 		
 		pricefield = new JTextField();
+		pricefield.setVisible(false);
 		pricefield.setColumns(10);
 		pricefield.setBounds(240, 349, 46, 19);
 		panel.add(pricefield);
 		
 		JLabel cal = new JLabel("Calories");
+		cal.setVisible(false);
 		cal.setHorizontalTextPosition(SwingConstants.CENTER);
 		cal.setHorizontalAlignment(SwingConstants.CENTER);
 		cal.setBounds(288, 335, 63, 13);
@@ -450,8 +676,15 @@ public class MaintenancePage extends JFrame {
 		JButton btnNewButton_1_2 = new JButton("Add items");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			    JButton[] buttons = { b1, b2, b3, b4, b5};
+			    for (int i = 0; i < 5; i++) {
+			        buttons[i].setVisible(false);
+			    }
+			    Change.setVisible(false);
 				name.setText("Item Name");
 				namefield.setBounds(13, 349, 161, 19);
+				name.setVisible(true);
+				namefield.setVisible(true);
 				cal.setVisible(true);
 				calfield.setVisible(true);
 				qty.setBounds(184, 335, 50, 13);
@@ -472,8 +705,15 @@ public class MaintenancePage extends JFrame {
 		JButton btnNewButton_1 = new JButton("Restock");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			    JButton[] buttons = { b1, b2, b3, b4, b5};
+			    for (int i = 0; i < 5; i++) {
+			        buttons[i].setVisible(false);
+			    }			  
+			    Change.setVisible(false);
 				name.setText("Item Code");
 				namefield.setBounds(68, 349, 50, 19);
+				name.setVisible(true);
+				namefield.setVisible(true);
 				cal.setVisible(false);
 				calfield.setVisible(false);
 				qty.setVisible(false);
@@ -482,14 +722,49 @@ public class MaintenancePage extends JFrame {
 				pricefield.setVisible(false);
 				btnAdd.setText("Restock");
 				btnAdd.setBounds(130, 349, 70, 18);
+				btnAdd.setVisible(true);
 			}
 		});
 		
 		JButton btnNewButton_1_1_1 = new JButton("<html><center>Change<br>Prices</center></html>");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int itemNumber;
+			    JButton[] buttons = { b1, b2, b3, b4, b5};
+			    for (int i = 0; i < 5; i++) {
+			        buttons[i].setVisible(false);
+			    }
+			    if (namefield.getText() == "A1")
+			    	itemNumber = 0;
+			    if (namefield.getText() == "A2")
+			    	itemNumber = 1;
+			    if (namefield.getText() == "A3")
+			    	itemNumber = 2;
+			    if (namefield.getText() == "B1")
+			    	itemNumber = 3;
+			    if (namefield.getText() == "B2")
+			    	itemNumber = 4;
+			    if (namefield.getText() == "B3")
+			    	itemNumber = 5;
+			    if (namefield.getText() == "C1")
+			    	itemNumber = 6;
+			    if (namefield.getText() == "C2")
+			    	itemNumber = 7;
+			    if (namefield.getText() == "C3")
+			    	itemNumber = 8;
+			    if (namefield.getText() == "D1")
+			    	itemNumber = 9;
+			    if (namefield.getText() == "D2")
+			    	itemNumber = 10;
+			    if (namefield.getText() == "D3")
+			    	itemNumber = 11;
+			    
+			    
+			    Change.setVisible(false);
 				name.setText("Item Code");
 				namefield.setBounds(68, 349, 50, 19);
+				name.setVisible(true);
+				namefield.setVisible(true);
 				cal.setVisible(false);
 				calfield.setVisible(false);
 				qty.setVisible(false);
@@ -501,8 +776,85 @@ public class MaintenancePage extends JFrame {
 				pricefield.setVisible(true);
 				btnAdd.setText("Change");
 				btnAdd.setBounds(210, 349, 70, 18);
+				btnAdd.setVisible(true);
 			}
 		});
+		
+		JButton btnNewButton_1_1 = new JButton("Add Money");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    JButton[] buttons = { b1, b2, b3, b4, b5};
+			    for (int i = 0; i < 5; i++) {
+			        buttons[i].setVisible(true);
+			    }
+			    Change.setVisible(true);
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }
+				name.setVisible(false);
+				namefield.setVisible(false);
+				cal.setVisible(false);
+				calfield.setVisible(false);
+				qty.setVisible(false);
+				qtyfield.setVisible(false);
+				price.setVisible(false);
+				pricefield.setVisible(false);
+				btnAdd.setVisible(false);
+			}
+		});
+		btnNewButton_1_1.setFocusable(false);
+		btnNewButton_1_1.setBounds(10, 163, 100, 41);
+		panel_2.add(btnNewButton_1_1);
+		
+		JButton btnNewButton_1_2_1_1 = new JButton("Receipt");
+		btnNewButton_1_2_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Change.setVisible(true);
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	StringBuilder allDenoms = new StringBuilder("<html>Receipt in Machine<br>");
+			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
+			    	    double denomination = denom.getKey();
+			    	    int quantity = denom.getValue();
+			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+			    	}
+			    	allDenoms.append("</html>");
+			    	Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
+				    	    double denomination = denom1.getKey();
+				    	    int quantity = denom1.getValue();
+				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
+				    	}
+				    	allDenoms.append("</html>");
+				    	Change.setText(allDenoms.toString());
+			        }
+			    }
+			}
+		});
+		btnNewButton_1_2_1_1.setFocusable(false);
+		btnNewButton_1_2_1_1.setBounds(10, 265, 100, 41);
+		panel_2.add(btnNewButton_1_2_1_1);
+		
 		btnNewButton_1_1_1.setFocusable(false);
 		btnNewButton_1_1_1.setBounds(10, 214, 100, 41);
 		panel_2.add(btnNewButton_1_1_1);
@@ -515,8 +867,9 @@ public class MaintenancePage extends JFrame {
 		btnNewButton_1_2.setFocusable(false);
 		btnNewButton_1_2.setBounds(10, 111, 100, 41);
 		panel_2.add(btnNewButton_1_2);
-		
+			
 		calfield = new JTextField();
+		calfield.setVisible(false);
 		calfield.setColumns(10);
 		calfield.setBounds(296, 349, 46, 19);
 		panel.add(calfield);
@@ -535,7 +888,7 @@ public class MaintenancePage extends JFrame {
 	    
 	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
 	        for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " " +  Main.regularVendingMachine.getItem().getItemCalories().get(itemName) + "C</center></html>");
+	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.regularVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
 	        	
 	            index++;
 	            if (index >= 12) {
@@ -544,7 +897,7 @@ public class MaintenancePage extends JFrame {
 	        }
 	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
 	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html>1<br>" + itemName + "</html>");
+	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
 	            index++;
 
 	            if (index >= 12) {

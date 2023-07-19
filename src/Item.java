@@ -90,10 +90,11 @@ class Item {
      *
      * @param itemQuantity the new item quantity <itemName, quantity> HashMap to set.
      */
-    public void setItemQuantity(HashMap<String, Integer> itemQuantity) {
-        this.itemQuantity = itemQuantity;
+    public void setItemQuantity(String itemKey, int quantity) {
+        if (quantity <= 10) {
+            this.itemQuantity.put(itemKey, quantity);
+        }
     }
-
     /**
      * Returns the item price <itemName, price> HashMap.
      *
@@ -108,9 +109,9 @@ class Item {
      *
      * @param itemPrice the new item price <itemName, price> HashMap to set.
      */
-    public void setItemPrice(HashMap<String, Double> itemPrice) {
-        this.itemPrice = itemPrice;
-    }
+    public void setItemPrice(String itemKey, Double newPrice) {
+            this.itemPrice.put(itemKey, newPrice);
+        }
 
     /**
      * Returns the item calories <itemName, calories> HashMap.
