@@ -23,17 +23,15 @@ public class TestPage extends JFrame {
 	public static void main(String[] args) {
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
-	            try {
-	                if (Main.regularVendingMachine == null) {
-	                    String message = "The vending machine hasn't been created!";
-	                    JOptionPane.showMessageDialog(null, message, "Machine Not Created", JOptionPane.WARNING_MESSAGE);
-	                } else {
-	                    TestPage frame = new TestPage("");
-	                    frame.setVisible(true);
-	                }
-	            } catch (Exception e) {
-	                e.printStackTrace();
-	            }
+	        	try {
+
+	        	        TestPage frame = new TestPage("");
+	        	        frame.setVisible(true);
+	        	    
+	        	} catch (Exception e) {
+	        	    e.printStackTrace();
+	        	}
+
 	        }
 	    });
 	}
@@ -72,7 +70,7 @@ public class TestPage extends JFrame {
 		btnFeatureTest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				REGULARMACHINE open = new REGULARMACHINE();
+				REGULARMACHINE open = new REGULARMACHINE(machineType);
 				open.setVisible(true);
 			}
 		});
@@ -81,7 +79,7 @@ public class TestPage extends JFrame {
 		btnFeatureTest.setBounds(82, 72, 271, 61);
 		contentPane.add(btnFeatureTest);
 		
-		JButton btnMaintance = new JButton("Maintance");
+		JButton btnMaintance = new JButton("Maintenance");
 		btnMaintance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

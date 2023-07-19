@@ -34,7 +34,7 @@ class Item {
      * @param calories  the calorie content of the item.
      */
     public void addItem(String itemName, int quantity, double price, int calories) {
-        if (quantity <= 0 || quantity > Main.CAPACITY_PER_SLOT) {
+        if (quantity <= 0 || quantity > Main.CAPACITY_PER_SLOT || totalUnique>12) {
             System.out.println("Invalid quantity. Please stock between 1 and " + Main.CAPACITY_PER_SLOT + " items.");
             return;
         }

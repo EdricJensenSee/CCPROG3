@@ -79,7 +79,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
             return;
         } else if (amountPaid > totalPrice) {
             double change = amountPaid - totalPrice;
-            CashBox.dispenseChange(change);
+            getCashBox().dispenseChange(change);
         }
 
         for (String itemName : recipes.get(productIndex)) {

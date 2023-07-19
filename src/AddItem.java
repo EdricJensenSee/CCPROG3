@@ -148,7 +148,7 @@ public class AddItem extends JFrame {
 		one = new JLabel("New label");
 		one.setHorizontalAlignment(SwingConstants.CENTER);
 		one.setHorizontalTextPosition(SwingConstants.CENTER);
-		one.setBounds(0, 10, 106, 13);
+		one.setBounds(0, 0, 106, 33);
 		A1.add(one);
 		
 		JLabel lblNewLabel_7_1 = new JLabel("A1");
@@ -169,7 +169,7 @@ public class AddItem extends JFrame {
 		two = new JLabel("New label");
 		two.setHorizontalAlignment(SwingConstants.CENTER);
 		two.setHorizontalTextPosition(SwingConstants.CENTER);
-		two.setBounds(0, 10, 106, 13);
+		two.setBounds(0, 0, 106, 33);
 		A2.add(two);
 		
 		JLabel lblNewLabel_7_1_1 = new JLabel("A2");
@@ -190,7 +190,7 @@ public class AddItem extends JFrame {
 		three = new JLabel("New label");
 		three.setHorizontalAlignment(SwingConstants.CENTER);
 		three.setHorizontalTextPosition(SwingConstants.CENTER);
-		three.setBounds(0, 10, 106, 13);
+		three.setBounds(0, 0, 106, 33);
 		A3.add(three);
 		
 		JLabel lblNewLabel_7_1_2 = new JLabel("A3");
@@ -211,7 +211,7 @@ public class AddItem extends JFrame {
 		four = new JLabel("New label");
 		four.setHorizontalAlignment(SwingConstants.CENTER);
 		four.setHorizontalTextPosition(SwingConstants.CENTER);
-		four.setBounds(0, 10, 106, 13);
+		four.setBounds(0, 0, 106, 33);
 		B1.add(four);
 		
 		JLabel lblNewLabel_7_1_3 = new JLabel("B1");
@@ -232,7 +232,7 @@ public class AddItem extends JFrame {
 		five = new JLabel("New label");
 		five.setHorizontalAlignment(SwingConstants.CENTER);
 		five.setHorizontalTextPosition(SwingConstants.CENTER);
-		five.setBounds(0, 10, 106, 13);
+		five.setBounds(0, 0, 106, 33);
 		B2.add(five);
 		
 		JLabel lblNewLabel_7_1_4 = new JLabel("B2");
@@ -253,7 +253,7 @@ public class AddItem extends JFrame {
 		six = new JLabel("New label");
 		six.setHorizontalAlignment(SwingConstants.CENTER);
 		six.setHorizontalTextPosition(SwingConstants.CENTER);
-		six.setBounds(0, 10, 106, 13);
+		six.setBounds(0, 0, 106, 33);
 		B3.add(six);
 		
 		JLabel lblNewLabel_7_1_5 = new JLabel("B3");
@@ -274,7 +274,7 @@ public class AddItem extends JFrame {
 		seven = new JLabel("C1");
 		seven.setHorizontalTextPosition(SwingConstants.CENTER);
 		seven.setHorizontalAlignment(SwingConstants.CENTER);
-		seven.setBounds(0, 10, 106, 13);
+		seven.setBounds(0, 0, 106, 33);
 		C1.add(seven);
 		
 		JLabel lblNewLabel_7_1_8 = new JLabel("C1");
@@ -295,7 +295,7 @@ public class AddItem extends JFrame {
 		ten = new JLabel("New label");
 		ten.setHorizontalAlignment(SwingConstants.CENTER);
 		ten.setHorizontalTextPosition(SwingConstants.CENTER);
-		ten.setBounds(0, 10, 106, 13);
+		ten.setBounds(0, 0, 106, 33);
 		D1.add(ten);
 		
 		JLabel lblNewLabel_7_1_9 = new JLabel("D1");
@@ -316,7 +316,7 @@ public class AddItem extends JFrame {
 		eight = new JLabel("New label");
 		eight.setHorizontalAlignment(SwingConstants.CENTER);
 		eight.setHorizontalTextPosition(SwingConstants.CENTER);
-		eight.setBounds(0, 10, 106, 13);
+		eight.setBounds(0, 0, 106, 33);
 		C2.add(eight);
 		
 		JLabel lblNewLabel_7_1_7 = new JLabel("C2");
@@ -337,7 +337,7 @@ public class AddItem extends JFrame {
 		nine = new JLabel("New label");
 		nine.setHorizontalAlignment(SwingConstants.CENTER);
 		nine.setHorizontalTextPosition(SwingConstants.CENTER);
-		nine.setBounds(0, 10, 106, 13);
+		nine.setBounds(0, 0, 106, 33);
 		C3.add(nine);
 		
 		JLabel lblNewLabel_7_1_6 = new JLabel("C3");
@@ -358,7 +358,7 @@ public class AddItem extends JFrame {
 		eleven = new JLabel("New label");
 		eleven.setHorizontalAlignment(SwingConstants.CENTER);
 		eleven.setHorizontalTextPosition(SwingConstants.CENTER);
-		eleven.setBounds(0, 10, 106, 13);
+		eleven.setBounds(0, 0, 106, 31);
 		D2.add(eleven);
 		
 		JLabel lblNewLabel_7_1_10 = new JLabel("D2");
@@ -387,7 +387,7 @@ public class AddItem extends JFrame {
 		twelve = new JLabel("asasa");
 		twelve.setHorizontalTextPosition(SwingConstants.CENTER);
 		twelve.setHorizontalAlignment(SwingConstants.CENTER);
-		twelve.setBounds(0, 10, 106, 13);
+		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
 		
 		itemAdder();
@@ -477,24 +477,21 @@ public class AddItem extends JFrame {
 	    }
 
 	    index = 0;
-
-	    // Check the machineType and use the appropriate VendingMachine instance
+	    
 	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
 	        for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + "</center></html>");
+	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.regularVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
+	        	
 	            index++;
-
-	            // Break the loop if we have filled all the labels
 	            if (index >= 12) {
 	                break;
 	            }
 	        }
 	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
 	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + "</center></html>");
+	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
 	            index++;
 
-	            // Break the loop if we have filled all the labels
 	            if (index >= 12) {
 	                break;
 	            }

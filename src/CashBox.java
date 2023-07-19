@@ -39,7 +39,7 @@ public class CashBox {
 		return denominations;
 	}
 
-	public static void setDenominations(HashMap<Double, Integer> denominations) {
+	public void setDenominations(HashMap<Double, Integer> denominations) {
 		CashBox.denominations = denominations;
 	}
 
@@ -63,7 +63,7 @@ public class CashBox {
 		this.amountPaid = amountPaid;
 	}
 
-	public static boolean dispenseChange(double change) {
+	public boolean dispenseChange(double change) {
 	    double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
 	    int[] quantityOfDenom = new int[availableDenominations.length];
 
@@ -128,11 +128,11 @@ public class CashBox {
         }
     }	
 
-    public static ArrayList<Double> getDenominationsSpent() {
+    public ArrayList<Double> getDenominationsSpent() {
 		return denominationsSpent;
 	}
 
-	public static void setDenominationsSpent(ArrayList<Double> denominationsSpent) {
+	public void setDenominationsSpent(ArrayList<Double> denominationsSpent) {
 		CashBox.denominationsSpent = denominationsSpent;
 	}
 

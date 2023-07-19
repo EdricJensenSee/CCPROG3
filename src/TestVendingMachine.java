@@ -69,9 +69,14 @@ public class TestVendingMachine extends JFrame {
 		JButton btnSpecialVendingMachine = new JButton("Special Vending Machine");
 		btnSpecialVendingMachine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TestPage open= new TestPage("Special");
-				open.setVisible(true);
+				if (Main.specialVendingMachine == null) {
+                    String message = "The vending machine hasn't been created!";
+                    JOptionPane.showMessageDialog(null, message, "Machine Has Not Been Created", JOptionPane.WARNING_MESSAGE);
+                } else {
+                	dispose();
+                	TestPage open= new TestPage("Special");
+                	open.setVisible(true);
+                }
 			}
 		});
 		btnSpecialVendingMachine.setFont(new Font("Tahoma", Font.PLAIN, 20));

@@ -150,7 +150,7 @@ public class MaintenancePage extends JFrame {
 		Receipt.setHorizontalTextPosition(SwingConstants.LEADING);
 		Receipt.setHorizontalAlignment(SwingConstants.LEFT);
 		Receipt.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Receipt.setBounds(116, 332, 235, 103);
+		Receipt.setBounds(98, 335, 253, 103);
 		panel.add(Receipt);
 		
 		JLabel Change = new JLabel("");
@@ -626,7 +626,7 @@ public class MaintenancePage extends JFrame {
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CreatePage open = new CreatePage("Regular");
+				TestPage open = new TestPage(machineType);
 				open.setVisible(true);
 			}
 		});
@@ -718,7 +718,14 @@ public class MaintenancePage extends JFrame {
 			    JButton[] buttons = { b1, b2, b3, b4, b5};
 			    for (int i = 0; i < 5; i++) {
 			        buttons[i].setVisible(false);
-			    }			  
+			    }			 
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    	Main.regularVendingMachine.getItem().resetTotalSales();
+			    	Main.regularVendingMachine.getItem().resetItemSold();
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    	Main.specialVendingMachine.getItem().resetTotalSales();
+			    	Main.specialVendingMachine.getItem().resetItemSold();
+			    }		
 			    Change.setVisible(false);
 				name.setText("Item Code");
 				namefield.setBounds(68, 349, 50, 19);
@@ -739,35 +746,11 @@ public class MaintenancePage extends JFrame {
 		JButton btnNewButton_1_1_1 = new JButton("<html><center>Change<br>Prices</center></html>");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int itemNumber;
+				
 			    JButton[] buttons = { b1, b2, b3, b4, b5};
 			    for (int i = 0; i < 5; i++) {
 			        buttons[i].setVisible(false);
 			    }
-			    if (namefield.getText() == "A1")
-			    	itemNumber = 0;
-			    if (namefield.getText() == "A2")
-			    	itemNumber = 1;
-			    if (namefield.getText() == "A3")
-			    	itemNumber = 2;
-			    if (namefield.getText() == "B1")
-			    	itemNumber = 3;
-			    if (namefield.getText() == "B2")
-			    	itemNumber = 4;
-			    if (namefield.getText() == "B3")
-			    	itemNumber = 5;
-			    if (namefield.getText() == "C1")
-			    	itemNumber = 6;
-			    if (namefield.getText() == "C2")
-			    	itemNumber = 7;
-			    if (namefield.getText() == "C3")
-			    	itemNumber = 8;
-			    if (namefield.getText() == "D1")
-			    	itemNumber = 9;
-			    if (namefield.getText() == "D2")
-			    	itemNumber = 10;
-			    if (namefield.getText() == "D3")
-			    	itemNumber = 11;
 			    
 			    Receipt.setVisible(false);
 			    Change.setVisible(false);
@@ -853,24 +836,53 @@ public class MaintenancePage extends JFrame {
 				price.setVisible(false);
 				pricefield.setVisible(false);
 				btnAdd.setVisible(false);
-				Change.setVisible(true);		            
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Receipt<br>");
-			    	for (String itemName : Main.regularVendingMachine.getItem().getItemSold().keySet()) {
-			    		int quantitySold = Main.regularVendingMachine.getItem().getItemSold().get(itemName);
-			    	    allDenoms.append(itemName).append(" - ").append(quantitySold).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Receipt.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Receipt<br>");
-			    	for (String itemName : Main.specialVendingMachine.getItem().getItemSold().keySet()) {
-			    		int quantitySold = Main.specialVendingMachine.getItem().getItemSold().get(itemName);
-			    	    allDenoms.append(itemName).append(" - ").append(quantitySold).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Receipt.setText(allDenoms.toString());
-			    }
+				Change.setVisible(false);		            
+				if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+				    StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - " + Main.regularVendingMachine.getItem().getTotalSales()  + "<br>");
+				    int count = 0;
+
+				    for (String itemName : Main.regularVendingMachine.getItem().getItemSold().keySet()) {
+				        int quantitySold = Main.regularVendingMachine.getItem().getItemSold().get(itemName);
+				        allDenoms.append(itemName).append(" - ").append(quantitySold);
+
+				        int numSpaces = 25 - itemName.length() - String.valueOf(quantitySold).length();
+				        for (int i = 0; i < numSpaces; i++) {
+				            allDenoms.append("&nbsp;");
+				        }
+
+				        count++;
+				        if (count % 2 == 0) {
+				            allDenoms.append("<br>");
+				        }
+				    }
+
+				    allDenoms.append("</html>");
+				    Receipt.setText(allDenoms.toString());
+				} else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+					StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - " + Main.specialVendingMachine.getItem().getTotalSales()  + "<br>");
+				    int count = 0;
+
+				    for (String itemName : Main.specialVendingMachine.getItem().getItemSold().keySet()) {
+				        int quantitySold = Main.specialVendingMachine.getItem().getItemSold().get(itemName);
+				        allDenoms.append(itemName).append(" - ").append(quantitySold);
+
+				        int numSpaces = 25 - itemName.length() - String.valueOf(quantitySold).length();
+				        for (int i = 0; i < numSpaces; i++) {
+				            allDenoms.append("&nbsp;");
+				        }
+
+				        count++;
+				        if (count % 2 == 0) {
+				            allDenoms.append("<br>");
+				        }
+				    }
+
+				    allDenoms.append("</html>");
+				    Receipt.setText(allDenoms.toString());
+				}
+
+
+
 			}
 		});
 		btnNewButton_1_2_1_1.setFocusable(false);
