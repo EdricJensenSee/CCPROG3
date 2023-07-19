@@ -8,8 +8,8 @@ public class Main {
     public static int CAPACITY_PER_SLOT = 10;
     public static int SLOT = 9;
     private static Scanner scan = new Scanner(System.in);
-    public static SpecialVendingMachine specialVendingMachine ;
-    public static RegularVendingMachine regularVendingMachine ;
+    public static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
+    public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     private static int nChoice, number, quantity, calories;
     private static double payment;
     private static float price;
@@ -17,13 +17,13 @@ public class Main {
 
 /** 
  *
- * The main class
+ * The main clas
  *
  * @param args the args. 
  */
     public static void main(String[] args) { 
     	//Test Values
-        /*regularVendingMachine.getItem().addItem("Chocolate Chip Cookie", 1, 80, 180);
+        regularVendingMachine.getItem().addItem("Chocolate Chip Cookie", 1, 80, 180);
         regularVendingMachine.getItem().addItem("Chocolate Bar", 5, 40, 160);
         regularVendingMachine.getItem().addItem("Cream Cookie", 9, 20, 200);
         regularVendingMachine.getItem().addItem("Chocolate Muffin", 3, 30, 220);
@@ -42,7 +42,7 @@ public class Main {
         specialVendingMachine.getItem().addItem("Strawberry", 10, 120	, 190);
         
     	regularVendingMachine.getCashBox().replenishChange(1.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+    	/*regularVendingMachine.getCashBox().replenishChange(10.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(100.0, 1);

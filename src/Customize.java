@@ -18,13 +18,12 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 
-public class REGULARMACHINE extends JFrame {
+public class Customize extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel code;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private static String machineType;
 	private boolean modes = true;
 	/**
 	 * Launch the application.
@@ -33,7 +32,7 @@ public class REGULARMACHINE extends JFrame {
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
 	            try {
-	                   REGULARMACHINE frame = new REGULARMACHINE("");
+	            	Customize frame = new Customize();
 	                    frame.setVisible(true);
 	            } catch (Exception e) {
 	                e.printStackTrace();
@@ -46,8 +45,7 @@ public class REGULARMACHINE extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public REGULARMACHINE(String machineType) {
-		this.machineType = machineType;
+	public Customize() {	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 568);
 		contentPane = new JPanel();
@@ -79,18 +77,6 @@ public class REGULARMACHINE extends JFrame {
 		final int[] currentIndex = {0};
 		Insert_1.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e) {
-		    	if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		    	    CollectChange.setText("+" + String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    currentIndex[0]++;
-		    	    int size = Main.regularVendingMachine.getCashBox().getDenominationsSpent().size();
-		    	    if (currentIndex[0] >= 0 && currentIndex[0] < size) {
-		    	        Insert_1.setText(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    } else {
-		    	        currentIndex[0] = -1; 
-		    	        Insert_1.setText("");
-		    	        Main.regularVendingMachine.getCashBox().getDenominationsSpent().clear();
-		    	    }
-		    	} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 		    	    CollectChange.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
 		    	    currentIndex[0]++;
 		    	    int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
@@ -101,7 +87,7 @@ public class REGULARMACHINE extends JFrame {
 		    	        Insert_1.setText("");
 		    	        Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
 		    	    }
-		    	} 
+		    	
 
 		        Timer timer = new Timer(2000, new ActionListener() {
 		            public void actionPerformed(ActionEvent e) {
@@ -205,20 +191,11 @@ public class REGULARMACHINE extends JFrame {
 		code.setBackground(Color.DARK_GRAY);
 		code.setBounds(27, 271, 70, 35);
 		panel_2.add(code);
-		
-		if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		    int number = 0; 
-		    for (String key : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-		        Main.regularVendingMachine.getItemNumbers().put(number, key);
-		        number++;
-		    }
-		} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-		    int number = 0; 
+		int number = 0;
 		    for (String key : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
 		        Main.specialVendingMachine.getItemNumbers().put(number, key);
 		        number++;
 		    }
-		}
 
 		JLabel priceCode = new JLabel("");
 		priceCode.setOpaque(true);
@@ -239,42 +216,53 @@ public class REGULARMACHINE extends JFrame {
 		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
 
+	
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int itemNumber = 0;
-			    if (!code.equals("")) {
-			        if (code.equals("A1"))
+			    switch (code.getText()) {
+			        case "A1":
 			            itemNumber = 0;
-			        else if (code.equals("A2"))
+			            break;
+			        case "A2":
 			            itemNumber = 1;
-			        else if (code.equals("A3"))
+			            break;
+			        case "A3":
 			            itemNumber = 2;
-			        else if (code.equals("B1"))
+			            break;
+			        case "B1":
 			            itemNumber = 3;
-			        else if (code.equals("B2"))
+			            break;
+			        case "B2":
 			            itemNumber = 4;
-			        else if (code.equals("B3"))
+			            break;
+			        case "B3":
 			            itemNumber = 5;
-			        else if (code.equals("C1"))
+			            break;
+			        case "C1":
 			            itemNumber = 6;
-			        else if (code.equals("C2"))
+			            break;
+			        case "C2":
 			            itemNumber = 7;
-			        else if (code.equals("C3"))
+			            break;
+			        case "C3":
 			            itemNumber = 8;
-			        else if (code.equals("D1"))
+			            break;
+			        case "D1":
 			            itemNumber = 9;
-			        else if (code.equals("D2"))
+			            break;
+			        case "D2":
 			            itemNumber = 10;
-			        else if (code.equals("D3"))
+			            break;
+			        case "D3":
 			            itemNumber = 11;
+			            break;
+			        default:
+			        	itemNumber = -1;
+			            break;
 			    }
-			    System.out.print(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)));
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null)
-			    	if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber))));
-			    	else;
-			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
+
 			    	if (Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) 
 			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber))));
 			    	
@@ -309,7 +297,20 @@ public class REGULARMACHINE extends JFrame {
 		panel.setBounds(10, 10, 361, 446);
 		contentPane.add(panel);
 		panel.setLayout(null);
-
+		
+		JButton customize = new JButton("Customize Cake"); 
+		customize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Customize open = new Customize();
+				open.setVisible(true);
+			}
+		});
+		customize.setVisible(false);
+		customize.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		customize.setFocusable(false);
+		customize.setBounds(189, 420, 162, 19);
+		panel.add(customize);
 		JLabel Finish = new JLabel("");
 		Finish.setHorizontalAlignment(SwingConstants.CENTER);
 		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -636,14 +637,8 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-			    	TestPage open = new TestPage("Regular");
-			    	open.setVisible(true);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
 			    	TestPage open = new TestPage("Special");
-			    	open.setVisible(true);
-			    }	
-				
+			    	open.setVisible(true);		
 			}
 		});
 		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -725,21 +720,12 @@ public class REGULARMACHINE extends JFrame {
 		JButton btnNewButton_3_1_1 = new JButton("Clear");
 		btnNewButton_3_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				    Main.regularVendingMachine.getCashBox().resetAmountPaid();
-				    if (Main.regularVendingMachine.getCashBox().getAmountPaid() > 0) {
-				        Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				    } else {
-				        Insert.setText("");
-				    }
-				} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 				    Main.specialVendingMachine.getCashBox().resetAmountPaid();
 				    if (Main.specialVendingMachine.getCashBox().getAmountPaid() > 0) {
 				        Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 				    } else {
 				        Insert.setText("");
 				    }
-				}
 			}
 		});
 		btnNewButton_3_1_1.setFocusable(false);
@@ -797,19 +783,6 @@ public class REGULARMACHINE extends JFrame {
 				    }
 							   
 
-				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				        if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(itemNumber))) {
-				            if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) != null) {
-				                if (Main.regularVendingMachine.getCashBox().receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(itemNumber), Double.parseDouble(Insert.getText()))) {
-				                    Output.setText(Main.regularVendingMachine.getItemNumbers().get(itemNumber));
-				                } else {
-				                }
-				            } else {
-				            }
-				        } else {
-				            Finish.setText("Item not found in stock");
-				        }
-				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItem(), Main.specialVendingMachine.getItemNumbers().get(itemNumber))) {
 				            if (Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) {
 				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItem(), Main.specialVendingMachine.getItemNumbers().get(itemNumber), Double.parseDouble(Insert.getText()))) {
@@ -821,7 +794,7 @@ public class REGULARMACHINE extends JFrame {
 				        } else {
 				            Finish.setText("Item not found in stock");
 				        }
-				    } 		
+				    	
 
 				
 							
@@ -832,16 +805,7 @@ public class REGULARMACHINE extends JFrame {
 			    });
 			    timer1.setRepeats(false);
 			    timer1.start();
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        Main.regularVendingMachine.getCashBox();
-			        if (Main.regularVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
-			            if (!Main.regularVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
-			                Insert_1.setText(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(0)));
-			            }
-			        } else {
-			            Finish.setText("NOT ENOUGH CHANGE IN MACHINE");
-			        }
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+
 			        Main.specialVendingMachine.getCashBox();
 			        if (Main.specialVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
 			            if (!Main.specialVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
@@ -859,32 +823,29 @@ public class REGULARMACHINE extends JFrame {
 				    });
 				    timer.setRepeats(false);
 				    timer.start();
-			}
+			
 
 				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
 				    Finish.setText("Insufficient Payment");
 
-				    Timer timer = new Timer(2000, new ActionListener() {
+				    Timer timer11 = new Timer(2000, new ActionListener() {
 				        public void actionPerformed(ActionEvent e) {
 				            Finish.setText("");
 				        }
 				    });
-				    timer.setRepeats(false);
-				    timer.start();
+				    timer11.setRepeats(false);
+				    timer11.start();
 				} else {
 				    Insert.setText("");
 
-				    Timer timer = new Timer(2000, new ActionListener() {
+				    Timer timer11 = new Timer(2000, new ActionListener() {
 				        public void actionPerformed(ActionEvent e) {
 				            code.setText("");       
 				            priceCode.setText("");  
 				        }
 				    });
-				    timer.setRepeats(false);
-				    timer.start();
-				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) 
-				        Main.regularVendingMachine.getCashBox().resetAmountPaid();
-				    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
+				    timer11.setRepeats(false);
+				    timer11.start();
 				        Main.specialVendingMachine.getCashBox().resetAmountPaid();
 				    itemAdder();
 				}}
@@ -929,17 +890,6 @@ public class REGULARMACHINE extends JFrame {
 	    }
 
 	    index = 0;
-	    
-	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-	        for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.regularVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
-	        	
-	            index++;
-	            if (index >= 12) {
-	                break;
-	            }
-	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
 	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
 	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
 	            index++;
@@ -947,7 +897,6 @@ public class REGULARMACHINE extends JFrame {
 	            if (index >= 12) {
 	                break;
 	            }
-	        }
 	    }
 	}
 }
