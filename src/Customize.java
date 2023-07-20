@@ -298,15 +298,15 @@ public class Customize extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton customize = new JButton("Customize Cake"); 
+		JButton customize = new JButton("Buy Individual Products"); 
 		customize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				Customize open = new Customize();
+				REGULARMACHINE open = new REGULARMACHINE("Special");
 				open.setVisible(true);
 			}
 		});
-		customize.setVisible(false);
+		customize.setVisible(true);
 		customize.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		customize.setFocusable(false);
 		customize.setBounds(189, 420, 162, 19);

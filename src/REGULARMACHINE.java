@@ -651,6 +651,22 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
 		
+		JButton customize = new JButton("Customize Cake"); 
+		customize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Customize open = new Customize();
+				open.setVisible(true);
+			}
+		});
+		if (machineType.equals("Special"))
+			customize.setVisible(true);
+		else if (machineType.equals("Regular"))
+			customize.setVisible(false);
+		customize.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		customize.setFocusable(false);
+		customize.setBounds(189, 420, 162, 19);
+		panel.add(customize);
 		
 		JButton btnNewButton_2 = new JButton("100");
 		btnNewButton_2.addActionListener(new ActionListener() {

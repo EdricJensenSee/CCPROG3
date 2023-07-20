@@ -33,10 +33,9 @@ class Item {
      * @param price     the price of the item.
      * @param calories  the calorie content of the item.
      */
-    public void addItem(String itemName, int quantity, double price, int calories) {
-        if (quantity <= 0 || quantity > Main.CAPACITY_PER_SLOT || totalUnique>12) {
-            System.out.println("Invalid quantity. Please stock between 1 and " + Main.CAPACITY_PER_SLOT + " items.");
-            return;
+    public boolean addItem(String itemName, int quantity, double price, int calories) {
+        if (quantity <= 0 || quantity > 10 || totalUnique>12) {
+            return false;
         }
         itemQuantity.put(itemName, quantity);
         itemPrice.put(itemName, price);
@@ -44,6 +43,7 @@ class Item {
         itemSold.put(itemName, 0);
         totalItems += quantity;
         totalUnique++;
+        return true;
     }
 
     /**

@@ -3,13 +3,44 @@ import java.util.ArrayList;
 class SpecialVendingMachine extends RegularVendingMachine {
     private ArrayList<ArrayList<String>> recipes;
     private ArrayList<String> recipeNames;	
+    private ArrayList<String> individualItems; 
+    private ArrayList<String> cakeBases; 
+    private ArrayList<String> fillings; 
+    private ArrayList<String> frostings; 
+    private ArrayList<String> toppings; 
+
 
     public SpecialVendingMachine() {
         super();
         recipes = new ArrayList<>();
         recipeNames = new ArrayList<>();
+        individualItems = new ArrayList<>();
+        cakeBases = new ArrayList<>();
+        fillings = new ArrayList<>();
+        frostings = new ArrayList<>();
+        toppings = new ArrayList<>();
     }
 
+    public void addIndividualItem(String itemName) {
+        individualItems.add(itemName);
+    }
+
+    public void addCakeBase(String baseName) {
+        cakeBases.add(baseName);
+    }
+
+    public void addFilling(String fillingName) {
+        fillings.add(fillingName);
+    }
+
+    public void addFrosting(String frostingName) {
+        frostings.add(frostingName);
+    }
+
+    public void addTopping(String toppingName) {
+        toppings.add(toppingName);
+    }
+    
     public void addRecipe(ArrayList<String> recipe, String recipeName) {
         recipes.add(recipe);
         recipeNames.add(recipeName);

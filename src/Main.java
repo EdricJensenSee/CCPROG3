@@ -5,8 +5,6 @@ import java.util.*;
  * The Main class
  */ 
 public class Main {
-    public static int CAPACITY_PER_SLOT = 10;
-    public static int SLOT = 9;
     private static Scanner scan = new Scanner(System.in);
     public static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
     public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
@@ -41,9 +39,9 @@ public class Main {
         specialVendingMachine.getItem().addItem("Cream Puffs", 6, 30, 180);
         specialVendingMachine.getItem().addItem("Strawberry", 10, 120	, 190);
         
-    	regularVendingMachine.getCashBox().replenishChange(1.0, 1);
-    	/*regularVendingMachine.getCashBox().replenishChange(10.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
+
+    	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+    	/*regularVendingMachine.getCashBox().replenishChange(20.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
@@ -135,7 +133,7 @@ public class Main {
                                         number = scan.nextInt();
                                         System.out.print("How much will you restock?: ");
                                         quantity = scan.nextInt();
-                                        if ((regularVendingMachine.getItem().getItemQuantity().get(regularVendingMachine.itemNumbers.get(number)) + quantity) <= CAPACITY_PER_SLOT) {
+                                        if ((regularVendingMachine.getItem().getItemQuantity().get(regularVendingMachine.itemNumbers.get(number)) + quantity) <= 10) {
                                             regularVendingMachine.getItem().getItemQuantity().put(regularVendingMachine.itemNumbers.get(number), (regularVendingMachine.getItem().getItemQuantity().get(regularVendingMachine.itemNumbers.get(number)) + quantity));
                                             System.out.println("Restocking successful!");
                                         } else {
@@ -166,7 +164,7 @@ public class Main {
                                     	regularVendingMachine.getCashBox().replenishChange(1000.0, quantity);
                                     	break;
                                     case 3:
-                                        if (regularVendingMachine.getItem().getTotalUnique() < SLOT) {
+                                        if (regularVendingMachine.getItem().getTotalUnique() < 10) {
                                             System.out.print("Input Item: ");
                                             item = scan.nextLine();
                                             item = scan.nextLine();
@@ -259,7 +257,7 @@ public class Main {
                                         number = scan.nextInt();
                                         System.out.print("How much will you restock?: ");
                                         quantity = scan.nextInt();
-                                        if ((specialVendingMachine.getItem().getItemQuantity().get(specialVendingMachine.itemNumbers.get(number)) + quantity) <= CAPACITY_PER_SLOT) {
+                                        if ((specialVendingMachine.getItem().getItemQuantity().get(specialVendingMachine.itemNumbers.get(number)) + quantity) <= 10) {
                                             specialVendingMachine.getItem().getItemQuantity().put(specialVendingMachine.itemNumbers.get(number), (specialVendingMachine.getItem().getItemQuantity().get(specialVendingMachine.itemNumbers.get(number)) + quantity));
                                             System.out.println("Restocking successful!");
                                         } else {
@@ -290,7 +288,7 @@ public class Main {
                                     	specialVendingMachine.getCashBox().replenishChange(1000.0, quantity);
                                     	break;
                                     case 3:
-                                        if (specialVendingMachine.getItem().getTotalUnique() < SLOT) {
+                                        if (specialVendingMachine.getItem().getTotalUnique() < 10) {
                                             System.out.print("Input Item: ");
                                             item = scan.nextLine();
                                             item = scan.nextLine();
@@ -376,18 +374,13 @@ public class Main {
                 switch (nChoice) {
                     case 1:
                     	System.out.print("Input slots\n");
-                    	SLOT = 0;
-                    	while (SLOT < 8) {
-                    		System.out.print("\nChoice:");
-                        	SLOT = scan.nextInt();	
-                    	}
                     	regularVendingMachine = new RegularVendingMachine();
                         break;
                     case 2:
                     	boolean continueAdd= true;
                     	regularVendingMachine.displayStock();
                     	while(continueAdd) {
-                            if (regularVendingMachine.getItem().getTotalUnique() < SLOT) {
+                            if (regularVendingMachine.getItem().getTotalUnique() <10) {
                                 System.out.print("Input Item: ");
                                 item = scan.nextLine();
                                 item = scan.nextLine();
@@ -429,11 +422,6 @@ public class Main {
                 switch (nChoice) {
                     case 1:
                     	System.out.print("Input slots\n");
-                    	SLOT = 0;
-                    	while (SLOT < 8) {
-                    		System.out.print("\nChoice:");
-                        	SLOT = scan.nextInt();  	
-                    	}
                     	specialVendingMachine = new SpecialVendingMachine();   
                         break;
                     case 2:
@@ -441,7 +429,7 @@ public class Main {
                     	specialVendingMachine.displayStock();
                     	continueAdd= true;
                     	while(continueAdd) {
-                            if (specialVendingMachine.getItem().getTotalUnique() < SLOT) {
+                            if (specialVendingMachine.getItem().getTotalUnique() < 10) {
                                 System.out.print("Input Item: ");
                                 item = scan.nextLine();
                                 item = scan.nextLine();

@@ -10,8 +10,17 @@ public class CashBox {
     public CashBox() {
         denominations = new HashMap<>();
         denominationsSpent = new ArrayList<>();
+        initializeDenominations();
     }
 
+    private void initializeDenominations() {
+        denominations.put(5.0, 0);  
+        denominations.put(10.0, 0);  
+        denominations.put(20.0, 0);  
+        denominations.put(50.0, 0);  
+        denominations.put(100.0, 0); 
+    }
+    
     public void displayDenominations() {
         for (HashMap.Entry<Double, Integer> denom : denominations.entrySet()) {
             double denomination = denom.getKey();
@@ -21,8 +30,7 @@ public class CashBox {
     }
 
     public void replenishChange(double denomination, int quantity) {
-        int currentQuantity = denominations.getOrDefault(denomination, 0);
-        denominations.put(denomination, currentQuantity + quantity);
+        denominations.put(denomination, denominations.getOrDefault(denomination, 0) + quantity);
     }
 
     public boolean isItemAvailable(Item item, String itemName) {
