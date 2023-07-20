@@ -214,8 +214,12 @@ public class REGULARMACHINE extends JFrame {
 		    }
 		} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 		    int number = 0; 
-		    for (String key : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
+		    for (String key : Main.specialVendingMachine.getItemCustom().getItemQuantity().keySet()) {
 		        Main.specialVendingMachine.getItemNumbers().put(number, key);
+		        number++;
+		    }
+		    for (String key : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
+		        Main.specialVendingMachine.getItemSellableNumbers().put(number, key);
 		        number++;
 		    }
 		}
@@ -826,8 +830,8 @@ public class REGULARMACHINE extends JFrame {
 				            Finish.setText("Item not found in stock");
 				        }
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItem(), Main.specialVendingMachine.getItemNumbers().get(itemNumber))) {
-				            if (Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) {
+				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemSellable(), Main.specialVendingMachine.getItemNumbers().get(itemNumber))) {
+				            if (Main.specialVendingMachine.getItemSellable().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) {
 				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItem(), Main.specialVendingMachine.getItemNumbers().get(itemNumber), Double.parseDouble(Insert.getText()))) {
 				                    Output.setText(Main.specialVendingMachine.getItemNumbers().get(itemNumber));
 				                } else {
@@ -955,9 +959,9 @@ public class REGULARMACHINE extends JFrame {
 	                break;
 	            }
 	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellable() != null) {
+	        for (String itemName : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
+	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemSellable().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItemSellable().getItemPrice().get(itemName) + "</center></html>");
 	            index++;
 
 	            if (index >= 12) {

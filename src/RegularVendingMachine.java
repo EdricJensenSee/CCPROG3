@@ -4,7 +4,7 @@ import java.util.*;
 * Represents the workings of the regular vending machine
 */ 
 class RegularVendingMachine {
-    protected Item item;
+    private Item item;
     protected CashBox cashbox;
     protected int totalItems, totalUnique;
     protected int count;

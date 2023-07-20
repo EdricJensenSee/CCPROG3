@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 
 public class Customize extends JFrame {
 
@@ -24,7 +25,7 @@ public class Customize extends JFrame {
 	private JPanel C1;
 	private JLabel code;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private boolean modes = true;
+	private static String set = "Cake Base";
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +48,7 @@ public class Customize extends JFrame {
 	 */
 	public Customize() {	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 510, 568);
+		setBounds(100, 100, 510, 595);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -66,12 +67,10 @@ public class Customize extends JFrame {
 		Change.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		Change.setBackground(Color.DARK_GRAY);
 		panel_2.add(Change);
-		
 		JLabel CollectChange = new JLabel("");
 		CollectChange.setHorizontalAlignment(SwingConstants.CENTER);
-		CollectChange.setBounds(340, 475, 49, 18);
-		contentPane.add(CollectChange);
 		CollectChange.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		CollectChange.setBounds(333, 20, 49, 18);
 		
 		JLabel Insert_1 = new JLabel("");
 		final int[] currentIndex = {0};
@@ -291,6 +290,24 @@ public class Customize extends JFrame {
 		btnC_1.setBounds(10, 168, 45, 35);
 		panel_2.add(btnC_1);
 		
+		JButton addRecipe = new JButton("Add Item");
+		addRecipe.setBounds(10, 383, 103, 39);
+		panel_2.add(addRecipe);
+		addRecipe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (set.equals("Cake Base"))
+					set = "Topping";
+				else if (set.equals("Topping"))
+					set = "Filling";
+				else if (set.equals("Filling"))
+					set = "Frosting";
+				itemAdder();
+				Finish.setText("Choose " + set);
+			}
+		});
+		addRecipe.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addRecipe.setFocusable(false);
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5, true));
@@ -311,10 +328,11 @@ public class Customize extends JFrame {
 		customize.setFocusable(false);
 		customize.setBounds(189, 420, 162, 19);
 		panel.add(customize);
-		JLabel Finish = new JLabel("");
+		JLabel Finish = new JLabel("Choose a cake base");
+		Finish.setToolTipText("");
 		Finish.setHorizontalAlignment(SwingConstants.CENTER);
 		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Finish.setBounds(13, 12, 326, 18);
+		Finish.setBounds(13, 12, 326, 31);
 		panel.add(Finish);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("");
@@ -345,31 +363,9 @@ public class Customize extends JFrame {
 		panel_1.setBackground(Color.DARK_GRAY);
 		panel_1.setForeground(Color.DARK_GRAY);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_1.setBounds(76, 346, 217, 71);
+		panel_1.setBounds(41, 339, 79, 71);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JLabel Output = new JLabel("");
-		Output.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
-                Output.setText("");
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Finish.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-			}
-		});
-		Output.setBounds(10, 8, 197, 53);
-		Output.setOpaque(true);
-		Output.setHorizontalAlignment(SwingConstants.CENTER);
-		Output.setForeground(Color.WHITE);
-		Output.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Output.setBackground(Color.DARK_GRAY);
-		panel_1.add(Output);
 		
 		JPanel A1 = new JPanel();
 		A1.setBackground(Color.LIGHT_GRAY);
@@ -623,15 +619,6 @@ public class Customize extends JFrame {
 		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
 		
-		JLabel Insert = new JLabel("");
-		Insert.setOpaque(true);
-		Insert.setHorizontalAlignment(SwingConstants.CENTER);
-		Insert.setForeground(Color.WHITE);
-		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Insert.setBackground(Color.DARK_GRAY);
-		Insert.setBounds(184, 460, 70, 35);
-		contentPane.add(Insert);
-		
 
 		JButton btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
@@ -646,228 +633,140 @@ public class Customize extends JFrame {
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
 		
-		
-		JButton btnNewButton_2 = new JButton("100");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (modes==true)
-				Main.regularVendingMachine.getCashBox().addTotalAmount(100);
-				else if (modes==false)
-				Main.regularVendingMachine.getCashBox().deductTotalAmount(100);;
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+		JLabel Output = new JLabel("");
+		Output.setBounds(41, 356, 79, 53);
+		panel.add(Output);
+		Output.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
+                Output.setText("");
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Finish.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
 			}
 		});
-		btnNewButton_2.setBounds(17, 500, 85, 21);
-		contentPane.add(btnNewButton_2);
+		Output.setOpaque(true);
+		Output.setHorizontalAlignment(SwingConstants.CENTER);
+		Output.setForeground(Color.WHITE);
+		Output.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Output.setBackground(Color.DARK_GRAY);
 		
-		JButton btnNewButton_2_1 = new JButton("50");
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (modes==true)
-				Main.regularVendingMachine.getCashBox().addTotalAmount(50);
-				else if (modes==false)
-				Main.regularVendingMachine.getCashBox().deductTotalAmount(50);;
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				
-			}
-		});
-		btnNewButton_2_1.setBounds(114, 500, 85, 21);
-		contentPane.add(btnNewButton_2_1);
-		
-		JButton btnNewButton_2_2 = new JButton("20");
-		btnNewButton_2_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (modes==true)
-				Main.regularVendingMachine.getCashBox().addTotalAmount(20);
-				else if (modes==false)
-				Main.regularVendingMachine.getCashBox().deductTotalAmount(20);;
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-			}
-		});
-		btnNewButton_2_2.setBounds(212, 500, 85, 21);
-		contentPane.add(btnNewButton_2_2);
-		
-		JButton btnNewButton_2_3 = new JButton("10");	
-		btnNewButton_2_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (modes==true)
-				Main.regularVendingMachine.getCashBox().addTotalAmount(10);
-				else if (modes==false)
-				Main.regularVendingMachine.getCashBox().deductTotalAmount(10);;
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-			}
-		});
-		btnNewButton_2_3.setBounds(307, 500, 85, 21);
-		contentPane.add(btnNewButton_2_3);
-		
-		JButton btnNewButton_2_4 = new JButton("5");
-		btnNewButton_2_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (modes == true)
-				Main.regularVendingMachine.getCashBox().addTotalAmount(5);
-				else if (modes == false)
-				Main.regularVendingMachine.getCashBox().deductTotalAmount(5);;
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-			}
-		});
-		btnNewButton_2_4.setBounds(402, 500, 85, 21);
-		contentPane.add(btnNewButton_2_4);
-		JLabel lblAmountInserted = new JLabel("Amount Inserted:");
-		lblAmountInserted.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblAmountInserted.setBounds(20, 470, 165, 18);
-		contentPane.add(lblAmountInserted);
-		
-		JButton btnNewButton_3_1_1 = new JButton("Clear");
-		btnNewButton_3_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				    Main.specialVendingMachine.getCashBox().resetAmountPaid();
-				    if (Main.specialVendingMachine.getCashBox().getAmountPaid() > 0) {
-				        Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
-				    } else {
-				        Insert.setText("");
-				    }
-			}
-		});
-		btnNewButton_3_1_1.setFocusable(false);
-		btnNewButton_3_1_1.setBounds(402, 476, 85, 21);
-		contentPane.add(btnNewButton_3_1_1);
-		
-		JButton btnC_1_1 = new JButton("BUY");
-		btnC_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
-					Finish.setText("Insufficient Payment");
-				}
-				int itemNumber = 0;
-				    switch (code.getText()) {
-				        case "A1":
-				            itemNumber = 0;
-				            break;
-				        case "A2":
-				            itemNumber = 1;
-				            break;
-				        case "A3":
-				            itemNumber = 2;
-				            break;
-				        case "B1":
-				            itemNumber = 3;
-				            break;
-				        case "B2":
-				            itemNumber = 4;
-				            break;
-				        case "B3":
-				            itemNumber = 5;
-				            break;
-				        case "C1":
-				            itemNumber = 6;
-				            break;
-				        case "C2":
-				            itemNumber = 7;
-				            break;
-				        case "C3":
-				            itemNumber = 8;
-				            break;
-				        case "D1":
-				            itemNumber = 9;
-				            break;
-				        case "D2":
-				            itemNumber = 10;
-				            break;
-				        case "D3":
-				            itemNumber = 11;
-				            break;
-				        default:
-				        	itemNumber = -1;
-				            break;
-				    }
-							   
-
-				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItem(), Main.specialVendingMachine.getItemNumbers().get(itemNumber))) {
-				            if (Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) {
-				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItem(), Main.specialVendingMachine.getItemNumbers().get(itemNumber), Double.parseDouble(Insert.getText()))) {
-				                    Output.setText(Main.specialVendingMachine.getItemNumbers().get(itemNumber));
-				                } else {
-				                }
-				            } else {
-				            }
-				        } else {
-				            Finish.setText("Item not found in stock");
-				        }
-				    	
-
-				
-							
-			    Timer timer1 = new Timer(2000, new ActionListener() {
-			        public void actionPerformed(ActionEvent e) {
-			            Finish.setText("");
-			        }
-			    });
-			    timer1.setRepeats(false);
-			    timer1.start();
-
-			        Main.specialVendingMachine.getCashBox();
-			        if (Main.specialVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
-			            if (!Main.specialVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
-			                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(0)));
-			            }
-			        } else {
-			            Finish.setText("NOT ENOUGH CHANGE IN MACHINE");
-			        }
-			    
-
-				    Timer timer = new Timer(2000, new ActionListener() {
-				        public void actionPerformed(ActionEvent e) {
-				            Finish.setText("");
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-			
-
-				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
-				    Finish.setText("Insufficient Payment");
-
-				    Timer timer11 = new Timer(2000, new ActionListener() {
-				        public void actionPerformed(ActionEvent e) {
-				            Finish.setText("");
-				        }
-				    });
-				    timer11.setRepeats(false);
-				    timer11.start();
-				} else {
-				    Insert.setText("");
-
-				    Timer timer11 = new Timer(2000, new ActionListener() {
-				        public void actionPerformed(ActionEvent e) {
-				            code.setText("");       
-				            priceCode.setText("");  
-				        }
-				    });
-				    timer11.setRepeats(false);
-				    timer11.start();
-				        Main.specialVendingMachine.getCashBox().resetAmountPaid();
-				    itemAdder();
-				}}
-		});
-		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC_1_1.setFocusable(false);
-		btnC_1_1.setBounds(264, 460, 70, 35);
-		contentPane.add(btnC_1_1);		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.GRAY);
+		panel_3.setBounds(11, 460, 476, 71);
+		contentPane.add(panel_3);
+		panel_3.setLayout(null);
+		panel_3.setVisible(false);
+		setBounds(100, 100, 510, 507);
 		
 		JLabel Insert_2 = new JLabel("");
+		Insert_2.setBounds(333, 21, 52, 21);
+		panel_3.add(Insert_2);
 		Insert_2.setOpaque(true);
 		Insert_2.setHorizontalAlignment(SwingConstants.CENTER);
 		Insert_2.setForeground(Color.WHITE);
 		Insert_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Insert_2.setBackground(Color.DARK_GRAY);
-		Insert_2.setBounds(340, 474, 52, 21);
-		contentPane.add(Insert_2);
+		
+		JLabel Insert = new JLabel("");
+		Insert.setOpaque(true);
+		Insert.setHorizontalAlignment(SwingConstants.CENTER);
+		Insert.setForeground(Color.WHITE);
+		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Insert.setBackground(Color.DARK_GRAY);
+		Insert.setBounds(177, 5, 70, 35);
+		panel_3.add(Insert);
+		
+		JButton btnNewButton_3_1_1 = new JButton("Clear");
+		btnNewButton_3_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    Main.specialVendingMachine.getCashBox().resetAmountPaid();
+			    if (Main.specialVendingMachine.getCashBox().getAmountPaid() > 0) {
+			        Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
+			    } else {
+			        Insert.setText("");
+			    }
+			}
+		});
+		btnNewButton_3_1_1.setFocusable(false);
+		btnNewButton_3_1_1.setBounds(395, 21, 85, 21);
+		panel_3.add(btnNewButton_3_1_1);
+		
+		JButton btnNewButton_2_4 = new JButton("5");
+		btnNewButton_2_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.regularVendingMachine.getCashBox().addTotalAmount(100);
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_4.setBounds(395, 45, 85, 21);
+		panel_3.add(btnNewButton_2_4);
+		
+		JButton btnNewButton_2_3 = new JButton("10");
+		btnNewButton_2_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.regularVendingMachine.getCashBox().addTotalAmount(10);
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_3.setBounds(300, 45, 85, 21);
+		panel_3.add(btnNewButton_2_3);
+		panel_3.add(CollectChange);
+		JButton btnNewButton_2_2 = new JButton("20");
+		btnNewButton_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.regularVendingMachine.getCashBox().addTotalAmount(20);
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_2.setBounds(205, 45, 85, 21);
+		panel_3.add(btnNewButton_2_2);
+		
+		JButton btnNewButton_2_1 = new JButton("50");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.regularVendingMachine.getCashBox().addTotalAmount(50);
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2_1.setBounds(107, 45, 85, 21);
+		panel_3.add(btnNewButton_2_1);
+		
+		JButton btnNewButton_2 = new JButton("100");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.regularVendingMachine.getCashBox().addTotalAmount(100);
+				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+			}
+		});
+		btnNewButton_2.setBounds(10, 45, 85, 21);
+		panel_3.add(btnNewButton_2);
+		
+		JLabel lblAmountInserted = new JLabel("Amount Inserted:");
+		lblAmountInserted.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblAmountInserted.setBounds(13, 15, 165, 18);
+		panel_3.add(lblAmountInserted);
+		
+		JButton btnC_1_1 = new JButton("BUY");
+		btnC_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnC_1_1.setFocusable(false);
+		btnC_1_1.setBounds(257, 5, 70, 35);
+		panel_3.add(btnC_1_1);
+		
 		JLabel lblWallet = new JLabel("Wallet");
 		lblWallet.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWallet.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblWallet.setBounds(343, 455, 49, 18);
-		contentPane.add(lblWallet);
+		lblWallet.setBounds(336, 0, 49, 18);
+		panel_3.add(lblWallet);
+		
 		JButton btnNewButton_3_1_1_1 = new JButton("Cancel");
 		btnNewButton_3_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -875,28 +774,76 @@ public class Customize extends JFrame {
 				priceCode.setText("");
 			}
 		});
-		itemAdder();
 		btnNewButton_3_1_1_1.setFocusable(false);
-		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
-		contentPane.add(btnNewButton_3_1_1_1);
-		
+		btnNewButton_3_1_1_1.setBounds(395, 2, 85, 18);
+		panel_3.add(btnNewButton_3_1_1_1);
+	
+		itemAdder();
+		lblChange.setVisible(false);
+		Change.setVisible(false);
 		this.setLocationRelativeTo(null);
 	}
 	private static void itemAdder() {
-	    int index;
-	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
-	    for (index = 0; index < 12; index++) {
-	        labels[index].setText("");
-	    }
+		int index;
+		JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
+		for (index = 0; index < 12; index++) {
+		    labels[index].setText("");
+		}
+		
+		if (set.equals("Cake Base")) {
+			index = 0;
+			for (String cakeBaseName : Main.specialVendingMachine.getCakeBases()) {
+			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(cakeBaseName);
+			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(cakeBaseName);
 
-	    index = 0;
-	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
-	            index++;
+			    labels[index].setText("<html><center>" + quantity + "x - " + cakeBaseName + " ₱" + price + "</center></html>");
+			    index++;
 
-	            if (index >= 12) {
-	                break;
-	            }
-	    }
+			    if (index >= 12) {
+			        break;
+			    }
+			}
+		} else if (set.equals("Topping")) {
+			index = 0;
+			for (String ToppingName : Main.specialVendingMachine.getToppings()) {
+			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(ToppingName);
+			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(ToppingName);
+
+			    labels[index].setText("<html><center>" + quantity + "x - " + ToppingName + " ₱" + price + "</center></html>");
+			    index++;
+
+			    if (index >= 12) {
+			        break;
+			    }
+			}
+		} else if (set.equals("Filling")) {
+			index = 0;
+			for (String fillingName : Main.specialVendingMachine.getFillings()) {
+			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(fillingName);
+			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(fillingName);
+
+			    labels[index].setText("<html><center>" + quantity + "x - " + fillingName + " ₱" + price + "</center></html>");
+			    index++;
+
+			    if (index >= 12) {
+			        break;
+			    }
+			}
+		} else if (set.equals("Frosting")) {
+			index = 0;
+			for (String FrostingName : Main.specialVendingMachine.getFrostings()) {
+			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(FrostingName);
+			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(FrostingName);
+
+			    labels[index].setText("<html><center>" + quantity + "x - " + FrostingName + " ₱" + price + "</center></html>");
+			    index++;
+
+			    if (index >= 12) {
+			        break;
+			    }
+			}
+		}
+
+
 	}
 }

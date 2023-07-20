@@ -114,7 +114,7 @@ public class MaintenancePage extends JFrame {
 		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 		                Main.regularVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
 		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-		                Main.specialVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		                Main.specialVendingMachine.getItemSellable().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
 		            }
 		        } else if (btnAdd.getText().equals("Restock")) {
 				    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
@@ -144,14 +144,6 @@ public class MaintenancePage extends JFrame {
 		panel.setBounds(10, 10, 361, 446);
 		contentPane.add(panel);
 		panel.setLayout(null);
-
-		JLabel Receipt = new JLabel("");
-		Receipt.setVerticalAlignment(SwingConstants.TOP);
-		Receipt.setHorizontalTextPosition(SwingConstants.LEADING);
-		Receipt.setHorizontalAlignment(SwingConstants.LEFT);
-		Receipt.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Receipt.setBounds(98, 335, 253, 103);
-		panel.add(Receipt);
 		
 		JLabel Change = new JLabel("");
 		Change.setHorizontalTextPosition(SwingConstants.LEADING);
@@ -193,6 +185,14 @@ public class MaintenancePage extends JFrame {
 			    }	
 			}
 		});
+		
+				JLabel Receipt = new JLabel("");
+				Receipt.setVerticalAlignment(SwingConstants.TOP);
+				Receipt.setHorizontalTextPosition(SwingConstants.LEADING);
+				Receipt.setHorizontalAlignment(SwingConstants.LEFT);
+				Receipt.setFont(new Font("Tahoma", Font.PLAIN, 10));
+				Receipt.setBounds(98, 335, 253, 103);
+				panel.add(Receipt);
 		b5.setBounds(170, 372, 85, 21);
 		panel.add(b5);
 		

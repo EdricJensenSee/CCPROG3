@@ -2,9 +2,29 @@ import java.util.ArrayList;
 
 public class tester {
     public static void main(String[] args) {
-    	String name = "SpecialVendingMachine";
-    	MAINPAGE open = new MAINPAGE();
-    	open.setVisible(true);
+    	SpecialVendingMachine vendingMachine = new SpecialVendingMachine();
+    	vendingMachine.displayStock();
+    	vendingMachine.addCakeBase("Chocolate", 10, 2.5, 200);
+
+    	// Add filling to the list of available fillings with quantity, price, and calories
+    	vendingMachine.addFilling("Strawberry", 5, 1.0, 50);
+
+    	// Display the list of cake bases and fillings
+    	System.out.println("Cake Bases: " + vendingMachine.getCakeBases());
+    	System.out.println("Fillings: " + vendingMachine.getFillings());
+    	String itemName = "Strawberrasdy";
+    	if (vendingMachine.getItemCustom().getItemQuantity().containsKey(itemName)) {
+    	    int quantity = vendingMachine.getItemCustom().getItemQuantity().get(itemName);
+    	    double price = vendingMachine.getItemCustom().getItemPrice().get(itemName);
+    	    int calories = vendingMachine.getItemCustom().getItemCalories().get(itemName);
+
+    	    System.out.println("Item: " + itemName);
+    	    System.out.println("Quantity: " + quantity);
+    	    System.out.println("Price: " + price);
+    	    System.out.println("Calories: " + calories);
+    	} else {
+    	    System.out.println("Item not found in itemCustom.");
+    	}
         /*vendingMachine.getItem().addItem("Chocolate Chip Cookies", 2, 80, 180);
         vendingMachine.getItem().addItem("Cream Filling", 6, 10, 200);
         vendingMachine.getItem().addItem("Frosting", 8, 10, 150);
