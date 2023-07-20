@@ -212,17 +212,14 @@ public class REGULARMACHINE extends JFrame {
 		        Main.regularVendingMachine.getItemNumbers().put(number, key);
 		        number++;
 		    }
-		} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+		} 
+		if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 		    int number = 0; 
-		    for (String key : Main.specialVendingMachine.getItemCustom().getItemQuantity().keySet()) {
+		    for (String key : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
 		        Main.specialVendingMachine.getItemNumbers().put(number, key);
 		        number++;
 		    }
-		    for (String key : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
-		        Main.specialVendingMachine.getItemSellableNumbers().put(number, key);
-		        number++;
-		    }
-		}
+		} 
 
 		JLabel priceCode = new JLabel("");
 		priceCode.setOpaque(true);
@@ -246,6 +243,7 @@ public class REGULARMACHINE extends JFrame {
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				int itemNumber = 0;
 			    if (!code.equals("")) {
 			        if (code.equals("A1"))
@@ -279,9 +277,8 @@ public class REGULARMACHINE extends JFrame {
 					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber))));
 			    	else;
 			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
-			    	if (Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) 
-			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber))));
-			    	
+			    	if (Main.specialVendingMachine.getItemSellable().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) 
+			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItemSellable().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber))));
 			}
 		});
 		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));

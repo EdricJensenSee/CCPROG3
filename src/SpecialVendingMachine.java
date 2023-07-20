@@ -6,7 +6,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
     private ArrayList<String> recipeNames;
     private Item itemSellable;
     private Item itemCustom;
-    private HashMap<Integer, String> itemSellableNumbers;
     private ArrayList<String> cakeBases;
     private ArrayList<String> fillings;
     private ArrayList<String> frostings;
@@ -17,7 +16,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
         super();
         itemSellable = new Item();
         itemCustom = new Item();
-        itemSellableNumbers = new HashMap<>();
         recipes = new ArrayList<>();
         recipeNames = new ArrayList<>();
         cakeBases = new ArrayList<>();
@@ -26,30 +24,75 @@ class SpecialVendingMachine extends RegularVendingMachine {
         toppings = new ArrayList<>();
     }
 
-    public ArrayList<String> getCakeBases() {
-        return cakeBases;
-    }
-
-    public ArrayList<String> getFillings() {
-        return fillings;
-    }
-
-    public ArrayList<String> getFrostings() {
-        return frostings;
-    }
-
-    public ArrayList<String> getToppings() {
-        return toppings;
+    public String getCakeBaseName(int index) {
+        if (index >= 0 && index < cakeBases.size()) {
+            return cakeBases.get(index);
+        } else {
+            return null; 
+        }
     }
     
-    public HashMap<Integer, String> getItemSellableNumbers() {
-		return itemSellableNumbers;
+    public String getItemSellableName(int index) {  
+    	return itemSellable.getItemNumbers().get(index);
+
+    }
+    
+    public ArrayList<String> getCakeBases() {
+		return cakeBases;
 	}
 
-	public void setItemSellableNumbers(HashMap<Integer, String> itemSellableNumbers) {
-		this.itemSellableNumbers = itemSellableNumbers;
+	public void setCakeBases(ArrayList<String> cakeBases) {
+		this.cakeBases = cakeBases;
 	}
 
+	public ArrayList<String> getFillings() {
+		return fillings;
+	}
+
+	public void setFillings(ArrayList<String> fillings) {
+		this.fillings = fillings;
+	}
+
+	public ArrayList<String> getFrostings() {
+		return frostings;
+	}
+
+	public void setFrostings(ArrayList<String> frostings) {
+		this.frostings = frostings;
+	}
+
+	public ArrayList<String> getToppings() {
+		return toppings;
+	}
+
+	public void setToppings(ArrayList<String> toppings) {
+		this.toppings = toppings;
+	}
+
+	public String getFillingName(int index) {
+        if (index >= 0 && index < fillings.size()) {
+            return fillings.get(index);
+        } else {
+            return null; 
+        }
+    }
+    
+    public String getFrostingName(int index) {
+        if (index >= 0 && index < frostings.size()) {
+            return frostings.get(index);
+        } else {
+            return null; 
+        }
+    }
+    
+    public String getToppingName(int index) {
+        if (index >= 0 && index < toppings.size()) {
+            return toppings.get(index);
+        } else {
+            return null; 
+        }
+    }
+    
 	public Item getItemCustom() {
 		return itemCustom;
 	}
@@ -113,9 +156,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         itemCustom.getItemQuantity().put(toppingName, quantity);
         itemCustom.getItemPrice().put(toppingName, price);
         itemCustom.getItemCalories().put(toppingName, calories);
-    }
-
-    
+    }    
     
     private int calculateTotalCalories(ArrayList<String> recipe) {
         int totalCalories = 0;
@@ -124,6 +165,21 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
         return totalCalories;
     }
+    
+    private double calculateTotalPrice(ArrayList<String> recipe) {
+        double totalPrice = 0.0;
+        for (String itemName : recipe) {
+            if (itemCustom.getItemPrice().containsKey(itemName)) {
+                totalPrice += itemCustom.getItemPrice().get(itemName);
+            } else {
+                // Handle the case when an item is not found in itemCustom
+                System.out.println("Item " + itemName + " not found in stock.");
+                return 0.0;
+            }
+        }
+        return totalPrice;
+    }
+
     
     public void displayStock() {
         int number = 1;

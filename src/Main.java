@@ -32,13 +32,15 @@ public class Main {
         
         specialVendingMachine.getItemSellable().addItem("Chocolate Chip Cookies", 10, 80, 180);
         specialVendingMachine.getItemCustom().addItem("Cream Filling", 6, 10, 200);
-        specialVendingMachine.addCakeBase("Cake Base", 8, 10, 150);
+        specialVendingMachine.addCakeBase("Cake Base1", 8, 10, 150);
+        specialVendingMachine.addCakeBase("Cake Base2", 8, 20, 150);
+        specialVendingMachine.addCakeBase("Cake Base3", 8, 30, 150);
         specialVendingMachine.addTopping("Topping", 5, 200, 250);
         specialVendingMachine.addFilling("FIlling", 10, 50, 220);
         specialVendingMachine.addFrosting("fROSTING", 8, 20, 210);
         specialVendingMachine.getItem().addItem("Cream Puffs", 6, 30, 180);
         specialVendingMachine.getItem().addItem("Strawberry", 10, 120	, 190);
-        
+
 
     	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
     	/*regularVendingMachine.getCashBox().replenishChange(20.0, 1);

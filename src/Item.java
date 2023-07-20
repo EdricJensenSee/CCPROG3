@@ -11,6 +11,7 @@ class Item {
     private double totalSales;
     private int totalItems;
     private int totalUnique;
+    private HashMap<Integer, String> itemNumbers;
 
     /**
      * Constructs an instance of the Item class.
@@ -20,6 +21,7 @@ class Item {
         itemPrice = new HashMap<>();
         itemCalories = new HashMap<>();
         itemSold = new HashMap<>();
+        itemNumbers = new HashMap<>();
         totalSales = 0.0;
         totalItems = 0;
         totalUnique = 0;
@@ -46,6 +48,14 @@ class Item {
         return true;
     }
 
+    public HashMap<Integer, String> getItemNumbers() {
+        return itemNumbers;
+    }
+
+    public void setItemNumbers(HashMap<Integer, String> itemNumbers) {
+        this.itemNumbers = itemNumbers;
+    }
+    
     /**
      * Sets the price of an item.
      *

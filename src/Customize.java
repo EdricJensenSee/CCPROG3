@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -153,6 +154,20 @@ public class Customize extends JFrame {
 		btnC.setBounds(10, 126, 45, 35);
 		panel_2.add(btnC);
 		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.GRAY);
+		panel_3.setBounds(11, 460, 476, 71);
+		contentPane.add(panel_3);
+		panel_3.setLayout(null);
+		panel_3.setVisible(false);
+		setBounds(100, 100, 510, 507);
+		JLabel Insert = new JLabel("");
+		Insert.setOpaque(true);
+		Insert.setHorizontalAlignment(SwingConstants.CENTER);
+		Insert.setForeground(Color.WHITE);
+		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Insert.setBackground(Color.DARK_GRAY);
+		Insert.setBounds(177, 5, 70, 35);
 		JButton btnNewButton_1_1 = new JButton("2");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -214,7 +229,8 @@ public class Customize extends JFrame {
 		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
-
+		JLabel Output = new JLabel("");
+		Output.setBounds(41, 356, 79, 53);
 	
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
@@ -261,10 +277,22 @@ public class Customize extends JFrame {
 			        	itemNumber = -1;
 			            break;
 			    }
-
-			    	if (Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) 
-			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItem().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber))));
-			    	
+		        String itemName = "";
+		        if (set.equals("Cake Base")) {
+		            itemName = Main.specialVendingMachine.getCakeBaseName(itemNumber);
+		        } else if (set.equals("Topping")) {
+		            itemName = Main.specialVendingMachine.getToppingName(itemNumber);
+		        } else if (set.equals("Filling")) {
+		            itemName = Main.specialVendingMachine.getFillingName(itemNumber);
+		        } else if (set.equals("Frosting")) {
+		            itemName = Main.specialVendingMachine.getFrostingName(itemNumber);
+		        }
+		        if (itemName != null) {
+		            double itemPrice = Main.specialVendingMachine.getItemCustom().getItemPrice().get(itemName);
+		            priceCode.setText(String.valueOf(itemPrice));
+		        } else {
+		            priceCode.setText("Item not found or invalid set category.");
+		        }
 			}
 		});
 		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -290,19 +318,94 @@ public class Customize extends JFrame {
 		btnC_1.setBounds(10, 168, 45, 35);
 		panel_2.add(btnC_1);
 		
+		JLabel Finish = new JLabel("Choose a cake base");
+		Finish.setToolTipText("");
+		Finish.setHorizontalAlignment(SwingConstants.CENTER);
+		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Finish.setBounds(13, 12, 326, 31);
+		
 		JButton addRecipe = new JButton("Add Item");
 		addRecipe.setBounds(10, 383, 103, 39);
 		panel_2.add(addRecipe);
 		addRecipe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (set.equals("Cake Base"))
+				int itemNumber = 0;
+			    switch (code.getText()) {
+			        case "A1":
+			            itemNumber = 0;
+			            break;
+			        case "A2":
+			            itemNumber = 1;
+			            break;
+			        case "A3":
+			            itemNumber = 2;
+			            break;
+			        case "B1":
+			            itemNumber = 3;
+			            break;
+			        case "B2":
+			            itemNumber = 4;
+			            break;
+			        case "B3":
+			            itemNumber = 5;
+			            break;
+			        case "C1":
+			            itemNumber = 6;
+			            break;
+			        case "C2":
+			            itemNumber = 7;
+			            break;
+			        case "C3":
+			            itemNumber = 8;
+			            break;
+			        case "D1":
+			            itemNumber = 9;
+			            break;
+			        case "D2":
+			            itemNumber = 10;
+			            break;
+			        case "D3":
+			            itemNumber = 11;
+			            break;
+			        default:
+			        	itemNumber = -1;
+			            break;
+			    }
+				ArrayList<String> recipe = new ArrayList<>();
+				if (set.equals("Cake Base")) {
 					set = "Topping";
-				else if (set.equals("Topping"))
+			        /*if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemCustom(), Main.specialVendingMachine.getCakeBaseName(itemNumber))) {
+			            if (Main.specialVendingMachine.getItemCustom().getItemPrice().get(Main.specialVendingMachine.getCakeBaseName(itemNumber)) != null) {
+			                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemCustom(), Main.specialVendingMachine.getCakeBaseName(itemNumber), Double.parseDouble(Insert.getText()))) {
+			                    Output.setText(Main.specialVendingMachine.getItemNumbers().get(itemNumber));
+			                } else {
+			                }
+			            } else {
+			            }
+			        } else {
+			            Finish.setText("Item not found in stock");
+			        }*/
+				}
+				else if (set.equals("Topping")) {
 					set = "Filling";
-				else if (set.equals("Filling"))
-					set = "Frosting";
+				}
+				else if (set.equals("Filling")) {
+					set = "Frosting";					
+				}
+				else if (set.equals("Frosting")) {
+					set = "";
+					addRecipe.setVisible(false);
+					lblChange.setVisible(true);
+					Change.setVisible(true);
+					panel_3.setVisible(true);
+					setBounds(100, 100, 510, 568);
+					setLocationRelativeTo(null);
+				}
 				itemAdder();
+				if(!set.equals(""))
 				Finish.setText("Choose " + set);
+				else Finish.setText("");
+				
 			}
 		});
 		addRecipe.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -328,11 +431,6 @@ public class Customize extends JFrame {
 		customize.setFocusable(false);
 		customize.setBounds(189, 420, 162, 19);
 		panel.add(customize);
-		JLabel Finish = new JLabel("Choose a cake base");
-		Finish.setToolTipText("");
-		Finish.setHorizontalAlignment(SwingConstants.CENTER);
-		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Finish.setBounds(13, 12, 326, 31);
 		panel.add(Finish);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("");
@@ -633,8 +731,6 @@ public class Customize extends JFrame {
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
 		
-		JLabel Output = new JLabel("");
-		Output.setBounds(41, 356, 79, 53);
 		panel.add(Output);
 		Output.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -655,14 +751,6 @@ public class Customize extends JFrame {
 		Output.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Output.setBackground(Color.DARK_GRAY);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.GRAY);
-		panel_3.setBounds(11, 460, 476, 71);
-		contentPane.add(panel_3);
-		panel_3.setLayout(null);
-		panel_3.setVisible(false);
-		setBounds(100, 100, 510, 507);
-		
 		JLabel Insert_2 = new JLabel("");
 		Insert_2.setBounds(333, 21, 52, 21);
 		panel_3.add(Insert_2);
@@ -672,13 +760,6 @@ public class Customize extends JFrame {
 		Insert_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Insert_2.setBackground(Color.DARK_GRAY);
 		
-		JLabel Insert = new JLabel("");
-		Insert.setOpaque(true);
-		Insert.setHorizontalAlignment(SwingConstants.CENTER);
-		Insert.setForeground(Color.WHITE);
-		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Insert.setBackground(Color.DARK_GRAY);
-		Insert.setBounds(177, 5, 70, 35);
 		panel_3.add(Insert);
 		
 		JButton btnNewButton_3_1_1 = new JButton("Clear");
