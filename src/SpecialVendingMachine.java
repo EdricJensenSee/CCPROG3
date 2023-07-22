@@ -4,126 +4,119 @@ import java.util.HashMap;
 class SpecialVendingMachine extends RegularVendingMachine {
     private ArrayList<ArrayList<String>> recipes;
     private ArrayList<String> recipeNames;
-    private Item itemSellable;
-    private Item itemCustom;
-    private ArrayList<String> cakeBases;
-    private ArrayList<String> fillings;
-    private ArrayList<String> frostings;
-    private ArrayList<String> toppings;
+    private ArrayList<String> parts;
+    private ArrayList<String> firstPart;
+    private ArrayList<String> secondPart;
+    private ArrayList<String> thirdPart;
+    private ArrayList<String> fourthPart;
 
 
-    public SpecialVendingMachine() {
+	public ArrayList<String> getParts() {
+		return parts;
+	}
+
+	public void setParts(ArrayList<String> parts) {
+		this.parts = parts;
+	}
+
+	public SpecialVendingMachine() {
         super();
-        itemSellable = new Item();
-        itemCustom = new Item();
+        Main.itemSpecial = new Item();
+        Main.itemCustom = new Item();
+        parts = new ArrayList<>();
         recipes = new ArrayList<>();
         recipeNames = new ArrayList<>();
-        cakeBases = new ArrayList<>();
-        fillings = new ArrayList<>();
-        frostings = new ArrayList<>();
-        toppings = new ArrayList<>();
+        firstPart = new ArrayList<>();
+        secondPart = new ArrayList<>();
+        thirdPart = new ArrayList<>();
+        fourthPart = new ArrayList<>();
     }
 
-    public String getCakeBaseName(int index) {
-        if (index >= 0 && index < cakeBases.size()) {
-            return cakeBases.get(index);
+    public ArrayList<String> getFirstPart() {
+		return firstPart;
+	}
+
+	public void setFirstPart(ArrayList<String> firstPart) {
+		this.firstPart = firstPart;
+	}
+
+	public ArrayList<String> getSecondPart() {
+		return secondPart;
+	}
+
+	public void setSecondPart(ArrayList<String> secondPart) {
+		this.secondPart = secondPart;
+	}
+
+	public ArrayList<String> getThirdPart() {
+		return thirdPart;
+	}
+
+	public void setThirdPart(ArrayList<String> thirdPart) {
+		this.thirdPart = thirdPart;
+	}
+
+	public ArrayList<String> getFourthPart() {
+		return fourthPart;
+	}
+
+	public void setFourthPart(ArrayList<String> fourthPart) {
+		this.fourthPart = fourthPart;
+	}
+
+	public String getCakeBaseName(int index) {
+        if (index >= 0 && index < firstPart.size()) {
+            return firstPart.get(index);
         } else {
             return null; 
         }
     }
     
     public String getItemSellableName(int index) {  
-    	return itemSellable.getItemNumbers().get(index);
-
+    	return Main.itemSpecial.getItemNumbers().get(index);
     }
-    
-    public ArrayList<String> getCakeBases() {
-		return cakeBases;
-	}
 
-	public void setCakeBases(ArrayList<String> cakeBases) {
-		this.cakeBases = cakeBases;
-	}
-
-	public ArrayList<String> getFillings() {
-		return fillings;
-	}
-
-	public void setFillings(ArrayList<String> fillings) {
-		this.fillings = fillings;
-	}
-
-	public ArrayList<String> getFrostings() {
-		return frostings;
-	}
-
-	public void setFrostings(ArrayList<String> frostings) {
-		this.frostings = frostings;
-	}
-
-	public ArrayList<String> getToppings() {
-		return toppings;
-	}
-
-	public void setToppings(ArrayList<String> toppings) {
-		this.toppings = toppings;
-	}
 
 	public String getFillingName(int index) {
-        if (index >= 0 && index < fillings.size()) {
-            return fillings.get(index);
+        if (index >= 0 && index < secondPart.size()) {
+            return secondPart.get(index);
         } else {
             return null; 
         }
     }
     
     public String getFrostingName(int index) {
-        if (index >= 0 && index < frostings.size()) {
-            return frostings.get(index);
+        if (index >= 0 && index < thirdPart.size()) {
+            return thirdPart.get(index);
         } else {
             return null; 
         }
     }
     
     public String getToppingName(int index) {
-        if (index >= 0 && index < toppings.size()) {
-            return toppings.get(index);
+        if (index >= 0 && index < fourthPart.size()) {
+            return fourthPart.get(index);
         } else {
             return null; 
         }
     }
     
 	public Item getItemCustom() {
-		return itemCustom;
+		return Main.itemCustom;
 	}
 
 	public Item getItemSellable() {
-		return itemSellable;
+		return Main.itemSpecial;
 	}
 
 	public void setItemSellable(Item itemSellable) {
-		this.itemSellable = itemSellable;
+		 Main.itemSpecial = itemSellable;
 	}
 
 	public void setItemCustom(Item itemCustom) {
-		this.itemCustom = itemCustom;
+		 Main.itemCustom = itemCustom;
 	}
 
-	public void addCakeBase(String baseName) {
-        cakeBases.add(baseName);
-    }
-
-    public void addFilling(String fillingName) {
-        fillings.add(fillingName);
-    }
-
-    public void addFrosting(String frostingName) {
-        frostings.add(frostingName);
-    }
-
-    public void addTopping(String toppingName) {
-        toppings.add(toppingName);
-    }
     
     public void addRecipe(ArrayList<String> recipe, String recipeName) {
         recipes.add(recipe);
@@ -131,31 +124,31 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
     
     public void addCakeBase(String baseName, int quantity, double price, int calories) {
-        cakeBases.add(baseName);
-        itemCustom.getItemQuantity().put(baseName, quantity);
-        itemCustom.getItemPrice().put(baseName, price);
-        itemCustom.getItemCalories().put(baseName, calories);
+        firstPart.add(baseName);
+        Main.itemCustom.getItemQuantity().put(baseName, quantity);
+        Main.itemCustom.getItemPrice().put(baseName, price);
+        Main.itemCustom.getItemCalories().put(baseName, calories);
     }
     
     public void addFilling(String fillingName, int quantity, double price, int calories) {
-        fillings.add(fillingName);
-        itemCustom.getItemQuantity().put(fillingName, quantity);
-        itemCustom.getItemPrice().put(fillingName, price);
-        itemCustom.getItemCalories().put(fillingName, calories);
+        secondPart.add(fillingName);
+        Main.itemCustom.getItemQuantity().put(fillingName, quantity);
+        Main.itemCustom.getItemPrice().put(fillingName, price);
+        Main.itemCustom.getItemCalories().put(fillingName, calories);
     }
 
     public void addFrosting(String frostingName, int quantity, double price, int calories) {
-        frostings.add(frostingName);
-        itemCustom.getItemQuantity().put(frostingName, quantity);
-        itemCustom.getItemPrice().put(frostingName, price);
-        itemCustom.getItemCalories().put(frostingName, calories);
+        thirdPart.add(frostingName);
+        Main.itemCustom.getItemQuantity().put(frostingName, quantity);
+        Main.itemCustom.getItemPrice().put(frostingName, price);
+        Main.itemCustom.getItemCalories().put(frostingName, calories);
     }
     
     public void addTopping(String toppingName, int quantity, double price, int calories) {
-        toppings.add(toppingName);
-        itemCustom.getItemQuantity().put(toppingName, quantity);
-        itemCustom.getItemPrice().put(toppingName, price);
-        itemCustom.getItemCalories().put(toppingName, calories);
+        fourthPart.add(toppingName);
+        Main.itemCustom.getItemQuantity().put(toppingName, quantity);
+        Main.itemCustom.getItemPrice().put(toppingName, price);
+        Main.itemCustom.getItemCalories().put(toppingName, calories);
     }    
     
     private int calculateTotalCalories(ArrayList<String> recipe) {
@@ -169,8 +162,8 @@ class SpecialVendingMachine extends RegularVendingMachine {
     private double calculateTotalPrice(ArrayList<String> recipe) {
         double totalPrice = 0.0;
         for (String itemName : recipe) {
-            if (itemCustom.getItemPrice().containsKey(itemName)) {
-                totalPrice += itemCustom.getItemPrice().get(itemName);
+            if ( Main.itemCustom.getItemPrice().containsKey(itemName)) {
+                totalPrice +=  Main.itemCustom.getItemPrice().get(itemName);
             } else {
                 // Handle the case when an item is not found in itemCustom
                 System.out.println("Item " + itemName + " not found in stock.");
@@ -186,10 +179,10 @@ class SpecialVendingMachine extends RegularVendingMachine {
         count = 0;
         totalUnique = 0;
         System.out.println("Items: ");
-        for (String key : itemCustom.getItemQuantity().keySet()) {
-            int quantity = itemCustom.getItemQuantity().get(key);
-            double price = itemCustom.getItemPrice().get(key);
-            int calories = itemCustom.getItemCalories().get(key);
+        for (String key :  Main.itemCustom.getItemQuantity().keySet()) {
+            int quantity =  Main.itemCustom.getItemQuantity().get(key);
+            double price =  Main.itemCustom.getItemPrice().get(key);
+            int calories =  Main.itemCustom.getItemCalories().get(key);
 
             itemNumbers.put(number, key);
 
@@ -217,15 +210,15 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
 
         for (String itemName : recipes.get(productIndex)) {
-            if (itemCustom.getItemQuantity().containsKey(itemName)) {
+            if ( Main.itemCustom.getItemQuantity().containsKey(itemName)) {
             	requiredQuantity = itemUsedCount(recipes.get(productIndex), itemName);
 
-                if (itemCustom.getItemQuantity().get(itemName) < requiredQuantity) {
+                if ( Main.itemCustom.getItemQuantity().get(itemName) < requiredQuantity) {
                     System.out.println("Insufficient quantity of " + itemName + " in stock.");
                     return;
                 }
 
-                totalPrice += itemCustom.getItemPrice().get(itemName);
+                totalPrice +=  Main.itemCustom.getItemPrice().get(itemName);
             } else {
                 System.out.println("Item " + itemName + " not found in stock.");
                 return;
@@ -242,11 +235,11 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
         for (String itemName : recipes.get(productIndex)) {
 
-        	itemCustom.getItemQuantity().put(itemName, itemCustom.getItemQuantity().get(itemName) - requiredQuantity);
-        	itemCustom.getItemSold().put(itemName, itemCustom.getItemSold().getOrDefault(itemName, 0) + requiredQuantity);
+        	 Main.itemCustom.getItemQuantity().put(itemName,  Main.itemCustom.getItemQuantity().get(itemName) - requiredQuantity);
+        	 Main.itemCustom.getItemSold().put(itemName,  Main.itemCustom.getItemSold().getOrDefault(itemName, 0) + requiredQuantity);
         }
 
-        itemCustom.setTotalSales(itemCustom.getTotalSales() + totalPrice);
+        Main.itemCustom.setTotalSales( Main.itemCustom.getTotalSales() + totalPrice);
 
         displayUsedItems(productIndex);
     }

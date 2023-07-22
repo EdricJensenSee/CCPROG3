@@ -26,7 +26,6 @@ public class Customize extends JFrame {
 	private JPanel C1;
 	private JLabel code;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private static String set = "Cake Base";
 	/**
 	 * Launch the application.
 	 */
@@ -328,86 +327,84 @@ public class Customize extends JFrame {
 		addRecipe.setBounds(10, 383, 103, 39);
 		panel_2.add(addRecipe);
 		addRecipe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int itemNumber = 0;
-			    switch (code.getText()) {
-			        case "A1":
-			            itemNumber = 0;
-			            break;
-			        case "A2":
-			            itemNumber = 1;
-			            break;
-			        case "A3":
-			            itemNumber = 2;
-			            break;
-			        case "B1":
-			            itemNumber = 3;
-			            break;
-			        case "B2":
-			            itemNumber = 4;
-			            break;
-			        case "B3":
-			            itemNumber = 5;
-			            break;
-			        case "C1":
-			            itemNumber = 6;
-			            break;
-			        case "C2":
-			            itemNumber = 7;
-			            break;
-			        case "C3":
-			            itemNumber = 8;
-			            break;
-			        case "D1":
-			            itemNumber = 9;
-			            break;
-			        case "D2":
-			            itemNumber = 10;
-			            break;
-			        case "D3":
-			            itemNumber = 11;
-			            break;
-			        default:
-			        	itemNumber = -1;
-			            break;
-			    }
-				ArrayList<String> recipe = new ArrayList<>();
-				if (set.equals("Cake Base")) {
-					set = "Topping";
-			        /*if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemCustom(), Main.specialVendingMachine.getCakeBaseName(itemNumber))) {
-			            if (Main.specialVendingMachine.getItemCustom().getItemPrice().get(Main.specialVendingMachine.getCakeBaseName(itemNumber)) != null) {
-			                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemCustom(), Main.specialVendingMachine.getCakeBaseName(itemNumber), Double.parseDouble(Insert.getText()))) {
-			                    Output.setText(Main.specialVendingMachine.getItemNumbers().get(itemNumber));
-			                } else {
-			                }
-			            } else {
-			            }
-			        } else {
-			            Finish.setText("Item not found in stock");
-			        }*/
-				}
-				else if (set.equals("Topping")) {
-					set = "Filling";
-				}
-				else if (set.equals("Filling")) {
-					set = "Frosting";					
-				}
-				else if (set.equals("Frosting")) {
-					set = "";
-					addRecipe.setVisible(false);
-					lblChange.setVisible(true);
-					Change.setVisible(true);
-					panel_3.setVisible(true);
-					setBounds(100, 100, 510, 568);
-					setLocationRelativeTo(null);
-				}
-				itemAdder();
-				if(!set.equals(""))
-				Finish.setText("Choose " + set);
-				else Finish.setText("");
-				
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        int itemNumber = 0;
+		        switch (code.getText()) {
+		            case "A1":
+		                itemNumber = 0;
+		                break;
+		            case "A2":
+		                itemNumber = 1;
+		                break;
+		            case "A3":
+		                itemNumber = 2;
+		                break;
+		            case "B1":
+		                itemNumber = 3;
+		                break;
+		            case "B2":
+		                itemNumber = 4;
+		                break;
+		            case "B3":
+		                itemNumber = 5;
+		                break;
+		            case "C1":
+		                itemNumber = 6;
+		                break;
+		            case "C2":
+		                itemNumber = 7;
+		                break;
+		            case "C3":
+		                itemNumber = 8;
+		                break;
+		            case "D1":
+		                itemNumber = 9;
+		                break;
+		            case "D2":
+		                itemNumber = 10;
+		                break;
+		            case "D3":
+		                itemNumber = 11;
+		                break;
+		            default:
+		                itemNumber = -1;
+		                break;
+		        }
+
+		        int number;
+		        ArrayList<String> recipe = new ArrayList<>();
+		        for (int i = 0; i < Main.specialVendingMachine.getParts().size(); i++) {
+		            String set = Main.specialVendingMachine.getParts().get(i);
+		            
+		            if (set.equals("Cake Base")) {
+		            	
+		                set = "Topping";
+		            } else if (set.equals("Topping")) {
+		                set = "Filling";
+		            } else if (set.equals("Filling")) {
+		                set = "Frosting";
+		            } else if (set.equals("Frosting")) {
+		                set = "";
+		            }
+		            recipe.add(set);
+		        }
+		        addRecipe.setVisible(false);
+		        lblChange.setVisible(true);
+		        Change.setVisible(true);
+		        panel_3.setVisible(true);
+		        setBounds(100, 100, 510, 568);
+		        setLocationRelativeTo(null);
+		        
+		        itemAdder();
+
+		        if (!set.equals("")) {
+		            Finish.setText("Choose " + set);
+		        } else {
+		            Finish.setText("");
+		        }
+		    }
 		});
+
 		addRecipe.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		addRecipe.setFocusable(false);
 		
@@ -864,16 +861,15 @@ public class Customize extends JFrame {
 		Change.setVisible(false);
 		this.setLocationRelativeTo(null);
 	}
-	private static void itemAdder() {
+	private static void itemAdder(int number) {
 		int index;
 		JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
 		for (index = 0; index < 12; index++) {
 		    labels[index].setText("");
 		}
-		
-		if (set.equals("Cake Base")) {
+		if (Main.specialVendingMachine.getParts().get(number).equals("Cake Base")) {
 			index = 0;
-			for (String cakeBaseName : Main.specialVendingMachine.getCakeBases()) {
+			for (String cakeBaseName : Main.specialVendingMachine.getFirstPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(cakeBaseName);
 			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(cakeBaseName);
 
@@ -884,9 +880,9 @@ public class Customize extends JFrame {
 			        break;
 			    }
 			}
-		} else if (set.equals("Topping")) {
+		} else if (Main.specialVendingMachine.getParts().get(number).equals("Topping")) {
 			index = 0;
-			for (String ToppingName : Main.specialVendingMachine.getToppings()) {
+			for (String ToppingName : Main.specialVendingMachine.getSecondPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(ToppingName);
 			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(ToppingName);
 
@@ -897,9 +893,9 @@ public class Customize extends JFrame {
 			        break;
 			    }
 			}
-		} else if (set.equals("Filling")) {
+		} else if (Main.specialVendingMachine.getParts().get(number).equals("Filling")) {
 			index = 0;
-			for (String fillingName : Main.specialVendingMachine.getFillings()) {
+			for (String fillingName : Main.specialVendingMachine.getThirdPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(fillingName);
 			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(fillingName);
 
@@ -910,9 +906,9 @@ public class Customize extends JFrame {
 			        break;
 			    }
 			}
-		} else if (set.equals("Frosting")) {
+		} else if (Main.specialVendingMachine.getParts().get(number).equals("Frosting")) {
 			index = 0;
-			for (String FrostingName : Main.specialVendingMachine.getFrostings()) {
+			for (String FrostingName : Main.specialVendingMachine.getFourthPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(FrostingName);
 			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(FrostingName);
 
@@ -924,7 +920,6 @@ public class Customize extends JFrame {
 			    }
 			}
 		}
-
-
+		number++;
 	}
 }

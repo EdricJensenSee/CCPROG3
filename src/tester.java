@@ -10,8 +10,7 @@ public class tester {
     	vendingMachine.addFilling("Strawberry", 5, 1.0, 50);
 
     	// Display the list of cake bases and fillings
-    	System.out.println("Cake Bases: " + vendingMachine.getCakeBases());
-    	System.out.println("Fillings: " + vendingMachine.getFillings());
+
     	String itemName = "Strawberrasdy";
     	if (vendingMachine.getItemCustom().getItemQuantity().containsKey(itemName)) {
     	    int quantity = vendingMachine.getItemCustom().getItemQuantity().get(itemName);
