@@ -22,13 +22,14 @@ public class MaintenancePage extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
-	private boolean modes = true;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
 	private JTextField namefield;
 	private JTextField qtyfield;
 	private JTextField pricefield;
 	private JTextField calfield;
+	private static int CurNum = 0;
+	private static boolean customize = false;
 	/**
 	 * Launch the application.
 	 */
@@ -65,12 +66,11 @@ public class MaintenancePage extends JFrame {
 		        number++;
 		    }
 		} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-		    for (String key : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
+		    for (String key : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
 		        Main.specialVendingMachine.getItemNumbers().put(number, key);
 		        number++;
 		    }
 		}
-
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new LineBorder(new Color(255, 0, 0), 5, true));
@@ -113,26 +113,56 @@ public class MaintenancePage extends JFrame {
 		        if (btnAdd.getText().equals("Add Item")) {
 		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 		                Main.regularVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == false) {
 		                Main.specialVendingMachine.getItemSellable().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
+		            	if (CurNum == 0) {
+		            		Main.specialVendingMachine.addFirstPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            	} else if (CurNum == 1) {
+		            		Main.specialVendingMachine.addSecondPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            	} else if (CurNum == 2) {
+		            		Main.specialVendingMachine.addThirdPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            	} else if (CurNum == 3) {
+		            		Main.specialVendingMachine.addFourthPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		            	}
 		            }
 		        } else if (btnAdd.getText().equals("Restock")) {
 				    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
 				    	Main.regularVendingMachine.getItem().setItemQuantity(Main.regularVendingMachine.getItemNumbers().get(itemNumber),Main.regularVendingMachine.getItem().getItemQuantity().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) + 1);
-				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-				    	Main.specialVendingMachine.getItem().setItemQuantity(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Main.specialVendingMachine.getItem().getItemQuantity().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) + 1);
-				    }	
+				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == false) {
+				    	Main.specialVendingMachine.getItemSellable().setItemQuantity(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Main.specialVendingMachine.getItemSellable().getItemQuantity().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) + 1);
+				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
+		            	if (CurNum == 0) {
+		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getFirstPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getFirstPart(itemNumber)) + 1);
+		            	} else if (CurNum == 1) {
+		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getSecondPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getSecondPart(itemNumber)) + 1);
+		            	} else if (CurNum == 2) {
+		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getThirdPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getThirdPart(itemNumber)) + 1);
+		            	} else if (CurNum == 3) {
+		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getFourthPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getFourthPart(itemNumber)) + 1);
+		            	}
+		            }	
 		        } else if (btnAdd.getText().equals("Change")){
 		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
 					    	Main.regularVendingMachine.getItem().setItemPrice(Main.regularVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
-					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-					    	Main.specialVendingMachine.getItem().setItemPrice(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
-					    }	
+					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == false) {
+					    	Main.specialVendingMachine.getItemSellable().setItemPrice(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
+					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
+			            	if (CurNum == 0) {
+			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getFirstPart(itemNumber), Double.parseDouble(pricefield.getText()));
+			            	} else if (CurNum == 1) {
+			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getSecondPart(itemNumber), Double.parseDouble(pricefield.getText()));
+			            	} else if (CurNum == 2) {
+			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getThirdPart(itemNumber),Double.parseDouble(pricefield.getText()));
+			            	} else if (CurNum == 3) {
+			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getFourthPart(itemNumber), Double.parseDouble(pricefield.getText()));
+			            	}
+			            }		
 		        }
 		        itemAdder();
 		    }
 		});
-
+	
 	    
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnAdd.setFocusable(false);
@@ -909,6 +939,37 @@ public class MaintenancePage extends JFrame {
 		panel.add(calfield);
 		panel.add(btnAdd);
 		
+		JButton btnCustomize = new JButton("Customize");
+		btnCustomize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (customize == true)
+					CurNum++;
+				if (btnCustomize.getText().equals("Customize")) {
+				    btnCustomize.setText("Next");
+				    customize = true;
+				} 
+				if (CurNum == 3)
+					btnCustomize.setText("Return");
+				    if (CurNum >= 0 && CurNum < Main.specialVendingMachine.getParts().size()) {
+				        String set = Main.specialVendingMachine.getParts().get(CurNum);
+				        Finish.setText("Part: " + set);  
+				    } else if (CurNum == Main.specialVendingMachine.getParts().size()) {
+				        CurNum = 0;
+				        customize = false;
+				        Finish.setText("");
+				        btnCustomize.setText("Customize"); 
+				    } 
+				itemAdder();
+			}
+		});
+		btnCustomize.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCustomize.setFocusable(false);
+		btnCustomize.setBounds(224, 403, 117, 19);
+		panel.add(btnCustomize);
+		if (machineType.equals("Special"))
+			btnCustomize.setVisible(true);
+		else if (machineType.equals("Regular"))
+			btnCustomize.setVisible(false);
 
 		this.setLocationRelativeTo(null);
 	}
@@ -931,7 +992,7 @@ public class MaintenancePage extends JFrame {
 	                break;
 	            }
 	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == false) {
 	        for (String itemName : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
 	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemSellable().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItemSellable().getItemPrice().get(itemName) + "</center></html>");
 	            index++;
@@ -940,6 +1001,60 @@ public class MaintenancePage extends JFrame {
 	                break;
 	            }
 	        }
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == true ) {
+			if (CurNum == 0) {
+				index = 0;
+				for (String cakeBaseName : Main.specialVendingMachine.getFirstPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(cakeBaseName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(cakeBaseName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + cakeBaseName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			} else if (CurNum == 1) {
+				index = 0;
+				for (String ToppingName : Main.specialVendingMachine.getSecondPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(ToppingName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(ToppingName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + ToppingName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			} else if (CurNum == 2) {
+				index = 0;
+				for (String fillingName : Main.specialVendingMachine.getThirdPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(fillingName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(fillingName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + fillingName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			} else if (CurNum == 3) {
+				index = 0;
+				for (String FrostingName : Main.specialVendingMachine.getFourthPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(FrostingName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(FrostingName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + FrostingName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			}
 	    }
 	}
 }

@@ -11,6 +11,7 @@ class Item {
     private double totalSales;
     private int totalItems;
     private int totalUnique;
+    private int count;
     private HashMap<Integer, String> itemNumbers;
 
     /**
@@ -25,6 +26,7 @@ class Item {
         totalSales = 0.0;
         totalItems = 0;
         totalUnique = 0;
+        count = 0;
     }
 
     /**
@@ -39,6 +41,7 @@ class Item {
         if (quantity <= 0 || quantity > 10 || totalUnique>12) {
             return false;
         }
+        itemNumbers.put(count, itemName);
         itemQuantity.put(itemName, quantity);
         itemPrice.put(itemName, price);
         itemCalories.put(itemName, calories);

@@ -64,7 +64,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
 		this.fourthPart = fourthPart;
 	}
 
-	public String getCakeBaseName(int index) {
+	public String getFirstPart(int index) {
         if (index >= 0 && index < firstPart.size()) {
             return firstPart.get(index);
         } else {
@@ -77,7 +77,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
     }
 
 
-	public String getFillingName(int index) {
+	public String getSecondPart(int index) {
         if (index >= 0 && index < secondPart.size()) {
             return secondPart.get(index);
         } else {
@@ -85,7 +85,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
     }
     
-    public String getFrostingName(int index) {
+    public String getThirdPart(int index) {
         if (index >= 0 && index < thirdPart.size()) {
             return thirdPart.get(index);
         } else {
@@ -93,7 +93,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
     }
     
-    public String getToppingName(int index) {
+    public String getFourthPart(int index) {
         if (index >= 0 && index < fourthPart.size()) {
             return fourthPart.get(index);
         } else {
@@ -123,35 +123,35 @@ class SpecialVendingMachine extends RegularVendingMachine {
         recipeNames.add(recipeName);
         }
     
-    public void addCakeBase(String baseName, int quantity, double price, int calories) {
+    public void addFirstPart(String baseName, int quantity, double price, int calories) {
         firstPart.add(baseName);
         Main.itemCustom.getItemQuantity().put(baseName, quantity);
         Main.itemCustom.getItemPrice().put(baseName, price);
         Main.itemCustom.getItemCalories().put(baseName, calories);
     }
     
-    public void addFilling(String fillingName, int quantity, double price, int calories) {
+    public void addSecondPart(String fillingName, int quantity, double price, int calories) {
         secondPart.add(fillingName);
         Main.itemCustom.getItemQuantity().put(fillingName, quantity);
         Main.itemCustom.getItemPrice().put(fillingName, price);
         Main.itemCustom.getItemCalories().put(fillingName, calories);
     }
 
-    public void addFrosting(String frostingName, int quantity, double price, int calories) {
+    public void addThirdPart(String frostingName, int quantity, double price, int calories) {
         thirdPart.add(frostingName);
         Main.itemCustom.getItemQuantity().put(frostingName, quantity);
         Main.itemCustom.getItemPrice().put(frostingName, price);
         Main.itemCustom.getItemCalories().put(frostingName, calories);
     }
     
-    public void addTopping(String toppingName, int quantity, double price, int calories) {
+    public void addFourthPart(String toppingName, int quantity, double price, int calories) {
         fourthPart.add(toppingName);
         Main.itemCustom.getItemQuantity().put(toppingName, quantity);
         Main.itemCustom.getItemPrice().put(toppingName, price);
         Main.itemCustom.getItemCalories().put(toppingName, calories);
     }    
     
-    private int calculateTotalCalories(ArrayList<String> recipe) {
+    public int calculateTotalCalories(ArrayList<String> recipe) {
         int totalCalories = 0;
         for (String itemName : recipe) {
             totalCalories += getItem().getItemCalories().get(itemName);
@@ -159,46 +159,17 @@ class SpecialVendingMachine extends RegularVendingMachine {
         return totalCalories;
     }
     
-    private double calculateTotalPrice(ArrayList<String> recipe) {
+    public double calculateTotalPrice(ArrayList<String> recipe) {
         double totalPrice = 0.0;
         for (String itemName : recipe) {
             if ( Main.itemCustom.getItemPrice().containsKey(itemName)) {
                 totalPrice +=  Main.itemCustom.getItemPrice().get(itemName);
             } else {
-                // Handle the case when an item is not found in itemCustom
                 System.out.println("Item " + itemName + " not found in stock.");
                 return 0.0;
             }
         }
         return totalPrice;
-    }
-
-    
-    public void displayStock() {
-        int number = 1;
-        count = 0;
-        totalUnique = 0;
-        System.out.println("Items: ");
-        for (String key :  Main.itemCustom.getItemQuantity().keySet()) {
-            int quantity =  Main.itemCustom.getItemQuantity().get(key);
-            double price =  Main.itemCustom.getItemPrice().get(key);
-            int calories =  Main.itemCustom.getItemCalories().get(key);
-
-            itemNumbers.put(number, key);
-
-            System.out.println(number + ". " + key + " - Quantity: " + quantity + " - Price: ₱" + price + " - Calories: " + calories);
-            count += quantity;
-            totalUnique++;
-            number++;
-        }
-        System.out.println("Recipes: ");
-        for (int recipeCount = 0; recipeCount<recipeNames.size	(); recipeCount++) {
-        	System.out.println(recipeNames.get(recipeCount));
-            for (String itemName : recipes.get(recipeCount)) {
-                System.out.print("- " + itemName + "\n");
-            }
-        }
-        System.out.println("Current Total Items: " + count + " - Total Recipes: " + recipes.size());
     }
     
     public void prepareProduct(int productIndex, double amountPaid) {
@@ -214,19 +185,15 @@ class SpecialVendingMachine extends RegularVendingMachine {
             	requiredQuantity = itemUsedCount(recipes.get(productIndex), itemName);
 
                 if ( Main.itemCustom.getItemQuantity().get(itemName) < requiredQuantity) {
-                    System.out.println("Insufficient quantity of " + itemName + " in stock.");
                     return;
                 }
 
                 totalPrice +=  Main.itemCustom.getItemPrice().get(itemName);
             } else {
-                System.out.println("Item " + itemName + " not found in stock.");
                 return;
             }
         }
-
         if (amountPaid < totalPrice) {
-            System.out.println("Insufficient payment. Please insert ₱" + (totalPrice - amountPaid) + " more.");
             return;
         } else if (amountPaid > totalPrice) {
             double change = amountPaid - totalPrice;
@@ -240,28 +207,16 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
 
         Main.itemCustom.setTotalSales( Main.itemCustom.getTotalSales() + totalPrice);
-
-        displayUsedItems(productIndex);
     }
 
     private boolean isProductIndexValid(int productIndex) {
         if (productIndex < 0 || productIndex >= recipes.size()) {
-            System.out.print("Invalid Product");
             return false;
         }
         return true;
     }
-    
-    private void displayUsedItems(int productIndex) {
-        System.out.print("Used: \n");
-        for (String itemName : recipes.get(productIndex)) {
-            System.out.print("- " + itemName + "\n");
-        }
-        
-        
-    }
-    
-    private int itemUsedCount(ArrayList<String> recipe, String itemName) {
+       
+    public int itemUsedCount(ArrayList<String> recipe, String itemName) {
         int count = 0;
         for (int i = 0; i< recipe.size();i++) {
         	if (recipe.get(i) == itemName)

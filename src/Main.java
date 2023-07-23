@@ -30,16 +30,24 @@ public class Main {
         
         specialVendingMachine.getItemSellable().addItem("Chocolate Chip Cookies", 10, 80, 180);
         specialVendingMachine.getItemCustom().addItem("Cream Filling", 6, 10, 200);
-        specialVendingMachine.addCakeBase("Cake Base1", 8, 10, 150);
-        specialVendingMachine.addCakeBase("Cake Base2", 8, 20, 150);
-        specialVendingMachine.addCakeBase("Cake Base3", 8, 30, 150);
-        specialVendingMachine.addTopping("Topping", 5, 200, 250);
-        specialVendingMachine.addFilling("FIlling", 10, 50, 220);
-        specialVendingMachine.addFrosting("fROSTING", 8, 20, 210);
+        specialVendingMachine.addFirstPart("Cake Base1", 8, 10, 150);
+        specialVendingMachine.addFirstPart("Cake Base2", 8, 20, 150);
+        specialVendingMachine.addFirstPart("Cake Base3", 8, 30, 150);
+        specialVendingMachine.addSecondPart("Topping", 5, 200, 250);
+        specialVendingMachine.addThirdPart("FIlling", 10, 50, 220);
+        specialVendingMachine.addFourthPart("fROSTING", 8, 20, 210);
         specialVendingMachine.getItemSellable().addItem("Cream Puffs", 6, 30, 180);
         specialVendingMachine.getItemSellable().addItem("Strawberry", 10, 120	, 190);
+        specialVendingMachine.getParts().add("First");
+        specialVendingMachine.getParts().add("Second");
+        specialVendingMachine.getParts().add("Third");
+        specialVendingMachine.getParts().add("Fourth");
+        //Main.specialVendingMachine.getCashBox().addTotalAmount(100);
+        //Main.specialVendingMachine.getCashBox().resetAmountPaid();
 
-    	regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+  
+        
+        regularVendingMachine.getCashBox().replenishChange(10.0, 1);
     	/*regularVendingMachine.getCashBox().replenishChange(20.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
@@ -47,7 +55,7 @@ public class Main {
     	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);*/
     	MAINPAGE open = new MAINPAGE();
-    	open.setVisible(true);
+    open.setVisible(true);
     }
 }
 

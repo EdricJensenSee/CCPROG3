@@ -3,11 +3,10 @@ import java.util.ArrayList;
 public class tester {
     public static void main(String[] args) {
     	SpecialVendingMachine vendingMachine = new SpecialVendingMachine();
-    	vendingMachine.displayStock();
-    	vendingMachine.addCakeBase("Chocolate", 10, 2.5, 200);
+    	//vendingMachine.addCakeBase("Chocolate", 10, 2.5, 200);
 
     	// Add filling to the list of available fillings with quantity, price, and calories
-    	vendingMachine.addFilling("Strawberry", 5, 1.0, 50);
+    	//vendingMachine.addFilling("Strawberry", 5, 1.0, 50);
 
     	// Display the list of cake bases and fillings
 

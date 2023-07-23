@@ -28,6 +28,8 @@ public class AddItem extends JFrame {
 	private JTextField Qty;
 	private JTextField Calories;
 	private static String machineType;
+	private static int CurNum = 0;
+	private static boolean customize = false;
 	/**
 	 * Launch the application.
 	 */
@@ -394,17 +396,54 @@ public class AddItem extends JFrame {
 		
 		JButton btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				CreatePage open = new CreatePage("Regular");
-				open.setVisible(true);
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        dispose();
+		        CreatePage open;
+		        if (machineType.equals("Regular"))
+		            open = new CreatePage("Regular");
+		        else if (machineType.equals("Special"))
+		            open = new CreatePage("Special");	
+		        else
+		            open = new CreatePage(""); 
+		        open.setVisible(true);
+		    }
 		});
+
 		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1_1_2_1.setFocusable(false);
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
-
+		JButton btnCustomize = new JButton("Customize");
+		btnCustomize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (customize == true)
+					CurNum++;
+				if (btnCustomize.getText().equals("Customize")) {
+				    btnCustomize.setText("Next");
+				    customize = true;
+				} 
+				if (CurNum == 3)
+					btnCustomize.setText("Return");
+				    if (CurNum >= 0 && CurNum < Main.specialVendingMachine.getParts().size()) {
+				        String set = Main.specialVendingMachine.getParts().get(CurNum);
+				        Finish.setText("Part: " + set);  
+				    } else if (CurNum == Main.specialVendingMachine.getParts().size()) {
+				        CurNum = 0;
+				        Finish.setText("");
+				        btnCustomize.setText("Customize"); 
+				        customize = false;
+				    } 
+				itemAdder();
+				}});
+		
+		btnCustomize.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCustomize.setFocusable(false);
+		btnCustomize.setBounds(234, 420, 117, 19);
+		panel.add(btnCustomize);
+		if (machineType.equals("Special"))
+			btnCustomize.setVisible(true);
+		else
+			btnCustomize.setVisible(false);
 		
 		Name = new JTextField();
 		Name.setBounds(26, 480, 160, 19);
@@ -437,8 +476,18 @@ public class AddItem extends JFrame {
 	        public void actionPerformed(ActionEvent e) {
 	            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 	                Main.regularVendingMachine.getItem().addItem(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
-	            } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-	                Main.specialVendingMachine.getItem().addItem(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == false) {
+	                Main.specialVendingMachine.getItemSellable().addItem(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
+	            	if (CurNum == 0) {
+	            		Main.specialVendingMachine.addFirstPart(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            	} else if (CurNum == 1) {
+	            		Main.specialVendingMachine.addSecondPart(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            	} else if (CurNum == 2) {
+	            		Main.specialVendingMachine.addThirdPart(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            	} else if (CurNum == 3) {
+	            		Main.specialVendingMachine.addFourthPart(Name.getText(), Integer.parseInt(Qty.getText()), Double.parseDouble(Price.getText()), Integer.parseInt(Calories.getText()));
+	            	}
 	            }
 	            itemAdder();
 	        }
@@ -487,16 +536,69 @@ public class AddItem extends JFrame {
 	                break;
 	            }
 	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-	        for (String itemName : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == false) {
+	        for (String itemName : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
+	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemSellable().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItemSellable().getItemPrice().get(itemName) + "</center></html>");
 	            index++;
 
 	            if (index >= 12) {
 	                break;
 	            }
 	        }
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == true ) {
+			if (CurNum == 0) {
+				index = 0;
+				for (String cakeBaseName : Main.specialVendingMachine.getFirstPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(cakeBaseName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(cakeBaseName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + cakeBaseName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			} else if (CurNum == 1) {
+				index = 0;
+				for (String ToppingName : Main.specialVendingMachine.getSecondPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(ToppingName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(ToppingName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + ToppingName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			} else if (CurNum == 2) {
+				index = 0;
+				for (String fillingName : Main.specialVendingMachine.getThirdPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(fillingName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(fillingName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + fillingName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			} else if (CurNum == 3) {
+				index = 0;
+				for (String FrostingName : Main.specialVendingMachine.getFourthPart()) {
+				    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(FrostingName);
+				    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(FrostingName);
+
+				    labels[index].setText("<html><center>" + quantity + "x - " + FrostingName + " ₱" + price + "</center></html>");
+				    index++;
+
+				    if (index >= 12) {
+				        break;
+				    }
+				}
+			}
 	    }
 	}
-
 }

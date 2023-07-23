@@ -26,6 +26,9 @@ public class Customize extends JFrame {
 	private JPanel C1;
 	private JLabel code;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
+	private static int curNum = 0;
+	private static ArrayList<String> recipe = new ArrayList<>();
+	private static HashMap<String, Integer> items = new HashMap<>();
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +51,7 @@ public class Customize extends JFrame {
 	 */
 	public Customize() {	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 510, 595);
+		setBounds(100, 100, 510, 533);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,6 +74,14 @@ public class Customize extends JFrame {
 		CollectChange.setHorizontalAlignment(SwingConstants.CENTER);
 		CollectChange.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		CollectChange.setBounds(333, 20, 49, 18);
+		
+		JLabel Output = new JLabel("");
+		Output.setOpaque(true);
+		Output.setHorizontalAlignment(SwingConstants.CENTER);
+		Output.setForeground(Color.WHITE);
+		Output.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Output.setBackground(Color.DARK_GRAY);
+		Output.setBounds(10, 8, 197, 53);
 		
 		JLabel Insert_1 = new JLabel("");
 		final int[] currentIndex = {0};
@@ -105,53 +116,53 @@ public class Customize extends JFrame {
 		Insert_1.setBackground(Color.DARK_GRAY);
 		Change.add(Insert_1);
 		
-		JButton btnNewButton = new JButton("A");
-		btnNewButton.setFocusable(false);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton a = new JButton("A");
+		a.setFocusable(false);
+		a.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
 					code.setText(code.getText() + "A");
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton.setBounds(10, 44, 45, 35);
-		panel_2.add(btnNewButton);
+		a.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		a.setBounds(10, 44, 45, 35);
+		panel_2.add(a);
 		
-		JButton btnNewButton_1 = new JButton("1");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton sone = new JButton("1");
+		sone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
 					code.setText(code.getText() + "1");
 			}
 		});
-		btnNewButton_1.setFocusable(false);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1.setBounds(65, 59, 45, 35);
-		panel_2.add(btnNewButton_1);
+		sone.setFocusable(false);
+		sone.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		sone.setBounds(65, 44, 45, 35);
+		panel_2.add(sone);
 		
-		JButton btnB = new JButton("B");
-		btnB.addActionListener(new ActionListener() {
+		JButton b = new JButton("B");
+		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
 					code.setText(code.getText() + "B");
 			}
 		});
-		btnB.setFocusable(false);
-		btnB.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnB.setBounds(10, 85, 45, 35);
-		panel_2.add(btnB);
+		b.setFocusable(false);
+		b.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		b.setBounds(10, 85, 45, 35);
+		panel_2.add(b);
 		
-		JButton btnC = new JButton("C");
-		btnC.addActionListener(new ActionListener() {
+		JButton c = new JButton("C");
+		c.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
 					code.setText(code.getText() + "C");
 			}
 		});
-		btnC.setFocusable(false);
-		btnC.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC.setBounds(10, 126, 45, 35);
-		panel_2.add(btnC);
+		c.setFocusable(false);
+		c.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		c.setBounds(10, 126, 45, 35);
+		panel_2.add(c);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(Color.GRAY);
@@ -167,29 +178,29 @@ public class Customize extends JFrame {
 		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Insert.setBackground(Color.DARK_GRAY);
 		Insert.setBounds(177, 5, 70, 35);
-		JButton btnNewButton_1_1 = new JButton("2");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JButton stwo = new JButton("2");
+		stwo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
 					code.setText(code.getText() + "2");
 			}
 		});
-		btnNewButton_1_1.setFocusable(false);
-		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1.setBounds(65, 104, 45, 35);
-		panel_2.add(btnNewButton_1_1);
+		stwo.setFocusable(false);
+		stwo.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		stwo.setBounds(65, 85, 45, 35);
+		panel_2.add(stwo);
 		
-		JButton btnNewButton_1_1_1 = new JButton("3");
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+		JButton sthree = new JButton("3");
+		sthree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
 					code.setText(code.getText() + "3");
 			}
 		});
-		btnNewButton_1_1_1.setFocusable(false);
-		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNewButton_1_1_1.setBounds(65, 149, 45, 35);
-		panel_2.add(btnNewButton_1_1_1);
+		sthree.setFocusable(false);
+		sthree.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		sthree.setBounds(65, 126, 45, 35);
+		panel_2.add(sthree);
 		
 		JLabel lblCode = new JLabel("Code");
 		lblCode.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -228,8 +239,6 @@ public class Customize extends JFrame {
 		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
-		JLabel Output = new JLabel("");
-		Output.setBounds(41, 356, 79, 53);
 	
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
@@ -273,24 +282,58 @@ public class Customize extends JFrame {
 			            itemNumber = 11;
 			            break;
 			        default:
-			        	itemNumber = -1;
+			        	itemNumber = 0;
 			            break;
 			    }
 		        String itemName = "";
-		        if (set.equals("Cake Base")) {
-		            itemName = Main.specialVendingMachine.getCakeBaseName(itemNumber);
-		        } else if (set.equals("Topping")) {
-		            itemName = Main.specialVendingMachine.getToppingName(itemNumber);
-		        } else if (set.equals("Filling")) {
-		            itemName = Main.specialVendingMachine.getFillingName(itemNumber);
-		        } else if (set.equals("Frosting")) {
-		            itemName = Main.specialVendingMachine.getFrostingName(itemNumber);
+		        if (curNum == 0) {
+		            itemName = Main.specialVendingMachine.getFirstPart(itemNumber);
+		        } else if (curNum == 1) {
+		            itemName = Main.specialVendingMachine.getSecondPart(itemNumber);
+		        } else if (curNum == 2) {
+		            itemName = Main.specialVendingMachine.getThirdPart(itemNumber);
+		        } else if (curNum == 3) {
+		            itemName = Main.specialVendingMachine.getFourthPart(itemNumber);
+		        }      
+		        if (itemName != null && Main.specialVendingMachine.itemUsedCount(recipe, itemName) < Main.specialVendingMachine.getItemCustom().getItemQuantity().get(itemName)) 
+		            recipe.add(itemName);
+		        int count = 0;
+		        StringBuilder recipes = new StringBuilder();
+		        if(!recipe.isEmpty()) {
+		        	for (int i = 0; i < recipe.size(); i++) {
+			            String item = recipe.get(i);
+			            boolean isProcessed = false;
+
+			            for (int j = 0; j < i; j++) {
+			                if (item.equals(recipe.get(j))) {
+			                    isProcessed = true;
+			                    break;
+			                }
+			            }
+			            if (!isProcessed) {
+			                String name = item;
+			                int quantity = Main.specialVendingMachine.itemUsedCount(recipe, item);
+			                recipes.append(name).append(" - ").append(quantity);
+			                int numSpaces = 15 - name.length() - String.valueOf(quantity).length();
+			                for (int j = 0; j < numSpaces; j++) {
+			                    recipes.append("&nbsp;");
+			                }
+			                count++;
+			                if (count % 2 == 0)
+			                    recipes.append("<br>");
+			            }
+			        }
+
+			        if (count % 2 != 0) {
+			            recipes.append("&nbsp;").append("<br>");
+			        }
+			        Output.setText("<html>Combination - Total Price - " + Double.toString(Main.specialVendingMachine.calculateTotalPrice(recipe)) + "<br>" + recipes.toString() + "</html>");
 		        }
 		        if (itemName != null) {
 		            double itemPrice = Main.specialVendingMachine.getItemCustom().getItemPrice().get(itemName);
 		            priceCode.setText(String.valueOf(itemPrice));
 		        } else {
-		            priceCode.setText("Item not found or invalid set category.");
+		            priceCode.setText("NA");
 		        }
 			}
 		});
@@ -305,24 +348,24 @@ public class Customize extends JFrame {
 		lblNewLabel.setBounds(0, 8, 120, 39);
 		panel_2.add(lblNewLabel);
 		
-		JButton btnC_1 = new JButton("D");
-		btnC_1.addActionListener(new ActionListener() {
+		JButton d = new JButton("D");
+		d.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
 					code.setText(code.getText() + "D");
 			}
 		});
-		btnC_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC_1.setFocusable(false);
-		btnC_1.setBounds(10, 168, 45, 35);
-		panel_2.add(btnC_1);
+		d.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		d.setFocusable(false);
+		d.setBounds(10, 168, 45, 35);
+		panel_2.add(d);
 		
-		JLabel Finish = new JLabel("Choose a cake base");
+		JLabel Finish = new JLabel("Choose " + Main.specialVendingMachine.getParts().get(0));
 		Finish.setToolTipText("");
 		Finish.setHorizontalAlignment(SwingConstants.CENTER);
 		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Finish.setBounds(13, 12, 326, 31);
-		
+		JButton sfour = new JButton("C");
 		JButton addRecipe = new JButton("Add Item");
 		addRecipe.setBounds(10, 383, 103, 39);
 		panel_2.add(addRecipe);
@@ -367,46 +410,53 @@ public class Customize extends JFrame {
 		                itemNumber = 11;
 		                break;
 		            default:
-		                itemNumber = -1;
+		                itemNumber = 0;
 		                break;
 		        }
-
-		        int number;
-		        ArrayList<String> recipe = new ArrayList<>();
-		        for (int i = 0; i < Main.specialVendingMachine.getParts().size(); i++) {
-		            String set = Main.specialVendingMachine.getParts().get(i);
-		            
-		            if (set.equals("Cake Base")) {
-		            	
-		                set = "Topping";
-		            } else if (set.equals("Topping")) {
-		                set = "Filling";
-		            } else if (set.equals("Filling")) {
-		                set = "Frosting";
-		            } else if (set.equals("Frosting")) {
-		                set = "";
-		            }
-		            recipe.add(set);
-		        }
-		        addRecipe.setVisible(false);
-		        lblChange.setVisible(true);
-		        Change.setVisible(true);
-		        panel_3.setVisible(true);
-		        setBounds(100, 100, 510, 568);
-		        setLocationRelativeTo(null);
-		        
-		        itemAdder();
-
-		        if (!set.equals("")) {
-		            Finish.setText("Choose " + set);
-		        } else {
-		            Finish.setText("");
-		        }
+		        code.setText("");
+		        priceCode.setText("");
+	            curNum++;
+		        if (curNum >= 0 && curNum < Main.specialVendingMachine.getParts().size()) {
+		            String set = Main.specialVendingMachine.getParts().get(curNum);
+		            Finish.setText("Choose " + set);   
+		            itemAdder();
+		        }else if (curNum == Main.specialVendingMachine.getParts().size()) {
+		        	priceCode.setText(Double.toString(Main.specialVendingMachine.calculateTotalPrice(recipe)));
+		        		btnEnter.setEnabled(false);
+		        		a.setEnabled(false);
+		        		b.setEnabled(false);
+		        		c.setEnabled(false);
+		        		d.setEnabled(false);
+		        		sone.setEnabled(false);
+		        		stwo.setEnabled(false);
+		        		sthree.setEnabled(false);
+		        		sfour.setEnabled(false);
+		        		Main.specialVendingMachine.addRecipe(recipe, "Created");
+		                curNum = 0;
+		                addRecipe.setVisible(false);
+		                lblChange.setVisible(true);
+		                Change.setVisible(true);
+		                panel_3.setVisible(true);
+		                setBounds(100, 100, 510, 568);
+		                setLocationRelativeTo(null);
+		                Finish.setText("");
+		           }
 		    }
 		});
 
 		addRecipe.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		addRecipe.setFocusable(false);
+		
+		sfour.setFont(new Font("Tahoma", Font.ITALIC, 15));
+		sfour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				code.setText("");
+				priceCode.setText("");
+			}
+		});
+		sfour.setFocusable(false);
+		sfour.setBounds(65, 168, 45, 35);
+		panel_2.add(sfour);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
@@ -418,6 +468,9 @@ public class Customize extends JFrame {
 		JButton customize = new JButton("Buy Individual Products"); 
 		customize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				recipe.clear();
+				items.clear();
+				curNum = 0;
 				dispose();
 				REGULARMACHINE open = new REGULARMACHINE("Special");
 				open.setVisible(true);
@@ -453,14 +506,6 @@ public class Customize extends JFrame {
 		panel.add(lblNewLabel_3);
 		lblNewLabel_3.setBackground(Color.BLACK);
 		lblNewLabel_3.setOpaque(true);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.DARK_GRAY);
-		panel_1.setForeground(Color.DARK_GRAY);
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
-		panel_1.setBounds(41, 339, 79, 71);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
 		
 		JPanel A1 = new JPanel();
 		A1.setBackground(Color.LIGHT_GRAY);
@@ -718,6 +763,9 @@ public class Customize extends JFrame {
 		JButton btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				recipe.clear();
+				items.clear();
+				curNum = 0;
 				dispose();
 			    	TestPage open = new TestPage("Special");
 			    	open.setVisible(true);		
@@ -728,25 +776,14 @@ public class Customize extends JFrame {
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
 		
-		panel.add(Output);
-		Output.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
-                Output.setText("");
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Finish.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-			}
-		});
-		Output.setOpaque(true);
-		Output.setHorizontalAlignment(SwingConstants.CENTER);
-		Output.setForeground(Color.WHITE);
-		Output.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Output.setBackground(Color.DARK_GRAY);
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setForeground(Color.DARK_GRAY);
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
+		panel_1.setBackground(Color.DARK_GRAY);
+		panel_1.setBounds(71, 339, 217, 71);
+		panel.add(panel_1);
+		panel_1.add(Output);
 		
 		JLabel Insert_2 = new JLabel("");
 		Insert_2.setBounds(333, 21, 52, 21);
@@ -777,8 +814,8 @@ public class Customize extends JFrame {
 		JButton btnNewButton_2_4 = new JButton("5");
 		btnNewButton_2_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.regularVendingMachine.getCashBox().addTotalAmount(100);
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				Main.specialVendingMachine.getCashBox().addTotalAmount(100);
+				Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 			}
 		});
 		btnNewButton_2_4.setBounds(395, 45, 85, 21);
@@ -787,8 +824,8 @@ public class Customize extends JFrame {
 		JButton btnNewButton_2_3 = new JButton("10");
 		btnNewButton_2_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.regularVendingMachine.getCashBox().addTotalAmount(10);
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				Main.specialVendingMachine.getCashBox().addTotalAmount(10);
+				Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 			}
 		});
 		btnNewButton_2_3.setBounds(300, 45, 85, 21);
@@ -797,8 +834,8 @@ public class Customize extends JFrame {
 		JButton btnNewButton_2_2 = new JButton("20");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.regularVendingMachine.getCashBox().addTotalAmount(20);
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				Main.specialVendingMachine.getCashBox().addTotalAmount(20);
+				Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 			}
 		});
 		btnNewButton_2_2.setBounds(205, 45, 85, 21);
@@ -807,8 +844,8 @@ public class Customize extends JFrame {
 		JButton btnNewButton_2_1 = new JButton("50");
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.regularVendingMachine.getCashBox().addTotalAmount(50);
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				Main.specialVendingMachine.getCashBox().addTotalAmount(50);
+				Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 			}
 		});
 		btnNewButton_2_1.setBounds(107, 45, 85, 21);
@@ -817,8 +854,8 @@ public class Customize extends JFrame {
 		JButton btnNewButton_2 = new JButton("100");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.regularVendingMachine.getCashBox().addTotalAmount(100);
-				Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
+				Main.specialVendingMachine.getCashBox().addTotalAmount(100);
+				Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 			}
 		});
 		btnNewButton_2.setBounds(10, 45, 85, 21);
@@ -832,6 +869,7 @@ public class Customize extends JFrame {
 		JButton btnC_1_1 = new JButton("BUY");
 		btnC_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Main.specialVendingMachine.prepareProduct(0, Double.parseDouble(Insert.getText()));
 			}
 		});
 		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -861,13 +899,13 @@ public class Customize extends JFrame {
 		Change.setVisible(false);
 		this.setLocationRelativeTo(null);
 	}
-	private static void itemAdder(int number) {
-		int index;
+	private static void itemAdder() {
 		JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
+		int index;
 		for (index = 0; index < 12; index++) {
 		    labels[index].setText("");
 		}
-		if (Main.specialVendingMachine.getParts().get(number).equals("Cake Base")) {
+		if (curNum == 0) {
 			index = 0;
 			for (String cakeBaseName : Main.specialVendingMachine.getFirstPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(cakeBaseName);
@@ -880,7 +918,7 @@ public class Customize extends JFrame {
 			        break;
 			    }
 			}
-		} else if (Main.specialVendingMachine.getParts().get(number).equals("Topping")) {
+		} else if (curNum == 1) {
 			index = 0;
 			for (String ToppingName : Main.specialVendingMachine.getSecondPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(ToppingName);
@@ -893,7 +931,7 @@ public class Customize extends JFrame {
 			        break;
 			    }
 			}
-		} else if (Main.specialVendingMachine.getParts().get(number).equals("Filling")) {
+		} else if (curNum == 2) {
 			index = 0;
 			for (String fillingName : Main.specialVendingMachine.getThirdPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(fillingName);
@@ -906,7 +944,7 @@ public class Customize extends JFrame {
 			        break;
 			    }
 			}
-		} else if (Main.specialVendingMachine.getParts().get(number).equals("Frosting")) {
+		} else if (curNum == 3) {
 			index = 0;
 			for (String FrostingName : Main.specialVendingMachine.getFourthPart()) {
 			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(FrostingName);
@@ -918,8 +956,8 @@ public class Customize extends JFrame {
 			    if (index >= 12) {
 			        break;
 			    }
+			    
 			}
 		}
-		number++;
 	}
 }

@@ -21,13 +21,6 @@ public class CashBox {
         denominations.put(100.0, 0); 
     }
     
-    public void displayDenominations() {
-        for (HashMap.Entry<Double, Integer> denom : denominations.entrySet()) {
-            double denomination = denom.getKey();
-            int quantity = denom.getValue();
-            System.out.println("₱" + denomination + " - Quantity: " + quantity);
-        }
-    }
 
     public void replenishChange(double denomination, int quantity) {
         denominations.put(denomination, denominations.getOrDefault(denomination, 0) + quantity);
@@ -35,7 +28,6 @@ public class CashBox {
 
     public boolean isItemAvailable(Item item, String itemName) {
         if (item.getItemQuantity().getOrDefault(itemName, 0) <= 0) {
-            System.out.println("Item not found in stock.");
             return false;
         }
         return true;
@@ -88,7 +80,6 @@ public class CashBox {
 	            break;
 	        }
 	    }
-	    System.out.print(denominationsSpent);
 	    if (change == 0) {
 	        for (int i = 0; i < availableDenominations.length; i++) {
 	            double denomination = availableDenominations[i];
