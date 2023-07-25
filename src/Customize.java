@@ -2,16 +2,9 @@ import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.EventQueue;
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -42,6 +35,7 @@ public class Customize extends JFrame {
 	                e.printStackTrace();
 	            }
 	        }
+	       
 	    });
 	}
 
@@ -51,7 +45,8 @@ public class Customize extends JFrame {
 	 */
 	public Customize() {	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 510, 533);
+		setBounds(100, 100, 780, 507);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,10 +65,11 @@ public class Customize extends JFrame {
 		Change.setBorder(new LineBorder(new Color(0, 0, 0), 3, true));
 		Change.setBackground(Color.DARK_GRAY);
 		panel_2.add(Change);
+		
 		JLabel CollectChange = new JLabel("");
 		CollectChange.setHorizontalAlignment(SwingConstants.CENTER);
+		CollectChange.setBounds(340, 475, 49, 18);
 		CollectChange.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		CollectChange.setBounds(333, 20, 49, 18);
 		
 		JLabel Output = new JLabel("");
 		Output.setOpaque(true);
@@ -82,30 +78,32 @@ public class Customize extends JFrame {
 		Output.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		Output.setBackground(Color.DARK_GRAY);
 		Output.setBounds(10, 8, 197, 53);
-		
+		JLabel Insert_2 = new JLabel("");
+		Insert_2.setBounds(333, 21, 52, 21);
 		JLabel Insert_1 = new JLabel("");
 		final int[] currentIndex = {0};
 		Insert_1.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent e) {
-		    	    CollectChange.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    currentIndex[0]++;
-		    	    int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
-		    	    if (currentIndex[0] >= 0 && currentIndex[0] < size) {
-		    	        Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    } else {
-		    	        currentIndex[0] = -1; 
-		    	        Insert_1.setText("");
-		    	        Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
-		    	    }
-		    	
-
-		        Timer timer = new Timer(2000, new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                CollectChange.setText("");
+		        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
+		        if (currentIndex[0] == size) {
+		            currentIndex[0] = -1;
+		            Insert_1.setText("");
+		            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
+		        } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
+		        	Insert_2.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+		            currentIndex[0]++;
+		            if (currentIndex[0] < size) {
+		                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
 		            }
-		        });
-		        timer.setRepeats(false); 
-		        timer.start();
+
+		            Timer timer = new Timer(2000, new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    Insert_2.setText("");
+		                }
+		            });
+		            timer.setRepeats(false);
+		            timer.start();
+		        }
 		    }
 		});
 
@@ -785,8 +783,30 @@ public class Customize extends JFrame {
 		panel.add(panel_1);
 		panel_1.add(Output);
 		
-		JLabel Insert_2 = new JLabel("");
-		Insert_2.setBounds(333, 21, 52, 21);
+		JLabel firstPart = new JLabel("");
+		firstPart.setHorizontalAlignment(SwingConstants.CENTER);
+		firstPart.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		firstPart.setBounds(13, 40, 338, 32);
+		panel.add(firstPart);
+		
+		JLabel secondPart = new JLabel("");
+		secondPart.setHorizontalAlignment(SwingConstants.CENTER);
+		secondPart.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		secondPart.setBounds(13, 112, 338, 32);
+		panel.add(secondPart);
+		
+		JLabel thirdPart = new JLabel("");
+		thirdPart.setHorizontalAlignment(SwingConstants.CENTER);
+		thirdPart.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		thirdPart.setBounds(13, 183, 338, 32);
+		panel.add(thirdPart);
+		
+		JLabel fourthPart = new JLabel("");
+		fourthPart.setHorizontalAlignment(SwingConstants.CENTER);
+		fourthPart.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		fourthPart.setBounds(13, 256, 338, 32);
+		panel.add(fourthPart);
+		
 		panel_3.add(Insert_2);
 		Insert_2.setOpaque(true);
 		Insert_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -814,7 +834,7 @@ public class Customize extends JFrame {
 		JButton btnNewButton_2_4 = new JButton("5");
 		btnNewButton_2_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.specialVendingMachine.getCashBox().addTotalAmount(100);
+				Main.specialVendingMachine.getCashBox().addTotalAmount(5);
 				Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
 			}
 		});
@@ -869,8 +889,128 @@ public class Customize extends JFrame {
 		JButton btnC_1_1 = new JButton("BUY");
 		btnC_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.specialVendingMachine.prepareProduct(0, Double.parseDouble(Insert.getText()));
+				if(Insert.getText().equals(""))
+					return;
+				if (Main.specialVendingMachine.prepareProduct(0, Double.parseDouble(Insert.getText())) == true) {
+					A1.setVisible(false);
+					A2.setVisible(false);
+					A3.setVisible(false);
+					B1.setVisible(false);
+					B2.setVisible(false);
+					B3.setVisible(false);
+					C1.setVisible(false);
+					C2.setVisible(false);
+					C3.setVisible(false);
+					D1.setVisible(false);
+					D2.setVisible(false);
+					D3.setVisible(false);	
+					btnC_1_1.setEnabled(false);
+					if (Main.specialVendingMachine.getParts().get(0).equals("Cake Base")) {
+					    firstPart.setText("Creating the Cake Base");
+
+					    Timer timer1 = new Timer(2000, new ActionListener() {
+					        public void actionPerformed(ActionEvent e) {
+					            if (Main.specialVendingMachine.getParts().get(1).equals("Fillings")) {
+					                secondPart.setText("Filling with Irresistible Goodness");
+
+					                Timer timer2 = new Timer(2000, new ActionListener() {
+					                    public void actionPerformed(ActionEvent e) {
+					                        if (Main.specialVendingMachine.getParts().get(2).equals("Frostings")) {
+					                            thirdPart.setText("Layering with Delightful Frostings");
+
+					                            Timer timer3 = new Timer(2000, new ActionListener() {
+					                                public void actionPerformed(ActionEvent e) {
+					                                    if (Main.specialVendingMachine.getParts().get(3).equals("Toppings")) {
+					                                        fourthPart.setText("Adding Delectable Toppings");
+
+					                                        Timer timerClear = new Timer(2000, new ActionListener() {
+					                                            public void actionPerformed(ActionEvent e) {
+					                                                firstPart.setText("");
+					                                                secondPart.setText("");
+					                                                thirdPart.setText("");
+					                                                fourthPart.setText("");
+					                                            }
+					                                        });
+					                                        timerClear.setRepeats(false);
+					                                        timerClear.start();
+					                                    }
+					                                }
+					                            });
+					                            timer3.setRepeats(false);
+					                            timer3.start();
+					                        }
+					                    }
+					                });
+					                timer2.setRepeats(false);
+					                timer2.start();
+					            }
+					        }
+					    });
+					    timer1.setRepeats(false);
+					    timer1.start();
+					}}
+		        Main.specialVendingMachine.getCashBox();
+		        if (Main.specialVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
+		            if (!Main.specialVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
+		                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(0)));
+		            }
+		        } else {
+		            Finish.setText("NOT ENOUGH CHANGE IN MACHINE");
+		        }
+				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
+				    Finish.setText("Insufficient Payment");
+
+				    Timer timer = new Timer(2000, new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				            Finish.setText("");
+				        }
+				    });
+				    timer.setRepeats(false);
+				    timer.start();
+				} else {
+				    Insert.setText("");
+
+				    Timer timer = new Timer(2000, new ActionListener() {
+				        public void actionPerformed(ActionEvent e) {
+				            code.setText("");       
+				            priceCode.setText("");  
+				        }
+				    });
+				    timer.setRepeats(false);
+				    timer.start();
+				}
+			    Timer timer = new Timer(2000, new ActionListener() {
+			        public void actionPerformed(ActionEvent e) {
+			            Finish.setText("");
+			        }
+			    });
+			    timer.setRepeats(false);
+			    timer.start();
 			}
+		});
+		
+		final int[] currentIndex1 = {0};
+		Insert_1.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		    	    CollectChange.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex1[0])));
+		    	    currentIndex1[0]++;
+		    	    int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
+		    	    if (currentIndex1[0] >= 0 && currentIndex1[0] < size) {
+		    	        Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex1[0])));
+		    	    } else {
+		    	        currentIndex1[0] = -1; 
+		    	        Insert_1.setText("");
+		    	        Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
+		    	    }
+
+		        Timer timer = new Timer(2000, new ActionListener() {
+		            public void actionPerformed(ActionEvent e) {
+		                CollectChange.setText("");
+		            }
+		        });
+		        timer.setRepeats(false); 
+		        timer.start();
+		    }
 		});
 		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnC_1_1.setFocusable(false);
@@ -882,82 +1022,41 @@ public class Customize extends JFrame {
 		lblWallet.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblWallet.setBounds(336, 0, 49, 18);
 		panel_3.add(lblWallet);
-		
-		JButton btnNewButton_3_1_1_1 = new JButton("Cancel");
-		btnNewButton_3_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				code.setText("");
-				priceCode.setText("");
-			}
-		});
-		btnNewButton_3_1_1_1.setFocusable(false);
-		btnNewButton_3_1_1_1.setBounds(395, 2, 85, 18);
-		panel_3.add(btnNewButton_3_1_1_1);
 	
 		itemAdder();
 		lblChange.setVisible(false);
 		Change.setVisible(false);
 		this.setLocationRelativeTo(null);
 	}
+	
 	private static void itemAdder() {
-		JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
-		int index;
-		for (index = 0; index < 12; index++) {
-		    labels[index].setText("");
-		}
-		if (curNum == 0) {
-			index = 0;
-			for (String cakeBaseName : Main.specialVendingMachine.getFirstPart()) {
-			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(cakeBaseName);
-			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(cakeBaseName);
+	    int index;
+	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
+	    for (index = 0; index < 12; index++) {
+	        labels[index].setText("");
+	    }
 
-			    labels[index].setText("<html><center>" + quantity + "x - " + cakeBaseName + " ₱" + price + "</center></html>");
-			    index++;
+	    index = 0;
+	        ArrayList<String> partsList;
+	        if (curNum == 0) {
+	            partsList = Main.specialVendingMachine.getFirstPart();
+	        } else if (curNum == 1) {
+	            partsList = Main.specialVendingMachine.getSecondPart();
+	        } else if (curNum == 2) {
+	            partsList = Main.specialVendingMachine.getThirdPart();
+	        } else if (curNum == 3) {
+	            partsList = Main.specialVendingMachine.getFourthPart();
+	        } else {
+	            return;
+	        }
 
-			    if (index >= 12) {
-			        break;
-			    }
-			}
-		} else if (curNum == 1) {
-			index = 0;
-			for (String ToppingName : Main.specialVendingMachine.getSecondPart()) {
-			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(ToppingName);
-			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(ToppingName);
-
-			    labels[index].setText("<html><center>" + quantity + "x - " + ToppingName + " ₱" + price + "</center></html>");
-			    index++;
-
-			    if (index >= 12) {
-			        break;
-			    }
-			}
-		} else if (curNum == 2) {
-			index = 0;
-			for (String fillingName : Main.specialVendingMachine.getThirdPart()) {
-			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(fillingName);
-			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(fillingName);
-
-			    labels[index].setText("<html><center>" + quantity + "x - " + fillingName + " ₱" + price + "</center></html>");
-			    index++;
-
-			    if (index >= 12) {
-			        break;
-			    }
-			}
-		} else if (curNum == 3) {
-			index = 0;
-			for (String FrostingName : Main.specialVendingMachine.getFourthPart()) {
-			    int quantity = Main.specialVendingMachine.getItemCustom().getItemQuantity().get(FrostingName);
-			    double price = Main.specialVendingMachine.getItemCustom().getItemPrice().get(FrostingName);
-
-			    labels[index].setText("<html><center>" + quantity + "x - " + FrostingName + " ₱" + price + "</center></html>");
-			    index++;
-
-			    if (index >= 12) {
-			        break;
-			    }
-			    
-			}
-		}
-	}
+	        for (String item : partsList) {
+	            labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemCustomByName(item).getQuantity() + "x - " + Main.specialVendingMachine.getItemCustomByName(item).getItemName() + " ₱" + Main.specialVendingMachine.getItemCustomByName(item).getPrice() + "</center></html>");
+	            index++;
+	            if (index >= 12) {
+	                break;
+	            }
+	        }
+	    }
+	
 }

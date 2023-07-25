@@ -5,12 +5,14 @@ public class CashBox {
     private HashMap<Double, Integer> denominations;
     private ArrayList<Double> denominationsSpent;
     private double amountPaid = 0.0;
+    private double totalSales;
     
     
     public CashBox() {
         denominations = new HashMap<>();
         denominationsSpent = new ArrayList<>();
         initializeDenominations();
+        totalSales = 0.0;
     }
 
     private void initializeDenominations() {
@@ -26,8 +28,8 @@ public class CashBox {
         denominations.put(denomination, denominations.getOrDefault(denomination, 0) + quantity);
     }
 
-    public boolean isItemAvailable(Item item, String itemName) {
-        if (item.getItemQuantity().getOrDefault(itemName, 0) <= 0) {
+    public boolean isItemAvailable(Item item) {
+        if (item.getQuantity() <= 0) {
             return false;
         }
         return true;
@@ -61,6 +63,31 @@ public class CashBox {
 		this.amountPaid = amountPaid;
 	}
 
+    /**
+     * Returns the total sales.
+     *
+     * @return the total sales.
+     */
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    /**
+     * Sets the total sales amount.
+     *
+     * @param totalSales  the new total sales amount to set.
+     */
+    public void setTotalSales(double totalSales) {
+        this.totalSales = totalSales;
+    }
+    
+    /**
+     * Resets the total sales amount.
+     */
+    public void resetTotalSales() {
+        totalSales = 0.0;
+    }
+    
 	public boolean dispenseChange(double change) {
 	    double[] availableDenominations = {1000.0, 500.0, 200.0, 100.0, 50.0, 20.0, 10.0, 5.0};
 	    int[] quantityOfDenom = new int[availableDenominations.length];
@@ -94,36 +121,51 @@ public class CashBox {
 	    }
 	}
     
-    public boolean receivePayment(Item item, String itemName, double amountPaid) {
-        if (!isItemAvailable(item, itemName)) {
-            return false;
-        }
+	public boolean receivePayment(ArrayList<Item> items, String itemName, double amountPaid) {
+	    Item item = getItemByName(items, itemName);
 
-        double price = item.getItemPrice().getOrDefault(itemName, 0.0);
+	    if (item == null) {
+	        return false; 
+	    }
+	    
+	    if (item.getQuantity() <= 0)
+	    	return false;
+	    double price = item.getPrice();
 
-        if (amountPaid < price) {
-            return false;
-        } else if (amountPaid > price) {
-            double change = amountPaid - price;
-            if(!dispenseChange(change))
-            	return false;
-            item.getItemQuantity().put(itemName, item.getItemQuantity().get(itemName) - 1);
-            item.getItemSold().put(itemName, item.getItemSold().getOrDefault(itemName, 0) + 1);
-            item.setTotalSales(item.getTotalSales() + price);
+	    if (amountPaid < price) {
+	        return false; 
+	    } else if (amountPaid > price) {
+	        double change = amountPaid - price;
+	        if (!dispenseChange(change)) {
+	            return false; 
+	        }
+	        item.setQuantity(item.getQuantity() - 1);
+	        item.setSold(item.getSold() + 1);
 
-            System.out.println("Dispensing " + itemName);
-            System.out.println("Change: ₱" + (amountPaid - price));
-            return true;
-        } else {
-            int calories = item.getItemCalories().getOrDefault(itemName, 0);
-            item.getItemQuantity().put(itemName, item.getItemQuantity().get(itemName) - 1);
-            item.getItemSold().put(itemName, item.getItemSold().getOrDefault(itemName, 0) + 1);
-            item.setTotalSales(item.getTotalSales() + price);
+	        System.out.println("Dispensing " + itemName);
+	        System.out.println("Change: ₱" + (amountPaid - price));
+	        setTotalSales(getTotalSales() + price);
+	        return true;
+	    } else {
+	        int calories = item.getCalories();
+	        item.setQuantity(item.getQuantity() - 1);
+	        item.setSold(item.getSold() + 1);
 
-            System.out.println("Dispensing " + itemName + " - Calories: " + calories);
-            return true;
-        }
-    }	
+	        System.out.println("Dispensing " + itemName + " - Calories: " + calories);
+	        setTotalSales(getTotalSales() + price);
+	        return true;
+	    }
+	}
+
+	private Item getItemByName(ArrayList<Item> items, String itemName) {
+	    for (Item item : items) {
+	        if (item.getItemName().equals(itemName)) {
+	            return item;
+	        }
+	    }
+	    return null; 
+	}
+
 
     public ArrayList<Double> getDenominationsSpent() {
 		return denominationsSpent;
@@ -132,13 +174,4 @@ public class CashBox {
 	public void setDenominationsSpent(ArrayList<Double> denominationsSpent) {
 		this.denominationsSpent = denominationsSpent;
 	}
-
-	public void printReceipt(Item item) {
-        System.out.println("Receipt:");
-        for (String itemName : item.getItemSold().keySet()) {
-            int quantitySold = item.getItemSold().get(itemName);
-            System.out.println(itemName + " - Quantity Sold: " + quantitySold);
-        }
-        System.out.println("Total Sales: ₱" + item.getTotalSales());
-    }
 }
