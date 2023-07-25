@@ -22,6 +22,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     public SpecialVendingMachine() {
         super();
+        Main.specialCashBox = new CashBox();
         itemSellableSlots = new ArrayList<>();
         itemCustomSlots = new ArrayList<>();
         recipes = new ArrayList<>();
@@ -288,6 +289,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
     }
 
     public CashBox getCashBox() {
-        return Main.regularCashBox;
+        return Main.specialCashBox;
     }
 }

@@ -176,32 +176,27 @@ public class MaintenancePage extends JFrame {
 		b5.setVisible(false);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	Main.regularVendingMachine.getCashBox().replenishChange(5.0, 1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			    	Main.specialVendingMachine.getCashBox().replenishChange(5.0, 1);
-			    }	
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
-			    	    double denomination = denom.getKey();
-			    	    int quantity = denom.getValue();
-			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null ) {
-			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	    double denomination = denom1.getKey();
-				    	    int quantity = denom1.getValue();
-				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-				    	}
-				    	allDenoms.append("</html>");
-				    	Change.setText(allDenoms.toString());
-			        }
-			    }	
+				if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+				    Main.regularVendingMachine.getCashBox().getMoney()[0].replenish(1); 
+				} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+				    Main.specialVendingMachine.getCashBox().getMoney()[0].replenish(1); 
+				}
+
+				if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+				    StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
+				        allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+				    }
+				    allDenoms.append("</html>");
+				    Change.setText(allDenoms.toString());
+				} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+				    StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+				    for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
+				        allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+				    }
+				    allDenoms.append("</html>");
+				    Change.setText(allDenoms.toString());
+				}
 			}
 		});
 		
@@ -220,31 +215,26 @@ public class MaintenancePage extends JFrame {
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	Main.regularVendingMachine.getCashBox().replenishChange(10.0, 1);
+			        Main.regularVendingMachine.getCashBox().getMoney()[1].replenish(1);
 			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			    	Main.specialVendingMachine.getCashBox().replenishChange(10.0, 1);
-			    }			
+			        Main.specialVendingMachine.getCashBox().getMoney()[1].replenish(1); 
+			    }
+
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
-			    	    double denomination = denom.getKey();
-			    	    int quantity = denom.getValue();
-			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	    double denomination = denom1.getKey();
-				    	    int quantity = denom1.getValue();
-				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-				    	}
-				    	allDenoms.append("</html>");
-				    	Change.setText(allDenoms.toString());
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
 			        }
-			    }	
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+			        }
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    }
 			}
 		});
 		b4.setBounds(78, 372, 85, 21);
@@ -255,31 +245,26 @@ public class MaintenancePage extends JFrame {
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	Main.regularVendingMachine.getCashBox().replenishChange(20.0, 1);
+			        Main.regularVendingMachine.getCashBox().getMoney()[2].replenish(1);
 			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			    	Main.specialVendingMachine.getCashBox().replenishChange(20.0, 1);
-			    }			
+			        Main.specialVendingMachine.getCashBox().getMoney()[2].replenish(1); 
+			    }
+
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
-			    	    double denomination = denom.getKey();
-			    	    int quantity = denom.getValue();
-			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	    double denomination = denom1.getKey();
-				    	    int quantity = denom1.getValue();
-				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-				    	}
-				    	allDenoms.append("</html>");
-				    	Change.setText(allDenoms.toString());
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
 			        }
-			    }	
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+			        }
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    }
 			}
 		});
 		b3.setBounds(224, 335, 85, 21);
@@ -290,31 +275,26 @@ public class MaintenancePage extends JFrame {
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	Main.regularVendingMachine.getCashBox().replenishChange(50.0, 1);
+			        Main.regularVendingMachine.getCashBox().getMoney()[3].replenish(1);
 			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			    	Main.specialVendingMachine.getCashBox().replenishChange(50.0, 1);
-			    }		
+			        Main.specialVendingMachine.getCashBox().getMoney()[3].replenish(1); 
+			    }
+
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
-			    	    double denomination = denom.getKey();
-			    	    int quantity = denom.getValue();
-			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	    double denomination = denom1.getKey();
-				    	    int quantity = denom1.getValue();
-				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-				    	}
-				    	allDenoms.append("</html>");
-				    	Change.setText(allDenoms.toString());
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
 			        }
-			    }	
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+			        }
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    }
 			}
 		});
 		b2.setBounds(129, 335, 85, 21);
@@ -325,31 +305,26 @@ public class MaintenancePage extends JFrame {
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	Main.regularVendingMachine.getCashBox().replenishChange(100.0, 1);
+			        Main.regularVendingMachine.getCashBox().getMoney()[4].replenish(1);
 			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			    	Main.specialVendingMachine.getCashBox().replenishChange(100.0, 1);
-			    }			
+			        Main.specialVendingMachine.getCashBox().getMoney()[4].replenish(1); 
+			    }
+
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
-			    	    double denomination = denom.getKey();
-			    	    int quantity = denom.getValue();
-			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	    double denomination = denom1.getKey();
-				    	    int quantity = denom1.getValue();
-				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-				    	}
-				    	allDenoms.append("</html>");
-				    	Change.setText(allDenoms.toString());
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
 			        }
-			    }	
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+			        }
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    }
 			}
 		});
 		b1.setBounds(34, 335, 85, 21);
@@ -808,25 +783,19 @@ public class MaintenancePage extends JFrame {
 			    Receipt.setVisible(false);
 			    Change.setVisible(true);
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
-			    	    double denomination = denom.getKey();
-			    	    int quantity = denom.getValue();
-			    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-			    	}
-			    	allDenoms.append("</html>");
-			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
-				    	    double denomination = denom1.getKey();
-				    	    int quantity = denom1.getValue();
-				    	    allDenoms.append("₱").append(denomination).append(" - Quantity: ").append(quantity).append("<br>");
-				    	}
-				    	allDenoms.append("</html>");
-				    	Change.setText(allDenoms.toString());
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
 			        }
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
+			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
+			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
+			        }
+			        allDenoms.append("</html>");
+			        Change.setText(allDenoms.toString());
 			    }
 				name.setVisible(false);
 				namefield.setVisible(false);

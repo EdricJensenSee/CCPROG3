@@ -49,17 +49,25 @@ public class Main {
         //Main.specialVendingMachine.getCashBox().addTotalAmount(100);
         //Main.specialVendingMachine.getCashBox().resetAmountPaid();
 
-  
-        
-        specialVendingMachine.getCashBox().replenishChange(5.0, 100);
-    	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);
+ 
+     specialVendingMachine.getCashBox().getMoney()[0].replenish(100); 
+     specialVendingMachine.getCashBox().getMoney()[1].replenish(1);   
+     specialVendingMachine.getCashBox().getMoney()[2].replenish(1);   
+     specialVendingMachine.getCashBox().getMoney()[3].replenish(1);  
+     specialVendingMachine.getCashBox().getMoney()[4].replenish(1);  
+
+     regularVendingMachine.getCashBox().getMoney()[0].replenish(1);   
+     regularVendingMachine.getCashBox().getMoney()[1].replenish(1);   
+     regularVendingMachine.getCashBox().getMoney()[2].replenish(1);   
+     regularVendingMachine.getCashBox().getMoney()[3].replenish(1);  
+     regularVendingMachine.getCashBox().getMoney()[4].replenish(1);   
+//regularVendingMachine.getCashBox().receivePayment(regularVendingMachine.getItemSlots(), regularVendingMachine.getItemSlots().get(0).getItemName(), 150);
+if (regularVendingMachine.getCashBox().getMoney() != null) {
+    for (Money m : regularVendingMachine.getCashBox().getMoney()) {
+        System.out.println(m.getType() + " - " + m.getQuantity());
+}}
     	MAINPAGE open = new MAINPAGE();
-    open.setVisible(true);
+   open.setVisible(true);
     }
 }
 
