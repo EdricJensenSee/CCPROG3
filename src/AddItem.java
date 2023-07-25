@@ -544,7 +544,6 @@ public class AddItem extends JFrame {
 	        } else {
 	            return;
 	        }
-
 	        for (String item : partsList) {
 	            labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemCustomByName(item).getQuantity() + "x - " + Main.specialVendingMachine.getItemCustomByName(item).getItemName() + " ₱" + Main.specialVendingMachine.getItemCustomByName(item).getPrice() + "</center></html>");
 	            index++;

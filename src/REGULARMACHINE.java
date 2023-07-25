@@ -15,6 +15,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
 
@@ -25,7 +26,6 @@ public class REGULARMACHINE extends JFrame {
 	private JLabel code;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
-	private boolean modes = true;
 	/**
 	 * Launch the application.
 	 */
@@ -206,21 +206,6 @@ public class REGULARMACHINE extends JFrame {
 		code.setBounds(27, 271, 70, 35);
 		panel_2.add(code);
 		
-		if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		    int number = 0; 
-		    for (String key : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-		        Main.regularVendingMachine.getItemNumbers().put(number, key);
-		        number++;
-		    }
-		} 
-		if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-		    int number = 0; 
-		    for (String key : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
-		        Main.specialVendingMachine.getItemNumbers().put(number, key);
-		        number++;
-		    }
-		} 
-
 		JLabel priceCode = new JLabel("");
 		priceCode.setOpaque(true);
 		priceCode.setHorizontalAlignment(SwingConstants.CENTER);
@@ -272,12 +257,12 @@ public class REGULARMACHINE extends JFrame {
 			            itemNumber = 11;
 			    }
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null)
-			    	if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) != null) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber))));
+			    	if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice()));
 			    	else;
 			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
-			    	if (Main.specialVendingMachine.getItemSellable().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) 
-			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItemSellable().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber))));
+			    	if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) 
+			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice()));
 			}
 		});
 		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -636,11 +621,11 @@ public class REGULARMACHINE extends JFrame {
 		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
 			    	Main.regularVendingMachine.getCashBox().resetAmountPaid();
 			    	TestPage open = new TestPage("Regular");
 			    	open.setVisible(true);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null) {
 			    	Main.specialVendingMachine.getCashBox().resetAmountPaid();
 			    	TestPage open = new TestPage("Special");
 			    	open.setVisible(true);
@@ -831,10 +816,10 @@ public class REGULARMACHINE extends JFrame {
 							   
 
 				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				        if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(itemNumber))) {
-				            if (Main.regularVendingMachine.getItem().getItemPrice().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) != null) {
-				                if (Main.regularVendingMachine.getCashBox().receivePayment(Main.regularVendingMachine.getItem(), Main.regularVendingMachine.getItemNumbers().get(itemNumber), Double.parseDouble(Insert.getText()))) {
-				                    Output.setText(Main.regularVendingMachine.getItemNumbers().get(itemNumber));
+				        if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItemSlots().get(itemNumber))) {
+				            if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) {
+				                if (Main.regularVendingMachine.getCashBox().receivePayment(Main.regularVendingMachine.getItemSlots(), Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName(), Double.parseDouble(Insert.getText()))) {
+				                    Output.setText(Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName());
 				                } else {
 				                }
 				            } else {
@@ -843,10 +828,10 @@ public class REGULARMACHINE extends JFrame {
 				            Finish.setText("Item not found in stock");
 				        }
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemSellable(), Main.specialVendingMachine.getItemNumbers().get(itemNumber))) {
-				            if (Main.specialVendingMachine.getItemSellable().getItemPrice().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) != null) {
-				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemSellable(), Main.specialVendingMachine.getItemNumbers().get(itemNumber), Double.parseDouble(Insert.getText()))) {
-				                    Output.setText(Main.specialVendingMachine.getItemNumbers().get(itemNumber));
+				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber))) {
+				            if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) {
+				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemSellable(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName(), Double.parseDouble(Insert.getText()))) {
+				                    Output.setText(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName());
 				                } else {
 				                }
 				            } else {
@@ -962,21 +947,19 @@ public class REGULARMACHINE extends JFrame {
 	    }
 
 	    index = 0;
-	    
-	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-	        for (String itemName : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.regularVendingMachine.getItem().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.regularVendingMachine.getItem().getItemPrice().get(itemName) + "</center></html>");
-	        	
+
+	    if (machineType.equals("Regular") && Main.regularVendingMachine != null && !Main.regularVendingMachine.getItemSlots().isEmpty()) {
+	        for (Item item : Main.regularVendingMachine.getItemSlots()) {
+	            labels[index].setText("<html><center>" + item.getQuantity() + "x - " + item.getItemName() + " ₱" + item.getPrice() + "</center></html>");
 	            index++;
 	            if (index >= 12) {
 	                break;
 	            }
 	        }
 	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellable() != null) {
-	        for (String itemName : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
-	        	labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemSellable().getItemQuantity().get(itemName)+ "x - " + itemName + " ₱" +  Main.specialVendingMachine.getItemSellable().getItemPrice().get(itemName) + "</center></html>");
+	        for (Item item : Main.specialVendingMachine.getItemSellable()) {
+	            labels[index].setText("<html><center>" + item.getQuantity() + "x - " + item.getItemName() + " ₱" + item.getPrice() + "</center></html>");
 	            index++;
-
 	            if (index >= 12) {
 	                break;
 	            }

@@ -213,11 +213,6 @@ public class Customize extends JFrame {
 		code.setBackground(Color.DARK_GRAY);
 		code.setBounds(27, 271, 70, 35);
 		panel_2.add(code);
-		int number = 0;
-		    for (String key : Main.specialVendingMachine.getItem().getItemQuantity().keySet()) {
-		        Main.specialVendingMachine.getItemNumbers().put(number, key);
-		        number++;
-		    }
 
 		JLabel priceCode = new JLabel("");
 		priceCode.setOpaque(true);
@@ -285,15 +280,15 @@ public class Customize extends JFrame {
 			    }
 		        String itemName = "";
 		        if (curNum == 0) {
-		            itemName = Main.specialVendingMachine.getFirstPart(itemNumber);
+		            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
 		        } else if (curNum == 1) {
-		            itemName = Main.specialVendingMachine.getSecondPart(itemNumber);
+		            itemName = Main.specialVendingMachine.getSecondPartName(itemNumber);
 		        } else if (curNum == 2) {
-		            itemName = Main.specialVendingMachine.getThirdPart(itemNumber);
+		            itemName = Main.specialVendingMachine.getThirdPartName(itemNumber);
 		        } else if (curNum == 3) {
-		            itemName = Main.specialVendingMachine.getFourthPart(itemNumber);
+		            itemName = Main.specialVendingMachine.getFourthPartName(itemNumber);
 		        }      
-		        if (itemName != null && Main.specialVendingMachine.itemUsedCount(recipe, itemName) < Main.specialVendingMachine.getItemCustom().getItemQuantity().get(itemName)) 
+		        if (itemName != null && Main.specialVendingMachine.itemUsedCount(recipe, itemName) < Main.specialVendingMachine.getItemCustomByName(itemName).getQuantity())
 		            recipe.add(itemName);
 		        int count = 0;
 		        StringBuilder recipes = new StringBuilder();
@@ -328,7 +323,7 @@ public class Customize extends JFrame {
 			        Output.setText("<html>Combination - Total Price - " + Double.toString(Main.specialVendingMachine.calculateTotalPrice(recipe)) + "<br>" + recipes.toString() + "</html>");
 		        }
 		        if (itemName != null) {
-		            double itemPrice = Main.specialVendingMachine.getItemCustom().getItemPrice().get(itemName);
+		            double itemPrice = Main.specialVendingMachine.getItemCustomByName(itemName).getPrice();
 		            priceCode.setText(String.valueOf(itemPrice));
 		        } else {
 		            priceCode.setText("NA");
@@ -1038,7 +1033,7 @@ public class Customize extends JFrame {
 
 	    index = 0;
 	        ArrayList<String> partsList;
-	        if (curNum == 0) {
+	        if (curNum == 0 && !Main.specialVendingMachine.getParts().isEmpty()) {
 	            partsList = Main.specialVendingMachine.getFirstPart();
 	        } else if (curNum == 1) {
 	            partsList = Main.specialVendingMachine.getSecondPart();

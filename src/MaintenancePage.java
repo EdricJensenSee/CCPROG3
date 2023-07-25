@@ -60,18 +60,7 @@ public class MaintenancePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		int number = 0;
-
-		if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		    for (String key : Main.regularVendingMachine.getItem().getItemQuantity().keySet()) {
-		        Main.regularVendingMachine.getItemNumbers().put(number, key);
-		        number++;
-		    }
-		} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-		    for (String key : Main.specialVendingMachine.getItemSellable().getItemQuantity().keySet()) {
-		        Main.specialVendingMachine.getItemNumbers().put(number, key);
-		        number++;
-		    }
-		}
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBorder(new LineBorder(new Color(255, 0, 0), 5, true));
@@ -113,9 +102,9 @@ public class MaintenancePage extends JFrame {
 			    }
 		        if (btnAdd.getText().equals("Add Item")) {
 		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		                Main.regularVendingMachine.getItem().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		                Main.regularVendingMachine.addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
 		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == false) {
-		                Main.specialVendingMachine.getItemSellable().addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
+		                Main.specialVendingMachine.addSellableItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
 		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
 		            	if (CurNum == 0) {
 		            		Main.specialVendingMachine.addFirstPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
@@ -128,35 +117,34 @@ public class MaintenancePage extends JFrame {
 		            	}
 		            }
 		        } else if (btnAdd.getText().equals("Restock")) {
-				    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-				    	Main.regularVendingMachine.getItem().setItemQuantity(Main.regularVendingMachine.getItemNumbers().get(itemNumber),Main.regularVendingMachine.getItem().getItemQuantity().get(Main.regularVendingMachine.getItemNumbers().get(itemNumber)) + 1);
-				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == false) {
-				    	Main.specialVendingMachine.getItemSellable().setItemQuantity(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Main.specialVendingMachine.getItemSellable().getItemQuantity().get(Main.specialVendingMachine.getItemNumbers().get(itemNumber)) + 1);
+				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+				    	Main.regularVendingMachine.getItem(itemNumber).setQuantity(Main.regularVendingMachine.getItem(itemNumber).getQuantity() + 1);
+				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && customize == false) {
+				    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setQuantity(Main.specialVendingMachine.getItemSellable().get(itemNumber).getQuantity() + 1);
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
 		            	if (CurNum == 0) {
-		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getFirstPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getFirstPart(itemNumber)) + 1);
+		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).getQuantity() + 1);
 		            	} else if (CurNum == 1) {
-		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getSecondPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getSecondPart(itemNumber)) + 1);
+		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getSecondPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getSecondPartName(itemNumber)).getQuantity() + 1);
 		            	} else if (CurNum == 2) {
-		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getThirdPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getThirdPart(itemNumber)) + 1);
+		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getThirdPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getThirdPartName(itemNumber)).getQuantity() + 1);
 		            	} else if (CurNum == 3) {
-		            		Main.specialVendingMachine.getItemCustom().setItemQuantity(Main.specialVendingMachine.getFourthPart(itemNumber), Main.specialVendingMachine.getItemCustom().getItemQuantity().get(Main.specialVendingMachine.getFourthPart(itemNumber)) + 1);
-		            	}
+		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).getQuantity() + 1);		            	}
 		            }	
 		        } else if (btnAdd.getText().equals("Change")){
-		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-					    	Main.regularVendingMachine.getItem().setItemPrice(Main.regularVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
-					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null && customize == false) {
-					    	Main.specialVendingMachine.getItemSellable().setItemPrice(Main.specialVendingMachine.getItemNumbers().get(itemNumber),Double.parseDouble(pricefield.getText()));
+		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+		        		 Main.regularVendingMachine.getItem(itemNumber).setPrice(Double.parseDouble(pricefield.getText()));
+					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && customize == false) {
+					    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setPrice(Double.parseDouble(pricefield.getText()));
 					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
 			            	if (CurNum == 0) {
-			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getFirstPart(itemNumber), Double.parseDouble(pricefield.getText()));
+			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
 			            	} else if (CurNum == 1) {
-			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getSecondPart(itemNumber), Double.parseDouble(pricefield.getText()));
+			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getSecondPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
 			            	} else if (CurNum == 2) {
-			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getThirdPart(itemNumber),Double.parseDouble(pricefield.getText()));
+			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getThirdPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
 			            	} else if (CurNum == 3) {
-			            		Main.specialVendingMachine.getItemCustom().setItemPrice(Main.specialVendingMachine.getFourthPart(itemNumber), Double.parseDouble(pricefield.getText()));
+			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
 			            	}
 			            }		
 		        }
@@ -188,12 +176,12 @@ public class MaintenancePage extends JFrame {
 		b5.setVisible(false);
 		b5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	Main.regularVendingMachine.getCashBox().replenishChange(5.0, 1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			    	Main.specialVendingMachine.getCashBox().replenishChange(5.0, 1);
 			    }	
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
 			    	    double denomination = denom.getKey();
@@ -202,7 +190,7 @@ public class MaintenancePage extends JFrame {
 			    	}
 			    	allDenoms.append("</html>");
 			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null ) {
 			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
 				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
@@ -231,12 +219,12 @@ public class MaintenancePage extends JFrame {
 		b4.setVisible(false);
 		b4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	Main.regularVendingMachine.getCashBox().replenishChange(10.0, 1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			    	Main.specialVendingMachine.getCashBox().replenishChange(10.0, 1);
 			    }			
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
 			    	    double denomination = denom.getKey();
@@ -245,7 +233,7 @@ public class MaintenancePage extends JFrame {
 			    	}
 			    	allDenoms.append("</html>");
 			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
 				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
@@ -266,12 +254,12 @@ public class MaintenancePage extends JFrame {
 		b3.setVisible(false);
 		b3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	Main.regularVendingMachine.getCashBox().replenishChange(20.0, 1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			    	Main.specialVendingMachine.getCashBox().replenishChange(20.0, 1);
 			    }			
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
 			    	    double denomination = denom.getKey();
@@ -280,7 +268,7 @@ public class MaintenancePage extends JFrame {
 			    	}
 			    	allDenoms.append("</html>");
 			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
 				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
@@ -301,12 +289,12 @@ public class MaintenancePage extends JFrame {
 		b2.setVisible(false);
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	Main.regularVendingMachine.getCashBox().replenishChange(50.0, 1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			    	Main.specialVendingMachine.getCashBox().replenishChange(50.0, 1);
 			    }		
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
 			    	    double denomination = denom.getKey();
@@ -315,7 +303,7 @@ public class MaintenancePage extends JFrame {
 			    	}
 			    	allDenoms.append("</html>");
 			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
 				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
@@ -336,12 +324,12 @@ public class MaintenancePage extends JFrame {
 		b1.setVisible(false);
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	Main.regularVendingMachine.getCashBox().replenishChange(100.0, 1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			    	Main.specialVendingMachine.getCashBox().replenishChange(100.0, 1);
 			    }			
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
 			    	    double denomination = denom.getKey();
@@ -350,7 +338,7 @@ public class MaintenancePage extends JFrame {
 			    	}
 			    	allDenoms.append("</html>");
 			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
 				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
@@ -750,12 +738,17 @@ public class MaintenancePage extends JFrame {
 			    for (int i = 0; i < 5; i++) {
 			        buttons[i].setVisible(false);
 			    }			 
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-			    	Main.regularVendingMachine.getItem().resetTotalSales();
-			    	Main.regularVendingMachine.getItem().resetItemSold();
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-			    	Main.specialVendingMachine.getItem().resetTotalSales();
-			    	Main.specialVendingMachine.getItem().resetItemSold();
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+			    	Main.regularVendingMachine.getCashBox().resetTotalSales();
+			    	for (Item item : Main.regularVendingMachine.getItemSlots()) {
+			    		item.setSold(0);
+			    	}
+			    	
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null ) {
+			    	Main.specialVendingMachine.getCashBox().resetTotalSales();
+			    	for (Item item : Main.specialVendingMachine.getItemSlots()) {
+			    		item.setSold(0);
+			    	}
 			    }		
 			    Change.setVisible(false);
 				name.setText("Item Code");
@@ -814,7 +807,7 @@ public class MaintenancePage extends JFrame {
 			    }
 			    Receipt.setVisible(false);
 			    Change.setVisible(true);
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			    	for (HashMap.Entry<Double, Integer> denom : Main.regularVendingMachine.getCashBox().getDenominations().entrySet()) {
 			    	    double denomination = denom.getKey();
@@ -823,7 +816,7 @@ public class MaintenancePage extends JFrame {
 			    	}
 			    	allDenoms.append("</html>");
 			    	Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 			        for (HashMap.Entry<Double, Integer> denom : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
 				    	StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 				    	for (HashMap.Entry<Double, Integer> denom1 : Main.specialVendingMachine.getCashBox().getDenominations().entrySet()) {
@@ -852,67 +845,62 @@ public class MaintenancePage extends JFrame {
 		
 		JButton btnNewButton_1_2_1_1 = new JButton("Receipt");
 		btnNewButton_1_2_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Receipt.setVisible(true);
-			    JButton[] buttons = { b1, b2, b3, b4, b5};
-			    for (int i = 0; i < 5; i++) {
-			        buttons[i].setVisible(false);
-			    }
-				name.setVisible(false);
-				namefield.setVisible(false);
-				cal.setVisible(false);
-				calfield.setVisible(false);
-				qty.setVisible(false);
-				qtyfield.setVisible(false);
-				price.setVisible(false);
-				pricefield.setVisible(false);
-				btnAdd.setVisible(false);
-				Change.setVisible(false);		            
-				if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItem() != null) {
-				    StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - " + Main.regularVendingMachine.getItem().getTotalSales()  + "<br>");
-				    int count = 0;
+		    public void actionPerformed(ActionEvent e) {
+		        Receipt.setVisible(true);
+		        JButton[] buttons = { b1, b2, b3, b4, b5 };
+		        for (int i = 0; i < 5; i++) {
+		            buttons[i].setVisible(false);
+		        }
+		        name.setVisible(false);
+		        namefield.setVisible(false);
+		        cal.setVisible(false);
+		        calfield.setVisible(false);
+		        qty.setVisible(false);
+		        qtyfield.setVisible(false);
+		        price.setVisible(false);
+		        pricefield.setVisible(false);
+		        btnAdd.setVisible(false);
+		        Change.setVisible(false);
 
-				    for (String itemName : Main.regularVendingMachine.getItem().getItemSold().keySet()) {
-				        int quantitySold = Main.regularVendingMachine.getItem().getItemSold().get(itemName);
-				        allDenoms.append(itemName).append(" - ").append(quantitySold);
+		        StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - ");
+		        double totalEarnings = 0;
 
-				        int numSpaces = 25 - itemName.length() - String.valueOf(quantitySold).length();
-				        for (int i = 0; i < numSpaces; i++) {
-				            allDenoms.append("&nbsp;");
-				        }
+		        ArrayList<Item> itemsSlots = null;
 
-				        count++;
-				        if (count % 2 == 0) {
-				            allDenoms.append("<br>");
-				        }
-				    }
+		        if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
+		            itemsSlots = Main.regularVendingMachine.getItemSlots();
+		            totalEarnings = Main.regularVendingMachine.getCashBox().getTotalSales();
+		        } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustomSlots() != null) {
+		            itemsSlots = Main.specialVendingMachine.getItemCustomSlots();
+		            totalEarnings = Main.specialVendingMachine.getCashBox().getTotalSales();
+		        }
 
-				    allDenoms.append("</html>");
-				    Receipt.setText(allDenoms.toString());
-				} else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItem() != null) {
-					StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - " + Main.specialVendingMachine.getItem().getTotalSales()  + "<br>");
-				    int count = 0;
+		        allDenoms.append(totalEarnings).append("<br>");
+		        int count = 0;
 
-				    for (String itemName : Main.specialVendingMachine.getItem().getItemSold().keySet()) {
-				        int quantitySold = Main.specialVendingMachine.getItem().getItemSold().get(itemName);
-				        allDenoms.append(itemName).append(" - ").append(quantitySold);
+		        if (itemsSlots != null) {
+		            for (Item item : itemsSlots) {
+		                String itemName = item.getItemName();
+		                int quantitySold = item.getSold();
+		                allDenoms.append(itemName).append(" - ").append(quantitySold);
 
-				        int numSpaces = 25 - itemName.length() - String.valueOf(quantitySold).length();
-				        for (int i = 0; i < numSpaces; i++) {
-				            allDenoms.append("&nbsp;");
-				        }
+		                int numSpaces = 25 - itemName.length() - String.valueOf(quantitySold).length();
+		                for (int i = 0; i < numSpaces; i++) {
+		                    allDenoms.append("&nbsp;");
+		                }
 
-				        count++;
-				        if (count % 2 == 0) {
-				            allDenoms.append("<br>");
-				        }
-				    }
-
-				    allDenoms.append("</html>");
-				    Receipt.setText(allDenoms.toString());
-				}
-			}
+		                count++;
+		                if (count % 2 == 0) {
+		                    allDenoms.append("<br>");
+		                }
+		            }
+		        }
+		        allDenoms.append("</html>");
+		        Receipt.setText(allDenoms.toString());
+		    }
 		});
+
+
 		btnNewButton_1_2_1_1.setFocusable(false);
 		btnNewButton_1_2_1_1.setBounds(10, 265, 100, 41);
 		panel_2.add(btnNewButton_1_2_1_1);

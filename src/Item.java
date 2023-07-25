@@ -33,7 +33,9 @@ class Item {
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        if (quantity >= 0 && quantity <= 10) {
+            this.quantity = quantity;
+        }
     }
 
     public double getPrice() {

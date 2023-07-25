@@ -17,7 +17,7 @@ class RegularVendingMachine {
     protected int count;
     protected HashMap<Integer, String> itemNumbers;
     
-    private Item getItembyName(String itemName) {
+    public Item getItembyName(String itemName) {
         for (Item item : itemSlots) {
             if (item.getItemName().equals(itemName)) {
                 return item;

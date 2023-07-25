@@ -26,6 +26,11 @@ class SpecialVendingMachine extends RegularVendingMachine {
         itemCustomSlots = new ArrayList<>();
         recipes = new ArrayList<>();
         recipeNames = new ArrayList<>();
+        Parts = new ArrayList<>();
+        firstPart = new ArrayList<>();
+        secondPart = new ArrayList<>();
+        thirdPart = new ArrayList<>();
+        fourthPart = new ArrayList<>(); 
     }
 
     public boolean addSellableItem(String itemName, int quantity, double price, int calories) {
@@ -40,7 +45,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         itemNumbers.put(count, itemName);
         return true;
     }
-    
+        
     public boolean addCustomItem(String itemName, int quantity, double price, int calories) {
         if (quantity <= 0 || quantity > 10 || totalUnique >= 12) {
             return false;
@@ -173,6 +178,14 @@ class SpecialVendingMachine extends RegularVendingMachine {
             totalCalories += itemCustomSlots.get(index).getCalories();
         }
         return totalCalories;
+    }
+    
+    public double calculateTotalPrice(ArrayList<String> recipe) {
+        double totalPrice = 0;
+        for (int index = 0; index < recipe.size(); index++) {
+            totalPrice += itemCustomSlots.get(index).getPrice();
+        }
+        return totalPrice;
     }
 
     public ArrayList<Item> getItemSellableSlots() {

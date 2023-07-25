@@ -123,7 +123,6 @@ public class CashBox {
     
 	public boolean receivePayment(ArrayList<Item> items, String itemName, double amountPaid) {
 	    Item item = getItemByName(items, itemName);
-
 	    if (item == null) {
 	        return false; 
 	    }
@@ -141,7 +140,6 @@ public class CashBox {
 	        }
 	        item.setQuantity(item.getQuantity() - 1);
 	        item.setSold(item.getSold() + 1);
-
 	        System.out.println("Dispensing " + itemName);
 	        System.out.println("Change: ₱" + (amountPaid - price));
 	        setTotalSales(getTotalSales() + price);
@@ -150,7 +148,6 @@ public class CashBox {
 	        int calories = item.getCalories();
 	        item.setQuantity(item.getQuantity() - 1);
 	        item.setSold(item.getSold() + 1);
-
 	        System.out.println("Dispensing " + itemName + " - Calories: " + calories);
 	        setTotalSales(getTotalSales() + price);
 	        return true;

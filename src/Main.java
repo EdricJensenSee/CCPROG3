@@ -29,25 +29,17 @@ public class Main {
         regularVendingMachine.addItem("Blueberry Muffin", 10, 30, 190);
         regularVendingMachine.addItem("Banana Muffin", 4, 30, 210);
 
-        System.out.println(regularVendingMachine.getItem(0).getQuantity());
-
-        System.out.println(regularVendingMachine.getItem(0).getSold());
-        System.out.println(regularVendingMachine.getCashBox().receivePayment(regularVendingMachine.getItemSlots(), regularVendingMachine.getItem(0).getItemName(), 80));
-        System.out.println(regularVendingMachine.getCashBox().receivePayment(regularVendingMachine.getItemSlots(), regularVendingMachine.getItem(0).getItemName(), 80));
-        System.out.println(regularVendingMachine.getItem(0).getQuantity());
-        System.out.println(regularVendingMachine.getCashBox().getTotalSales());
-        System.out.println(regularVendingMachine.getItem(0).getQuantity());
-        System.out.println(regularVendingMachine.getItem(0).getSold());
         regularVendingMachine.getCashBox().resetTotalSales();
-        System.out.println(regularVendingMachine.getCashBox().getTotalSales());
+
         specialVendingMachine.addSellableItem("Chocolate Chip Cookies", 10, 80, 180);
        specialVendingMachine.addSellableItem("Cream Filling", 6, 10, 200);
-        /*specialVendingMachine.addFirstPart("Cake Base1", 8, 10, 150);
+        specialVendingMachine.addFirstPart("Cake Base1", 8, 10, 150);
         specialVendingMachine.addFirstPart("Cake Base2", 8, 20, 150);
         specialVendingMachine.addFirstPart("Cake Base3", 8, 30, 150);
         specialVendingMachine.addSecondPart("Topping", 5, 200, 250);
         specialVendingMachine.addThirdPart("FIlling", 10, 50, 220);
         specialVendingMachine.addFourthPart("fROSTING", 8, 20, 210);
+
        // specialVendingMachine.getItemSellable().addItem("Cream Puffs", 6, 30, 180);
        // specialVendingMachine.getItemSellable().addItem("Strawberry", 10, 120	, 190);
         specialVendingMachine.getParts().add("Cake Base");
@@ -59,14 +51,14 @@ public class Main {
 
   
         
-        specialVendingMachine.getCashBox().replenishChange(5.0, 100);*/
-    	/*regularVendingMachine.getCashBox().replenishChange(20.0, 1);
+        specialVendingMachine.getCashBox().replenishChange(5.0, 100);
+    	regularVendingMachine.getCashBox().replenishChange(20.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(50.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(100.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(200.0, 1);
     	regularVendingMachine.getCashBox().replenishChange(500.0, 1);
-    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);*/
-    	AddItem open = new AddItem("Special");
+    	regularVendingMachine.getCashBox().replenishChange(1000.0, 1);
+    	MAINPAGE open = new MAINPAGE();
     open.setVisible(true);
     }
 }
