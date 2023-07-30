@@ -9,7 +9,6 @@ public class Main {
     public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     public static Item itemRegular;
     public static Item itemSpecial; 
-    public static Item itemCustom;
     public static CashBox regularCashBox;
     public static CashBox specialCashBox;
 /** 
@@ -43,9 +42,9 @@ public class Main {
        // specialVendingMachine.getItemSellable().addItem("Cream Puffs", 6, 30, 180);
        // specialVendingMachine.getItemSellable().addItem("Strawberry", 10, 120	, 190);
         specialVendingMachine.getParts().add("Cake Base");
-        specialVendingMachine.getParts().add("Fillings");
-        specialVendingMachine.getParts().add("Frostings");
-        specialVendingMachine.getParts().add("Toppings");
+        specialVendingMachine.getParts().add("Topping");
+        specialVendingMachine.getParts().add("FIlling");
+        specialVendingMachine.getParts().add("fROSTING");
         //Main.specialVendingMachine.getCashBox().addTotalAmount(100);
         //Main.specialVendingMachine.getCashBox().resetAmountPaid();
 
@@ -66,8 +65,19 @@ if (regularVendingMachine.getCashBox().getMoney() != null) {
     for (Money m : regularVendingMachine.getCashBox().getMoney()) {
         System.out.println(m.getType() + " - " + m.getQuantity());
 }}
-    	MAINPAGE open = new MAINPAGE();
-   open.setVisible(true);
+MainPageView mainPageView = new MainPageView();
+CreatePageView createPageView = new CreatePageView("");
+CreateVendingMachineView createVendingMachineView = new CreateVendingMachineView();
+CustomizeItemView customizeItemView = new CustomizeItemView();
+MaintenancePageView maintenancePageView = new MaintenancePageView("");
+TestPageView testPageView = new TestPageView();
+TestVendingMachinePageView testVendingMachinePageView = new TestVendingMachinePageView("");
+VendingMachineView vendingMachineView = new VendingMachineView("");
+Controller controller = new Controller(mainPageView);
+
+mainPageView.setVisible(true);
+//MAINPAGE open = new MAINPAGE();
+   //open.setVisible(true);
     }
 }
-
+	
