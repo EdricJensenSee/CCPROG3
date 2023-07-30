@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
@@ -17,15 +18,16 @@ public class VendingMachineView extends JFrame {
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel code;
-	private static JLabel Insert_1;
+	private JLabel Insert_1;
 	private JLabel priceCode;
 	private JLabel Output;
-	private static JLabel Insert_2;
+	private JLabel Insert_2;
 	private JLabel Insert;
 	private JLabel Finish;
 	private JButton btnEnter, btnNewButton_3_1_1_1, btnC_1_1, btnNewButton_3_1_1, btnNewButton_2_4, btnNewButton_2_3, btnNewButton_2_2, btnNewButton_2_1, btnNewButton_2, customize, btnNewButton_1_1_2_1, btnNewButton, btnNewButton_1,btnB,btnC,btnNewButton_1_1,btnNewButton_1_1_1,btnC_1;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
+	private int[] currentIndex = {0};
 	/**
 	 * Launch the application.
 	 */
@@ -556,8 +558,7 @@ public class VendingMachineView extends JFrame {
 		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
 		contentPane.add(btnNewButton_3_1_1_1);
 		this.setLocationRelativeTo(null);
-		setWallet("10");
-	}
+		}
 	
 	public String getWallet() {
 		return Insert_1.getText();
@@ -566,6 +567,7 @@ public class VendingMachineView extends JFrame {
 	public void setWallet(String newText) {
 		Insert_1.setText(newText);
 	}
+	
 	public String getOutput() {
 		return Output.getText();
 	}
@@ -605,32 +607,8 @@ public class VendingMachineView extends JFrame {
 		Finish.setText(newText);
 	}
 	
-	private static void changeCollect() {
-		final int[] currentIndex = {0};
-		Insert_1.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent e) {
-		        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
-		        if (currentIndex[0] == size) {
-		            currentIndex[0] = -1;
-		            Insert_1.setText("");
-		            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
-		        } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
-		        	Insert_2.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		            currentIndex[0]++;
-		            if (currentIndex[0] < size) {
-		                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		            }
-
-		            Timer timer = new Timer(2000, new ActionListener() {
-		                public void actionPerformed(ActionEvent e) {
-		                    Insert_2.setText("");
-		                }
-		            });
-		            timer.setRepeats(false);
-		            timer.start();
-		        }
-		    }
-		});
+	public void setCollect(String newText) {
+		Insert_2.setText(newText);
 	}
 	
 	public void A(ActionListener listener) {
@@ -697,33 +675,26 @@ public class VendingMachineView extends JFrame {
 		btnC_1_1.addActionListener(listener);
 	}
 
-	public void claimProduct() {
-		Output.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
-                Output.setText("");
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Finish.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-			}
-		});
+	public void claimProduct(MouseListener listener) {
+		Output.addMouseListener(listener);
+	}
+	
+	public int[] getCurrentIndex() {
+	    return currentIndex;
+	}
+
+	public void changeCollect(MouseListener listener) {
+		Insert_1.addMouseListener(listener);
 	}
 	
     public void btnReturner(ActionListener listener) {
     	btnNewButton_1_1_2_1.addActionListener(listener);
     }
-	public void customize() {
-		customize.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.specialVendingMachine.getCashBox().resetAmountPaid();
+    
+    public void customize(ActionListener listener) {
+    	customize.addActionListener(listener);
+    }
 
-			}
-		});
-	}
 	public void itemAdder() {
 	    int index;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };

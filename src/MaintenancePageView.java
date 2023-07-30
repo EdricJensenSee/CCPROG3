@@ -29,6 +29,8 @@ public class MaintenancePageView extends JFrame {
 	private JTextField qtyfield;
 	private JTextField pricefield;
 	private JTextField calfield;
+	private JLabel Change, Finish, Receipt, name, cal, qty, price;
+	private JButton btnAdd, b5, b4, b3, b2, b1, btnNewButton_1_1_2_1, btnNewButton_1_2, btnNewButton_1, btnNewButton_1_1_1, btnNewButton_1_1, btnNewButton_1_2_1_1, btnCustomize;
 	private static int CurNum = 0;
 	private static boolean customize = false;
 	/**
@@ -68,90 +70,8 @@ public class MaintenancePageView extends JFrame {
 		contentPane.add(panel_2);
 		
 				
-		JButton btnAdd = new JButton("Add Item");
-		btnAdd.setVisible(false);
-		btnAdd.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-			    int itemNumber = 0;
-			    String nameText = namefield.getText();
-			    if (!nameText.isEmpty()) {
-			        if (nameText.equals("A1"))
-			            itemNumber = 0;
-			        else if (nameText.equals("A2"))
-			            itemNumber = 1;
-			        else if (nameText.equals("A3"))
-			            itemNumber = 2;
-			        else if (nameText.equals("B1"))
-			            itemNumber = 3;
-			        else if (nameText.equals("B2"))
-			            itemNumber = 4;
-			        else if (nameText.equals("B3"))
-			            itemNumber = 5;
-			        else if (nameText.equals("C1"))
-			            itemNumber = 6;
-			        else if (nameText.equals("C2"))
-			            itemNumber = 7;
-			        else if (nameText.equals("C3"))
-			            itemNumber = 8;
-			        else if (nameText.equals("D1"))
-			            itemNumber = 9;
-			        else if (nameText.equals("D2"))
-			            itemNumber = 10;
-			        else if (nameText.equals("D3"))
-			            itemNumber = 11;
-			    }
-		        if (btnAdd.getText().equals("Add Item")) {
-		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		                Main.regularVendingMachine.addItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == false) {
-		                Main.specialVendingMachine.addSellableItem(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
-		            	if (CurNum == 0) {
-		            		Main.specialVendingMachine.addFirstPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            	} else if (CurNum == 1) {
-		            		Main.specialVendingMachine.addSecondPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            	} else if (CurNum == 2) {
-		            		Main.specialVendingMachine.addThirdPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            	} else if (CurNum == 3) {
-		            		Main.specialVendingMachine.addFourthPart(namefield.getText(), Integer.parseInt(qtyfield.getText()), Double.parseDouble(pricefield.getText()), Integer.parseInt(calfield.getText()));
-		            	}
-		            }
-		        } else if (btnAdd.getText().equals("Restock")) {
-				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				    	Main.regularVendingMachine.getItem(itemNumber).setQuantity(Main.regularVendingMachine.getItem(itemNumber).getQuantity() + 1);
-				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && customize == false) {
-				    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setQuantity(Main.specialVendingMachine.getItemSellable().get(itemNumber).getQuantity() + 1);
-				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
-		            	if (CurNum == 0) {
-		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).getQuantity() + 1);
-		            	} else if (CurNum == 1) {
-		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getSecondPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getSecondPartName(itemNumber)).getQuantity() + 1);
-		            	} else if (CurNum == 2) {
-		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getThirdPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getThirdPartName(itemNumber)).getQuantity() + 1);
-		            	} else if (CurNum == 3) {
-		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).getQuantity() + 1);		            	}
-		            }	
-		        } else if (btnAdd.getText().equals("Change")){
-		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		        		 Main.regularVendingMachine.getItem(itemNumber).setPrice(Double.parseDouble(pricefield.getText()));
-					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && customize == false) {
-					    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setPrice(Double.parseDouble(pricefield.getText()));
-					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && customize == true) {
-			            	if (CurNum == 0) {
-			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
-			            	} else if (CurNum == 1) {
-			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getSecondPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
-			            	} else if (CurNum == 2) {
-			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getThirdPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
-			            	} else if (CurNum == 3) {
-			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).setPrice(Double.parseDouble(pricefield.getText()));
-			            	}
-			            }		
-		        }
-		        itemAdder();
-		    }
-		});
-	
+		btnAdd = new JButton("Add Item");
+		btnAdd.setVisible(false);	
 	    
 		btnAdd.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnAdd.setFocusable(false);
@@ -164,7 +84,7 @@ public class MaintenancePageView extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel Change = new JLabel("");
+		Change = new JLabel("");
 		Change.setHorizontalTextPosition(SwingConstants.LEADING);
 		Change.setVerticalAlignment(SwingConstants.TOP);
 		Change.setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,165 +92,37 @@ public class MaintenancePageView extends JFrame {
 		Change.setBounds(10, 311, 100, 125);
 		panel_2.add(Change);
 		
-		JButton b5 = new JButton("5");
-		b5.setVisible(false);
-		b5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				    Main.regularVendingMachine.getCashBox().getMoney()[0].replenish(1); 
-				} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-				    Main.specialVendingMachine.getCashBox().getMoney()[0].replenish(1); 
-				}
-
-				if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				    StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
-				        allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-				    }
-				    allDenoms.append("</html>");
-				    Change.setText(allDenoms.toString());
-				} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-				    StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-				    for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
-				        allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-				    }
-				    allDenoms.append("</html>");
-				    Change.setText(allDenoms.toString());
-				}
-			}
-		});
-		
-				JLabel Receipt = new JLabel("");
-				Receipt.setVerticalAlignment(SwingConstants.TOP);
-				Receipt.setHorizontalTextPosition(SwingConstants.LEADING);
-				Receipt.setHorizontalAlignment(SwingConstants.LEFT);
-				Receipt.setFont(new Font("Tahoma", Font.PLAIN, 10));
-				Receipt.setBounds(98, 335, 253, 103);
-				panel.add(Receipt);
+		b5 = new JButton("5");
+		b5.setVisible(false);		
+		Receipt = new JLabel("");
+		Receipt.setVerticalAlignment(SwingConstants.TOP);
+		Receipt.setHorizontalTextPosition(SwingConstants.LEADING);
+		Receipt.setHorizontalAlignment(SwingConstants.LEFT);
+		Receipt.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		Receipt.setBounds(98, 335, 253, 103);
+		panel.add(Receipt);
 		b5.setBounds(170, 372, 85, 21);
 		panel.add(b5);
 		
-		JButton b4 = new JButton("10");
+		b4 = new JButton("10");
 		b4.setVisible(false);
-		b4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        Main.regularVendingMachine.getCashBox().getMoney()[1].replenish(1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        Main.specialVendingMachine.getCashBox().getMoney()[1].replenish(1); 
-			    }
-
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    }
-			}
-		});
 		b4.setBounds(78, 372, 85, 21);
 		panel.add(b4);
 		
-		JButton b3 = new JButton("20");
+		b3 = new JButton("20");
 		b3.setVisible(false);
-		b3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        Main.regularVendingMachine.getCashBox().getMoney()[2].replenish(1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        Main.specialVendingMachine.getCashBox().getMoney()[2].replenish(1); 
-			    }
-
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    }
-			}
-		});
 		b3.setBounds(224, 335, 85, 21);
 		panel.add(b3);
 		
-		JButton b2 = new JButton("50");
+		b2 = new JButton("50");
 		b2.setVisible(false);
-		b2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        Main.regularVendingMachine.getCashBox().getMoney()[3].replenish(1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        Main.specialVendingMachine.getCashBox().getMoney()[3].replenish(1); 
-			    }
-
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    }
-			}
-		});
 		b2.setBounds(129, 335, 85, 21);
 		panel.add(b2);
 		
-		JButton b1 = new JButton("100");
+		b1 = new JButton("100");
 		b1.setVisible(false);
-		b1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        Main.regularVendingMachine.getCashBox().getMoney()[4].replenish(1);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        Main.specialVendingMachine.getCashBox().getMoney()[4].replenish(1); 
-			    }
-
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    }
-			}
-		});
 		b1.setBounds(34, 335, 85, 21);
 		panel.add(b1);
-		
-
 		
 		JLabel lblNewLabel_3_2 = new JLabel("");
 		lblNewLabel_3_2.setOpaque(true);
@@ -356,7 +148,7 @@ public class MaintenancePageView extends JFrame {
 		lblNewLabel_3.setBackground(Color.BLACK);
 		lblNewLabel_3.setOpaque(true);
 		
-		JLabel Finish = new JLabel("");
+		Finish = new JLabel("");
 		Finish.setHorizontalAlignment(SwingConstants.CENTER);
 		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Finish.setBounds(13, 12, 326, 18);
@@ -613,17 +405,8 @@ public class MaintenancePageView extends JFrame {
 		twelve.setHorizontalAlignment(SwingConstants.CENTER);
 		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
-		
-		itemAdder();
-		
-		JButton btnNewButton_1_1_2_1 = new JButton("Return");
-		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				TestPage open = new TestPage(machineType);
-				open.setVisible(true);
-			}
-		});
+		itemAdder();	
+		btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1_1_2_1.setFocusable(false);
 		btnNewButton_1_1_2_1.setBounds(13, 403, 79, 19);
@@ -635,7 +418,7 @@ public class MaintenancePageView extends JFrame {
 		namefield.setBounds(68, 349, 50, 19);
 		panel.add(namefield);
 		
-		JLabel name = new JLabel("Item Name");
+		name = new JLabel("Item Name");
 		name.setVisible(false);
 		name.setHorizontalTextPosition(SwingConstants.CENTER);
 		name.setHorizontalAlignment(SwingConstants.CENTER);
@@ -648,14 +431,14 @@ public class MaintenancePageView extends JFrame {
 		qtyfield.setBounds(184, 349, 50, 19);
 		panel.add(qtyfield);
 		
-		JLabel qty = new JLabel("Quantity");
+		qty = new JLabel("Quantity");
 		qty.setVisible(false);
 		qty.setHorizontalTextPosition(SwingConstants.CENTER);
 		qty.setHorizontalAlignment(SwingConstants.CENTER);
 		qty.setBounds(184, 335, 50, 13);
 		panel.add(qty);
 		
-		JLabel price = new JLabel("Price");
+		price = new JLabel("Price");
 		price.setVisible(false);
 		price.setHorizontalTextPosition(SwingConstants.CENTER);
 		price.setHorizontalAlignment(SwingConstants.CENTER);
@@ -668,51 +451,17 @@ public class MaintenancePageView extends JFrame {
 		pricefield.setBounds(240, 349, 46, 19);
 		panel.add(pricefield);
 		
-		JLabel cal = new JLabel("Calories");
+		cal = new JLabel("Calories");
 		cal.setVisible(false);
 		cal.setHorizontalTextPosition(SwingConstants.CENTER);
 		cal.setHorizontalAlignment(SwingConstants.CENTER);
 		cal.setBounds(288, 335, 63, 13);
 		panel.add(cal);
 		
-		JButton btnNewButton_1_2 = new JButton("Add items");
-		btnNewButton_1_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    JButton[] buttons = { b1, b2, b3, b4, b5};
-			    for (int i = 0; i < 5; i++) {
-			        buttons[i].setVisible(false);
-			    }
-			    Receipt.setVisible(false);
-			    Change.setVisible(false);
-				name.setText("Item Name");
-				namefield.setBounds(13, 349, 161, 19);
-				name.setVisible(true);
-				namefield.setVisible(true);
-				cal.setVisible(true);
-				calfield.setVisible(true);
-				qty.setBounds(184, 335, 50, 13);
-				qty.setVisible(true);
-				qtyfield.setBounds(184, 349, 50, 19);
-				qtyfield.setVisible(true);
-				price.setBounds(240, 335, 46, 13);
-				price.setText("Price");
-				price.setVisible(true);
-				pricefield.setBounds(240, 349, 46, 19);
-				pricefield.setVisible(true);
-				btnAdd.setText("Add Item");
-				btnAdd.setBounds(245, 379, 101, 18);
-				btnAdd.setVisible(true);
-			}
-		});
-		
-		JButton btnNewButton_1 = new JButton("Restock");
+		btnNewButton_1_2 = new JButton("Add items");
+		btnNewButton_1 = new JButton("Restock");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Receipt.setVisible(false);
-			    JButton[] buttons = { b1, b2, b3, b4, b5};
-			    for (int i = 0; i < 5; i++) {
-			        buttons[i].setVisible(false);
-			    }			 
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			    	Main.regularVendingMachine.getCashBox().resetTotalSales();
 			    	for (Item item : Main.regularVendingMachine.getItemSlots()) {
@@ -725,63 +474,13 @@ public class MaintenancePageView extends JFrame {
 			    		item.setSold(0);
 			    	}
 			    }		
-			    Change.setVisible(false);
-				name.setText("Item Code");
-				namefield.setBounds(68, 349, 50, 19);
-				name.setVisible(true);
-				namefield.setVisible(true);
-				cal.setVisible(false);
-				calfield.setVisible(false);
-				qty.setVisible(false);
-				qtyfield.setVisible(false);
-				price.setVisible(false);
-				pricefield.setVisible(false);
-				btnAdd.setText("Restock");
-				btnAdd.setBounds(130, 349, 70, 18);
-				btnAdd.setVisible(true);
 			}
 		});
 		
-		JButton btnNewButton_1_1_1 = new JButton("<html><center>Change<br>Prices</center></html>");
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			    JButton[] buttons = { b1, b2, b3, b4, b5};
-			    for (int i = 0; i < 5; i++) {
-			        buttons[i].setVisible(false);
-			    }
-			    
-			    Receipt.setVisible(false);
-			    Change.setVisible(false);
-				name.setText("Item Code");
-				namefield.setBounds(68, 349, 50, 19);
-				name.setVisible(true);
-				namefield.setVisible(true);
-				cal.setVisible(false);
-				calfield.setVisible(false);
-				qty.setVisible(false);
-				qtyfield.setVisible(false);
-				price.setText("New Price");
-				price.setBounds(130, 335, 70, 13);
-				price.setVisible(true);
-				pricefield.setBounds(130, 349, 70, 19);
-				pricefield.setVisible(true);
-				btnAdd.setText("Change");
-				btnAdd.setBounds(210, 349, 70, 18);
-				btnAdd.setVisible(true);
-			}
-		});
-		
-		JButton btnNewButton_1_1 = new JButton("Add Money");
+		btnNewButton_1_1_1 = new JButton("<html><center>Change<br>Prices</center></html>");		
+		btnNewButton_1_1 = new JButton("Replenish");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Change.setBounds(10, 311, 100, 125);
-			    JButton[] buttons = { b1, b2, b3, b4, b5};
-			    for (int i = 0; i < 5; i++) {
-			        buttons[i].setVisible(true);
-			    }
-			    Receipt.setVisible(false);
-			    Change.setVisible(true);
 			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
 			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
@@ -797,39 +496,17 @@ public class MaintenancePageView extends JFrame {
 			        allDenoms.append("</html>");
 			        Change.setText(allDenoms.toString());
 			    }
-				name.setVisible(false);
-				namefield.setVisible(false);
-				cal.setVisible(false);
-				calfield.setVisible(false);
-				qty.setVisible(false);
-				qtyfield.setVisible(false);
-				price.setVisible(false);
-				pricefield.setVisible(false);
-				btnAdd.setVisible(false);
+
 			}
 		});
 		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.setBounds(10, 163, 100, 41);
 		panel_2.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_2_1_1 = new JButton("Receipt");
+		btnNewButton_1_2_1_1 = new JButton("Receipt");
 		btnNewButton_1_2_1_1.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent e) {
-		        Receipt.setVisible(true);
-		        JButton[] buttons = { b1, b2, b3, b4, b5 };
-		        for (int i = 0; i < 5; i++) {
-		            buttons[i].setVisible(false);
-		        }
-		        name.setVisible(false);
-		        namefield.setVisible(false);
-		        cal.setVisible(false);
-		        calfield.setVisible(false);
-		        qty.setVisible(false);
-		        qtyfield.setVisible(false);
-		        price.setVisible(false);
-		        pricefield.setVisible(false);
-		        btnAdd.setVisible(false);
-		        Change.setVisible(false);
+		        
 
 		        StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - ");
 		        double totalEarnings = 0;
@@ -894,29 +571,7 @@ public class MaintenancePageView extends JFrame {
 		panel.add(calfield);
 		panel.add(btnAdd);
 		
-		JButton btnCustomize = new JButton("Customize");
-		btnCustomize.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (customize == true)
-					CurNum++;
-				if (btnCustomize.getText().equals("Customize")) {
-				    btnCustomize.setText("Next");
-				    customize = true;
-				} 
-				if (CurNum == 3)
-					btnCustomize.setText("Return");
-				    if (CurNum >= 0 && CurNum < Main.specialVendingMachine.getParts().size()) {
-				        String set = Main.specialVendingMachine.getParts().get(CurNum);
-				        Finish.setText("Part: " + set);  
-				    } else if (CurNum == Main.specialVendingMachine.getParts().size()) {
-				        CurNum = 0;
-				        customize = false;
-				        Finish.setText("");
-				        btnCustomize.setText("Customize"); 
-				    } 
-				itemAdder();
-			}
-		});
+		btnCustomize = new JButton("Customize");
 		btnCustomize.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCustomize.setFocusable(false);
 		btnCustomize.setBounds(224, 403, 117, 19);
@@ -929,7 +584,206 @@ public class MaintenancePageView extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 	
-	private static void itemAdder() {
+	public void setFinish(String newText) {
+		Finish.setText(newText);
+	}
+	public String getbtnCustomize() {
+		return btnCustomize.getText();
+	}
+	
+	public void setbtnCustomize(String newText) {
+		btnCustomize.setText(newText);;
+	}
+	
+	public void setChange(String newText) {
+		Change.setText(newText);
+	}
+	public String getName() {
+		return namefield.getText();
+	}
+	
+	public String getQuantity() {
+		return qtyfield.getText();
+	}
+	
+	public String getPrice() {
+		return pricefield.getText();
+	}
+	
+	public String getCalories() {
+		return calfield.getText();
+	}
+	
+    public int getCurrentNumber() {
+        return CurNum;
+    }
+    
+    public boolean getCustomize() {
+    	return customize;
+    }
+    
+    public void setCustomize (boolean newCustomize) {
+    	customize = newCustomize;
+    }
+    
+    public void incrementCur() {
+    	CurNum++;
+    }
+    
+    public void resetCur() {
+    	CurNum = 0;
+    }
+    public String getbtnAddText() {
+    	return btnAdd.getText();
+    }
+    public void add5(ActionListener listener) {
+    	b5.addActionListener(listener);
+    }
+    
+    public void add10(ActionListener listener) {
+    	b4.addActionListener(listener);
+    }
+    
+    public void add20(ActionListener listener) {
+    	b3.addActionListener(listener);
+    }
+
+    public void add50(ActionListener listener) {
+    	b2.addActionListener(listener);
+    }
+    
+    public void add100(ActionListener listener) {
+    	b1.addActionListener(listener);
+    }
+    
+    public void returner(ActionListener listener) {
+    	btnNewButton_1_1_2_1.addActionListener(listener);
+    }
+    
+    public void addItem(ActionListener listener) {
+    	btnAdd.addActionListener(listener);
+    }
+    
+    public void addItems(ActionListener listener) {
+    	btnNewButton_1_2.addActionListener(listener);
+	    JButton[] buttons = { b1, b2, b3, b4, b5};
+	    for (int i = 0; i < 5; i++) {
+	        buttons[i].setVisible(false);
+	    }
+	    Receipt.setVisible(false);
+	    Change.setVisible(false);
+		name.setText("Item Name");
+		namefield.setBounds(13, 349, 161, 19);
+		name.setVisible(true);
+		namefield.setVisible(true);
+		cal.setVisible(true);
+		calfield.setVisible(true);
+		qty.setBounds(184, 335, 50, 13);
+		qty.setVisible(true);
+		qtyfield.setBounds(184, 349, 50, 19);
+		qtyfield.setVisible(true);
+		price.setBounds(240, 335, 46, 13);
+		price.setText("Price");
+		price.setVisible(true);
+		pricefield.setBounds(240, 349, 46, 19);
+		pricefield.setVisible(true);
+		btnAdd.setText("Add Item");
+		btnAdd.setBounds(245, 379, 101, 18);
+		btnAdd.setVisible(true);
+    }
+    
+    public void restock(ActionListener listener) {
+    	btnNewButton_1.addActionListener(listener);
+		Receipt.setVisible(false);
+	    JButton[] buttons = { b1, b2, b3, b4, b5};
+	    for (int i = 0; i < 5; i++) {
+	        buttons[i].setVisible(false);
+	    }			 
+	    Change.setVisible(false);
+		name.setText("Item Code");
+		namefield.setBounds(68, 349, 50, 19);
+		name.setVisible(true);
+		namefield.setVisible(true);
+		cal.setVisible(false);
+		calfield.setVisible(false);
+		qty.setVisible(false);
+		qtyfield.setVisible(false);
+		price.setVisible(false);
+		pricefield.setVisible(false);
+		btnAdd.setText("Restock");
+		btnAdd.setBounds(130, 349, 70, 18);
+		btnAdd.setVisible(true);
+    }
+    
+    public void changePrice(ActionListener listener) {
+	    JButton[] buttons = { b1, b2, b3, b4, b5};
+	    for (int i = 0; i < 5; i++) {
+	        buttons[i].setVisible(false);
+	    }
+	    Receipt.setVisible(false);
+	    Change.setVisible(false);
+		name.setText("Item Code");
+		namefield.setBounds(68, 349, 50, 19);
+		name.setVisible(true);
+		namefield.setVisible(true);
+		cal.setVisible(false);
+		calfield.setVisible(false);
+		qty.setVisible(false);
+		qtyfield.setVisible(false);
+		price.setText("New Price");
+		price.setBounds(130, 335, 70, 13);
+		price.setVisible(true);
+		pricefield.setBounds(130, 349, 70, 19);
+		pricefield.setVisible(true);
+		btnAdd.setText("Change");
+		btnAdd.setBounds(210, 349, 70, 18);
+		btnAdd.setVisible(true);
+    }
+    
+    public void replenishChange(ActionListener listener) {
+    	btnNewButton_1_1.addActionListener(listener);
+		Change.setBounds(10, 311, 100, 125);
+	    JButton[] buttons = { b1, b2, b3, b4, b5};
+	    for (int i = 0; i < 5; i++) {
+	        buttons[i].setVisible(true);
+	    }
+	    Receipt.setVisible(false);
+	    Change.setVisible(true);
+		name.setVisible(false);
+		namefield.setVisible(false);
+		cal.setVisible(false);
+		calfield.setVisible(false);
+		qty.setVisible(false);
+		qtyfield.setVisible(false);
+		price.setVisible(false);
+		pricefield.setVisible(false);
+		btnAdd.setVisible(false);
+    }
+    
+    public void receipt(ActionListener listener) {
+    	btnNewButton_1_2_1_1.addActionListener(listener);
+    	Receipt.setVisible(true);
+        JButton[] buttons = { b1, b2, b3, b4, b5 };
+        for (int i = 0; i < 5; i++) {
+            buttons[i].setVisible(false);
+        }
+        name.setVisible(false);
+        namefield.setVisible(false);
+        cal.setVisible(false);
+        calfield.setVisible(false);
+        qty.setVisible(false);
+        qtyfield.setVisible(false);
+        price.setVisible(false);
+        pricefield.setVisible(false);
+        btnAdd.setVisible(false);
+        Change.setVisible(false);
+    }
+    
+    public void customize(ActionListener listener) {
+    	btnCustomize.addActionListener(listener);
+    }
+
+	public void itemAdder() {
 	    int index;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
 	    for (index = 0; index < 12; index++) {
