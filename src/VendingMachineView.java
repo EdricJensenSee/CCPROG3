@@ -16,7 +16,13 @@ public class VendingMachineView extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
-	private static JLabel code, Insert_1, priceCode, Output, Insert_2, Insert, Finish;
+	private JLabel code;
+	private static JLabel Insert_1;
+	private JLabel priceCode;
+	private JLabel Output;
+	private static JLabel Insert_2;
+	private JLabel Insert;
+	private JLabel Finish;
 	private JButton btnEnter, btnNewButton_3_1_1_1, btnC_1_1, btnNewButton_3_1_1, btnNewButton_2_4, btnNewButton_2_3, btnNewButton_2_2, btnNewButton_2_1, btnNewButton_2, customize, btnNewButton_1_1_2_1, btnNewButton, btnNewButton_1,btnB,btnC,btnNewButton_1_1,btnNewButton_1_1_1,btnC_1;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
@@ -549,52 +555,56 @@ public class VendingMachineView extends JFrame {
 		btnNewButton_3_1_1_1.setFocusable(false);
 		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
 		contentPane.add(btnNewButton_3_1_1_1);
-		
 		this.setLocationRelativeTo(null);
+		setWallet("10");
 	}
 	
-	public void enterItem() {
-		btnEnter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				int itemNumber = 0;
-			    if (!code.getText().equals("")) {
-			        if (code.getText().equals("A1"))
-			            itemNumber = 0;
-			        else if (code.getText().equals("A2"))
-			            itemNumber = 1;
-			        else if (code.getText().equals("A3"))
-			            itemNumber = 2;
-			        else if (code.getText().equals("B1"))
-			            itemNumber = 3;
-			        else if (code.getText().equals("B2"))
-			            itemNumber = 4;
-			        else if (code.getText().equals("B3"))
-			            itemNumber = 5;
-			        else if (code.getText().equals("C1"))
-			            itemNumber = 6;
-			        else if (code.getText().equals("C2"))
-			            itemNumber = 7;
-			        else if (code.getText().equals("C3"))
-			            itemNumber = 8;
-			        else if (code.getText().equals("D1"))
-			            itemNumber = 9;
-			        else if (code.getText().equals("D2"))
-			            itemNumber = 10;
-			        else if (code.getText().equals("D3"))
-			            itemNumber = 11;
-			    }
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null)
-			    	if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice()));
-			    	else;
-			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
-			    	if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) 
-			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice()));
-			}
-		});
+	public String getWallet() {
+		return Insert_1.getText();
 	}
-
+	
+	public void setWallet(String newText) {
+		Insert_1.setText(newText);
+	}
+	public String getOutput() {
+		return Output.getText();
+	}
+	
+	public void setOutput(String newText) {
+		Output.setText(newText);
+	}
+	public String getCode() {
+		return String.valueOf(code.getText());
+	}
+	
+	public void setCode(String newText) {
+		code.setText(newText);
+	}
+	
+	public String getPriceCode() {
+		return priceCode.getText();
+	}
+	
+	public void setPriceCode(String newText) {
+		priceCode.setText(newText);
+	}
+	
+	public String getInsert() {
+		return Insert.getText();
+	}
+	
+	public void setInsert(String newText) {
+		Insert.setText(newText);
+	}
+	
+	public String getFinish() {
+		return Finish.getText();
+	}
+	
+	public void setFinish(String newText) {
+		Finish.setText(newText);
+	}
+	
 	private static void changeCollect() {
 		final int[] currentIndex = {0};
 		Insert_1.addMouseListener(new MouseAdapter() {
@@ -623,320 +633,70 @@ public class VendingMachineView extends JFrame {
 		});
 	}
 	
-	public void A() {
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "A");
-			}
-		});
+	public void A(ActionListener listener) {
+		btnNewButton.addActionListener(listener);
 	}
 	
-	public void B() {
-		btnB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "B");
-			}
-		});
+	public void B(ActionListener listener) {
+		btnB.addActionListener(listener);
 	}
 	
-	public void C() {
-		btnC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "C");
-			}
-		});
+	public void C(ActionListener listener) {
+		btnC.addActionListener(listener);
 	}
 	
-	public void D() {
-		btnC_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "D");
-			}
-		});
+	public void D(ActionListener listener) {
+		btnC_1.addActionListener(listener);
 	}
 	
-	public void number1() {
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
-					code.setText(code.getText() + "1");
-			}
-		});
+	public void number1(ActionListener listener) {
+		btnNewButton_1.addActionListener(listener);
 	}
 	
-	public void number2() {
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
-					code.setText(code.getText() + "2");
-			}
-		});
+	public void number2(ActionListener listener) {
+		btnNewButton_1_1.addActionListener(listener);
 	}
 	
-	public void number3() {
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
-					code.setText(code.getText() + "3");
-			}
-		});
+	public void number3(ActionListener listener) {
+		btnNewButton_1_1_1.addActionListener(listener);
 	}
 	
-	public void add100() {
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular")) {
-					Main.regularVendingMachine.getCashBox().addTotalAmount(100);
-					Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				}
-				if (machineType.equals("Special")) {
-					Main.specialVendingMachine.getCashBox().addTotalAmount(100);
-					Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));					
-				}
-			}
-		});
+	public void cancel(ActionListener listener) {
+		btnNewButton_3_1_1_1.addActionListener(listener);
 	}
 	
-	public void add50() {
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular")) {
-					Main.regularVendingMachine.getCashBox().addTotalAmount(50);
-					Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				}
-				if (machineType.equals("Special")) {
-					Main.specialVendingMachine.getCashBox().addTotalAmount(50);
-					Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));					
-				}
-			}
-		});
+	public void add100(ActionListener listener) {
+		btnNewButton_2.addActionListener(listener);
 	}
 	
-	public void add20() {
-		btnNewButton_2_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular")) {
-					Main.regularVendingMachine.getCashBox().addTotalAmount(20);
-					Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				}
-				if (machineType.equals("Special")) {
-					Main.specialVendingMachine.getCashBox().addTotalAmount(20);
-					Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));					
-				}
-			}
-		});
+	public void add50(ActionListener listener) {
+		btnNewButton_2_1.addActionListener(listener);
 	}
 	
-	public void add10() {
-		btnNewButton_2_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular")) {
-					Main.regularVendingMachine.getCashBox().addTotalAmount(10);
-					Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				}
-				if (machineType.equals("Special")) {
-					Main.specialVendingMachine.getCashBox().addTotalAmount(10);
-					Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));					
-				}
-			}
-		});
+	public void add20(ActionListener listener) {
+		btnNewButton_2_2.addActionListener(listener);
 	}
 	
-	public void add5() {
-		btnNewButton_2_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular")) {
-					Main.regularVendingMachine.getCashBox().addTotalAmount(5);
-					Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				}
-				if (machineType.equals("Special")) {
-					Main.specialVendingMachine.getCashBox().addTotalAmount(5);
-					Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));					
-				}
-			}
-		});
+	public void add10(ActionListener listener) {
+		btnNewButton_2_3.addActionListener(listener);
+	}
+	
+	public void add5(ActionListener listener) {
+		btnNewButton_2_4.addActionListener(listener);
 	}
 
-	public void clear() {
-		btnNewButton_3_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (machineType.equals("Regular")) {
-					Main.regularVendingMachine.getCashBox().resetAmountPaid();
-				    if (Main.regularVendingMachine.getCashBox().getAmountPaid() > 0) {
-				        Insert.setText(Integer.toString((int) Main.regularVendingMachine.getCashBox().getAmountPaid()));
-				    } else {
-				        Insert.setText("");
-				    }
-				} 
-				if (machineType.equals("Special")) {
-					Main.specialVendingMachine.getCashBox().resetAmountPaid();
-				    if (Main.specialVendingMachine.getCashBox().getAmountPaid() > 0) {
-				        Insert.setText(Integer.toString((int) Main.specialVendingMachine.getCashBox().getAmountPaid()));
-				    } else {
-				        Insert.setText("");
-				    }
-				}
-			}
-		});
+	public void clear(ActionListener listener) {
+		btnNewButton_3_1_1.addActionListener(listener);
 	}
 	
-	public void cancel() {
-		btnNewButton_3_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				code.setText("");
-				priceCode.setText("");
-			}
-		});
-	}
-	public void buy() {
-		btnC_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
-					Finish.setText("Insufficient Payment");
-				}
-				int itemNumber = 0;
-				    switch (code.getText()) {
-				        case "A1":
-				            itemNumber = 0;
-				            break;
-				        case "A2":
-				            itemNumber = 1;
-				            break;
-				        case "A3":
-				            itemNumber = 2;
-				            break;
-				        case "B1":
-				            itemNumber = 3;
-				            break;
-				        case "B2":
-				            itemNumber = 4;
-				            break;
-				        case "B3":
-				            itemNumber = 5;
-				            break;
-				        case "C1":
-				            itemNumber = 6;
-				            break;
-				        case "C2":
-				            itemNumber = 7;
-				            break;
-				        case "C3":
-				            itemNumber = 8;
-				            break;
-				        case "D1":
-				            itemNumber = 9;
-				            break;
-				        case "D2":
-				            itemNumber = 10;
-				            break;
-				        case "D3":
-				            itemNumber = 11;
-				            break;
-				        default:
-				        	itemNumber = -1;
-				            break;
-				    }
-							   
-
-				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-				        if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItemSlots().get(itemNumber))) {
-				            if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) {
-				                if (Main.regularVendingMachine.getCashBox().receivePayment(Main.regularVendingMachine.getItemSlots(), Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName(), Double.parseDouble(Insert.getText()))) {
-				                    Output.setText(Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName());
-				                } else {
-				                }
-				            } else {
-				            }
-				        } else {
-				            Finish.setText("Item not found in stock");
-				        }
-				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber))) {
-				            if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) {
-				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemSellable(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName(), Double.parseDouble(Insert.getText()))) {
-				                    Output.setText(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName());
-				                } else {
-				                }
-				            } else {
-				            }
-				        } else {
-				            Finish.setText("Item not found in stock");
-				        }
-				    } 		
-
-				
-							
-			    Timer timer1 = new Timer(2000, new ActionListener() {
-			        public void actionPerformed(ActionEvent e) {
-			            Finish.setText("");
-			        }
-			    });
-			    timer1.setRepeats(false);
-			    timer1.start();
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        Main.regularVendingMachine.getCashBox();
-			        if (Main.regularVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
-			            if (!Main.regularVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
-			                Insert_1.setText(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(0)));
-			            }
-			        } else {
-			            Finish.setText("NOT ENOUGH CHANGE IN MACHINE");
-			        }
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        Main.specialVendingMachine.getCashBox();
-			        if (Main.specialVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(Insert.getText()) == Double.parseDouble(priceCode.getText())) {
-			            if (!Main.specialVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
-			                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(0)));
-			            }
-			        } else {
-			            Finish.setText("NOT ENOUGH CHANGE IN MACHINE");
-			        }
-			    
-
-				    Timer timer = new Timer(2000, new ActionListener() {
-				        public void actionPerformed(ActionEvent e) {
-				            Finish.setText("");
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-			}
-
-				if (Double.parseDouble(Insert.getText()) < Double.parseDouble(priceCode.getText())) {
-				    Finish.setText("Insufficient Payment");
-
-				    Timer timer = new Timer(2000, new ActionListener() {
-				        public void actionPerformed(ActionEvent e) {
-				            Finish.setText("");
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-				} else {
-				    Insert.setText("");
-
-				    Timer timer = new Timer(2000, new ActionListener() {
-				        public void actionPerformed(ActionEvent e) {
-				            code.setText("");       
-				            priceCode.setText("");  
-				        }
-				    });
-				    timer.setRepeats(false);
-				    timer.start();
-				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) 
-				        Main.regularVendingMachine.getCashBox().resetAmountPaid();
-				    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
-				        Main.specialVendingMachine.getCashBox().resetAmountPaid();
-				    itemAdder();
-				}}
-		});
+	public void enterItem(ActionListener listener) {
+		btnEnter.addActionListener(listener);
 	}
 	
+	public void buy(ActionListener listener) {
+		btnC_1_1.addActionListener(listener);
+	}
+
 	public void claimProduct() {
 		Output.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -953,34 +713,18 @@ public class VendingMachineView extends JFrame {
 		});
 	}
 	
-	public void returner () {
-		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
-			    	Main.regularVendingMachine.getCashBox().resetAmountPaid();
-			    	TestPage open = new TestPage("Regular");
-			    	open.setVisible(true);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null) {
-			    	Main.specialVendingMachine.getCashBox().resetAmountPaid();
-			    	TestPage open = new TestPage("Special");
-			    	open.setVisible(true);
-			    }	
-			}
-		});
-	}
-	
+    public void btnReturner(ActionListener listener) {
+    	btnNewButton_1_1_2_1.addActionListener(listener);
+    }
 	public void customize() {
 		customize.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.specialVendingMachine.getCashBox().resetAmountPaid();
-				dispose();
-				Customize open = new Customize();
-				open.setVisible(true);
+
 			}
 		});
 	}
-	private static void itemAdder() {
+	public void itemAdder() {
 	    int index;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
 	    for (index = 0; index < 12; index++) {
