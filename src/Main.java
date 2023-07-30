@@ -9,6 +9,7 @@ public class Main {
     public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     public static Item itemRegular;
     public static Item itemSpecial; 
+    public static Item itemCustom; 
     public static CashBox regularCashBox;
     public static CashBox specialCashBox;
 /** 
@@ -66,18 +67,11 @@ if (regularVendingMachine.getCashBox().getMoney() != null) {
         System.out.println(m.getType() + " - " + m.getQuantity());
 }}
 MainPageView mainPageView = new MainPageView();
-CreatePageView createPageView = new CreatePageView("");
-CreateVendingMachineView createVendingMachineView = new CreateVendingMachineView();
-CustomizeItemView customizeItemView = new CustomizeItemView();
-MaintenancePageView maintenancePageView = new MaintenancePageView("");
-TestPageView testPageView = new TestPageView();
-TestVendingMachinePageView testVendingMachinePageView = new TestVendingMachinePageView("");
-VendingMachineView vendingMachineView = new VendingMachineView("");
 Controller controller = new Controller(mainPageView);
-
 mainPageView.setVisible(true);
 //MAINPAGE open = new MAINPAGE();
    //open.setVisible(true);
+    
     }
 }
 	

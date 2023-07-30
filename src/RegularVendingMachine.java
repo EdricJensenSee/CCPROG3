@@ -55,19 +55,12 @@ class RegularVendingMachine {
         if (quantity <= 0 || quantity > 10 || totalUnique >= 12) {
             return false;
         }
-        for (Item item : itemSlots) {
-            if (item.getItemName().equals(itemName)) {
-                item.setQuantity(quantity);
-                item.setPrice(price);
-                item.setCalories(calories);
-                totalItems += (quantity - item.getQuantity()); 
-                return true;
-            }
-        }
         Item newItem = new Item(itemName, quantity, price, calories);
+
         itemSlots.add(newItem);
         totalItems += quantity;
         totalUnique++;
+        itemNumbers.put(count, itemName);
         return true;
     }
 

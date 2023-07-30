@@ -18,6 +18,7 @@ public class CustomizeItemView extends JFrame {
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel code;
+	private JLabel Insert_1;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static int curNum = 0;
 	private static ArrayList<String> recipe = new ArrayList<>();
@@ -80,32 +81,7 @@ public class CustomizeItemView extends JFrame {
 		Output.setBounds(10, 8, 197, 53);
 		JLabel Insert_2 = new JLabel("");
 		Insert_2.setBounds(333, 21, 52, 21);
-		JLabel Insert_1 = new JLabel("");
-		final int[] currentIndex = {0};
-		Insert_1.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent e) {
-		        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
-		        if (currentIndex[0] == size) {
-		            currentIndex[0] = -1;
-		            Insert_1.setText("");
-		            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
-		        } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
-		        	Insert_2.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		            currentIndex[0]++;
-		            if (currentIndex[0] < size) {
-		                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		            }
-
-		            Timer timer = new Timer(2000, new ActionListener() {
-		                public void actionPerformed(ActionEvent e) {
-		                    Insert_2.setText("");
-		                }
-		            });
-		            timer.setRepeats(false);
-		            timer.start();
-		        }
-		    }
-		});
+		Insert_1 = new JLabel("");
 
 		Insert_1.setOpaque(true);
 		Insert_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -114,7 +90,7 @@ public class CustomizeItemView extends JFrame {
 		Insert_1.setBackground(Color.DARK_GRAY);
 		Change.add(Insert_1);
 		
-		JButton a = new JButton("A");
+		a = new JButton("A");
 		a.setFocusable(false);
 		a.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,7 +102,7 @@ public class CustomizeItemView extends JFrame {
 		a.setBounds(10, 44, 45, 35);
 		panel_2.add(a);
 		
-		JButton sone = new JButton("1");
+		sone = new JButton("1");
 		sone.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
@@ -138,7 +114,7 @@ public class CustomizeItemView extends JFrame {
 		sone.setBounds(65, 44, 45, 35);
 		panel_2.add(sone);
 		
-		JButton b = new JButton("B");
+		b = new JButton("B");
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
@@ -150,7 +126,7 @@ public class CustomizeItemView extends JFrame {
 		b.setBounds(10, 85, 45, 35);
 		panel_2.add(b);
 		
-		JButton c = new JButton("C");
+		c = new JButton("C");
 		c.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
@@ -169,14 +145,14 @@ public class CustomizeItemView extends JFrame {
 		panel_3.setLayout(null);
 		panel_3.setVisible(false);
 		setBounds(100, 100, 510, 507);
-		JLabel Insert = new JLabel("");
+		Insert = new JLabel("");
 		Insert.setOpaque(true);
 		Insert.setHorizontalAlignment(SwingConstants.CENTER);
 		Insert.setForeground(Color.WHITE);
 		Insert.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Insert.setBackground(Color.DARK_GRAY);
 		Insert.setBounds(177, 5, 70, 35);
-		JButton stwo = new JButton("2");
+		stwo = new JButton("2");
 		stwo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
@@ -188,7 +164,7 @@ public class CustomizeItemView extends JFrame {
 		stwo.setBounds(65, 85, 45, 35);
 		panel_2.add(stwo);
 		
-		JButton sthree = new JButton("3");
+		sthree = new JButton("3");
 		sthree.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
@@ -214,7 +190,7 @@ public class CustomizeItemView extends JFrame {
 		code.setBounds(27, 271, 70, 35);
 		panel_2.add(code);
 
-		JLabel priceCode = new JLabel("");
+		priceCode = new JLabel("");
 		priceCode.setOpaque(true);
 		priceCode.setHorizontalAlignment(SwingConstants.CENTER);
 		priceCode.setForeground(Color.WHITE);
@@ -223,113 +199,17 @@ public class CustomizeItemView extends JFrame {
 		priceCode.setBounds(27, 338, 70, 35);
 		panel_2.add(priceCode);
 		
-		JLabel lblPrice = new JLabel("Price");
+		lblPrice = new JLabel("Price");
 		lblPrice.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblPrice.setBounds(38, 313, 72, 18);
 		panel_2.add(lblPrice);
 		
-		JLabel lblChange = new JLabel("Change");
+		lblChange = new JLabel("Change");
 		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
 	
-		JButton btnEnter = new JButton("Enter");
-		btnEnter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int itemNumber = 0;
-			    switch (code.getText()) {
-			        case "A1":
-			            itemNumber = 0;
-			            break;
-			        case "A2":
-			            itemNumber = 1;
-			            break;
-			        case "A3":
-			            itemNumber = 2;
-			            break;
-			        case "B1":
-			            itemNumber = 3;
-			            break;
-			        case "B2":
-			            itemNumber = 4;
-			            break;
-			        case "B3":
-			            itemNumber = 5;
-			            break;
-			        case "C1":
-			            itemNumber = 6;
-			            break;
-			        case "C2":
-			            itemNumber = 7;
-			            break;
-			        case "C3":
-			            itemNumber = 8;
-			            break;
-			        case "D1":
-			            itemNumber = 9;
-			            break;
-			        case "D2":
-			            itemNumber = 10;
-			            break;
-			        case "D3":
-			            itemNumber = 11;
-			            break;
-			        default:
-			        	itemNumber = 0;
-			            break;
-			    }
-		        String itemName = "";
-		        if (curNum == 0) {
-		            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
-		        } else if (curNum == 1) {
-		            itemName = Main.specialVendingMachine.getSecondPartName(itemNumber);
-		        } else if (curNum == 2) {
-		            itemName = Main.specialVendingMachine.getThirdPartName(itemNumber);
-		        } else if (curNum == 3) {
-		            itemName = Main.specialVendingMachine.getFourthPartName(itemNumber);
-		        }      
-		        if (itemName != null && Main.specialVendingMachine.itemUsedCount(recipe, itemName) < Main.specialVendingMachine.getItemCustomByName(itemName).getQuantity())
-		            recipe.add(itemName);
-		        int count = 0;
-		        StringBuilder recipes = new StringBuilder();
-		        if(!recipe.isEmpty()) {
-		        	for (int i = 0; i < recipe.size(); i++) {
-			            String item = recipe.get(i);
-			            boolean isProcessed = false;
-
-			            for (int j = 0; j < i; j++) {
-			                if (item.equals(recipe.get(j))) {
-			                    isProcessed = true;
-			                    break;
-			                }
-			            }
-			            if (!isProcessed) {
-			                String name = item;
-			                int quantity = Main.specialVendingMachine.itemUsedCount(recipe, item);
-			                recipes.append(name).append(" - ").append(quantity);
-			                int numSpaces = 15 - name.length() - String.valueOf(quantity).length();
-			                for (int j = 0; j < numSpaces; j++) {
-			                    recipes.append("&nbsp;");
-			                }
-			                count++;
-			                if (count % 2 == 0)
-			                    recipes.append("<br>");
-			            }
-			        }
-
-			        if (count % 2 != 0) {
-			            recipes.append("&nbsp;").append("<br>");
-			        }
-			        Output.setText("<html>Combination - Total Price - " + Double.toString(Main.specialVendingMachine.calculateTotalPrice(recipe)) + "<br>" + recipes.toString() + "</html>");
-		        }
-		        if (itemName != null) {
-		            double itemPrice = Main.specialVendingMachine.getItemCustomByName(itemName).getPrice();
-		            priceCode.setText(String.valueOf(itemPrice));
-		        } else {
-		            priceCode.setText("NA");
-		        }
-			}
-		});
+		btnEnter = new JButton("Enter");
 		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnter.setFocusable(false);
 		btnEnter.setBounds(10, 212, 100, 28);
@@ -1022,6 +902,133 @@ public class CustomizeItemView extends JFrame {
 		lblChange.setVisible(false);
 		Change.setVisible(false);
 		this.setLocationRelativeTo(null);
+	}
+	
+	private static void changeCollect() {
+		final int[] currentIndex = {0};
+		Insert_1.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
+		        if (currentIndex[0] == size) {
+		            currentIndex[0] = -1;
+		            Insert_1.setText("");
+		            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
+		        } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
+		        	Insert_2.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+		            currentIndex[0]++;
+		            if (currentIndex[0] < size) {
+		                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+		            }
+
+		            Timer timer = new Timer(2000, new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    Insert_2.setText("");
+		                }
+		            });
+		            timer.setRepeats(false);
+		            timer.start();
+		        }
+		    }
+		});
+	}
+	
+	public void addItem() {
+		btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int itemNumber = 0;
+			    switch (code.getText()) {
+			        case "A1":
+			            itemNumber = 0;
+			            break;
+			        case "A2":
+			            itemNumber = 1;
+			            break;
+			        case "A3":
+			            itemNumber = 2;
+			            break;
+			        case "B1":
+			            itemNumber = 3;
+			            break;
+			        case "B2":
+			            itemNumber = 4;
+			            break;
+			        case "B3":
+			            itemNumber = 5;
+			            break;
+			        case "C1":
+			            itemNumber = 6;
+			            break;
+			        case "C2":
+			            itemNumber = 7;
+			            break;
+			        case "C3":
+			            itemNumber = 8;
+			            break;
+			        case "D1":
+			            itemNumber = 9;
+			            break;
+			        case "D2":
+			            itemNumber = 10;
+			            break;
+			        case "D3":
+			            itemNumber = 11;
+			            break;
+			        default:
+			        	itemNumber = 0;
+			            break;
+			    }
+		        String itemName = "";
+		        if (curNum == 0) {
+		            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
+		        } else if (curNum == 1) {
+		            itemName = Main.specialVendingMachine.getSecondPartName(itemNumber);
+		        } else if (curNum == 2) {
+		            itemName = Main.specialVendingMachine.getThirdPartName(itemNumber);
+		        } else if (curNum == 3) {
+		            itemName = Main.specialVendingMachine.getFourthPartName(itemNumber);
+		        }      
+		        if (itemName != null && Main.specialVendingMachine.itemUsedCount(recipe, itemName) < Main.specialVendingMachine.getItemCustomByName(itemName).getQuantity())
+		            recipe.add(itemName);
+		        int count = 0;
+		        StringBuilder recipes = new StringBuilder();
+		        if(!recipe.isEmpty()) {
+		        	for (int i = 0; i < recipe.size(); i++) {
+			            String item = recipe.get(i);
+			            boolean isProcessed = false;
+
+			            for (int j = 0; j < i; j++) {
+			                if (item.equals(recipe.get(j))) {
+			                    isProcessed = true;
+			                    break;
+			                }
+			            }
+			            if (!isProcessed) {
+			                String name = item;
+			                int quantity = Main.specialVendingMachine.itemUsedCount(recipe, item);
+			                recipes.append(name).append(" - ").append(quantity);
+			                int numSpaces = 15 - name.length() - String.valueOf(quantity).length();
+			                for (int j = 0; j < numSpaces; j++) {
+			                    recipes.append("&nbsp;");
+			                }
+			                count++;
+			                if (count % 2 == 0)
+			                    recipes.append("<br>");
+			            }
+			        }
+
+			        if (count % 2 != 0) {
+			            recipes.append("&nbsp;").append("<br>");
+			        }
+			        Output.setText("<html>Combination - Total Price - " + Double.toString(Main.specialVendingMachine.calculateTotalPrice(recipe)) + "<br>" + recipes.toString() + "</html>");
+		        }
+		        if (itemName != null) {
+		            double itemPrice = Main.specialVendingMachine.getItemCustomByName(itemName).getPrice();
+		            priceCode.setText(String.valueOf(itemPrice));
+		        } else {
+		            priceCode.setText("NA");
+		        }
+			}
+		});
 	}
 	
 	private static void itemAdder() {

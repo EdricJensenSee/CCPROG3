@@ -1,16 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -23,7 +16,8 @@ public class VendingMachineView extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
-	private JLabel code;
+	private static JLabel code, Insert_1, priceCode, Output, Insert_2, Insert, Finish;
+	private JButton btnEnter, btnNewButton_3_1_1_1, btnC_1_1, btnNewButton_3_1_1, btnNewButton_2_4, btnNewButton_2_3, btnNewButton_2_2, btnNewButton_2_1, btnNewButton_2, customize, btnNewButton_1_1_2_1, btnNewButton, btnNewButton_1,btnB,btnC,btnNewButton_1_1,btnNewButton_1_1_1,btnC_1;
 	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
 	/**
@@ -75,44 +69,7 @@ public class VendingMachineView extends JFrame {
 		contentPane.add(CollectChange);
 		CollectChange.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JLabel Insert_1 = new JLabel("");
-		final int[] currentIndex = {0};
-		Insert_1.addMouseListener(new MouseAdapter() {
-		    public void mouseClicked(MouseEvent e) {
-		    	if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-		    	    CollectChange.setText("+" + String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    currentIndex[0]++;
-		    	    int size = Main.regularVendingMachine.getCashBox().getDenominationsSpent().size();
-		    	    if (currentIndex[0] >= 0 && currentIndex[0] < size) {
-		    	        Insert_1.setText(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    } else {
-		    	        currentIndex[0] = -1; 
-		    	        Insert_1.setText("");
-		    	        Main.regularVendingMachine.getCashBox().getDenominationsSpent().clear();
-		    	    }
-		    	} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-		    	    CollectChange.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    currentIndex[0]++;
-		    	    int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
-		    	    if (currentIndex[0] >= 0 && currentIndex[0] < size) {
-		    	        Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
-		    	    } else {
-		    	        currentIndex[0] = -1; 
-		    	        Insert_1.setText("");
-		    	        Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
-		    	    }
-		    	} 
-
-		        Timer timer = new Timer(2000, new ActionListener() {
-		            public void actionPerformed(ActionEvent e) {
-		                CollectChange.setText("");
-		            }
-		        });
-		        timer.setRepeats(false); 
-		        timer.start();
-		    }
-		});
-
+		Insert_1 = new JLabel("");	
 		Insert_1.setOpaque(true);
 		Insert_1.setHorizontalAlignment(SwingConstants.CENTER);
 		Insert_1.setForeground(Color.WHITE);
@@ -120,73 +77,37 @@ public class VendingMachineView extends JFrame {
 		Insert_1.setBackground(Color.DARK_GRAY);
 		Change.add(Insert_1);
 		
-		JButton btnNewButton = new JButton("A");
+		btnNewButton = new JButton("A");
 		btnNewButton.setFocusable(false);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "A");
-			}
-		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton.setBounds(10, 44, 45, 35);
 		panel_2.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("1");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
-					code.setText(code.getText() + "1");
-			}
-		});
+		btnNewButton_1 = new JButton("1");
 		btnNewButton_1.setFocusable(false);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton_1.setBounds(65, 59, 45, 35);
 		panel_2.add(btnNewButton_1);
 		
-		JButton btnB = new JButton("B");
-		btnB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "B");
-			}
-		});
+		btnB = new JButton("B");
 		btnB.setFocusable(false);
 		btnB.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnB.setBounds(10, 85, 45, 35);
 		panel_2.add(btnB);
 		
-		JButton btnC = new JButton("C");
-		btnC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "C");
-			}
-		});
+		btnC = new JButton("C");
 		btnC.setFocusable(false);
 		btnC.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnC.setBounds(10, 126, 45, 35);
 		panel_2.add(btnC);
 		
-		JButton btnNewButton_1_1 = new JButton("2");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
-					code.setText(code.getText() + "2");
-			}
-		});
+		btnNewButton_1_1 = new JButton("2");
 		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton_1_1.setBounds(65, 104, 45, 35);
 		panel_2.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_1_1 = new JButton("3");
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
-					code.setText(code.getText() + "3");
-			}
-		});
+		btnNewButton_1_1_1 = new JButton("3");
 		btnNewButton_1_1_1.setFocusable(false);
 		btnNewButton_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNewButton_1_1_1.setBounds(65, 149, 45, 35);
@@ -206,7 +127,7 @@ public class VendingMachineView extends JFrame {
 		code.setBounds(27, 271, 70, 35);
 		panel_2.add(code);
 		
-		JLabel priceCode = new JLabel("");
+		priceCode = new JLabel("");
 		priceCode.setOpaque(true);
 		priceCode.setHorizontalAlignment(SwingConstants.CENTER);
 		priceCode.setForeground(Color.WHITE);
@@ -225,46 +146,7 @@ public class VendingMachineView extends JFrame {
 		lblChange.setBounds(30, 378, 72, 18);
 		panel_2.add(lblChange);
 
-		JButton btnEnter = new JButton("Enter");
-		btnEnter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				int itemNumber = 0;
-			    if (!code.getText().equals("")) {
-			        if (code.getText().equals("A1"))
-			            itemNumber = 0;
-			        else if (code.getText().equals("A2"))
-			            itemNumber = 1;
-			        else if (code.getText().equals("A3"))
-			            itemNumber = 2;
-			        else if (code.getText().equals("B1"))
-			            itemNumber = 3;
-			        else if (code.getText().equals("B2"))
-			            itemNumber = 4;
-			        else if (code.getText().equals("B3"))
-			            itemNumber = 5;
-			        else if (code.getText().equals("C1"))
-			            itemNumber = 6;
-			        else if (code.getText().equals("C2"))
-			            itemNumber = 7;
-			        else if (code.getText().equals("C3"))
-			            itemNumber = 8;
-			        else if (code.getText().equals("D1"))
-			            itemNumber = 9;
-			        else if (code.getText().equals("D2"))
-			            itemNumber = 10;
-			        else if (code.getText().equals("D3"))
-			            itemNumber = 11;
-			    }
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null)
-			    	if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) 
-					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice()));
-			    	else;
-			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
-			    	if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) 
-			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice()));
-			}
-		});
+	    btnEnter = new JButton("Enter");
 		btnEnter.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnEnter.setFocusable(false);
 		btnEnter.setBounds(10, 212, 100, 28);
@@ -276,13 +158,7 @@ public class VendingMachineView extends JFrame {
 		lblNewLabel.setBounds(0, 8, 120, 39);
 		panel_2.add(lblNewLabel);
 		
-		JButton btnC_1 = new JButton("D");
-		btnC_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
-					code.setText(code.getText() + "D");
-			}
-		});
+		btnC_1 = new JButton("D");
 		btnC_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnC_1.setFocusable(false);
 		btnC_1.setBounds(10, 168, 45, 35);
@@ -295,7 +171,7 @@ public class VendingMachineView extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel Finish = new JLabel("");
+		Finish = new JLabel("");
 		Finish.setHorizontalAlignment(SwingConstants.CENTER);
 		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Finish.setBounds(13, 12, 326, 18);
@@ -333,20 +209,7 @@ public class VendingMachineView extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel Output = new JLabel("");
-		Output.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
-                Output.setText("");
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Finish.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-			}
-		});
+		Output = new JLabel("");
 		Output.setBounds(10, 8, 197, 53);
 		Output.setOpaque(true);
 		Output.setHorizontalAlignment(SwingConstants.CENTER);
@@ -607,7 +470,7 @@ public class VendingMachineView extends JFrame {
 		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
 		
-		JLabel Insert = new JLabel("");
+		Insert = new JLabel("");
 		Insert.setOpaque(true);
 		Insert.setHorizontalAlignment(SwingConstants.CENTER);
 		Insert.setForeground(Color.WHITE);
@@ -616,36 +479,13 @@ public class VendingMachineView extends JFrame {
 		Insert.setBounds(184, 460, 70, 35);
 		contentPane.add(Insert);
 		
-
-		JButton btnNewButton_1_1_2_1 = new JButton("Return");
-		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
-			    	Main.regularVendingMachine.getCashBox().resetAmountPaid();
-			    	TestPage open = new TestPage("Regular");
-			    	open.setVisible(true);
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null) {
-			    	Main.specialVendingMachine.getCashBox().resetAmountPaid();
-			    	TestPage open = new TestPage("Special");
-			    	open.setVisible(true);
-			    }	
-			}
-		});
+		btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1_1_2_1.setFocusable(false);
 		btnNewButton_1_1_2_1.setBounds(10, 420, 79, 19);
 		panel.add(btnNewButton_1_1_2_1);
 		
-		JButton customize = new JButton("Customize Cake"); 
-		customize.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.specialVendingMachine.getCashBox().resetAmountPaid();
-				dispose();
-				Customize open = new Customize();
-				open.setVisible(true);
-			}
-		});
+		customize = new JButton("Customize Cake"); 
 		if (machineType.equals("Special"))
 			customize.setVisible(true);
 		else if (machineType.equals("Regular"))
@@ -655,7 +495,198 @@ public class VendingMachineView extends JFrame {
 		customize.setBounds(189, 420, 162, 19);
 		panel.add(customize);
 		
-		JButton btnNewButton_2 = new JButton("100");
+		btnNewButton_2 = new JButton("100");
+		btnNewButton_2.setBounds(17, 500, 85, 21);
+		contentPane.add(btnNewButton_2);
+		
+		btnNewButton_2_1 = new JButton("50");
+		btnNewButton_2_1.setBounds(114, 500, 85, 21);
+		contentPane.add(btnNewButton_2_1);
+		
+		btnNewButton_2_2 = new JButton("20");
+		btnNewButton_2_2.setBounds(212, 500, 85, 21);
+		contentPane.add(btnNewButton_2_2);
+		
+		btnNewButton_2_3 = new JButton("10");	
+		btnNewButton_2_3.setBounds(307, 500, 85, 21);
+		contentPane.add(btnNewButton_2_3);
+		
+		btnNewButton_2_4 = new JButton("5");
+		btnNewButton_2_4.setBounds(402, 500, 85, 21);
+		contentPane.add(btnNewButton_2_4);
+		JLabel lblAmountInserted = new JLabel("Amount Inserted:");
+		lblAmountInserted.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblAmountInserted.setBounds(20, 470, 165, 18);
+		contentPane.add(lblAmountInserted);
+		
+		btnNewButton_3_1_1 = new JButton("Clear");
+		btnNewButton_3_1_1.setFocusable(false);
+		btnNewButton_3_1_1.setBounds(402, 476, 85, 21);
+		contentPane.add(btnNewButton_3_1_1);
+		
+		btnC_1_1 = new JButton("BUY");
+		
+		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnC_1_1.setFocusable(false);
+		btnC_1_1.setBounds(264, 460, 70, 35);
+		contentPane.add(btnC_1_1);		
+		
+		Insert_2 = new JLabel("");
+		Insert_2.setOpaque(true);
+		Insert_2.setHorizontalAlignment(SwingConstants.CENTER);
+		Insert_2.setForeground(Color.WHITE);
+		Insert_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Insert_2.setBackground(Color.DARK_GRAY);
+		Insert_2.setBounds(340, 474, 52, 21);
+		contentPane.add(Insert_2);
+		JLabel lblWallet = new JLabel("Wallet");
+		lblWallet.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWallet.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblWallet.setBounds(343, 455, 49, 18);
+		contentPane.add(lblWallet);
+		btnNewButton_3_1_1_1 = new JButton("Cancel");
+		itemAdder();
+		btnNewButton_3_1_1_1.setFocusable(false);
+		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
+		contentPane.add(btnNewButton_3_1_1_1);
+		
+		this.setLocationRelativeTo(null);
+	}
+	
+	public void enterItem() {
+		btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int itemNumber = 0;
+			    if (!code.getText().equals("")) {
+			        if (code.getText().equals("A1"))
+			            itemNumber = 0;
+			        else if (code.getText().equals("A2"))
+			            itemNumber = 1;
+			        else if (code.getText().equals("A3"))
+			            itemNumber = 2;
+			        else if (code.getText().equals("B1"))
+			            itemNumber = 3;
+			        else if (code.getText().equals("B2"))
+			            itemNumber = 4;
+			        else if (code.getText().equals("B3"))
+			            itemNumber = 5;
+			        else if (code.getText().equals("C1"))
+			            itemNumber = 6;
+			        else if (code.getText().equals("C2"))
+			            itemNumber = 7;
+			        else if (code.getText().equals("C3"))
+			            itemNumber = 8;
+			        else if (code.getText().equals("D1"))
+			            itemNumber = 9;
+			        else if (code.getText().equals("D2"))
+			            itemNumber = 10;
+			        else if (code.getText().equals("D3"))
+			            itemNumber = 11;
+			    }
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null)
+			    	if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) 
+					priceCode.setText(String.valueOf(Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice()));
+			    	else;
+			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
+			    	if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) 
+			    	    priceCode.setText(String.valueOf(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice()));
+			}
+		});
+	}
+
+	private static void changeCollect() {
+		final int[] currentIndex = {0};
+		Insert_1.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent e) {
+		        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
+		        if (currentIndex[0] == size) {
+		            currentIndex[0] = -1;
+		            Insert_1.setText("");
+		            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
+		        } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
+		        	Insert_2.setText("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+		            currentIndex[0]++;
+		            if (currentIndex[0] < size) {
+		                Insert_1.setText(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+		            }
+
+		            Timer timer = new Timer(2000, new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                    Insert_2.setText("");
+		                }
+		            });
+		            timer.setRepeats(false);
+		            timer.start();
+		        }
+		    }
+		});
+	}
+	
+	public void A() {
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "A");
+			}
+		});
+	}
+	
+	public void B() {
+		btnB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "B");
+			}
+		});
+	}
+	
+	public void C() {
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "C");
+			}
+		});
+	}
+	
+	public void D() {
+		btnC_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("") || code.getText().equals("") || code.getText().equals("")) 
+					code.setText(code.getText() + "D");
+			}
+		});
+	}
+	
+	public void number1() {
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
+					code.setText(code.getText() + "1");
+			}
+		});
+	}
+	
+	public void number2() {
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
+					code.setText(code.getText() + "2");
+			}
+		});
+	}
+	
+	public void number3() {
+		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (code.getText().equals("A") || code.getText().equals("B") || code.getText().equals("C") || code.getText().equals("D")) 
+					code.setText(code.getText() + "3");
+			}
+		});
+	}
+	
+	public void add100() {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (machineType.equals("Regular")) {
@@ -668,10 +699,9 @@ public class VendingMachineView extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2.setBounds(17, 500, 85, 21);
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_2_1 = new JButton("50");
+	}
+	
+	public void add50() {
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (machineType.equals("Regular")) {
@@ -684,10 +714,9 @@ public class VendingMachineView extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2_1.setBounds(114, 500, 85, 21);
-		contentPane.add(btnNewButton_2_1);
-		
-		JButton btnNewButton_2_2 = new JButton("20");
+	}
+	
+	public void add20() {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (machineType.equals("Regular")) {
@@ -700,10 +729,9 @@ public class VendingMachineView extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2_2.setBounds(212, 500, 85, 21);
-		contentPane.add(btnNewButton_2_2);
-		
-		JButton btnNewButton_2_3 = new JButton("10");	
+	}
+	
+	public void add10() {
 		btnNewButton_2_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (machineType.equals("Regular")) {
@@ -716,10 +744,9 @@ public class VendingMachineView extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2_3.setBounds(307, 500, 85, 21);
-		contentPane.add(btnNewButton_2_3);
-		
-		JButton btnNewButton_2_4 = new JButton("5");
+	}
+	
+	public void add5() {
 		btnNewButton_2_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (machineType.equals("Regular")) {
@@ -732,14 +759,9 @@ public class VendingMachineView extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2_4.setBounds(402, 500, 85, 21);
-		contentPane.add(btnNewButton_2_4);
-		JLabel lblAmountInserted = new JLabel("Amount Inserted:");
-		lblAmountInserted.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblAmountInserted.setBounds(20, 470, 165, 18);
-		contentPane.add(lblAmountInserted);
-		
-		JButton btnNewButton_3_1_1 = new JButton("Clear");
+	}
+
+	public void clear() {
 		btnNewButton_3_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (machineType.equals("Regular")) {
@@ -760,11 +782,17 @@ public class VendingMachineView extends JFrame {
 				}
 			}
 		});
-		btnNewButton_3_1_1.setFocusable(false);
-		btnNewButton_3_1_1.setBounds(402, 476, 85, 21);
-		contentPane.add(btnNewButton_3_1_1);
-		
-		JButton btnC_1_1 = new JButton("BUY");
+	}
+	
+	public void cancel() {
+		btnNewButton_3_1_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				code.setText("");
+				priceCode.setText("");
+			}
+		});
+	}
+	public void buy() {
 		btnC_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -907,37 +935,50 @@ public class VendingMachineView extends JFrame {
 				    itemAdder();
 				}}
 		});
-		btnC_1_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnC_1_1.setFocusable(false);
-		btnC_1_1.setBounds(264, 460, 70, 35);
-		contentPane.add(btnC_1_1);		
-		
-		JLabel Insert_2 = new JLabel("");
-		Insert_2.setOpaque(true);
-		Insert_2.setHorizontalAlignment(SwingConstants.CENTER);
-		Insert_2.setForeground(Color.WHITE);
-		Insert_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Insert_2.setBackground(Color.DARK_GRAY);
-		Insert_2.setBounds(340, 474, 52, 21);
-		contentPane.add(Insert_2);
-		JLabel lblWallet = new JLabel("Wallet");
-		lblWallet.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWallet.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblWallet.setBounds(343, 455, 49, 18);
-		contentPane.add(lblWallet);
-		JButton btnNewButton_3_1_1_1 = new JButton("Cancel");
-		btnNewButton_3_1_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				code.setText("");
-				priceCode.setText("");
+	}
+	
+	public void claimProduct() {
+		Output.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
+                Output.setText("");
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Finish.setText("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
 			}
 		});
-		itemAdder();
-		btnNewButton_3_1_1_1.setFocusable(false);
-		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
-		contentPane.add(btnNewButton_3_1_1_1);
-		
-		this.setLocationRelativeTo(null);
+	}
+	
+	public void returner () {
+		btnNewButton_1_1_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			    if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
+			    	Main.regularVendingMachine.getCashBox().resetAmountPaid();
+			    	TestPage open = new TestPage("Regular");
+			    	open.setVisible(true);
+			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null) {
+			    	Main.specialVendingMachine.getCashBox().resetAmountPaid();
+			    	TestPage open = new TestPage("Special");
+			    	open.setVisible(true);
+			    }	
+			}
+		});
+	}
+	
+	public void customize() {
+		customize.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.specialVendingMachine.getCashBox().resetAmountPaid();
+				dispose();
+				Customize open = new Customize();
+				open.setVisible(true);
+			}
+		});
 	}
 	private static void itemAdder() {
 	    int index;

@@ -4,14 +4,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class Controller {
+	private CreatePageView createPageView = new CreatePageView("");
+	private CreateVendingMachineView createVendingMachineView = new CreateVendingMachineView();
+	private CustomizeItemView customizeItemView = new CustomizeItemView();
+	private MaintenancePageView maintenancePageView = new MaintenancePageView("");
+	private TestPageView testPageView = new TestPageView();
+	private 	TestVendingMachinePageView testVendingMachinePageView = new TestVendingMachinePageView("");
+	private 	VendingMachineView vendingMachineView = new VendingMachineView("");
     private MainPageView mainPageView;
-    private CreatePageView createPageView;
-    private CreateVendingMachineView createVendingMachineView;
-    private CustomizeItemView customizeItemView;
-    private MaintenancePageView maintenancePageView;
-    private TestPageView testPageView;
-    private TestVendingMachinePageView testVendingMachinePageView;
-    private VendingMachineView vendingMachineView;
     private AddItemView addItemView;
     private String machineType;
 
@@ -140,6 +140,7 @@ public class Controller {
             	createVendingMachineView.dispose();
 				MainPageView open = new MainPageView();
 				open.setVisible(true);
+				 new Controller(open);
             }
         });
     }
@@ -228,8 +229,37 @@ public class Controller {
     }
 
     public Controller(VendingMachineView vendingMachineView) {
-    	this.vendingMachineView = vendingMachineView;
-    
+        this.vendingMachineView = vendingMachineView;
+        this.vendingMachineView.setupMouseListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String machineType = vendingMachineView.getMachineType();
+                if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+                    handleMouseClick(Main.regularVendingMachine.getCashBox().getDenominationsSpent());
+                } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+                    handleMouseClick(Main.specialVendingMachine.getCashBox().getDenominationsSpent());
+                }
+            }
+        });
+    }
+    private void handleMouseClick(List<Integer> denominationsSpent) {
+        int currentIndex = vendingMachineView.getCurrentIndex();
+        if (currentIndex < denominationsSpent.size()) {
+            int denomination = denominationsSpent.get(currentIndex);
+            CollectChange.setText("+" + String.valueOf(denomination));
+            vendingMachineView.setInsertLabelText(String.valueOf(denomination));
+            vendingMachineView.incrementCurrentIndex();
+        } else {
+            vendingMachineView.resetCurrentIndex();
+            vendingMachineView.setInsertLabelText("");
+            denominationsSpent.clear();
+        }
+        Timer timer = new Timer(2000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CollectChange.setText("");
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
     }
     
     public Controller(AddItemView addItemView, String machineType) {
