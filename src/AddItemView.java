@@ -446,16 +446,16 @@ JLabel lblNewLabel_3_2 = new JLabel("");
         return Name.getText();
     }
 
-    public int getQuantity() {
-        return Integer.parseInt(Qty.getText());
+    public String getQuantity() {
+        return Qty.getText();
     }
 
-    public double getPrice() {
-        return Double.parseDouble(Price.getText());
+    public String getPrice() {
+        return Price.getText();
     }
 
-    public int getCalories() {
-        return Integer.parseInt(Calories.getText());
+    public String getCalories() {
+        return Calories.getText();
     }
 
     public boolean isCustomizationMode() {

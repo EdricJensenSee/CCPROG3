@@ -193,6 +193,10 @@ public class Controller {
                         Main.regularVendingMachine = new RegularVendingMachine();
                     } else if (machineType.equals("Special")) {
                         Main.specialVendingMachine = new SpecialVendingMachine();
+                        Main.specialVendingMachine.getParts().add("Cake Base");
+                        Main.specialVendingMachine.getParts().add("Fillings");
+                        Main. specialVendingMachine.getParts().add("Frostings");
+                        Main.specialVendingMachine.getParts().add("Toppings");
                     }
                     JOptionPane.showMessageDialog(null, machineType + " Vending Machine reset", "Reset Confirmation", JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -390,7 +394,11 @@ public class Controller {
         
         this.vendingMachineView.enterItem(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-				int itemNumber = 0;
+            	if (vendingMachineView.getCode().equals("")) {
+           		 JOptionPane.showMessageDialog(null, "Enter Item.");
+           		 return;
+           	}
+				int itemNumber = -1;
 			    if (!vendingMachineView.getCode().equals("")) {
 			        if (vendingMachineView.getCode().equals("A1"))
 			            itemNumber = 0;
@@ -417,22 +425,50 @@ public class Controller {
 			        else if (vendingMachineView.getCode().equals("D3"))
 			            itemNumber = 11;
 			    }
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null)
-			    	if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) 
-			    		vendingMachineView.setPriceCode(String.valueOf(Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice()));
-			    	else;
-			    else if (machineType.equals("Special") && Main.specialVendingMachine != null) 
-			    	if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) 
-			    		vendingMachineView.setPriceCode(String.valueOf(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice()));
+            	if (itemNumber == -1) {
+             		 JOptionPane.showMessageDialog(null, "Input Item.");
+             		 return;
+             	}
+            	
+            	if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+            	    if (itemNumber >= 0 && itemNumber <  Main.regularVendingMachine.getItemSlots().size()) {
+            	        if ( Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) {
+            	            vendingMachineView.setPriceCode(String.valueOf( Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice()));
+            	        } else {
+            	        }
+            	    } else {
+                		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+                 		 return;
+            	    }
+            	} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+            	    if (itemNumber >= 0 && itemNumber < Main.specialVendingMachine.getItemSellableSlots().size()) {
+            	        if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) {
+            	            vendingMachineView.setPriceCode(String.valueOf(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice()));
+            	        } else {
+            	        }
+            	    } else {
+               		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+             		 return;
+            	    }
+            	}
             }
         });
         
         this.vendingMachineView.buy(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	if (vendingMachineView.getCode().equals("") || vendingMachineView.getPriceCode().equals("")) {
+            		JOptionPane.showMessageDialog(null, "Input a product.");
+            		return;
+            	}
+            	if (vendingMachineView.getInsert().equals("")) {
+            		JOptionPane.showMessageDialog(null, "Insert Cash.");
+            		return;
+            	}
             	if (Double.parseDouble(vendingMachineView.getInsert()) < Double.parseDouble(vendingMachineView.getPriceCode())) {
-					vendingMachineView.setFinish("Insufficient Payment");
+            		JOptionPane.showMessageDialog(null, "Insufficient Payment.");
 				}
-				int itemNumber = 0;
+            	            		
+				int itemNumber = -1;
 				    switch (vendingMachineView.getCode()) {
 				        case "A1":
 				            itemNumber = 0;
@@ -474,6 +510,11 @@ public class Controller {
 				        	itemNumber = -1;
 				            break;
 				    }
+				    
+	            	if (itemNumber == -1) {
+	              		 JOptionPane.showMessageDialog(null, "Input Item.");
+	              		 return;
+	              	}
 							   
 				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 				        if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItemSlots().get(itemNumber))) {
@@ -569,6 +610,7 @@ public class Controller {
         
         this.vendingMachineView.claimProduct(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				if (!vendingMachineView.getFinish().equals(""))
                 vendingMachineView.setFinish((vendingMachineView.getOutput()).toUpperCase() + " CLAIMED!");
                 vendingMachineView.setOutput("");
                 Timer timer = new Timer(2000, new ActionListener() {
@@ -689,15 +731,25 @@ public class Controller {
 
         addItemView.addAddItemButtonListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                if (addItemView.getItemName().equals("") || addItemView.getQuantity().equals("") || addItemView.getPrice().equals("") || addItemView.getCalories().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Please fill in all fields before adding the item.");
+                    return;
+                }
+                
                 String itemName = addItemView.getItemName();
-                int quantity = addItemView.getQuantity();
-                double price = addItemView.getPrice();
-                int calories = addItemView.getCalories();
+                int quantity = Integer.parseInt(addItemView.getQuantity());
+                double price = Double.parseDouble(addItemView.getPrice());
+                int calories = Integer.parseInt(addItemView.getCalories());
+                
+                if (price%5!=0) {
+                    JOptionPane.showMessageDialog(null, "The price must be divisible by 5.");
+                    return;
+                }
 
                 if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
                     Main.regularVendingMachine.addItem(itemName, quantity, price, calories);
                 } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-                	if (addItemView.isCustomizationMode()) {
+                    if (addItemView.isCustomizationMode()) {
                         if (addItemView.getCurrentNumber() == 0) {
                             Main.specialVendingMachine.addFirstPart(itemName, quantity, price, calories);
                         } else if (addItemView.getCurrentNumber() == 1) {
@@ -706,7 +758,7 @@ public class Controller {
                             Main.specialVendingMachine.addThirdPart(itemName, quantity, price, calories);
                         } else if (addItemView.getCurrentNumber() == 3) {
                             Main.specialVendingMachine.addFourthPart(itemName, quantity, price, calories);
-                        }   
+                        }
                     } else if (!addItemView.isCustomizationMode()) {
                         Main.specialVendingMachine.addSellableItem(itemName, quantity, price, calories);
                     }
@@ -714,6 +766,7 @@ public class Controller {
                 addItemView.updateItemList(machineType);
             }
         });
+
         
         this.addItemView.returner(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -995,7 +1048,11 @@ public class Controller {
         
         this.customizeItemView.btnEnter(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	int itemNumber = 0;
+            	if (customizeItemView.getCode().equals("")) {
+            		 JOptionPane.showMessageDialog(null, "Enter Item.");
+            		 return;
+            	}
+            	int itemNumber = -1;
     		    switch (customizeItemView.getCode()) {
     		        case "A1":
     		            itemNumber = 0;
@@ -1037,6 +1094,11 @@ public class Controller {
     		        	itemNumber = 0;
     		            break;
     		    }
+    		    
+            	if (itemNumber == -1) {
+             		 JOptionPane.showMessageDialog(null, "Input Item.");
+             		 return;
+             	}
     	        String itemName = "";
     	        if (customizeItemView.getCurrentNumber() == 0) {
     	            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
@@ -1085,14 +1147,21 @@ public class Controller {
     	            double itemPrice = Main.specialVendingMachine.getItemCustomByName(itemName).getPrice();
     	            customizeItemView.setPriceCode(String.valueOf(itemPrice));
     	        } else {
-    	        	customizeItemView.setPriceCode("NA");
+           		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+         		 return;
     	        }
             }
         });
         
         this.customizeItemView.addRecipe(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	int itemNumber = 0;
+            	if (customizeItemView.getCurrentNumber() == 0) {
+            		if (customizeItemView.getCode().equals("")) {
+            			 JOptionPane.showMessageDialog(null, "You need to have a cake base.");
+            			 return;
+            		}
+            	}
+            	int itemNumber = -1;
     	        switch (customizeItemView.getCode()) {
     	            case "A1":
     	                itemNumber = 0;
@@ -1134,6 +1203,11 @@ public class Controller {
     	                itemNumber = 0;
     	                break;
     	        }
+    	        
+            	if (itemNumber == -1) {
+             		 JOptionPane.showMessageDialog(null, "Input Item.");
+             		 return;
+             	}
     	        customizeItemView.setCode("");
     	        customizeItemView.setPriceCode("");
     	        customizeItemView.addCurrentNumber();
@@ -1412,7 +1486,11 @@ public class Controller {
         
         this.maintenancePageView.addItem(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	int itemNumber = 0;
+            	if (maintenancePageView.getName().equals("")) {
+            		 JOptionPane.showMessageDialog(null, "Input Item.");
+            		 return;
+            	}
+            	int itemNumber = -1;
 			    String nameText = maintenancePageView.getName();
 			    if (!nameText.isEmpty()) {
 			        if (nameText.equals("A1"))
@@ -1440,7 +1518,19 @@ public class Controller {
 			        else if (nameText.equals("D3"))
 			            itemNumber = 11;
 			    }
+			    
+            	if (itemNumber == -1) {
+              		 JOptionPane.showMessageDialog(null, "Input Item.");
+              		 return;
+              	}
 		        if (maintenancePageView.getbtnAddText().equals("Add Item")) {
+	            	if (maintenancePageView.getName().equals("") || maintenancePageView.getQuantity().equals("") || maintenancePageView.getPrice().equals("") || maintenancePageView.getCalories().equals("")) {
+	            		 JOptionPane.showMessageDialog(null, "Fill up all fields.");
+	            		 return;
+	            	}
+	            	if (Double.parseDouble(maintenancePageView.getPrice()) %5 != 0){
+	            		JOptionPane.showMessageDialog(null, "Price must be divisible by 5.");
+	            	}
 		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 		                Main.regularVendingMachine.addItem(maintenancePageView.getName(), Integer.parseInt(maintenancePageView.getQuantity()), Double.parseDouble(maintenancePageView.getPrice()), Integer.parseInt(maintenancePageView.getCalories()));
 		            } else if (machineType.equals("Special") && Main.specialVendingMachine != null && maintenancePageView.getCustomize() == false) {
@@ -1472,6 +1562,13 @@ public class Controller {
 		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFourthPartName(itemNumber)).getQuantity() + 1);		            	}
 		            }	
 		        } else if (maintenancePageView.getbtnAddText().equals("Change")){
+	            	if (maintenancePageView.getName().equals("") || maintenancePageView.getPrice().equals("")) {
+	            		 JOptionPane.showMessageDialog(null, "Fill up all fields.");
+	            		 return;
+	            	}
+	            	if (Double.parseDouble(maintenancePageView.getPrice()) %5 != 0){
+	            		JOptionPane.showMessageDialog(null, "New price must be divisible by 5.");
+	            	}
 		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 		        		 Main.regularVendingMachine.getItem(itemNumber).setPrice(Double.parseDouble(maintenancePageView.getPrice()));
 					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && maintenancePageView.getCustomize() == false) {

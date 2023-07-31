@@ -24,7 +24,7 @@ public class MaintenancePageView extends JFrame {
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private static String machineType;
+	private String machineType;
 	private JTextField namefield;
 	private JTextField qtyfield;
 	private JTextField pricefield;
