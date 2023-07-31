@@ -19,20 +19,16 @@ public class tester {
         vendingMachine.addRecipe(customRamenRecipe, productName);
 
         System.out.println(productName + " Recipe:");
-        ArrayList<String> recipe = vendingMachine.getRecipeByName(productName);
+
         vendingMachine.prepareProduct(0, 40);
         
-        if (recipe != null) {
-            for (String itemName : recipe) {
-                Item item = vendingMachine.getItemCustomByName(itemName);
-                if (item != null) {
-                    System.out.println("- " + item.getItemName());
-                } else {
-                    System.out.println("- Item not found: " + itemName);
-                }
-            }
-        } else {
-            System.out.println("Recipe not found: " + productName);
+        for (int i = 0; i < vendingMachine.getRecipeNames().size(); i++) {
+            String recipeName =  vendingMachine.getRecipeNames().get(i);
+            ArrayList<String> recipe =  vendingMachine.getRecipes().get(i);
+
+            System.out.println("Recipe Name: " + recipeName);
+            System.out.println("Ingredients: " + recipe);
+            System.out.println();
         }
     }
 }

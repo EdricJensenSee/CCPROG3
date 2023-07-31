@@ -22,7 +22,7 @@ public class AddItemView extends JFrame {
     private JPanel contentPane;
     private JPanel C1;
     private boolean modes = true;
-    private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
+    private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
     private JTextField Name;
     private JTextField Qty;
     private JTextField Calories;
@@ -104,19 +104,6 @@ JLabel lblNewLabel_3_2 = new JLabel("");
 		Finish.setBounds(13, 12, 326, 18);
 		panel.add(Finish);
         Output = new JLabel("");
-        Output.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                Finish.setText((Output.getText()).toUpperCase() + " CLAIMED!");
-                Output.setText("");
-                Timer timer = new Timer(2000, new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        Finish.setText("");
-                    }
-                });
-                timer.setRepeats(false);
-                timer.start();
-            }
-        });
         JPanel A1 = new JPanel();
 		A1.setBackground(Color.LIGHT_GRAY);
 		A1.setBorder(null);
@@ -368,7 +355,7 @@ JLabel lblNewLabel_3_2 = new JLabel("");
 		twelve.setHorizontalAlignment(SwingConstants.CENTER);
 		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
-		itemAdder();
+		itemAdder(machineType);
 		btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1_1_2_1.setFocusable(false);
@@ -475,8 +462,8 @@ JLabel lblNewLabel_3_2 = new JLabel("");
         return customize;
     }
 
-    public void updateItemList() {
-        itemAdder();
+    public void updateItemList(String machineType) {
+        itemAdder(machineType);
     }
     
     public void setCurrentNumber(int curNum) {
@@ -493,8 +480,8 @@ JLabel lblNewLabel_3_2 = new JLabel("");
     public void setPart(String newName) {
     	Finish.setText(newName);
     }
-    public void itemAdder() {
-        int index;
+    public void itemAdder(String machineType) {
+        int index = 0;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
 	    for (index = 0; index < 12; index++) {
 	        labels[index].setText("");

@@ -29,23 +29,32 @@ public class Main {
         regularVendingMachine.addItem("Blueberry Muffin", 10, 30, 190);
         regularVendingMachine.addItem("Banana Muffin", 4, 30, 210);
 
-        regularVendingMachine.getCashBox().resetTotalSales();
-
-        specialVendingMachine.addSellableItem("Chocolate Chip Cookies", 10, 80, 180);
-       specialVendingMachine.addSellableItem("Cream Filling", 6, 10, 200);
-        specialVendingMachine.addFirstPart("Cake Base1", 8, 10, 150);
-        specialVendingMachine.addFirstPart("Cake Base2", 8, 20, 150);
-        specialVendingMachine.addFirstPart("Cake Base3", 8, 30, 150);
-        specialVendingMachine.addSecondPart("Topping", 5, 200, 250);
-        specialVendingMachine.addThirdPart("FIlling", 10, 50, 220);
-        specialVendingMachine.addFourthPart("fROSTING", 8, 20, 210);
-
+        specialVendingMachine.addSellableItem("Kitkat", 10, 80, 180);
+        specialVendingMachine.addSellableItem("Cookie", 6, 10, 200);
+        specialVendingMachine.addFirstPart("Chocolate Cake", 8, 10, 150);
+        specialVendingMachine.addFirstPart("Vanilla Cake", 8, 20, 150);
+        specialVendingMachine.addFirstPart("Strawberry", 8, 30, 150);
+        specialVendingMachine.addSecondPart("Cream Filling", 5, 200, 250);
+        specialVendingMachine.addSecondPart("Cream Cheese Filling", 10, 50, 220);
+        specialVendingMachine.addSecondPart("Chocolate Filling", 10, 50, 220);
+        specialVendingMachine.addThirdPart("Cream Frosting", 10, 50, 220);
+        specialVendingMachine.addThirdPart("Chocolate Frosting", 10, 50, 220);
+        specialVendingMachine.addFourthPart("Strawberry", 8, 20, 210);
+        specialVendingMachine.addFourthPart("Kitkat", 8, 20, 210);
+        specialVendingMachine.addFourthPart("Cookie", 8, 20, 210);
+        
+        ArrayList<String> recipe = new ArrayList<>();
+        recipe.add("Chocolate Cake");
+        recipe.add("Chocolate Filling");
+        recipe.add("Chocolate Frosting");
+        recipe.add("Kitkat");
+        specialVendingMachine.addRecipe(recipe, "Supreme Choco");
        // specialVendingMachine.getItemSellable().addItem("Cream Puffs", 6, 30, 180);
        // specialVendingMachine.getItemSellable().addItem("Strawberry", 10, 120	, 190);
         specialVendingMachine.getParts().add("Cake Base");
-        specialVendingMachine.getParts().add("Topping");
-        specialVendingMachine.getParts().add("FIlling");
-        specialVendingMachine.getParts().add("fROSTING");
+        specialVendingMachine.getParts().add("Fillings");
+        specialVendingMachine.getParts().add("Frostings");
+        specialVendingMachine.getParts().add("Toppings");
         //Main.specialVendingMachine.getCashBox().addTotalAmount(100);
         //Main.specialVendingMachine.getCashBox().resetAmountPaid();
 
@@ -62,10 +71,7 @@ public class Main {
      regularVendingMachine.getCashBox().getMoney()[3].replenish(1);  
      regularVendingMachine.getCashBox().getMoney()[4].replenish(1);   
 //regularVendingMachine.getCashBox().receivePayment(regularVendingMachine.getItemSlots(), regularVendingMachine.getItemSlots().get(0).getItemName(), 150);
-if (regularVendingMachine.getCashBox().getMoney() != null) {
-    for (Money m : regularVendingMachine.getCashBox().getMoney()) {
-        System.out.println(m.getType() + " - " + m.getQuantity());
-}}
+
 MainPageView mainPageView = new MainPageView();
 Controller controller = new Controller(mainPageView);
 mainPageView.setVisible(true);

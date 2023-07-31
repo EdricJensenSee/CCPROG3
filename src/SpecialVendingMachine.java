@@ -49,6 +49,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
         Item newItem = new Item(itemName, quantity, price, calories);
         itemSellableSlots.add(newItem);
+        itemSlots.add(newItem);
         totalItems += quantity;
         totalUnique++;
         return true;
@@ -71,6 +72,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         }
         Item newItem = new Item(itemName, quantity, price, calories);
         itemCustomSlots.add(newItem);
+        itemSlots.add(newItem);
         totalItems += quantity;
         totalUnique++;
         return true;
@@ -181,6 +183,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
         partList.add(partName);
         Item newItem = new Item(partName, quantity, price, calories);
         itemCustomSlots.add(newItem);
+        itemSlots.add(newItem);
     }
 
     public void addFirstPart(String baseName, int quantity, double price, int calories) {
@@ -199,18 +202,23 @@ class SpecialVendingMachine extends RegularVendingMachine {
         addPart(fourthPart, toppingName, quantity, price, calories);
     }
 
+
     public int calculateTotalCalories(ArrayList<String> recipe) {
         int totalCalories = 0;
-        for (int index = 0; index < recipe.size(); index++) {
-            totalCalories += itemCustomSlots.get(index).getCalories();
+        for (String itemName : recipe) {
+            if (Main.specialVendingMachine.getItemCustomByName(itemName) != null) {
+            	totalCalories += Main.specialVendingMachine.getItemCustomByName(itemName).getCalories();
+            }
         }
         return totalCalories;
     }
     
     public double calculateTotalPrice(ArrayList<String> recipe) {
         double totalPrice = 0;
-        for (int index = 0; index < recipe.size(); index++) {
-            totalPrice += itemCustomSlots.get(index).getPrice();
+        for (String itemName : recipe) {
+            if (Main.specialVendingMachine.getItemCustomByName(itemName) != null) {
+                totalPrice += Main.specialVendingMachine.getItemCustomByName(itemName).getPrice();
+            }
         }
         return totalPrice;
     }
@@ -253,7 +261,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
                 return false;
             }
         }
-
         if (amountPaid < totalPrice) {
             return false;
         } else if (amountPaid > totalPrice) {
@@ -306,11 +313,32 @@ class SpecialVendingMachine extends RegularVendingMachine {
         return count;
     }
 
+    public String findRecipeNameByIngredients(ArrayList<String> ingredients) {
+        for (int i = 0; i < Main.specialVendingMachine.getRecipes().size(); i++) {
+            String recipeName = Main.specialVendingMachine.getRecipeNames().get(i);
+            if (!recipeName.equals("Custom Cake")) { 
+                ArrayList<String> recipe = Main.specialVendingMachine.getRecipes().get(i);
+                if (recipe.containsAll(ingredients)) {
+                    return recipeName;
+                }
+            }
+        }
+        return "Custom Cake"; 
+    }
+
     public void setRecipes(ArrayList<ArrayList<String>> recipes) {
         this.recipes = recipes;
     }
 
-    public ArrayList<ArrayList<String>> getRecipes() {
+    public ArrayList<String> getRecipeNames() {
+		return recipeNames;
+	}
+
+	public void setRecipeNames(ArrayList<String> recipeNames) {
+		this.recipeNames = recipeNames;
+	}
+
+	public ArrayList<ArrayList<String>> getRecipes() {
         return recipes;
     }
 

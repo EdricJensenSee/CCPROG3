@@ -4,7 +4,7 @@ import java.util.*;
  * Represents the workings of the regular vending machine
  */
 class RegularVendingMachine {
-    private ArrayList<Item> itemSlots;
+    protected ArrayList<Item> itemSlots;
     public ArrayList<Item> getItemSlots() {
 		return itemSlots;
 	}

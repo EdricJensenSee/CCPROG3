@@ -23,7 +23,7 @@ public class MaintenancePageView extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
-	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
+	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
 	private JTextField namefield;
 	private JTextField qtyfield;
@@ -99,7 +99,7 @@ public class MaintenancePageView extends JFrame {
 		Receipt.setHorizontalTextPosition(SwingConstants.LEADING);
 		Receipt.setHorizontalAlignment(SwingConstants.LEFT);
 		Receipt.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		Receipt.setBounds(98, 335, 253, 103);
+		Receipt.setBounds(98, 333, 253, 103);
 		panel.add(Receipt);
 		b5.setBounds(170, 372, 85, 21);
 		panel.add(b5);
@@ -405,7 +405,7 @@ public class MaintenancePageView extends JFrame {
 		twelve.setHorizontalAlignment(SwingConstants.CENTER);
 		twelve.setBounds(0, 0, 106, 33);
 		D3.add(twelve);
-		itemAdder();	
+		itemAdder(machineType);	
 		btnNewButton_1_1_2_1 = new JButton("Return");
 		btnNewButton_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1_1_2_1.setFocusable(false);
@@ -460,93 +460,13 @@ public class MaintenancePageView extends JFrame {
 		
 		btnNewButton_1_2 = new JButton("Add items");
 		btnNewButton_1 = new JButton("Restock");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			    	Main.regularVendingMachine.getCashBox().resetTotalSales();
-			    	for (Item item : Main.regularVendingMachine.getItemSlots()) {
-			    		item.setSold(0);
-			    	}
-			    	
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null ) {
-			    	Main.specialVendingMachine.getCashBox().resetTotalSales();
-			    	for (Item item : Main.specialVendingMachine.getItemSlots()) {
-			    		item.setSold(0);
-			    	}
-			    }		
-			}
-		});
-		
 		btnNewButton_1_1_1 = new JButton("<html><center>Change<br>Prices</center></html>");		
 		btnNewButton_1_1 = new JButton("Replenish");
-		btnNewButton_1_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.regularVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
-			        StringBuilder allDenoms = new StringBuilder("<html>Change in Machine<br>");
-			        for (Money m : Main.specialVendingMachine.getCashBox().getMoney()) {
-			            allDenoms.append("₱").append(m.getType()).append(" - Quantity: ").append(m.getQuantity()).append("<br>");
-			        }
-			        allDenoms.append("</html>");
-			        Change.setText(allDenoms.toString());
-			    }
-
-			}
-		});
 		btnNewButton_1_1.setFocusable(false);
 		btnNewButton_1_1.setBounds(10, 163, 100, 41);
 		panel_2.add(btnNewButton_1_1);
 		
 		btnNewButton_1_2_1_1 = new JButton("Receipt");
-		btnNewButton_1_2_1_1.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        
-
-		        StringBuilder allDenoms = new StringBuilder("<html>Receipt - Total Earnings - ");
-		        double totalEarnings = 0;
-
-		        ArrayList<Item> itemsSlots = null;
-
-		        if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
-		            itemsSlots = Main.regularVendingMachine.getItemSlots();
-		            totalEarnings = Main.regularVendingMachine.getCashBox().getTotalSales();
-		        } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustomSlots() != null) {
-		            itemsSlots = Main.specialVendingMachine.getItemCustomSlots();
-		            totalEarnings = Main.specialVendingMachine.getCashBox().getTotalSales();
-		        }
-
-		        allDenoms.append(totalEarnings).append("<br>");
-		        int count = 0;
-
-		        if (itemsSlots != null) {
-		            for (Item item : itemsSlots) {
-		                String itemName = item.getItemName();
-		                int quantitySold = item.getSold();
-		                allDenoms.append(itemName).append(" - ").append(quantitySold);
-
-		                int numSpaces = 25 - itemName.length() - String.valueOf(quantitySold).length();
-		                for (int i = 0; i < numSpaces; i++) {
-		                    allDenoms.append("&nbsp;");
-		                }
-
-		                count++;
-		                if (count % 2 == 0) {
-		                    allDenoms.append("<br>");
-		                }
-		            }
-		        }
-		        allDenoms.append("</html>");
-		        Receipt.setText(allDenoms.toString());
-		    }
-		});
-
-
 		btnNewButton_1_2_1_1.setFocusable(false);
 		btnNewButton_1_2_1_1.setBounds(10, 265, 100, 41);
 		panel_2.add(btnNewButton_1_2_1_1);
@@ -563,6 +483,12 @@ public class MaintenancePageView extends JFrame {
 		btnNewButton_1_2.setFocusable(false);
 		btnNewButton_1_2.setBounds(10, 111, 100, 41);
 		panel_2.add(btnNewButton_1_2);
+		
+		btnCustomize = new JButton("Customize");
+		btnCustomize.setBounds(10, 417, 100, 19);
+		panel_2.add(btnCustomize);
+		btnCustomize.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCustomize.setFocusable(false);
 			
 		calfield = new JTextField();
 		calfield.setVisible(false);
@@ -570,18 +496,16 @@ public class MaintenancePageView extends JFrame {
 		calfield.setBounds(296, 349, 46, 19);
 		panel.add(calfield);
 		panel.add(btnAdd);
-		
-		btnCustomize = new JButton("Customize");
-		btnCustomize.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCustomize.setFocusable(false);
-		btnCustomize.setBounds(224, 403, 117, 19);
-		panel.add(btnCustomize);
 		if (machineType.equals("Special"))
 			btnCustomize.setVisible(true);
 		else if (machineType.equals("Regular"))
 			btnCustomize.setVisible(false);
 
 		this.setLocationRelativeTo(null);
+	}
+	
+	public void setReceiptText(String newText) {
+		Receipt.setText(newText);
 	}
 	
 	public void setFinish(String newText) {
@@ -633,6 +557,11 @@ public class MaintenancePageView extends JFrame {
     public void resetCur() {
     	CurNum = 0;
     }
+    
+    public void addItem(ActionListener listener) {
+    	btnAdd.addActionListener(listener);
+    }
+    
     public String getbtnAddText() {
     	return btnAdd.getText();
     }
@@ -659,13 +588,8 @@ public class MaintenancePageView extends JFrame {
     public void returner(ActionListener listener) {
     	btnNewButton_1_1_2_1.addActionListener(listener);
     }
-    
-    public void addItem(ActionListener listener) {
-    	btnAdd.addActionListener(listener);
-    }
-    
-    public void addItems(ActionListener listener) {
-    	btnNewButton_1_2.addActionListener(listener);
+        
+    public void addItemsView() {
 	    JButton[] buttons = { b1, b2, b3, b4, b5};
 	    for (int i = 0; i < 5; i++) {
 	        buttons[i].setVisible(false);
@@ -692,8 +616,7 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(true);
     }
     
-    public void restock(ActionListener listener) {
-    	btnNewButton_1.addActionListener(listener);
+    public void restockView() {
 		Receipt.setVisible(false);
 	    JButton[] buttons = { b1, b2, b3, b4, b5};
 	    for (int i = 0; i < 5; i++) {
@@ -715,8 +638,8 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(true);
     }
     
-    public void changePrice(ActionListener listener) {
-	    JButton[] buttons = { b1, b2, b3, b4, b5};
+    public void changePriceView() {
+    	JButton[] buttons = { b1, b2, b3, b4, b5};
 	    for (int i = 0; i < 5; i++) {
 	        buttons[i].setVisible(false);
 	    }
@@ -740,8 +663,7 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(true);
     }
     
-    public void replenishChange(ActionListener listener) {
-    	btnNewButton_1_1.addActionListener(listener);
+    public void replenishView() {
 		Change.setBounds(10, 311, 100, 125);
 	    JButton[] buttons = { b1, b2, b3, b4, b5};
 	    for (int i = 0; i < 5; i++) {
@@ -760,8 +682,7 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(false);
     }
     
-    public void receipt(ActionListener listener) {
-    	btnNewButton_1_2_1_1.addActionListener(listener);
+    public void receiptView() {
     	Receipt.setVisible(true);
         JButton[] buttons = { b1, b2, b3, b4, b5 };
         for (int i = 0; i < 5; i++) {
@@ -778,13 +699,33 @@ public class MaintenancePageView extends JFrame {
         btnAdd.setVisible(false);
         Change.setVisible(false);
     }
+    public void addItems(ActionListener listener) {
+    	btnNewButton_1_2.addActionListener(listener);
+    }
+    
+    public void restock(ActionListener listener) {
+    	btnNewButton_1.addActionListener(listener);
+    }
+    
+    public void changePrice(ActionListener listener) {
+    	btnNewButton_1_1_1.addActionListener(listener);
+    }
+    
+    public void replenishChange(ActionListener listener) {
+    	btnNewButton_1_1.addActionListener(listener);
+    }
+    
+    
+    public void receipt(ActionListener listener) {
+    	btnNewButton_1_2_1_1.addActionListener(listener);
+    }
     
     public void customize(ActionListener listener) {
     	btnCustomize.addActionListener(listener);
     }
-
-	public void itemAdder() {
-	    int index;
+    
+    public void itemAdder(String machineType) {
+        int index = 0;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
 	    for (index = 0; index < 12; index++) {
 	        labels[index].setText("");
@@ -818,10 +759,9 @@ public class MaintenancePageView extends JFrame {
 	            partsList = Main.specialVendingMachine.getThirdPart();
 	        } else if (CurNum == 3) {
 	            partsList = Main.specialVendingMachine.getFourthPart();
-	        } else {
+	        } else { 	
 	            return;
 	        }
-
 	        for (String item : partsList) {
 	            labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemCustomByName(item).getQuantity() + "x - " + Main.specialVendingMachine.getItemCustomByName(item).getItemName() + " ₱" + Main.specialVendingMachine.getItemCustomByName(item).getPrice() + "</center></html>");
 	            index++;
@@ -830,5 +770,5 @@ public class MaintenancePageView extends JFrame {
 	            }
 	        }
 	    }
-	}
+    }
 }

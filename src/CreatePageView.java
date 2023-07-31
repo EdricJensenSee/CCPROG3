@@ -24,13 +24,14 @@ public class CreatePageView extends JFrame {
 	private JTextField p4;
 	private JButton p5;
 	private JLabel p21;
-	private JLabel p22;
+	private JLabel p22, productName;
 	private JLabel p23;
 	private JLabel p24;
 	private JButton create;
 	private JButton add;
 	private JButton reset;
-	private JButton btnReturn;
+	private JButton btnReturn, btnNewButton;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -64,27 +65,27 @@ public class CreatePageView extends JFrame {
 		p4.setVisible(false);
 		p4.setToolTipText("Fourth Part");
 		p4.setColumns(10);
-		p4.setBounds(79, 194, 271, 25);
+		p4.setBounds(128, 192, 271, 25);
 		contentPane.add(p4);
 		
 		p3 = new JTextField();
 		p3.setVisible(false);
 		p3.setToolTipText("Third Part");
 		p3.setColumns(10);
-		p3.setBounds(79, 157, 271, 25);
+		p3.setBounds(128, 157, 271, 25);
 		contentPane.add(p3);
 		
 		p2 = new JTextField();
 		p2.setVisible(false);
 		p2.setColumns(10);
-		p2.setBounds(79, 122, 271, 25);
+		p2.setBounds(128, 122, 271, 25);
 		contentPane.add(p2);
 		
 		p1 = new JTextField();
 		p1.setVisible(false);
 		p1.setToolTipText("First Part");
 		p1.setColumns(10);
-		p1.setBounds(79, 87, 271, 25);
+		p1.setBounds(128, 87, 271, 25);
 		contentPane.add(p1);
 		
 		Name = new JLabel("Create a " + machineType + " Vending Machine");
@@ -113,42 +114,71 @@ public class CreatePageView extends JFrame {
 		contentPane.add(add);
 		
 		btnReturn = new JButton("RETURN");
-		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnReturn.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		btnReturn.setFocusable(false);
-		btnReturn.setBounds(301, 239, 125, 38);
+		btnReturn.setBounds(326, 257, 110, 35);
 		contentPane.add(btnReturn);
 		
 		contentPane.add(reset);
 		
-		p5 = new JButton("Create");
+		p5 = new JButton("Add Recipe");
 		p5.setFocusable(false);
 		p5.setVisible(false);
-		p5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		p5.setBounds(150, 230, 141, 47);
+		p5.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		p5.setBounds(166, 262, 100, 25);
 		contentPane.add(p5);
 		
-		p21 = new JLabel("Part 1");
+		p21 = new JLabel("Cake Base");
 		p21.setVisible(false);
-		p21.setBounds(24, 93, 45, 13);
+		p21.setBounds(42, 93, 76, 13);
 		contentPane.add(p21);
 		
-		p22 = new JLabel("Part 2");
+		p22 = new JLabel("Filling");
 		p22.setVisible(false);
-		p22.setBounds(24, 128, 45, 13);
+		p22.setBounds(42, 128, 76, 13);
 		contentPane.add(p22);
 		
-		p23 = new JLabel("Part 3");
+		p23 = new JLabel("Frosting");
 		p23.setVisible(false);
-		p23.setBounds(24, 163, 45, 13);
+		p23.setBounds(42, 163, 76, 13);
 		contentPane.add(p23);
 		
-		p24 = new JLabel("Part 4");
+		p24 = new JLabel("Topping");
 		p24.setVisible(false);
-		p24.setBounds(24, 200, 45, 13);
+		p24.setBounds(42, 200, 76, 13);
 		contentPane.add(p24);
+		if (Main.specialVendingMachine == null)
+			p5.setEnabled(false);
+		btnNewButton = new JButton("Create ");
+		btnNewButton.setBounds(326, 221, 110, 35);
+		btnNewButton.setVisible(false);
+		btnNewButton.setFocusable(false);
+		contentPane.add(btnNewButton);
+		
+		productName = new JLabel("Product Name");
+		productName.setBounds(42, 232, 86, 13);
+		contentPane.add(productName);
+		
+		textField = new JTextField();
+		textField.setBounds(134, 227, 192, 25);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		productName.setVisible(false);
+		textField.setVisible(false);
 		this.setLocationRelativeTo(null);
 	}
 
+	public String getProductName() {
+		return textField.getText();
+	}
+	public void enableRecipe() {
+		p5.setEnabled(true);
+	}
+	
+	public void setCreate(ActionListener listener) {
+		btnNewButton.addActionListener(listener);
+	}
+	
 	public void setCreateMachineBtnListener(ActionListener listener) {
 		create.addActionListener(listener);
 	}
@@ -196,6 +226,9 @@ public class CreatePageView extends JFrame {
 		p22.setVisible(true);
 		p23.setVisible(true);
 		p24.setVisible(true);
+		productName.setVisible(true);
+		textField.setVisible(true);
+		btnNewButton.setVisible(true);
 		create.setVisible(false);
 		add.setVisible(false);
 		reset.setVisible(false);

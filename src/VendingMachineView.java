@@ -25,7 +25,7 @@ public class VendingMachineView extends JFrame {
 	private JLabel Insert;
 	private JLabel Finish;
 	private JButton btnEnter, btnNewButton_3_1_1_1, btnC_1_1, btnNewButton_3_1_1, btnNewButton_2_4, btnNewButton_2_3, btnNewButton_2_2, btnNewButton_2_1, btnNewButton_2, customize, btnNewButton_1_1_2_1, btnNewButton, btnNewButton_1,btnB,btnC,btnNewButton_1_1,btnNewButton_1_1_1,btnC_1;
-	private static JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
+	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
 	private static String machineType;
 	private int[] currentIndex = {0};
 	/**
@@ -553,12 +553,13 @@ public class VendingMachineView extends JFrame {
 		lblWallet.setBounds(343, 455, 49, 18);
 		contentPane.add(lblWallet);
 		btnNewButton_3_1_1_1 = new JButton("Cancel");
-		itemAdder();
+		itemAdder(machineType);
 		btnNewButton_3_1_1_1.setFocusable(false);
 		btnNewButton_3_1_1_1.setBounds(402, 457, 85, 18);
 		contentPane.add(btnNewButton_3_1_1_1);
 		this.setLocationRelativeTo(null);
 		}
+	
 	
 	public String getWallet() {
 		return Insert_1.getText();
@@ -695,8 +696,8 @@ public class VendingMachineView extends JFrame {
     	customize.addActionListener(listener);
     }
 
-	public void itemAdder() {
-	    int index;
+	public void itemAdder(String machineType) {
+	    int index = 0;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };
 	    for (index = 0; index < 12; index++) {
 	        labels[index].setText("");
