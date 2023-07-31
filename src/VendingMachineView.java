@@ -26,7 +26,7 @@ public class VendingMachineView extends JFrame {
 	private JLabel Finish;
 	private JButton btnEnter, btnNewButton_3_1_1_1, btnC_1_1, btnNewButton_3_1_1, btnNewButton_2_4, btnNewButton_2_3, btnNewButton_2_2, btnNewButton_2_1, btnNewButton_2, customize, btnNewButton_1_1_2_1, btnNewButton, btnNewButton_1,btnB,btnC,btnNewButton_1_1,btnNewButton_1_1_1,btnC_1;
 	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private static String machineType;
+	private String machineType;
 	private int[] currentIndex = {0};
 	/**
 	 * Launch the application.
@@ -222,7 +222,7 @@ public class VendingMachineView extends JFrame {
 		Output.setOpaque(true);
 		Output.setHorizontalAlignment(SwingConstants.CENTER);
 		Output.setForeground(Color.WHITE);
-		Output.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		Output.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		Output.setBackground(Color.DARK_GRAY);
 		panel_1.add(Output);
 		
@@ -683,6 +683,10 @@ public class VendingMachineView extends JFrame {
 	public int[] getCurrentIndex() {
 	    return currentIndex;
 	}
+	
+	public void setCurrentIndex() {
+	    currentIndex = new int[]{0};
+	}
 
 	public void changeCollect(MouseListener listener) {
 		Insert_1.addMouseListener(listener);
@@ -714,7 +718,7 @@ public class VendingMachineView extends JFrame {
 	            }
 	        }
 	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellable() != null) {
-	        for (Item item : Main.specialVendingMachine.getItemSellable()) {
+	        for (Item item : Main.specialVendingMachine.getItemSellableSlots()) {
 	            labels[index].setText("<html><center>" + item.getQuantity() + "x - " + item.getItemName() + " ₱" + item.getPrice() + "</center></html>");
 	            index++;
 	            if (index >= 12) {

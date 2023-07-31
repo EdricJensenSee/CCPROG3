@@ -520,7 +520,9 @@ public class Controller {
 				        if (Main.regularVendingMachine.getCashBox().isItemAvailable(Main.regularVendingMachine.getItemSlots().get(itemNumber))) {
 				            if (Main.regularVendingMachine.getItemSlots().get(itemNumber).getPrice() != 0) {
 				                if (Main.regularVendingMachine.getCashBox().receivePayment(Main.regularVendingMachine.getItemSlots(), Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName(), Double.parseDouble(vendingMachineView.getInsert()))) {
-				                    vendingMachineView.setOutput(Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName());
+				                    vendingMachineView.setOutput(Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName() + " - " + Main.regularVendingMachine.getItemSlots().get(itemNumber).getCalories() + "Cal");
+				                    Main.regularVendingMachine.getCashBox().isEmpty(Main.regularVendingMachine.getItemSlots(), Main.regularVendingMachine.getItemSlots().get(itemNumber).getItemName());
+				                    vendingMachineView.itemAdder(machineType);
 				                } else {
 				                }
 				            } else {
@@ -531,8 +533,10 @@ public class Controller {
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
 				        if (Main.specialVendingMachine.getCashBox().isItemAvailable(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber))) {
 				            if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) {
-				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemSellable(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName(), Double.parseDouble(vendingMachineView.getInsert()))) {
-				                	vendingMachineView.setOutput(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName());
+				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemSellableSlots(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName(), Double.parseDouble(vendingMachineView.getInsert()))) {
+				                	vendingMachineView.setOutput(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName() + " - " + Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getCalories()+ "Cal");
+				                	Main.regularVendingMachine.getCashBox().isEmpty(Main.specialVendingMachine.getItemSellableSlots(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName());
+				                	vendingMachineView.itemAdder(machineType);
 				                } else {
 				                }
 				            } else {
@@ -552,7 +556,8 @@ public class Controller {
 			        Main.regularVendingMachine.getCashBox();
 			        if (Main.regularVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(vendingMachineView.getInsert()) == Double.parseDouble(vendingMachineView.getPriceCode())) {
 			            if (!Main.regularVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
-			                vendingMachineView.setWallet(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(0)));
+			            	vendingMachineView.itemAdder(machineType);
+			            	vendingMachineView.setWallet(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(0)));
 			            }
 			        } else {
 			        	vendingMachineView.setFinish("NOT ENOUGH CHANGE IN MACHINE");
@@ -561,7 +566,8 @@ public class Controller {
 			        Main.specialVendingMachine.getCashBox();
 			        if (Main.specialVendingMachine.getCashBox().getDenominationsSpent().size() > 0 || Double.parseDouble(vendingMachineView.getInsert()) == Double.parseDouble(vendingMachineView.getPriceCode())) {
 			            if (!Main.specialVendingMachine.getCashBox().getDenominationsSpent().isEmpty()) {
-			            	 vendingMachineView.setWallet(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(0)));
+			            	vendingMachineView.itemAdder(machineType);
+			            	vendingMachineView.setWallet(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(0)));
 			            }
 			        } else {
 			        	vendingMachineView.setFinish("NOT ENOUGH CHANGE IN MACHINE");
@@ -604,14 +610,15 @@ public class Controller {
 				        Main.specialVendingMachine.getCashBox().resetAmountPaid();
 				    vendingMachineView.itemAdder(machineType);
 				}
+				vendingMachineView.itemAdder(machineType);
             }
             
         });
         
         this.vendingMachineView.claimProduct(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				if (!vendingMachineView.getFinish().equals(""))
-                vendingMachineView.setFinish((vendingMachineView.getOutput()).toUpperCase() + " CLAIMED!");
+				if (!vendingMachineView.getOutput().equals(""))
+					vendingMachineView.setFinish((vendingMachineView.getOutput()).toUpperCase() + " CLAIMED!");
                 vendingMachineView.setOutput("");
                 Timer timer = new Timer(2000, new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -624,53 +631,64 @@ public class Controller {
         });
         
         this.vendingMachineView.changeCollect(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if (machineType.equals("Regular")) {
-			        int size = Main.regularVendingMachine.getCashBox().getDenominationsSpent().size();
-			        if (vendingMachineView.getCurrentIndex()[0] == size-1) {
-			        	vendingMachineView.getCurrentIndex()[0] = -1;
-			            vendingMachineView.setWallet("");
-			            Main.regularVendingMachine.getCashBox().getDenominationsSpent().clear();
-			        } else if (vendingMachineView.getCurrentIndex()[0] >= 0 && vendingMachineView.getCurrentIndex()[0] < size) {
-			        	vendingMachineView.setCollect("+" + String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(vendingMachineView.getCurrentIndex()[0])));
-			        	vendingMachineView.getCurrentIndex()[0]++;
-			            if (vendingMachineView.getCurrentIndex()[0] < size) {
-			            	 vendingMachineView.setWallet(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(vendingMachineView.getCurrentIndex()[0])));
-			            }
+            public void mouseClicked(MouseEvent e) {
+                int[] currentIndex = vendingMachineView.getCurrentIndex();
+                vendingMachineView.setCollect("" + vendingMachineView.getWallet());
+                if (machineType.equals("Regular")) {
+                    int size = Main.regularVendingMachine.getCashBox().getDenominationsSpent().size();
+                    if (currentIndex[0] == size-1) {
+                        currentIndex[0] = -1;
+                        vendingMachineView.setWallet("");
+                        vendingMachineView.setCurrentIndex();
+                        Main.regularVendingMachine.getCashBox().getDenominationsSpent().clear();
+                    } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
+                        vendingMachineView.setCollect(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+                        currentIndex[0]++;
+                        if (currentIndex[0] < size) {
+                            vendingMachineView.setWallet(String.valueOf(Main.regularVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+                        }
 
-			            Timer timer = new Timer(2000, new ActionListener() {
-			                public void actionPerformed(ActionEvent e) {
-			                    vendingMachineView.setCollect("");
-			                }
-			            });
-			            timer.setRepeats(false);
-			            timer.start();
-			        }
-				} else if (machineType.equals("Special")) {
-			        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
-			        if (vendingMachineView.getCurrentIndex()[0] == size-1) {
-			        	vendingMachineView.getCurrentIndex()[0] = -1;
-			            vendingMachineView.setWallet("");
-			            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
-			        } else if (vendingMachineView.getCurrentIndex()[0] >= 0 && vendingMachineView.getCurrentIndex()[0] < size) {
-			        	vendingMachineView.setCollect("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(vendingMachineView.getCurrentIndex()[0])));
-			        	vendingMachineView.getCurrentIndex()[0]++;
-			            if (vendingMachineView.getCurrentIndex()[0] < size) {
-			            	 vendingMachineView.setWallet(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(vendingMachineView.getCurrentIndex()[0])));
-			            }
+                        Timer timer = new Timer(2000, new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                vendingMachineView.setCollect("");
+                            }
+                        });
+                        timer.setRepeats(false);
+                        timer.start();
+                    }
+                } else if (machineType.equals("Special")) {
+                    int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
+                    if (currentIndex[0] == size - 1) {
+                        currentIndex[0] = -1;
+                        vendingMachineView.setWallet("");
+                        vendingMachineView.setCurrentIndex();
+                        Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
+                    } else if (currentIndex[0] >= 0 && currentIndex[0] < size) {
+                        vendingMachineView.setCollect(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+                        currentIndex[0]++;
+                        if (currentIndex[0] < size) {
+                            vendingMachineView.setWallet(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(currentIndex[0])));
+                        }
 
-			            Timer timer = new Timer(2000, new ActionListener() {
-			                public void actionPerformed(ActionEvent e) {
-			                    vendingMachineView.setCollect("");
-			                }
-			            });
-			            timer.setRepeats(false);
-			            timer.start();
-			        }
-				}
-
-			}
+                        Timer timer = new Timer(2000, new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                vendingMachineView.setCollect("");
+                            }
+                        });
+                        timer.setRepeats(false);
+                        timer.start();
+                    }
+                }
+                Timer timer = new Timer(2000, new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        vendingMachineView.setCollect("");
+                    }
+                });
+                timer.setRepeats(false);
+                timer.start();
+            }
         });
+
         
         this.vendingMachineView.customize(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -954,26 +972,27 @@ public class Controller {
         
         this.customizeItemView.changeCollect(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
+				customizeItemView.setCollect(customizeItemView.getWallet());
 			        int size = Main.specialVendingMachine.getCashBox().getDenominationsSpent().size();
 			        if (customizeItemView.getCurrentIndex()[0] == size-1) {
 			        	customizeItemView.getCurrentIndex()[0] = -1;
 			        	customizeItemView.setWallet("");
+			        	customizeItemView.setCurrentIndex();
 			            Main.specialVendingMachine.getCashBox().getDenominationsSpent().clear();
-			        } else if (customizeItemView.getCurrentIndex()[0] >= 0 && vendingMachineView.getCurrentIndex()[0] < size) {
-			        	customizeItemView.setCollect("+" + String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(customizeItemView.getCurrentIndex()[0])));
+			        } else if (customizeItemView.getCurrentIndex()[0] >= 0 && customizeItemView.getCurrentIndex()[0] < size) {
+			        	customizeItemView.setCollect(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(customizeItemView.getCurrentIndex()[0])));
 			        	customizeItemView.getCurrentIndex()[0]++;
 			            if (customizeItemView.getCurrentIndex()[0] < size) {
 			            	customizeItemView.setWallet(String.valueOf(Main.specialVendingMachine.getCashBox().getDenominationsSpent().get(customizeItemView.getCurrentIndex()[0])));
 			            }
-
-			            Timer timer = new Timer(2000, new ActionListener() {
-			                public void actionPerformed(ActionEvent e) {
-			                	customizeItemView.setCollect("");
-			                }
-			            });
-			            timer.setRepeats(false);
-			            timer.start();
 			        }
+		            Timer timer = new Timer(2000, new ActionListener() {
+		                public void actionPerformed(ActionEvent e) {
+		                	customizeItemView.setCollect("");
+		                }
+		            });
+		            timer.setRepeats(false);
+		            timer.start();
 			}
         });
         
@@ -1099,6 +1118,8 @@ public class Controller {
              		 JOptionPane.showMessageDialog(null, "Input Item.");
              		 return;
              	}
+            	
+            	
     	        String itemName = "";
     	        if (customizeItemView.getCurrentNumber() == 0) {
     	            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
@@ -1108,9 +1129,22 @@ public class Controller {
     	            itemName = Main.specialVendingMachine.getThirdPartName(itemNumber);
     	        } else if (customizeItemView.getCurrentNumber() == 3) {
     	            itemName = Main.specialVendingMachine.getFourthPartName(itemNumber);
-    	        }      
-    	        if (itemName != null && Main.specialVendingMachine.itemUsedCount(customizeItemView.getRecipe(), itemName) < Main.specialVendingMachine.getItemCustomByName(itemName).getQuantity())
+    	        }     
+    	        
+    	        if(Main.specialVendingMachine.getItemCustomByName(itemName) == null) {
+                		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+                		 return;
+    	        }
+    	        if (customizeItemView.getCurrentNumber() == 0) {
+    	            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
+    	            boolean alreadyAdded = customizeItemView.getRecipe().contains(itemName);
+    	            if (!alreadyAdded) {
+    	                customizeItemView.getRecipe().add(itemName);
+    	            }
+    	        } else if (itemName != null && Main.specialVendingMachine.itemUsedCount(customizeItemView.getRecipe(), itemName) < Main.specialVendingMachine.getItemCustomByName(itemName).getQuantity()){
     	        	customizeItemView.getRecipe().add(itemName);
+    	        }
+    	        	
     	        int count = 0;
     	        StringBuilder recipes = new StringBuilder();
     	        if(!customizeItemView.getRecipe().isEmpty()) {
@@ -1156,8 +1190,29 @@ public class Controller {
         this.customizeItemView.addRecipe(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	if (customizeItemView.getCurrentNumber() == 0) {
-            		if (customizeItemView.getCode().equals("")) {
+            		if (customizeItemView.getCode().equals("") ||customizeItemView.getPriceCode().equals("")) {
             			 JOptionPane.showMessageDialog(null, "You need to have a cake base.");
+            			 return;
+            		}
+            	}
+            	
+            	if (customizeItemView.getCurrentNumber() == 1) {
+            		if (customizeItemView.getCode().equals("")|| customizeItemView.getPriceCode().equals("")) {
+            			 JOptionPane.showMessageDialog(null, "Add filling.");
+            			 return;
+            		}
+            	}
+            	
+            	if (customizeItemView.getCurrentNumber() == 2) {
+            		if (customizeItemView.getCode().equals("")|| customizeItemView.getPriceCode().equals("")) {
+            			 JOptionPane.showMessageDialog(null, "Add frosting.");
+            			 return;
+            		}
+            	}
+            	
+            	if (customizeItemView.getCurrentNumber() == 3) {
+            		if (customizeItemView.getCode().equals("")|| customizeItemView.getPriceCode().equals("")) {
+            			 JOptionPane.showMessageDialog(null, "Add topping.");
             			 return;
             		}
             	}
@@ -1295,12 +1350,13 @@ public class Controller {
 		        double totalEarnings = 0;
 
 		        ArrayList<Item> itemsSlots = null;
-
+		        ArrayList<Item> deletedItems = null;
 		        if (machineType.equals("Regular") && Main.regularVendingMachine != null && Main.regularVendingMachine.getItemSlots() != null) {
+		        	deletedItems = Main.regularVendingMachine.getCashBox().getDeletedItems();
 		            itemsSlots = Main.regularVendingMachine.getItemSlots();
 		            totalEarnings = Main.regularVendingMachine.getCashBox().getTotalSales();
-		        } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustomSlots() != null) {
-		            itemsSlots = Main.specialVendingMachine.getItemSlots();
+		        } else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+		        	itemsSlots = Main.specialVendingMachine.getItemSlots();
 		            totalEarnings = Main.specialVendingMachine.getCashBox().getTotalSales();
 		        }
 
@@ -1324,6 +1380,15 @@ public class Controller {
 		                }
 		            }
 		        }
+		        if (deletedItems != null && !deletedItems.isEmpty()) {
+		            for (Item item : deletedItems) {
+		            	if (item != null)
+		                allDenoms.append("(" + (item.getQuantity() + item.getSold()) + ")").append(item.getItemName()).append(" - ").append(item.getSold());
+		            }
+		        }
+
+		        allDenoms.append("</html>");
+		        maintenancePageView.setReceiptText(allDenoms.toString());
 		        allDenoms.append("</html>");
 		        maintenancePageView.setReceiptText(allDenoms.toString());
             }
@@ -1486,10 +1551,13 @@ public class Controller {
         
         this.maintenancePageView.addItem(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	if (maintenancePageView.getName().equals("")) {
-            		 JOptionPane.showMessageDialog(null, "Input Item.");
-            		 return;
+            	if (!maintenancePageView.getbtnAddText().equals("Add Item")) {
+                	if (maintenancePageView.getName().equals("")) {
+               		 JOptionPane.showMessageDialog(null, "Input Item.");
+               		 return;
+               	}
             	}
+
             	int itemNumber = -1;
 			    String nameText = maintenancePageView.getName();
 			    if (!nameText.isEmpty()) {
@@ -1519,10 +1587,12 @@ public class Controller {
 			            itemNumber = 11;
 			    }
 			    
+			    if (!maintenancePageView.getbtnAddText().equals("Add Item"))
             	if (itemNumber == -1) {
               		 JOptionPane.showMessageDialog(null, "Input Item.");
               		 return;
               	}
+            	
 		        if (maintenancePageView.getbtnAddText().equals("Add Item")) {
 	            	if (maintenancePageView.getName().equals("") || maintenancePageView.getQuantity().equals("") || maintenancePageView.getPrice().equals("") || maintenancePageView.getCalories().equals("")) {
 	            		 JOptionPane.showMessageDialog(null, "Fill up all fields.");
@@ -1530,6 +1600,7 @@ public class Controller {
 	            	}
 	            	if (Double.parseDouble(maintenancePageView.getPrice()) %5 != 0){
 	            		JOptionPane.showMessageDialog(null, "Price must be divisible by 5.");
+	            		return;
 	            	}
 		            if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 		                Main.regularVendingMachine.addItem(maintenancePageView.getName(), Integer.parseInt(maintenancePageView.getQuantity()), Double.parseDouble(maintenancePageView.getPrice()), Integer.parseInt(maintenancePageView.getCalories()));
@@ -1552,6 +1623,21 @@ public class Controller {
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && maintenancePageView.getCustomize() == false) {
 				    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setQuantity(Main.specialVendingMachine.getItemSellable().get(itemNumber).getQuantity() + 1);
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && maintenancePageView.getCustomize() == true) {
+				    	String itemName = "";
+		    	        if (maintenancePageView.getCurrentNumber() == 0) {
+		    	            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
+		    	        } else if (maintenancePageView.getCurrentNumber() == 1) {
+		    	            itemName = Main.specialVendingMachine.getSecondPartName(itemNumber);
+		    	        } else if (maintenancePageView.getCurrentNumber() == 2) {
+		    	            itemName = Main.specialVendingMachine.getThirdPartName(itemNumber);
+		    	        } else if (maintenancePageView.getCurrentNumber() == 3) {
+		    	            itemName = Main.specialVendingMachine.getFourthPartName(itemNumber);
+		    	        }     
+		    	        
+		    	        if(Main.specialVendingMachine.getItemCustomByName(itemName) == null) {
+		                		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+		                		 return;
+		    	        }
 		            	if (maintenancePageView.getCurrentNumber() == 0) {
 		            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).setQuantity(Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).getQuantity() + 1);
 		            	} else if (maintenancePageView.getCurrentNumber() == 1) {
@@ -1574,6 +1660,21 @@ public class Controller {
 					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && maintenancePageView.getCustomize() == false) {
 					    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setPrice(Double.parseDouble(maintenancePageView.getPrice()));
 					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && maintenancePageView.getCustomize() == true) {
+			    	        String itemName = "";
+			    	        if (maintenancePageView.getCurrentNumber() == 0) {
+			    	            itemName = Main.specialVendingMachine.getFirstPartName(itemNumber);
+			    	        } else if (maintenancePageView.getCurrentNumber() == 1) {
+			    	            itemName = Main.specialVendingMachine.getSecondPartName(itemNumber);
+			    	        } else if (maintenancePageView.getCurrentNumber() == 2) {
+			    	            itemName = Main.specialVendingMachine.getThirdPartName(itemNumber);
+			    	        } else if (maintenancePageView.getCurrentNumber() == 3) {
+			    	            itemName = Main.specialVendingMachine.getFourthPartName(itemNumber);
+			    	        }     
+			    	        
+			    	        if(Main.specialVendingMachine.getItemCustomByName(itemName) == null) {
+			                		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+			                		 return;
+			    	        }
 			            	if (maintenancePageView.getCurrentNumber() == 0) {
 			            		Main.specialVendingMachine.getItemCustomByName(Main.specialVendingMachine.getFirstPartName(itemNumber)).setPrice(Double.parseDouble(maintenancePageView.getPrice()));
 			            	} else if (maintenancePageView.getCurrentNumber() == 1) {

@@ -239,45 +239,67 @@ class SpecialVendingMachine extends RegularVendingMachine {
 		this.itemCustomSlots = itemCustomSlots;
 	}
 
+	public void removeItem(Item item) {
+		itemCustomSlots.remove(item);
+		if(firstPart.contains(item))
+			firstPart.remove(item);
+		if(secondPart.contains(item))
+			secondPart.remove(item);
+		if(thirdPart.contains(item))
+			thirdPart.remove(item);
+		if(fourthPart.contains(item))
+			fourthPart.remove(item);
+	}
+
 	public boolean prepareProduct(int productIndex, double amountPaid) {
-        double totalPrice = 0;
-        int requiredQuantity;
+	    double totalPrice = 0;
+	    int requiredQuantity;
 
-        if (!isProductIndexValid(productIndex)) {
-            return false;
-        }
+	    if (!isProductIndexValid(productIndex)) {
+	        return false;
+	    }
 
-        ArrayList<String> recipe = recipes.get(productIndex);
+	    ArrayList<String> recipe = recipes.get(productIndex);
+	    for (String itemName : recipe) {
+	        Item item = getItemCustomByName(itemName);
+	        if (item != null) {
+	            requiredQuantity = itemUsedCount(recipe, itemName);
+	            if (item.getQuantity() < requiredQuantity) {
+	                return false;
+	            }
+	            totalPrice += item.getPrice();
+	        } else {
+	            return false;
+	        }
+	    }
 
-        for (String itemName : recipe) {
-            Item item = getItemCustomByName(itemName);
-            if (item != null) {
-                requiredQuantity = itemUsedCount(recipe, itemName);
-                if (item.getQuantity() < requiredQuantity) {
-                    return false;
-                }
-                totalPrice += item.getPrice();
-            } else {
-                return false;
-            }
-        }
-        if (amountPaid < totalPrice) {
-            return false;
-        } else if (amountPaid > totalPrice) {
-            double change = amountPaid - totalPrice;
-            change = Math.round(change * 100.0) / 100.0;
-            getCashBox().dispenseChange(change);
-            System.out.println("Success. " + getCashBox().getDenominationsSpent());
-        }
+	    if (amountPaid < totalPrice) {
+	        return false;
+	    } else if (amountPaid > totalPrice) {
+	        double change = amountPaid - totalPrice;
+	        change = Math.round(change * 100.0) / 100.0;
+	        getCashBox().dispenseChange(change);
+	    }
 
-        for (String itemName : recipe) {
-            requiredQuantity = itemUsedCount(recipe, itemName);
-            getItemCustomByName(itemName).setQuantity(getItemCustomByName(itemName).getQuantity() - requiredQuantity);
-            getItemCustomByName(itemName).setSold(getItemCustomByName(itemName).getSold() + requiredQuantity);
-        }
-        getCashBox().setTotalSales(getCashBox().getTotalSales() + totalPrice);
-        return true;
-    }
+	    for (String itemName : recipe) {
+	        requiredQuantity = itemUsedCount(recipe, itemName);
+	        Item item = getItemCustomByName(itemName);
+	        if (item != null) {
+	            item.setQuantity(item.getQuantity() - requiredQuantity);
+	            item.setSold(item.getSold() + requiredQuantity);
+
+	            if (item.getQuantity() == 0) {
+	                removeItem(item);
+	                getCashBox().getDeletedItems().add(item);
+	            }
+	        }
+	    }
+
+	    getCashBox().setTotalSales(getCashBox().getTotalSales() + totalPrice);
+	    return true;
+	}
+
+
 
     public Item getItemSellableByName(String itemName) {
         for (Item item : itemCustomSlots) {

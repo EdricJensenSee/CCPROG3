@@ -5,11 +5,13 @@ public class CashBox {
     private ArrayList<Double> denominationsSpent;
     private double amountPaid = 0.0;
     private double totalSales;
+    private ArrayList<Item> deletedItems;
 
     public CashBox() {
         money = new Money[]{new Money(5, 0), new Money(10, 0), new Money(20, 0), new Money(50, 0), new Money(100, 0)};
         denominationsSpent = new ArrayList<>();
         totalSales = 0.0;
+        deletedItems = new ArrayList<>();
     }
 
     public boolean isItemAvailable(Item item) {
@@ -56,6 +58,15 @@ public class CashBox {
         totalSales = 0.0;
     }
 
+    public ArrayList<Item> getDeletedItems() {
+        return deletedItems;
+    }
+
+    public void setDeletedItems(ArrayList<Item> deletedItems) {
+        this.deletedItems = deletedItems;
+    }
+
+    
     public boolean dispenseChange(double change) {
         int changeAmount = (int) change;
         int remainingChange = changeAmount;
@@ -106,14 +117,23 @@ public class CashBox {
             item.setSold(item.getSold() + 1);
             setTotalSales(getTotalSales() + price);
             return true;
-        } else {
+        } else if (amountPaid == price){
             item.setQuantity(item.getQuantity() - 1);
             item.setSold(item.getSold() + 1);
             setTotalSales(getTotalSales() + price);
             return true;
         }
+        return false;
+    }
+    public void isEmpty(ArrayList<Item> items, String itemName) {
+        Item item = getItemByName(items, itemName);
+        if (item.getQuantity() == 0) {
+            deletedItems.add(item);
+            items.remove(item);
+        }
     }
 
+    
     private Item getItemByName(ArrayList<Item> items, String itemName) {
         for (Item item : items) {
             if (item.getItemName().equals(itemName)) {

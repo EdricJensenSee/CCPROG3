@@ -694,6 +694,10 @@ public class CustomizeItemView extends JFrame {
     	btnNewButton_1_1_2_1.addActionListener(listener);
     }
     
+	public void setCurrentIndex() {
+	    currentIndex = new int[]{0};
+	}
+	
 	public void changeCollect(MouseListener listener) {
 		Insert_1.addMouseListener(listener);
 	}
@@ -754,8 +758,7 @@ public class CustomizeItemView extends JFrame {
 	public void setRecipe(ArrayList<String> recipe) {
 		this.recipe = recipe;
 	}
-
-	
+		
 	public void hideButtons() {
 		btnEnter.setEnabled(false);
 		a.setEnabled(false);
@@ -770,6 +773,18 @@ public class CustomizeItemView extends JFrame {
         lblChange.setVisible(true);
         Change.setVisible(true);
         panel_3.setVisible(true);
+		A1.setVisible(false);
+		A2.setVisible(false);
+		A3.setVisible(false);
+		B1.setVisible(false);
+		B2.setVisible(false);
+		B3.setVisible(false);
+		C1.setVisible(false);
+		C2.setVisible(false);
+		C3.setVisible(false);
+		D1.setVisible(false);
+		D2.setVisible(false);
+		D3.setVisible(false);	
         setBounds(100, 100, 510, 568);
         setLocationRelativeTo(null);
 	}
@@ -836,16 +851,22 @@ public class CustomizeItemView extends JFrame {
 	        } else if (curNum == 3) {
 	            partsList = Main.specialVendingMachine.getFourthPart();
 	        } else {
-	            return;
+	        	return;
 	        }
 
 	        for (String item : partsList) {
-	            labels[index].setText("<html><center>" + Main.specialVendingMachine.getItemCustomByName(item).getQuantity() + "x - " + Main.specialVendingMachine.getItemCustomByName(item).getItemName() + " ₱" + Main.specialVendingMachine.getItemCustomByName(item).getPrice() + "</center></html>");
+	            Item itemCustom = Main.specialVendingMachine.getItemCustomByName(item);
+	            if (itemCustom != null) {
+	                labels[index].setText("<html><center>" + itemCustom.getQuantity() + "x - " + itemCustom.getItemName() + " ₱" + itemCustom.getPrice() + "</center></html>");
+	            } else {
+	                labels[index].setText("<html><center>Empty</center></html>");
+	            }
 	            index++;
 	            if (index >= 12) {
 	                break;
 	            }
 	        }
+
 	    }
 	
 }
