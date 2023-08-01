@@ -535,7 +535,7 @@ public class Controller {
 				            if (Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getPrice() != 0) {
 				                if (Main.specialVendingMachine.getCashBox().receivePayment(Main.specialVendingMachine.getItemSellableSlots(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName(), Double.parseDouble(vendingMachineView.getInsert()))) {
 				                	vendingMachineView.setOutput(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName() + " - " + Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getCalories()+ "Cal");
-				                	Main.regularVendingMachine.getCashBox().isEmpty(Main.specialVendingMachine.getItemSellableSlots(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName());
+				                	Main.specialVendingMachine.getCashBox().isEmpty(Main.specialVendingMachine.getItemSellableSlots(), Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getItemName());
 				                	vendingMachineView.itemAdder(machineType);
 				                } else {
 				                }
@@ -753,12 +753,22 @@ public class Controller {
                     JOptionPane.showMessageDialog(null, "Please fill in all fields before adding the item.");
                     return;
                 }
-                
-                String itemName = addItemView.getItemName();
-                int quantity = Integer.parseInt(addItemView.getQuantity());
-                double price = Double.parseDouble(addItemView.getPrice());
-                int calories = Integer.parseInt(addItemView.getCalories());
-                
+            	int quantity = 0;
+                double price = 0;
+                int calories = 0;
+                try {
+                    String quantityStr = addItemView.getQuantity();
+                    String priceStr = addItemView.getPrice();
+                    String caloriesStr = addItemView.getCalories();
+                    quantity = Integer.parseInt(quantityStr);
+                    price = Double.parseDouble(priceStr);
+                    calories = Integer.parseInt(caloriesStr);
+                    
+                } catch (NumberFormatException e1) {
+                	JOptionPane.showMessageDialog(null, "Input valid numbers.");
+                } 
+
+                String itemName = addItemView.getItemName();                
                 if (price%5!=0) {
                     JOptionPane.showMessageDialog(null, "The price must be divisible by 5.");
                     return;
@@ -1598,6 +1608,16 @@ public class Controller {
 	            		 JOptionPane.showMessageDialog(null, "Fill up all fields.");
 	            		 return;
 	            	}
+	                try {
+	                    Integer.parseInt(maintenancePageView.getQuantity());
+	                    Double.parseDouble(maintenancePageView.getPrice());
+	                    Integer.parseInt(maintenancePageView.getCalories());
+	                    
+	                } catch (NumberFormatException e1) {
+	                	JOptionPane.showMessageDialog(null, "Input valid numbers.");
+	                	return;
+	                } 
+
 	            	if (Double.parseDouble(maintenancePageView.getPrice()) %5 != 0){
 	            		JOptionPane.showMessageDialog(null, "Price must be divisible by 5.");
 	            		return;
@@ -1652,6 +1672,12 @@ public class Controller {
 	            		 JOptionPane.showMessageDialog(null, "Fill up all fields.");
 	            		 return;
 	            	}
+	            	try {
+	                    Double.parseDouble(maintenancePageView.getPrice());
+	                } catch (NumberFormatException e1) {
+	                	JOptionPane.showMessageDialog(null, "Input valid numbers.");
+	                	return;
+	                } 
 	            	if (Double.parseDouble(maintenancePageView.getPrice()) %5 != 0){
 	            		JOptionPane.showMessageDialog(null, "New price must be divisible by 5.");
 	            	}

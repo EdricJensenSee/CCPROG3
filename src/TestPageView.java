@@ -48,11 +48,6 @@ public class TestPageView extends JFrame {
 		btnReturn.setFocusable(false);
 		btnReturn.setBounds(301, 225, 125, 38);
 		contentPane.add(btnReturn);
-		btnReturn.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		       System.out.print("Hello");
-		    }
-		});
 		this.setLocationRelativeTo(null);
 	}
     public void setTestRegularBtnListener(ActionListener listener) {
