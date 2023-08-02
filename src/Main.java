@@ -5,17 +5,15 @@ import java.util.*;
  * The Driver class
  */ 
 public class Main {
-    public static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
-    public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
+    public static SpecialVendingMachine specialVendingMachine;
+    public static RegularVendingMachine regularVendingMachine;
     public static Item itemRegular;
     public static Item itemSpecial; 
     public static Item itemCustom; 
     public static CashBox regularCashBox;
     public static CashBox specialCashBox;
 /** 
- *
  * The Driver class
- *
  * @param args the args. 
  */
     public static void main(String[] args) { 
@@ -40,32 +38,39 @@ public class Main {
     	}
     	
     	try {
-        	specialVendingMachine.addSellableItem("Kitkats", 1, 80, 180);
-    	    specialVendingMachine.addSellableItem("Cookies", 1, 10, 200);
-    	    specialVendingMachine.addSellableItem("Cupcake", 1, 80, 180);
-    	    specialVendingMachine.addSellableItem("Muffin", 1, 10, 200);
-    	    specialVendingMachine.addFirstPart("Chocolate Cake", 8, 10, 150);
-    	    specialVendingMachine.addFirstPart("Vanilla Cake", 8, 20, 150);
-    	    specialVendingMachine.addFirstPart("Strawberry Cake", 8, 30, 150);
-    	    specialVendingMachine.addSecondPart("Cream Filling", 1, 200, 250);
-    	    specialVendingMachine.addSecondPart("Cream Cheese Filling", 10, 50, 220);
-    	    specialVendingMachine.addSecondPart("Chocolate Filling", 10, 50, 220);
-    	    specialVendingMachine.addThirdPart("Cream Frosting", 10, 50, 220);
-    	    specialVendingMachine.addThirdPart("Chocolate Frosting", 10, 50, 220);
-    	    specialVendingMachine.addFourthPart("Strawberry", 8, 20, 210);
-    	    specialVendingMachine.addFourthPart("Kitkat", 8, 20, 210);
-    	    specialVendingMachine.addFourthPart("Cookie", 8, 20, 210);
+        	specialVendingMachine.addSellableItem("Kitkats", 3, 35, 100);
+    	    specialVendingMachine.addSellableItem("Cookies", 4, 20, 200);
+    	    specialVendingMachine.addSellableItem("Cupcake", 2, 50, 180);
+    	    specialVendingMachine.addSellableItem("Muffin", 5, 45, 200);
+    	    specialVendingMachine.addFirstPart("Chocolate Cake", 8, 400, 450);
+    	    specialVendingMachine.addFirstPart("Vanilla Cake", 8, 350, 600);
+    	    specialVendingMachine.addFirstPart("Strawberry Cake", 8, 500, 400);
+    	    specialVendingMachine.addSecondPart("Cream Filling", 1, 150, 180);
+    	    specialVendingMachine.addSecondPart("Cream Cheese Filling", 10, 125, 220);
+    	    specialVendingMachine.addSecondPart("Chocolate Filling", 10, 135, 140);
+    	    specialVendingMachine.addThirdPart("Cream Frosting", 10, 120, 60);
+    	    specialVendingMachine.addThirdPart("Chocolate Frosting", 10, 125, 80);
+    	    specialVendingMachine.addFourthPart("Strawberry", 8, 20, 30);
+    	    specialVendingMachine.addFourthPart("Kitkat", 8, 30, 100);
+    	    specialVendingMachine.addFourthPart("Cookie", 8, 20, 70);
+    	    
             ArrayList<String> recipe = new ArrayList<>();
             recipe.add("Chocolate Cake");
             recipe.add("Chocolate Filling");
             recipe.add("Chocolate Frosting");
             recipe.add("Kitkat");
             specialVendingMachine.addRecipe(recipe, "Supreme Choco");
+            recipe = new ArrayList<>();
+            recipe.add("Vanilla Cake");
+            recipe.add("Cream Filling");
+            recipe.add("Cream Frosting");
+            recipe.add("Strawberry");
+            
+            specialVendingMachine.addRecipe(recipe, "Creamy Goodness");
             specialVendingMachine.getParts().add("Cake Base");
             specialVendingMachine.getParts().add("Fillings");
             specialVendingMachine.getParts().add("Frostings");
             specialVendingMachine.getParts().add("Toppings");
-     
             specialVendingMachine.getCashBox().getMoney()[0].replenish(100); 
             specialVendingMachine.getCashBox().getMoney()[1].replenish(1);   
             specialVendingMachine.getCashBox().getMoney()[2].replenish(1);   

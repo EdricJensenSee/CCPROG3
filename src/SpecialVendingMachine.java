@@ -287,10 +287,11 @@ class SpecialVendingMachine extends RegularVendingMachine {
     public int calculateTotalCalories(ArrayList<String> recipe) {
         int totalCalories = 0;
         for (String itemName : recipe) {
-            if (Main.specialVendingMachine.getItemCustomByName(itemName) != null) {
-            	totalCalories += Main.specialVendingMachine.getItemCustomByName(itemName).getCalories();
+            if (Main.specialVendingMachine.getItemByName(itemName) != null) {
+            	totalCalories += Main.specialVendingMachine.getItemByName(itemName).getCalories();
             }
         }
+        
         return totalCalories;
     }
     
@@ -311,7 +312,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Gets the list of sellable item slots.
-     *
      * @return The list of sellable item slots as an ArrayList of Item objects.
      */
     public ArrayList<Item> getItemSellableSlots() {
@@ -320,7 +320,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Sets the list of sellable item slots.
-     *
      * @param itemSellableSlots The list of sellable item slots as an ArrayList of Item objects.
      */
 	public void setItemSellableSlots(ArrayList<Item> itemSellableSlots) {
@@ -338,7 +337,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Sets the list of custom item slots.
-     *
      * @param itemCustomSlots The list of custom item slots as an ArrayList of Item objects.
      */
 	public void setItemCustomSlots(ArrayList<Item> itemCustomSlots) {
@@ -396,7 +394,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Finds an item in the sellable slots by its name.
-     *
      * @param itemName The name of the item to find.
      * @return The found item as an Item object, or null if not found.
      */
@@ -411,7 +408,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
     
     /**
      * Finds an item in the custom slots by its name.
-     *
      * @param itemName The name of the item to find.
      * @return The found item as an Item object, or null if not found.
      */
@@ -426,7 +422,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Checks if the given product index is valid.
-     *
      * @param productIndex The index of the product to check.
      * @return True if the index is valid, false otherwise.
      */
@@ -439,7 +434,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Counts the occurrences of a specific item in a recipe.
-     *
      * @param recipe   The recipe as an ArrayList of String objects.
      * @param itemName The name of the item to count.
      * @return The number of occurrences of the item in the recipe.
@@ -455,7 +449,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Finds the name of a recipe based on its ingredients.
-     *
      * @param ingredients The list of ingredients as an ArrayList of String objects.
      * @return The name of the recipe that matches the ingredients, or "Custom Cake" if no match is found.
      */
@@ -474,7 +467,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Sets the list of recipes for the special vending machine.
-     *
      * @param recipes The list of recipes as an ArrayList of ArrayList of String objects.
      */
     public void setRecipes(ArrayList<ArrayList<String>> recipes) {
@@ -483,7 +475,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Gets the list of recipe names for the special vending machine.
-     *
      * @return The list of recipe names as an ArrayList of String objects.
      */
     public ArrayList<String> getRecipeNames() {
@@ -492,7 +483,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Sets the list of recipe names for the special vending machine.
-     *
      * @param recipeNames The list of recipe names as an ArrayList of String objects.
      */
     public void setRecipeNames(ArrayList<String> recipeNames) {
@@ -501,7 +491,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Gets the list of recipes for the special vending machine.
-     *
      * @return The list of recipes as an ArrayList of ArrayList of String objects.
      */
     public ArrayList<ArrayList<String>> getRecipes() {
@@ -510,7 +499,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 
     /**
      * Gets the cash box associated with the special vending machine.
-     *
      * @return The CashBox object for the special vending machine.
      */
     public CashBox getCashBox() {
