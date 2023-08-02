@@ -1619,14 +1619,18 @@ public class Controller {
 			            itemNumber = 10;
 			        else if (nameText.equals("D3"))
 			            itemNumber = 11;
+			        else{
+			        	itemNumber = -1;}
 			    }
 			    
-			    if (!maintenancePageView.getbtnAddText().equals("Add Item"))
-            	if (itemNumber == -1) {
-              		 JOptionPane.showMessageDialog(null, "Input Item.");
-              		 return;
-              	}
-            	
+			    if (!maintenancePageView.getbtnAddText().equals("Add Item")) {
+	            	if (itemNumber == -1) {
+	              		 JOptionPane.showMessageDialog(null, "Input Valid Item.");
+	              		 return;
+	              	}
+	            	}
+
+            	try {
 		        if (maintenancePageView.getbtnAddText().equals("Add Item")) {
 	            	if (maintenancePageView.getName().equals("") || maintenancePageView.getQuantity().equals("") || maintenancePageView.getPrice().equals("") || maintenancePageView.getCalories().equals("")) {
 	            		 JOptionPane.showMessageDialog(null, "Fill up all fields.");
@@ -1736,7 +1740,11 @@ public class Controller {
 			            	}
 			            }		
 		        }
-		        maintenancePageView.itemAdder(machineType);;
+		        maintenancePageView.itemAdder(machineType);
+            	}catch ( NullPointerException e1){
+                	JOptionPane.showMessageDialog(null, "Input valid item.");
+                	return;
+            	}	
             }
         });
     }
