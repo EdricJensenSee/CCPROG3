@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.awt.EventQueue;
 import javax.swing.*;
@@ -7,14 +6,13 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
-import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
 
 public class CustomizeItemView extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, Change, panel_3;
 	private JPanel A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3;
 	private JLabel code, firstPart, secondPart, thirdPart, fourthPart;
@@ -197,7 +195,7 @@ public class CustomizeItemView extends JFrame {
 		d.setBounds(10, 168, 45, 35);
 		panel_2.add(d);
 		
-		Finish = new JLabel("Choose " + Main.specialVendingMachine.getParts().get(0));
+		Finish = new JLabel("");
 		Finish.setToolTipText("");
 		Finish.setHorizontalAlignment(SwingConstants.CENTER);
 		Finish.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -839,34 +837,56 @@ public class CustomizeItemView extends JFrame {
 	    for (index = 0; index < 12; index++) {
 	        labels[index].setText("");
 	    }
-
-	    index = 0;
-	        ArrayList<String> partsList;
-	        if (curNum == 0 && !Main.specialVendingMachine.getParts().isEmpty()) {
-	            partsList = Main.specialVendingMachine.getFirstPart();
-	        } else if (curNum == 1) {
-	            partsList = Main.specialVendingMachine.getSecondPart();
-	        } else if (curNum == 2) {
-	            partsList = Main.specialVendingMachine.getThirdPart();
-	        } else if (curNum == 3) {
-	            partsList = Main.specialVendingMachine.getFourthPart();
-	        } else {
-	        	return;
-	        }
-
-	        for (String item : partsList) {
-	            Item itemCustom = Main.specialVendingMachine.getItemCustomByName(item);
-	            if (itemCustom != null) {
-	                labels[index].setText("<html><center>" + itemCustom.getQuantity() + "x - " + itemCustom.getItemName() + " ₱" + itemCustom.getPrice() + "</center></html>");
-	            } else {
-	                labels[index].setText("<html><center>Empty</center></html>");
-	            }
-	            index++;
-	            if (index >= 12) {
-	                break;
-	            }
-	        }
-
-	    }
-	
+	    	try {
+	    		index = 0;
+		        ArrayList<String> partsList;
+		        if (curNum == 0 && !Main.specialVendingMachine.getParts().isEmpty()) {
+		            partsList = Main.specialVendingMachine.getFirstPart();
+		        } else if (curNum == 1) {
+		            partsList = Main.specialVendingMachine.getSecondPart();
+		        } else if (curNum == 2) {
+		            partsList = Main.specialVendingMachine.getThirdPart();
+		        } else if (curNum == 3) {
+		            partsList = Main.specialVendingMachine.getFourthPart();
+		        } else {
+		        	return;
+		        }
+		        ArrayList<String> itemsToRemove = new ArrayList<>();
+		        index = 0;
+		        for (String item : partsList) {
+		            Item itemCustom = Main.specialVendingMachine.getItemCustomByName(item);
+		            
+		            if (itemCustom != null) {
+		                labels[index].setText("<html><center>" + itemCustom.getQuantity() + "x - " + itemCustom.getItemName() + " ₱" + itemCustom.getPrice() + "</center></html>");
+		            } else {
+		                itemsToRemove.add(item);
+		            }
+		            index++;
+		            if (index >= 12) {
+		                break;
+		            }
+		        }
+		        if (itemsToRemove.size() != 0) {
+		        	partsList.removeAll(itemsToRemove);
+		    	    for (index = 0; index < 12; index++) {
+		    	        labels[index].setText("");
+		    	    }
+			        index = 0;
+			        for (String item : partsList) {
+			            Item itemCustom = Main.specialVendingMachine.getItemCustomByName(item);
+			            
+			            if (itemCustom != null) {
+			                labels[index].setText("<html><center>" + itemCustom.getQuantity() + "x - " + itemCustom.getItemName() + " ₱" + itemCustom.getPrice() + "</center></html>");
+			            } else {
+			                itemsToRemove.add(item);
+			            }
+			            index++;
+			            if (index >= 12) {
+			                break;
+			            }
+			        }
+		        } 	
+	    	} catch (NullPointerException e) {
+	    	}
+	    }	
 }

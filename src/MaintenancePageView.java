@@ -1,4 +1,3 @@
-	import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.JFrame;
@@ -9,22 +8,15 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.awt.event.ActionEvent;
 
 public class MaintenancePageView extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private String machineType;
 	private JTextField namefield;
 	private JTextField qtyfield;
 	private JTextField pricefield;
@@ -53,7 +45,6 @@ public class MaintenancePageView extends JFrame {
 	 * Create the frame.
 	 */
 	public MaintenancePageView(String machineType) {
-		this.machineType = machineType;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 508, 511);
 		contentPane = new JPanel();
@@ -61,7 +52,6 @@ public class MaintenancePageView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		int number = 0;
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
@@ -740,15 +730,15 @@ public class MaintenancePageView extends JFrame {
     		            }	
     	        	
     	        }
-    	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellable() != null && !customize) {
-    	        for (Item item : Main.specialVendingMachine.getItemSellable()) {
+    	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null && !customize) {
+    	        for (Item item : Main.specialVendingMachine.getItemSellableSlots()) {
     		            labels[index].setText("<html><center>" + item.getQuantity() + "x - " + item.getItemName() + " ₱" + item.getPrice() + "</center></html>");
     		            index++;
     		            if (index >= 12) {
     		                break;
     		            }
     	        }
-    	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustom() != null && customize) {
+    	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustomSlots() != null && customize) {
     	        ArrayList<String> partsList;
     	        if (CurNum == 0) {
     	            partsList = Main.specialVendingMachine.getFirstPart();
@@ -761,21 +751,41 @@ public class MaintenancePageView extends JFrame {
     	        } else { 	
     	            return;
     	        }
+    	        ArrayList<String> itemsToRemove = new ArrayList<>();
+    	        index = 0;
     	        for (String item : partsList) {
-    	        	if (item!=null) {
-    		            Item customItem = Main.specialVendingMachine.getItemCustomByName(item);
-    		            if (customItem != null) {
-    		                labels[index].setText("<html><center>" + customItem.getQuantity() + "x - " + customItem.getItemName() + " ₱" + customItem.getPrice() + "</center></html>");
+    	            Item itemCustom = Main.specialVendingMachine.getItemCustomByName(item);
+    	            
+    	            if (itemCustom != null) {
+    	                labels[index].setText("<html><center>" + itemCustom.getQuantity() + "x - " + itemCustom.getItemName() + " ₱" + itemCustom.getPrice() + "</center></html>");
+    	            } else {
+    	                itemsToRemove.add(item);
+    	            }
+    	            index++;
+    	            if (index >= 12) {
+    	                break;
+    	            }
+    	        }
+    	        if (itemsToRemove.size() != 0) {
+    	        	partsList.removeAll(itemsToRemove);
+    	    	    for (index = 0; index < 12; index++) {
+    	    	        labels[index].setText("");
+    	    	    }
+    		        index = 0;
+    		        for (String item : partsList) {
+    		            Item itemCustom = Main.specialVendingMachine.getItemCustomByName(item);
+    		            
+    		            if (itemCustom != null) {
+    		                labels[index].setText("<html><center>" + itemCustom.getQuantity() + "x - " + itemCustom.getItemName() + " ₱" + itemCustom.getPrice() + "</center></html>");
     		            } else {
-    		                labels[index].setText("<html><center>Empty</center></html>");
+    		                itemsToRemove.add(item);
     		            }
     		            index++;
     		            if (index >= 12) {
     		                break;
     		            }
-    	        	}
-
-    	        }
+    		        }
+    	        } 
     	    }
         
     }

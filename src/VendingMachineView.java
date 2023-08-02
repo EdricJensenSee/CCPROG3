@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -6,12 +5,7 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.awt.event.ActionEvent;
 
 public class VendingMachineView extends JFrame {
 
@@ -26,7 +20,6 @@ public class VendingMachineView extends JFrame {
 	private JLabel Finish;
 	private JButton btnEnter, btnNewButton_3_1_1_1, btnC_1_1, btnNewButton_3_1_1, btnNewButton_2_4, btnNewButton_2_3, btnNewButton_2_2, btnNewButton_2_1, btnNewButton_2, customize, btnNewButton_1_1_2_1, btnNewButton, btnNewButton_1,btnB,btnC,btnNewButton_1_1,btnNewButton_1_1_1,btnC_1;
 	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
-	private String machineType;
 	private int[] currentIndex = {0};
 	/**
 	 * Launch the application.
@@ -49,7 +42,6 @@ public class VendingMachineView extends JFrame {
 	 * Create the frame.
 	 */
 	public VendingMachineView(String machineType) {
-		this.machineType = machineType;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 510, 568);
 		contentPane = new JPanel();
@@ -717,7 +709,7 @@ public class VendingMachineView extends JFrame {
 	                break;
 	            }
 	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellable() != null) {
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null) {
 	        for (Item item : Main.specialVendingMachine.getItemSellableSlots()) {
 	            labels[index].setText("<html><center>" + item.getQuantity() + "x - " + item.getItemName() + " ₱" + item.getPrice() + "</center></html>");
 	            index++;

@@ -1,11 +1,7 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,21 +9,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class AddItemView extends JFrame {
 
-    private JPanel contentPane;
+	private static final long serialVersionUID = 1962692694974479286L;
+	private JPanel contentPane;
     private JPanel C1;
-    private boolean modes = true;
     private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
     private JTextField Name;
     private JTextField Qty;
     private JTextField Calories;
     private JTextField Price;
-    private static String machineType;
     private static int CurNum = 0;
     private static boolean customize = false;
     private JButton btnCustomize;
@@ -50,7 +44,6 @@ public class AddItemView extends JFrame {
     }
 
     public AddItemView(String machineType) {
-        this.machineType = machineType;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 397, 579);
         contentPane = new JPanel();
@@ -58,7 +51,6 @@ public class AddItemView extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
-        int number = 0;
 
         JPanel panel = new JPanel();
         panel.setBackground(Color.LIGHT_GRAY);
@@ -66,7 +58,7 @@ public class AddItemView extends JFrame {
         panel.setBounds(10, 10, 361, 446);
         contentPane.add(panel);
         panel.setLayout(null);
-JLabel lblNewLabel_3_2 = new JLabel("");
+        JLabel lblNewLabel_3_2 = new JLabel("");
 		lblNewLabel_3_2.setOpaque(true);
 		lblNewLabel_3_2.setBackground(Color.BLACK);
 		lblNewLabel_3_2.setBounds(13, 217, 338, 13);
@@ -497,15 +489,15 @@ JLabel lblNewLabel_3_2 = new JLabel("");
 	                break;
 	            }
 	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellable() != null && !customize) {
-	        for (Item item : Main.specialVendingMachine.getItemSellable()) {
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemSellableSlots() != null && !customize) {
+	        for (Item item : Main.specialVendingMachine.getItemSellableSlots()) {
 	            labels[index].setText("<html><center>" + item.getQuantity() + "x - " + item.getItemName() + " ₱" + item.getPrice() + "</center></html>");
 	            index++;
 	            if (index >= 12) {
 	                break;
 	            }
 	        }
-	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustom() != null && customize) {
+	    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && Main.specialVendingMachine.getItemCustomSlots() != null && customize) {
 	        ArrayList<String> partsList;
 	        if (CurNum == 0) {
 	            partsList = Main.specialVendingMachine.getFirstPart();

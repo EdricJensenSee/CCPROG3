@@ -133,12 +133,11 @@ public class CashBox {
         }
     }
 
-    
-    private Item getItemByName(ArrayList<Item> items, String itemName) {
+    public Item getItemByName(ArrayList<Item> items, String itemName) {
         for (Item item : items) {
             if (item.getItemName().equals(itemName)) {
                 return item;
-            }
+            }	
         }
         return null;
     }

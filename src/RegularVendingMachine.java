@@ -5,17 +5,16 @@ import java.util.*;
  */
 class RegularVendingMachine {
     protected ArrayList<Item> itemSlots;
-    public ArrayList<Item> getItemSlots() {
-		return itemSlots;
-	}
-
-	public void setItemSlots(ArrayList<Item> itemSlots) {
-		this.itemSlots = itemSlots;
-	}
-
 	protected int totalItems, totalUnique;
     protected int count;
-    protected HashMap<Integer, String> itemNumbers;
+    
+    /**
+     * Constructs an instance of the RegularVendingMachine class.
+     */
+    public RegularVendingMachine() {
+        this.itemSlots = new ArrayList<>();
+        Main.regularCashBox = new CashBox();
+    }
     
     public Item getItembyName(String itemName) {
         for (Item item : itemSlots) {
@@ -26,22 +25,13 @@ class RegularVendingMachine {
         return null;
     }
     
-    /**
-     * Constructs an instance of the RegularVendingMachine class.
-     */
-    public RegularVendingMachine() {
-        this.itemSlots = new ArrayList<>();
-        itemNumbers = new HashMap<>();
-        Main.regularCashBox = new CashBox();
-    }
+    public ArrayList<Item> getItemSlots() {
+		return itemSlots;
+	}
 
-    public HashMap<Integer, String> getItemNumbers() {
-        return itemNumbers;
-    }
-
-    public void setItemNumbers(HashMap<Integer, String> itemNumbers) {
-        this.itemNumbers = itemNumbers;
-    }
+	public void setItemSlots(ArrayList<Item> itemSlots) {
+		this.itemSlots = itemSlots;
+	}
 
     /**
      * Adds an item to the vending machine.
@@ -68,7 +58,6 @@ class RegularVendingMachine {
         itemSlots.add(newItem);
         totalItems += quantity;
         totalUnique++;
-        itemNumbers.put(count, itemName);
         return true;
     }
 

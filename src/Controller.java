@@ -2,8 +2,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -11,15 +11,14 @@ import javax.swing.Timer;
 public class Controller {
 	private CreatePageView createPageView = new CreatePageView("");
 	private CreateVendingMachineView createVendingMachineView = new CreateVendingMachineView();
-	//private CustomizeItemView customizeItemView = new CustomizeItemView();
+	private CustomizeItemView customizeItemView = new CustomizeItemView();
 	private MaintenancePageView maintenancePageView = new MaintenancePageView("");
 	private TestPageView testPageView = new TestPageView();
-	private 	TestVendingMachinePageView testVendingMachinePageView = new TestVendingMachinePageView("");
-	private 	VendingMachineView vendingMachineView = new VendingMachineView("");
+	private TestVendingMachinePageView testVendingMachinePageView = new TestVendingMachinePageView("");
+	private VendingMachineView vendingMachineView = new VendingMachineView("");
     private MainPageView mainPageView;
     private AddItemView addItemView;
     private String machineType;
-	private CustomizeItemView customizeItemView;
 
     public Controller(MainPageView mainPageView) {
     	this.mainPageView = mainPageView;
@@ -159,7 +158,7 @@ public class Controller {
             public void actionPerformed(ActionEvent e) {
                 if (machineType.equals("Regular")) {
                     Main.regularVendingMachine = new RegularVendingMachine();
-                    String message = machineType + " Vending machine created successfully!";
+                    String message = machineType + " Vending machine(4x3) created successfully!";
                     JOptionPane.showMessageDialog(null, message, "Success", JOptionPane.INFORMATION_MESSAGE);
                 } else if (machineType.equals("Special")) {
                     createPageView.showCustomizationFields();
@@ -216,7 +215,7 @@ public class Controller {
         
         this.createPageView.setCreate(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String message = machineType + " Vending machine created successfully!";
+                String message = machineType + " Vending machine(4x3) created successfully!";
                 Main.specialVendingMachine = new SpecialVendingMachine();
                 Main.specialVendingMachine.getParts().add("Cake Base");
                 Main.specialVendingMachine.getParts().add("Fillings");
@@ -830,7 +829,7 @@ public class Controller {
 			}
         });
         
-    	customizeItemView.A(new ActionListener() {
+    	this.customizeItemView.A(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 				if (customizeItemView.getCode().equals("")) 
 					customizeItemView.setCode(customizeItemView.getCode() + "A");
@@ -1304,7 +1303,26 @@ public class Controller {
         
         this.maintenancePageView.addItems(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	maintenancePageView.addItemsView();
+            	if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
+            	    Main.regularVendingMachine.getCashBox().resetTotalSales();
+            	    for (Item item : Main.regularVendingMachine.getItemSlots()) {
+            	        item.setSold(0);
+            	    }
+            	    try {
+            	        Main.regularVendingMachine.getCashBox().getDeletedItems().clear();
+            	    } catch (ConcurrentModificationException e1) {
+            	    }
+            	} else if (machineType.equals("Special") && Main.specialVendingMachine != null) {
+            	    Main.specialVendingMachine.getCashBox().resetTotalSales();
+            	    for (Item item : Main.specialVendingMachine.getItemSlots()) {
+            	        item.setSold(0);
+            	    }
+            	    try {
+            	        Main.specialVendingMachine.getCashBox().getDeletedItems().clear();
+            	    } catch (ConcurrentModificationException e1) {
+            	    }
+            	}
+        	    maintenancePageView.addItemsView();
             }
         });
         
@@ -1316,11 +1334,17 @@ public class Controller {
 			    	for (Item item : Main.regularVendingMachine.getItemSlots()) {
 			    		item.setSold(0);
 			    	}
+			    	for (Item item: Main.regularVendingMachine.getCashBox().getDeletedItems()) {
+			    		Main.regularVendingMachine.getCashBox().getDeletedItems().remove(item);
+			    	}
 			    	
 			    } else if (machineType.equals("Special") && Main.specialVendingMachine != null ) {
 			    	Main.specialVendingMachine.getCashBox().resetTotalSales();
 			    	for (Item item : Main.specialVendingMachine.getItemSlots()) {
 			    		item.setSold(0);
+			    	}
+			    	for (Item item: Main.specialVendingMachine.getCashBox().getDeletedItems()) {
+			    		Main.specialVendingMachine.getItemSlots().remove(item);
 			    	}
 			    }
             }
@@ -1641,7 +1665,7 @@ public class Controller {
 				    if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 				    	Main.regularVendingMachine.getItem(itemNumber).setQuantity(Main.regularVendingMachine.getItem(itemNumber).getQuantity() + 1);
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && maintenancePageView.getCustomize() == false) {
-				    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setQuantity(Main.specialVendingMachine.getItemSellable().get(itemNumber).getQuantity() + 1);
+				    	Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).setQuantity(Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).getQuantity() + 1);
 				    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && maintenancePageView.getCustomize() == true) {
 				    	String itemName = "";
 		    	        if (maintenancePageView.getCurrentNumber() == 0) {
@@ -1684,7 +1708,7 @@ public class Controller {
 		        	 if (machineType.equals("Regular") && Main.regularVendingMachine != null) {
 		        		 Main.regularVendingMachine.getItem(itemNumber).setPrice(Double.parseDouble(maintenancePageView.getPrice()));
 					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null  && maintenancePageView.getCustomize() == false) {
-					    	Main.specialVendingMachine.getItemSellable().get(itemNumber).setPrice(Double.parseDouble(maintenancePageView.getPrice()));
+					    	Main.specialVendingMachine.getItemSellableSlots().get(itemNumber).setPrice(Double.parseDouble(maintenancePageView.getPrice()));
 					    } else if (machineType.equals("Special") && Main.specialVendingMachine != null && maintenancePageView.getCustomize() == true) {
 			    	        String itemName = "";
 			    	        if (maintenancePageView.getCurrentNumber() == 0) {

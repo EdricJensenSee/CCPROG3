@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class SpecialVendingMachine extends RegularVendingMachine {
     private ArrayList<ArrayList<String>> recipes;
@@ -118,49 +117,18 @@ class SpecialVendingMachine extends RegularVendingMachine {
 		return firstPart;
 	}
 
-	public void setFirstPart(ArrayList<String> firstPart) {
-		this.firstPart = firstPart;
-	}
-
 	public ArrayList<String> getSecondPart() {
 		return secondPart;
 	}
 
-	public void setSecondPart(ArrayList<String> secondPart) {
-		this.secondPart = secondPart;
-	}
 
 	public ArrayList<String> getThirdPart() {
 		return thirdPart;
 	}
 
-	public void setThirdPart(ArrayList<String> thirdPart) {
-		this.thirdPart = thirdPart;
-	}
-
 	public ArrayList<String> getFourthPart() {
 		return fourthPart;
 	}
-
-	public void setFourthPart(ArrayList<String> fourthPart) {
-		this.fourthPart = fourthPart;
-	}
-
-	public ArrayList<Item> getItemCustom() {
-        return itemCustomSlots;
-    }
-
-    public ArrayList<Item> getItemSellable() {
-        return itemSellableSlots;
-    }
-
-    public void setItemSellable(Item itemSellable) {
-        Main.itemSpecial = itemSellable;
-    }
-
-    public void setItemCustom(Item itemCustom) {
-        Main.itemCustom = itemCustom;
-    }
 
     public void addRecipe(ArrayList<String> recipe, String recipeName) {
         recipes.add(recipe);
@@ -239,18 +207,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 		this.itemCustomSlots = itemCustomSlots;
 	}
 
-	public void removeItem(Item item) {
-		itemCustomSlots.remove(item);
-		if(firstPart.contains(item))
-			firstPart.remove(item);
-		if(secondPart.contains(item))
-			secondPart.remove(item);
-		if(thirdPart.contains(item))
-			thirdPart.remove(item);
-		if(fourthPart.contains(item))
-			fourthPart.remove(item);
-	}
-
 	public boolean prepareProduct(int productIndex, double amountPaid) {
 	    double totalPrice = 0;
 	    int requiredQuantity;
@@ -289,7 +245,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
 	            item.setSold(item.getSold() + requiredQuantity);
 
 	            if (item.getQuantity() == 0) {
-	                removeItem(item);
+	            	itemCustomSlots.remove(item);
 	                getCashBox().getDeletedItems().add(item);
 	            }
 	        }
@@ -298,8 +254,6 @@ class SpecialVendingMachine extends RegularVendingMachine {
 	    getCashBox().setTotalSales(getCashBox().getTotalSales() + totalPrice);
 	    return true;
 	}
-
-
 
     public Item getItemSellableByName(String itemName) {
         for (Item item : itemCustomSlots) {
@@ -349,7 +303,7 @@ class SpecialVendingMachine extends RegularVendingMachine {
     }
 
     public void setRecipes(ArrayList<ArrayList<String>> recipes) {
-        this.recipes = recipes;
+        this.recipes = recipes;	
     }
 
     public ArrayList<String> getRecipeNames() {

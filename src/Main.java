@@ -6,7 +6,7 @@ import java.util.*;
  */ 
 public class Main {
     public static SpecialVendingMachine specialVendingMachine;
-    public static RegularVendingMachine regularVendingMachine;
+    public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     public static Item itemRegular;
     public static Item itemSpecial; 
     public static Item itemCustom; 
@@ -19,7 +19,7 @@ public class Main {
  * @param args the args. 
  */
     public static void main(String[] args) { 
-    	//Test Values
+    	//Test Values  
     	try {
     	    regularVendingMachine.addItem("Chocolate Chip Cookie", 1, 80, 180);
     	    regularVendingMachine.addItem("Chocolate Bar", 2, 40, 160);
@@ -30,7 +30,17 @@ public class Main {
     	    regularVendingMachine.addItem("Blueberry Muffin", 10, 30, 190);
     	    regularVendingMachine.addItem("Banana Muffin", 4, 30, 210);
 
-    	    specialVendingMachine.addSellableItem("Kitkats", 1, 80, 180);
+         	regularVendingMachine.getCashBox().getMoney()[0].replenish(1);   
+         	regularVendingMachine.getCashBox().getMoney()[1].replenish(1);   
+         	regularVendingMachine.getCashBox().getMoney()[2].replenish(1);   
+         	regularVendingMachine.getCashBox().getMoney()[3].replenish(1);  
+         	regularVendingMachine.getCashBox().getMoney()[4].replenish(1);   
+    	} catch (NullPointerException e) {
+    		
+    	}
+    	
+    	try {
+        	specialVendingMachine.addSellableItem("Kitkats", 1, 80, 180);
     	    specialVendingMachine.addSellableItem("Cookies", 1, 10, 200);
     	    specialVendingMachine.addSellableItem("Cupcake", 1, 80, 180);
     	    specialVendingMachine.addSellableItem("Muffin", 1, 10, 200);
@@ -60,13 +70,7 @@ public class Main {
             specialVendingMachine.getCashBox().getMoney()[1].replenish(1);   
             specialVendingMachine.getCashBox().getMoney()[2].replenish(1);   
         	specialVendingMachine.getCashBox().getMoney()[3].replenish(1);  
-         	specialVendingMachine.getCashBox().getMoney()[4].replenish(1);  
-
-         	regularVendingMachine.getCashBox().getMoney()[0].replenish(1);   
-         	regularVendingMachine.getCashBox().getMoney()[1].replenish(1);   
-         	regularVendingMachine.getCashBox().getMoney()[2].replenish(1);   
-         	regularVendingMachine.getCashBox().getMoney()[3].replenish(1);  
-         	regularVendingMachine.getCashBox().getMoney()[4].replenish(1);   
+         	specialVendingMachine.getCashBox().getMoney()[4].replenish(1);
     	} catch (NullPointerException e) {
     		
     	}
