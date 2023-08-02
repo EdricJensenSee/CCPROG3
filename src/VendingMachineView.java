@@ -7,8 +7,11 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+/**
+ *  VendingMachineView GUI
+ */
 public class VendingMachineView extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel code;
@@ -553,145 +556,291 @@ public class VendingMachineView extends JFrame {
 		}
 	
 	
+	/**
+	 * Gets the value of the wallet.
+	 * @return The value of the wallet as a String.
+	 */
 	public String getWallet() {
-		return Insert_1.getText();
+	    return Insert_1.getText();
 	}
-	
+
+	/**
+	 * Sets the value of the wallet.
+	 * @param newText The new value to set for the wallet.
+	 */
 	public void setWallet(String newText) {
-		Insert_1.setText(newText);
+	    Insert_1.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the value of the output.
+	 * @return The value of the output as a String.
+	 */
 	public String getOutput() {
-		return Output.getText();
+	    return Output.getText();
 	}
-	
+
+	/**
+	 * Sets the value of the output.
+	 * @param newText The new value to set for the output.
+	 */
 	public void setOutput(String newText) {
-		Output.setText(newText);
+	    Output.setText(newText);
 	}
+
+	/**
+	 * Gets the value of the code.
+	 * @return The value of the code as a String.
+	 */
 	public String getCode() {
-		return String.valueOf(code.getText());
+	    return String.valueOf(code.getText());
 	}
-	
+
+	/**
+	 * Sets the value of the code.
+	 * @param newText The new value to set for the code.
+	 */
 	public void setCode(String newText) {
-		code.setText(newText);
+	    code.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the value of the price code.
+	 * @return The value of the price code as a String.
+	 */
 	public String getPriceCode() {
-		return priceCode.getText();
+	    return priceCode.getText();
 	}
-	
+
+	/**
+	 * Sets the value of the price code.
+	 *
+	 * @param newText The new value to set for the price code.
+	 */
 	public void setPriceCode(String newText) {
-		priceCode.setText(newText);
+	    priceCode.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the value of the insert.
+	 * @return The value of the insert as a String.
+	 */
 	public String getInsert() {
-		return Insert.getText();
+	    return Insert.getText();
 	}
-	
+
+	/**
+	 * Sets the value of the insert.
+	 * @param newText The new value to set for the insert.
+	 */
 	public void setInsert(String newText) {
-		Insert.setText(newText);
+	    Insert.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the value of the finish
+	 * @return The value of the finish as a String.
+	 */
 	public String getFinish() {
-		return Finish.getText();
+	    return Finish.getText();
 	}
-	
+
+	/**
+	 * Sets the value of the finish.
+	 * @param newText The new value to set for the finish.
+	 */
 	public void setFinish(String newText) {
-		Finish.setText(newText);
+	    Finish.setText(newText);
 	}
-	
+
+	/**
+	 * Sets the collect value.
+	 * @param newText The new value to set for the collect.
+	 */
 	public void setCollect(String newText) {
-		Insert_2.setText(newText);
+	    Insert_2.setText(newText);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "A" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void A(ActionListener listener) {
-		btnNewButton.addActionListener(listener);
+	    btnNewButton.addActionListener(listener);
 	}
+
 	
+	/**
+	 * Adds an ActionListener to the "B" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void B(ActionListener listener) {
-		btnB.addActionListener(listener);
+	    btnB.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "C" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void C(ActionListener listener) {
-		btnC.addActionListener(listener);
+	    btnC.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "D" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void D(ActionListener listener) {
-		btnC_1.addActionListener(listener);
+	    btnC_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the number "1" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void number1(ActionListener listener) {
-		btnNewButton_1.addActionListener(listener);
+	    btnNewButton_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the number "2" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void number2(ActionListener listener) {
-		btnNewButton_1_1.addActionListener(listener);
+	    btnNewButton_1_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the number "3" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void number3(ActionListener listener) {
-		btnNewButton_1_1_1.addActionListener(listener);
+	    btnNewButton_1_1_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "cancel" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void cancel(ActionListener listener) {
-		btnNewButton_3_1_1_1.addActionListener(listener);
+	    btnNewButton_3_1_1_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "add 100" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void add100(ActionListener listener) {
-		btnNewButton_2.addActionListener(listener);
+	    btnNewButton_2.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "add 50" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void add50(ActionListener listener) {
-		btnNewButton_2_1.addActionListener(listener);
+	    btnNewButton_2_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "add 20" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void add20(ActionListener listener) {
-		btnNewButton_2_2.addActionListener(listener);
+	    btnNewButton_2_2.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "add 10" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void add10(ActionListener listener) {
-		btnNewButton_2_3.addActionListener(listener);
+	    btnNewButton_2_3.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "add 5" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void add5(ActionListener listener) {
-		btnNewButton_2_4.addActionListener(listener);
+	    btnNewButton_2_4.addActionListener(listener);
 	}
 
+	/**
+	 * Adds an ActionListener to the "clear" button.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void clear(ActionListener listener) {
-		btnNewButton_3_1_1.addActionListener(listener);
-	}
-	
-	public void enterItem(ActionListener listener) {
-		btnEnter.addActionListener(listener);
-	}
-	
-	public void buy(ActionListener listener) {
-		btnC_1_1.addActionListener(listener);
+	    btnNewButton_3_1_1.addActionListener(listener);
 	}
 
-	public void claimProduct(MouseListener listener) {
-		Output.addMouseListener(listener);
+	/**
+	 * Adds an ActionListener to the "enter item" button.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void enterItem(ActionListener listener) {
+	    btnEnter.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "buy" button.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void buy(ActionListener listener) {
+	    btnC_1_1.addActionListener(listener);
+	}
+
+	/**
+	 * Adds a MouseListener to the "claim product" component.
+	 * @param listener The MouseListener to be added.
+	 */
+	public void claimProduct(MouseListener listener) {
+	    Output.addMouseListener(listener);
+	}
+
+	/**
+	 * Gets the current index as an integer array.
+	 * @return The current index as an integer array.
+	 */
 	public int[] getCurrentIndex() {
 	    return currentIndex;
 	}
-	
+
+	/**
+	 * Sets the current index to a default value.
+	 */
 	public void setCurrentIndex() {
 	    currentIndex = new int[]{0};
 	}
 
+	/**
+	 * Adds a MouseListener to the "change collect" component.
+	 * @param listener The MouseListener to be added.
+	 */
 	public void changeCollect(MouseListener listener) {
-		Insert_1.addMouseListener(listener);
+	    Insert_1.addMouseListener(listener);
 	}
-	
-    public void btnReturner(ActionListener listener) {
-    	btnNewButton_1_1_2_1.addActionListener(listener);
-    }
-    
-    public void customize(ActionListener listener) {
-    	customize.addActionListener(listener);
-    }
 
+	/**
+	 * Adds an ActionListener to the "returner" button.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void btnReturner(ActionListener listener) {
+	    btnNewButton_1_1_2_1.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "customize" button.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void customize(ActionListener listener) {
+	    customize.addActionListener(listener);
+	}
+
+	/**
+	 *Updates GUI based on the machine type.
+	 * @param machineType The type of vending machine (e.g., "Regular" or "Special").
+	 */
 	public void itemAdder(String machineType) {
 	    int index = 0;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };

@@ -8,16 +8,15 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
+/**
+ * TestVendingMachinePageView GUI
+ */
 public class TestVendingMachinePageView extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnReturn;
 	private JButton btnFeatureTest;
 	private JButton btnMaintance;
-	private static String machineType;
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 	    EventQueue.invokeLater(new Runnable() {
 	        public void run() {
@@ -71,15 +70,31 @@ public class TestVendingMachinePageView extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 	
-	 public void setReturnfromTest(ActionListener listener) {
-		 btnReturn.addActionListener(listener);
-	 }
-	 public void btnFeatureTest(ActionListener listener) {
-		 btnFeatureTest.addActionListener(listener);
-		 btnFeatureTest.setActionCommand(machineType);
-	 } 
-	public void setbtnMaintance(ActionListener listener) {
-		btnMaintance.addActionListener(listener);
-		btnMaintance.setActionCommand(machineType);
+	/**
+	 * Sets an ActionListener for the "btnReturn" button.
+	 * @param listener The ActionListener to be added to the "btnReturn" button.
+	 */
+	public void setReturnfromTest(ActionListener listener) {
+	    btnReturn.addActionListener(listener);
 	}
+
+	/**
+	 * Sets an ActionListener for the "btnFeatureTest" button.
+	 * @param listener The ActionListener to be added to the "btnFeatureTest" button.
+	 * @param machineType The machine type to associate with the "btnFeatureTest" button action.
+	 */
+	public void btnFeatureTest(ActionListener listener) {
+	    btnFeatureTest.addActionListener(listener);
+	}
+
+	/**
+	 * Sets an ActionListener for the "btnMaintance" button.
+	 * @param listener The ActionListener to be added to the "btnMaintance" button.
+	 * @param machineType The machine type to associate with the "btnMaintance" button action.
+	 */
+	public void setbtnMaintance(ActionListener listener) {
+	    btnMaintance.addActionListener(listener);
+
+	}
+
 }

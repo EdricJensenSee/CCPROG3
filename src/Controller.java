@@ -8,6 +8,9 @@ import java.util.ConcurrentModificationException;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
+/**
+Represents the controller.
+*/
 public class Controller {
 	private CreatePageView createPageView = new CreatePageView("");
 	private CreateVendingMachineView createVendingMachineView = new CreateVendingMachineView();
@@ -20,6 +23,9 @@ public class Controller {
     private AddItemView addItemView;
     private String machineType;
 
+    /**
+    Constructor for the MainPageView.
+    */
     public Controller(MainPageView mainPageView) {
     	this.mainPageView = mainPageView;
         this.mainPageView.setCreateBtnListener(new ActionListener() {
@@ -47,6 +53,10 @@ public class Controller {
         });
            
     }
+    
+    /**
+    Constructor for the TestPageView.
+    */
     public Controller(TestPageView testPageView) {
         this.testPageView = testPageView;
         this.testPageView.setTestRegularBtnListener(new ActionListener() {
@@ -89,6 +99,9 @@ public class Controller {
 
     }
     
+    /**
+    Constructor for the TestVendingMachinePageView.
+    */
     public Controller (TestVendingMachinePageView testVendingMachinePageView, String machineType) {
     	this.testVendingMachinePageView = testVendingMachinePageView;
     	
@@ -119,6 +132,9 @@ public class Controller {
         });  
     }
     
+    /**
+    Constructor for the CreateVendingMachineView.
+    */
     public Controller(CreateVendingMachineView createVendingMachineView) {
     	this.createVendingMachineView = createVendingMachineView;
         this.createVendingMachineView.setAddBtnListener(new ActionListener() {
@@ -149,7 +165,9 @@ public class Controller {
         });
     }
     
-
+    /**
+    Constructor for the CreatePageView.
+    */
     public Controller(CreatePageView createPageView, String machineType) {
         this.createPageView = createPageView;
         this.machineType = machineType;
@@ -247,6 +265,9 @@ public class Controller {
         });
     }
 
+    /**
+    Constructor for the VendingMachineView.
+    */
     public Controller(VendingMachineView vendingMachineView, String machineType) {
         this.vendingMachineView = vendingMachineView;
         
@@ -717,7 +738,10 @@ public class Controller {
             }
         });
     }
-        
+    
+    /**
+    Constructor for the AddItemView.
+    */
     public Controller(AddItemView addItemView, String machineType) {
         this.addItemView = addItemView;
         this.machineType = machineType;
@@ -805,6 +829,9 @@ public class Controller {
         });
     }
     
+    /**
+    Constructor for the CustomizeItemView.
+    */
     public Controller(CustomizeItemView customizeItemView) {
     	this.customizeItemView = customizeItemView;
     	this.customizeItemView.claimProduct(new MouseAdapter() {
@@ -1290,6 +1317,9 @@ public class Controller {
         });
     }
     
+    /**
+    Constructor for the MaintenancePageView.
+    */
     public Controller(MaintenancePageView maintenancePageView, String machineType) {
     	this.maintenancePageView = maintenancePageView;
         this.maintenancePageView.returner(new ActionListener() {
@@ -1744,7 +1774,10 @@ public class Controller {
             	}catch ( NullPointerException e1){
                 	JOptionPane.showMessageDialog(null, "Input valid item.");
                 	return;
-            	}	
+            	}catch (IndexOutOfBoundsException e1) {
+                	JOptionPane.showMessageDialog(null, "Input valid item.");
+                	return;	
+            	}
             }
         });
     }

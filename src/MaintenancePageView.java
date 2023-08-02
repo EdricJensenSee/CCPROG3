@@ -12,8 +12,11 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * MaintenancePageView GUI.
+ */
 public class MaintenancePageView extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel C1;
 	private JLabel one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve;
@@ -494,91 +497,225 @@ public class MaintenancePageView extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 	
+	/**
+	 * Sets the text of the "Receipt" component to the given newText.
+	 *
+	 * @param newText The text to set in the "Receipt" component.
+	 */
 	public void setReceiptText(String newText) {
-		Receipt.setText(newText);
+	    // Sets the text of the "Receipt" component to the provided newText.
+	    Receipt.setText(newText);
 	}
-	
-	public void setFinish(String newText) {
-		Finish.setText(newText);
-	}
-	public String getbtnCustomize() {
-		return btnCustomize.getText();
-	}
-	
-	public void setbtnCustomize(String newText) {
-		btnCustomize.setText(newText);;
-	}
-	
-	public void setChange(String newText) {
-		Change.setText(newText);
-	}
-	public String getName() {
-		return namefield.getText();
-	}
-	
-	public String getQuantity() {
-		return qtyfield.getText();
-	}
-	
-	public String getPrice() {
-		return pricefield.getText();
-	}
-	
-	public String getCalories() {
-		return calfield.getText();
-	}
-	
-    public int getCurrentNumber() {
-        return CurNum;
-    }
-    
-    public boolean getCustomize() {
-    	return customize;
-    }
-    
-    public void setCustomize (boolean newCustomize) {
-    	customize = newCustomize;
-    }
-    
-    public void incrementCur() {
-    	CurNum++;
-    }
-    
-    public void resetCur() {
-    	CurNum = 0;
-    }
-    
-    public void addItem(ActionListener listener) {
-    	btnAdd.addActionListener(listener);
-    }
-    
-    public String getbtnAddText() {
-    	return btnAdd.getText();
-    }
-    public void add5(ActionListener listener) {
-    	b5.addActionListener(listener);
-    }
-    
-    public void add10(ActionListener listener) {
-    	b4.addActionListener(listener);
-    }
-    
-    public void add20(ActionListener listener) {
-    	b3.addActionListener(listener);
-    }
 
-    public void add50(ActionListener listener) {
-    	b2.addActionListener(listener);
-    }
-    
-    public void add100(ActionListener listener) {
-    	b1.addActionListener(listener);
-    }
-    
-    public void returner(ActionListener listener) {
-    	btnNewButton_1_1_2_1.addActionListener(listener);
-    }
+	/**
+	 * Sets the text of the "Finish" component to the given newText.
+	 *
+	 * @param newText The text to set in the "Finish" component.
+	 */
+	public void setFinish(String newText) {
+	    // Sets the text of the "Finish" component to the provided newText.
+	    Finish.setText(newText);
+	}
+
+	/**
+	 * Returns the text of the "btnCustomize" button.
+	 *
+	 * @return The text of the "btnCustomize" button.
+	 */
+	public String getbtnCustomize() {
+	    // Returns the current text of the "btnCustomize" button.
+	    return btnCustomize.getText();
+	}
+
+	/**
+	 * Sets the text of the "btnCustomize" button to the given newText.
+	 *
+	 * @param newText The text to set in the "btnCustomize" button.
+	 */
+	public void setbtnCustomize(String newText) {
+	    // Sets the text of the "btnCustomize" button to the provided newText.
+	    btnCustomize.setText(newText);
+	}
+
+	/**
+	 * Sets the text of the "Change" component to the given newText.
+	 *
+	 * @param newText The text to set in the "Change" component.
+	 */
+	public void setChange(String newText) {
+	    // Sets the text of the "Change" component to the provided newText.
+	    Change.setText(newText);
+	}
+
+	/**
+	 * Returns the text entered in the "namefield" component.
+	 *
+	 * @return The text entered in the "namefield" component.
+	 */
+	public String getName() {
+	    // Returns the current text entered in the "namefield" component.
+	    return namefield.getText();
+	}
+
+	/**
+	 * Returns the text entered in the "qtyfield" component.
+	 *
+	 * @return The text entered in the "qtyfield" component.
+	 */
+	public String getQuantity() {
+	    // Returns the current text entered in the "qtyfield" component.
+	    return qtyfield.getText();
+	}
+
+	/**
+	 * Returns the text entered in the "pricefield" component.
+	 *
+	 * @return The text entered in the "pricefield" component.
+	 */
+	public String getPrice() {
+	    // Returns the current text entered in the "pricefield" component.
+	    return pricefield.getText();
+	}
+
+	/**
+	 * Returns the text entered in the "calfield" component.
+	 *
+	 * @return The text entered in the "calfield" component.
+	 */
+	public String getCalories() {
+	    // Returns the current text entered in the "calfield" component.
+	    return calfield.getText();
+	}
+
+	/**
+	 * Returns the current number (CurNum).
+	 *
+	 * @return The current number (CurNum).
+	 */
+	public int getCurrentNumber() {
+	    // Returns the current value of CurNum.
+	    return CurNum;
+	}
+
+	/**
+	 * Returns the customize state.
+	 *
+	 * @return The customize state.
+	 */
+	public boolean getCustomize() {
+	    // Returns the current value of the customize state.
+	    return customize;
+	}
+
+	/**
+	 * Sets the customize state to the given newCustomize value.
+	 *
+	 * @param newCustomize The new customize state to set.
+	 */
+	public void setCustomize(boolean newCustomize) {
+	    // Sets the customize state to the provided newCustomize value.
+	    customize = newCustomize;
+	}
+
+	/**
+	 * Increments the current number (CurNum) by one.
+	 */
+	public void incrementCur() {
+	    // Increments the value of CurNum by one.
+	    CurNum++;
+	}
+
+	/**
+	 * Resets the current number (CurNum) to zero.
+	 */
+	public void resetCur() {
+	    // Resets the value of CurNum to zero.
+	    CurNum = 0;
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnAdd" button.
+	 *
+	 * @param listener The ActionListener to be added to the "btnAdd" button.
+	 */
+	public void addItem(ActionListener listener) {
+	    // Adds the provided ActionListener to the "btnAdd" button.
+	    btnAdd.addActionListener(listener);
+	}
+
+	/**
+	 * Returns the text of the "btnAdd" button.
+	 *
+	 * @return The text of the "btnAdd" button.
+	 */
+	public String getbtnAddText() {
+	    // Returns the current text of the "btnAdd" button.
+	    return btnAdd.getText();
+	}
+
+	/**
+	 * Adds an ActionListener to the "b5" button.
+	 *
+	 * @param listener The ActionListener to be added to the "b5" button.
+	 */
+	public void add5(ActionListener listener) {
+	    // Adds the provided ActionListener to the "b5" button.
+	    b5.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "b4" button.
+	 *
+	 * @param listener The ActionListener to be added to the "b4" button.
+	 */
+	public void add10(ActionListener listener) {
+	    // Adds the provided ActionListener to the "b4" button.
+	    b4.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "b3" button.
+	 *
+	 * @param listener The ActionListener to be added to the "b3" button.
+	 */
+	public void add20(ActionListener listener) {
+	    // Adds the provided ActionListener to the "b3" button.
+	    b3.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "b2" button.
+	 *
+	 * @param listener The ActionListener to be added to the "b2" button.
+	 */
+	public void add50(ActionListener listener) {
+	    // Adds the provided ActionListener to the "b2" button.
+	    b2.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "b1" button.
+	 *
+	 * @param listener The ActionListener to be added to the "b1" button.
+	 */
+	public void add100(ActionListener listener) {
+	    // Adds the provided ActionListener to the "b1" button.
+	    b1.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_1_1_2_1" button.
+	 *
+	 * @param listener The ActionListener to be added to the "btnNewButton_1_1_2_1" button.
+	 */
+	public void returner(ActionListener listener) {
+	    // Adds the provided ActionListener to the "btnNewButton_1_1_2_1" button.
+	    btnNewButton_1_1_2_1.addActionListener(listener);
+	}
         
+	/**
+	 * Adjusts the view to show the components for adding items.
+	 */
     public void addItemsView() {
 	    JButton[] buttons = { b1, b2, b3, b4, b5};
 	    for (int i = 0; i < 5; i++) {
@@ -606,6 +743,9 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(true);
     }
     
+    /**
+     * Adjusts the view to show the components for restocking items.
+     */
     public void restockView() {
 		Receipt.setVisible(false);
 	    JButton[] buttons = { b1, b2, b3, b4, b5};
@@ -628,6 +768,9 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(true);
     }
     
+    /**
+     * Adjusts the view to show the components for changing prices.
+     */
     public void changePriceView() {
     	JButton[] buttons = { b1, b2, b3, b4, b5};
 	    for (int i = 0; i < 5; i++) {
@@ -653,6 +796,9 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(true);
     }
     
+    /**
+     * Adjusts the view to show the components for replenishing denominations.
+     */
     public void replenishView() {
 		Change.setBounds(10, 311, 100, 125);
 	    JButton[] buttons = { b1, b2, b3, b4, b5};
@@ -672,6 +818,9 @@ public class MaintenancePageView extends JFrame {
 		btnAdd.setVisible(false);
     }
     
+    /**
+     * Adjusts the view to show the components for showing the receipt.
+     */
     public void receiptView() {
     	Receipt.setVisible(true);
         JButton[] buttons = { b1, b2, b3, b4, b5 };
@@ -689,31 +838,53 @@ public class MaintenancePageView extends JFrame {
         btnAdd.setVisible(false);
         Change.setVisible(false);
     }
+    
+    /**
+     * Button to add item.
+     */
     public void addItems(ActionListener listener) {
     	btnNewButton_1_2.addActionListener(listener);
     }
     
+    /**
+     * Button to restock.
+     */
     public void restock(ActionListener listener) {
     	btnNewButton_1.addActionListener(listener);
     }
     
+    /**
+     * Button to change price of an item.
+     */
     public void changePrice(ActionListener listener) {
     	btnNewButton_1_1_1.addActionListener(listener);
     }
     
+    /**
+     * Button to replenish denominations
+     */
     public void replenishChange(ActionListener listener) {
     	btnNewButton_1_1.addActionListener(listener);
     }
     
-    
+    /**
+     * Button to show receipt.
+     */
     public void receipt(ActionListener listener) {
     	btnNewButton_1_2_1_1.addActionListener(listener);
     }
     
+    /**
+     * Button to show next part.
+     */
     public void customize(ActionListener listener) {
     	btnCustomize.addActionListener(listener);
     }
     
+    /**
+     * Updates the item display based on the selected machine type.
+     * @param machineType The type of the vending machine ("Regular" or "Special").
+     */
     public void itemAdder(String machineType) {
     		int index = 0;
     	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };

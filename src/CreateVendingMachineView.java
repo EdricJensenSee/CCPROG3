@@ -7,8 +7,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
+/**
+ * CreateVendingMachineView GUI.
+ */
 public class CreateVendingMachineView extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnRegularVendingMachine;
 	private JButton btnSpecialVendingMachine;

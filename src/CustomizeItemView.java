@@ -8,10 +8,10 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
+/**
+ * Customize Item GUI
+ */
 public class CustomizeItemView extends JFrame {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane, Change, panel_3;
 	private JPanel A1, A2, A3, B1, B2, B3, C1, C2, C3, D1, D2, D3;
@@ -602,235 +602,428 @@ public class CustomizeItemView extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 	
+	/**
+	 * Sets the text of the first part field.
+	 * @param newText The new text for the first part field.
+	 */
 	public void setFirstPart(String newText) {
-		firstPart.setText(newText);
+	    firstPart.setText(newText);
 	}
-	
+
+	/**
+	 * Sets the text of the second part field.
+	 * @param newText The new text for the second part field.
+	 */
 	public void setSecondPart(String newText) {
-		secondPart.setText(newText);
+	    secondPart.setText(newText);
 	}
-	
+
+	/**
+	 * Sets the text of the third part field.
+	 * @param newText The new text for the third part field.
+	 */
 	public void setThirdPart(String newText) {
-		thirdPart.setText(newText);
+	    thirdPart.setText(newText);
 	}
-	
+
+	/**
+	 * Sets the text of the fourth part field.
+	 * @param newText The new text for the fourth part field.
+	 */
 	public void setFourthPart(String newText) {
-		fourthPart.setText(newText);
+	    fourthPart.setText(newText);
 	}
+
+	/**
+	 * Gets the text entered in the "Insert_1" field.
+	 * @return The text in the "Insert_1" field as a String.
+	 */
 	public String getWallet() {
-		return Insert_1.getText();
+	    return Insert_1.getText();
 	}
-	
+
+	/**
+	 * Sets the text of the "Insert_1" field.
+	 * @param newText The new text for the "Insert_1" field.
+	 */
 	public void setWallet(String newText) {
-		Insert_1.setText(newText);
+	    Insert_1.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the text entered in the "Output" field.
+	 * @return The text in the "Output" field as a String.
+	 */
 	public String getOutput() {
-		return Output.getText();
+	    return Output.getText();
 	}
-	
+
+	/**
+	 * Sets the text of the "Output" field.
+	 * @param newText The new text for the "Output" field.
+	 */
 	public void setOutput(String newText) {
-		Output.setText(newText);
+	    Output.setText(newText);
 	}
+
+	/**
+	 * Gets the text entered in the "code" field.
+	 * @return The text in the "code" field as a String.
+	 */
 	public String getCode() {
-		return String.valueOf(code.getText());
+	    return String.valueOf(code.getText());
 	}
-	
+
+	/**
+	 * Sets the text of the "code" field.
+	 * @param newText The new text for the "code" field.
+	 */
 	public void setCode(String newText) {
-		code.setText(newText);
+	    code.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the text entered in the "priceCode" field.
+	 * @return The text in the "priceCode" field as a String.
+	 */
 	public String getPriceCode() {
-		return priceCode.getText();
+	    return priceCode.getText();
 	}
-	
+
+	/**
+	 * Sets the text of the "priceCode" field.
+	 * @param newText The new text for the "priceCode" field.
+	 */
 	public void setPriceCode(String newText) {
-		priceCode.setText(newText);
+	    priceCode.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the text entered in the "Insert" field.
+	 * @return The text in the "Insert" field as a String.
+	 */
 	public String getInsert() {
-		return Insert.getText();
+	    return Insert.getText();
 	}
-	
+
+	/**
+	 * Sets the text of the "Insert" field.
+	 * @param newText The new text for the "Insert" field.
+	 */
 	public void setInsert(String newText) {
-		Insert.setText(newText);
+	    Insert.setText(newText);
 	}
-	
+
+	/**
+	 * Gets the text displayed in the "Finish" field.
+	 * @return The text in the "Finish" field as a String.
+	 */
 	public String getFinish() {
-		return Finish.getText();
+	    return Finish.getText();
 	}
-	
+
+	/**
+	 * Sets the text of the "Finish" field.
+	 * @param newText The new text for the "Finish" field.
+	 */
 	public void setFinish(String newText) {
-		Finish.setText(newText);
+	    Finish.setText(newText);
 	}
-	
+
+	/**
+	 * Sets the text of the "Insert_2" field.
+	 * @param newText The new text for the "Insert_2" field.
+	 */
 	public void setCollect(String newText) {
-		Insert_2.setText(newText);
+	    Insert_2.setText(newText);
 	}
-	
+
+	/**
+	 * Adds a MouseListener to the "Output" component for claiming a product.
+	 * @param listener The MouseListener to be added.
+	 */
 	public void claimProduct(MouseListener listener) {
-		Output.addMouseListener(listener);
+	    Output.addMouseListener(listener);
 	}
-	
+
+	/**
+	 * Gets the current number value.
+	 * @return The current number value as an integer.
+	 */
 	public int getCurrentNumber() {
-		return curNum;
+	    return curNum;
 	}
-	
+
+	/**
+	 * Increments the current number value by 1.
+	 */
 	public void addCurrentNumber() {
-		curNum++;
+	    curNum++;
 	}
-	
+
+	/**
+	 * Sets the current number to a new value.
+	 * @param newNum The new value to set for the current number.
+	 */
 	public void setCurrentNumber(int newNum) {
-		curNum = newNum;
+	    curNum = newNum;
 	}
-	
+
+	/**
+	 * Gets the current index array.
+	 * @return The current index array as an int array.
+	 */
 	public int[] getCurrentIndex() {
 	    return currentIndex;
 	}
-	
-    public void btnReturner(ActionListener listener) {
-    	btnNewButton_1_1_2_1.addActionListener(listener);
-    }
-    
+
+	/**
+	 * Sets the current index to a new array containing only 0.
+	 */
 	public void setCurrentIndex() {
 	    currentIndex = new int[]{0};
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_1_1_2_1" component for button returner functionality.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void btnReturner(ActionListener listener) {
+	    btnNewButton_1_1_2_1.addActionListener(listener);
+	}
+
+	/**
+	 * Changes the component's MouseListener for "Insert_1" field.
+	 * @param listener The MouseListener to be added.
+	 */
 	public void changeCollect(MouseListener listener) {
-		Insert_1.addMouseListener(listener);
+	    Insert_1.addMouseListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "a" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void A(ActionListener listener) {
-		a.addActionListener(listener);
+	    a.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "b" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void B(ActionListener listener) {
-		b.addActionListener(listener);
+	    b.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "c" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void C(ActionListener listener) {
-		c.addActionListener(listener);
+	    c.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "d" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void D(ActionListener listener) {
-		d.addActionListener(listener);
+	    d.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "sone" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void number1(ActionListener listener) {
-		sone.addActionListener(listener);
+	    sone.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "stwo" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void number2(ActionListener listener) {
-		stwo.addActionListener(listener);
+	    stwo.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "sthree" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void number3(ActionListener listener) {
-		sthree.addActionListener(listener);
+	    sthree.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Hides the item panels.
+	 */
 	public void hidePanels() {
-		A1.setVisible(false);
-		A2.setVisible(false);
-		A3.setVisible(false);
-		B1.setVisible(false);
-		B2.setVisible(false);
-		B3.setVisible(false);
-		C1.setVisible(false);
-		C2.setVisible(false);
-		C3.setVisible(false);
-		D1.setVisible(false);
-		D2.setVisible(false);
-		D3.setVisible(false);	
-		btnC_1_1.setEnabled(false);
+	    A1.setVisible(false);
+	    A2.setVisible(false);
+	    A3.setVisible(false);
+	    B1.setVisible(false);
+	    B2.setVisible(false);
+	    B3.setVisible(false);
+	    C1.setVisible(false);
+	    C2.setVisible(false);
+	    C3.setVisible(false);
+	    D1.setVisible(false);
+	    D2.setVisible(false);
+	    D3.setVisible(false);
+	    btnC_1_1.setEnabled(false);
 	}
 
+	/**
+	 * Adds an ActionListener to the "addRecipe" component for recipe addition.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void addRecipe(ActionListener listener) {
-		addRecipe.addActionListener(listener);
+	    addRecipe.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Gets the list of recipe items.
+	 * @return An ArrayList of String representing the recipe items.
+	 */
 	public ArrayList<String> getRecipe() {
-		return recipe;
+	    return recipe;
 	}
 
-
+	/**
+	 * Sets the list of recipe items.
+	 * @param recipe The ArrayList of String representing the recipe items to be set.
+	 */
 	public void setRecipe(ArrayList<String> recipe) {
-		this.recipe = recipe;
+	    this.recipe = recipe;
 	}
-		
+
+	/**
+	 * Hides everything for recipe baking.
+	 */
 	public void hideButtons() {
-		btnEnter.setEnabled(false);
-		a.setEnabled(false);
-		b.setEnabled(false);
-		c.setEnabled(false);
-		d.setEnabled(false);
-		sone.setEnabled(false);
-		stwo.setEnabled(false);
-		sthree.setEnabled(false);
-		sfour.setEnabled(false);
-        addRecipe.setVisible(false);
-        lblChange.setVisible(true);
-        Change.setVisible(true);
-        panel_3.setVisible(true);
-		A1.setVisible(false);
-		A2.setVisible(false);
-		A3.setVisible(false);
-		B1.setVisible(false);
-		B2.setVisible(false);
-		B3.setVisible(false);
-		C1.setVisible(false);
-		C2.setVisible(false);
-		C3.setVisible(false);
-		D1.setVisible(false);
-		D2.setVisible(false);
-		D3.setVisible(false);	
-        setBounds(100, 100, 510, 568);
-        setLocationRelativeTo(null);
+	    btnEnter.setEnabled(false);
+	    a.setEnabled(false);
+	    b.setEnabled(false);
+	    c.setEnabled(false);
+	    d.setEnabled(false);
+	    sone.setEnabled(false);
+	    stwo.setEnabled(false);
+	    sthree.setEnabled(false);
+	    sfour.setEnabled(false);
+	    addRecipe.setVisible(false);
+	    lblChange.setVisible(true);
+	    Change.setVisible(true);
+	    panel_3.setVisible(true);
+	    A1.setVisible(false);
+	    A2.setVisible(false);
+	    A3.setVisible(false);
+	    B1.setVisible(false);
+	    B2.setVisible(false);
+	    B3.setVisible(false);
+	    C1.setVisible(false);
+	    C2.setVisible(false);
+	    C3.setVisible(false);
+	    D1.setVisible(false);
+	    D2.setVisible(false);
+	    D3.setVisible(false);
+	    setBounds(100, 100, 510, 568);
+	    setLocationRelativeTo(null);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "customize" component for individual customization.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void indiv(ActionListener listener) {
-		customize.addActionListener(listener);
+	    customize.addActionListener(listener);
 	}
 
+	/**
+	 * Adds an ActionListener to the "btnEnter" component for button enter functionality.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void btnEnter(ActionListener listener) {
-		btnEnter.addActionListener(listener);
-	} 
-	
-	public void clear(ActionListener listener) {
-		btnNewButton_3_1_1.addActionListener(listener);
-	}
-	
-	public void returner(ActionListener listener) {
-		btnNewButton_1_1_2_1.addActionListener(listener);
-	}
-	
-	public void add100(ActionListener listener) {
-		btnNewButton_2.addActionListener(listener);
-	}
-	
-	public void add50(ActionListener listener) {
-		btnNewButton_2_1.addActionListener(listener);
-	}
-	
-	public void add20(ActionListener listener) {
-		btnNewButton_2_2.addActionListener(listener);
-	}
-	
-	public void add10(ActionListener listener) {
-		btnNewButton_2_3.addActionListener(listener);
-	}
-	
-	public void add5(ActionListener listener) {
-		btnNewButton_2_4.addActionListener(listener);
+	    btnEnter.addActionListener(listener);
 	}
 
+	/**
+	 * Adds an ActionListener to the "btnNewButton_3_1_1" component.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void clear(ActionListener listener) {
+	    btnNewButton_3_1_1.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_1_1_2_1" component.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void returner(ActionListener listener) {
+	    btnNewButton_1_1_2_1.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_2" component for adding 100.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void add100(ActionListener listener) {
+	    btnNewButton_2.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_2_1" component for adding 50.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void add50(ActionListener listener) {
+	    btnNewButton_2_1.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_2_2" component for adding 20.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void add20(ActionListener listener) {
+	    btnNewButton_2_2.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_2_3" component for adding 10.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void add10(ActionListener listener) {
+	    btnNewButton_2_3.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "btnNewButton_2_4" component for adding 5.
+	 * @param listener The ActionListener to be added.
+	 */
+	public void add5(ActionListener listener) {
+	    btnNewButton_2_4.addActionListener(listener);
+	}
+
+	/**
+	 * Adds an ActionListener to the "sfour" component
+	 * @param listener The ActionListener to be added.
+	 */
 	public void cancel(ActionListener listener) {
-		sfour.addActionListener(listener);
+	    sfour.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Adds an ActionListener to the "btnC_1_1" component.
+	 * @param listener The ActionListener to be added.
+	 */
 	public void printProcess(ActionListener listener) {
-		btnC_1_1.addActionListener(listener);
+	    btnC_1_1.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Updates the item list displayed on the GUI based on the given machine type.
+	 * @param machineType The type of the vending machine, "Special".
+	 */
 	public void itemAdder(String machineType) {
 	    int index = 0;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };

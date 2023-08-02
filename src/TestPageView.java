@@ -6,8 +6,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
+/**
+ * TestPageView
+ */
 public class TestPageView extends JFrame {
-
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JButton btnRegularVendingMachine;
 	private JButton btnSpecialVendingMachine;
@@ -44,15 +47,28 @@ public class TestPageView extends JFrame {
 		contentPane.add(btnReturn);
 		this.setLocationRelativeTo(null);
 	}
-    public void setTestRegularBtnListener(ActionListener listener) {
-        btnRegularVendingMachine.addActionListener(listener);
-    }
+	
+	/**
+	 * Sets an ActionListener for the "btnRegularVendingMachine" button.
+	 * @param listener The ActionListener to be added to the "btnRegularVendingMachine" button.
+	 */
+	public void setTestRegularBtnListener(ActionListener listener) {
+	    btnRegularVendingMachine.addActionListener(listener);
+	}
 
-    public void setTestSpecialBtnListener(ActionListener listener) {
-        btnSpecialVendingMachine.addActionListener(listener);
-    }
+	/**
+	 * Sets an ActionListener for the "btnSpecialVendingMachine" button.
+	 * @param listener The ActionListener to be added to the "btnSpecialVendingMachine" button.
+	 */
+	public void setTestSpecialBtnListener(ActionListener listener) {
+	    btnSpecialVendingMachine.addActionListener(listener);
+	}
 
-    public void setTestReturnBtnListener(ActionListener listener) {
-        btnReturn.addActionListener(listener);
-    }
+	/**
+	 * Sets an ActionListener for the "btnReturn" button.
+	 * @param listener The ActionListener to be added to the "btnReturn" button.
+	 */
+	public void setTestReturnBtnListener(ActionListener listener) {
+	    btnReturn.addActionListener(listener);
+	}
 }

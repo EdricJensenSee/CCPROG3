@@ -10,11 +10,10 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
+/**
+ *  CreatePageView
+ */
 public class CreatePageView extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel Name;
@@ -167,69 +166,121 @@ public class CreatePageView extends JFrame {
 		this.setLocationRelativeTo(null);
 	}
 
+	/**
+	 * Gets the product name from the text field.
+	 * @return The product name as a String.
+	 */
 	public String getProductName() {
-		return textField.getText();
+	    return textField.getText();
 	}
+
+	/**
+	 * Enables the recipe for the product.
+	 */
 	public void enableRecipe() {
-		p5.setEnabled(true);
+	    p5.setEnabled(true);
 	}
-	
+
+	/**
+	 * Sets an ActionListener for the "Create" button.
+	 * @param listener The ActionListener to be added to the "Create" button.
+	 */
 	public void setCreate(ActionListener listener) {
-		btnNewButton.addActionListener(listener);
+	    btnNewButton.addActionListener(listener);
 	}
-	
+
+	/**
+	 * Sets an ActionListener for the "Create Machine" button.
+	 * @param listener The ActionListener to be added to the "Create Machine" button.
+	 */
 	public void setCreateMachineBtnListener(ActionListener listener) {
-		create.addActionListener(listener);
+	    create.addActionListener(listener);
 	}
 
+	/**
+	 * Sets an ActionListener for the "Add Items" button.
+	 * @param listener The ActionListener to be added to the "Add Items" button.
+	 */
 	public void setAddItemsBtnListener(ActionListener listener) {
-		add.addActionListener(listener);
+	    add.addActionListener(listener);
 	}
 
+	/**
+	 * Sets an ActionListener for the "Reset Machine" button.
+	 * @param listener The ActionListener to be added to the "Reset Machine" button.
+	 */
 	public void setResetMachineBtnListener(ActionListener listener) {
-		reset.addActionListener(listener);
+	    reset.addActionListener(listener);
 	}
 
+	/**
+	 * Sets an ActionListener for the "Return" button.
+	 * @param listener The ActionListener to be added to the "Return" button.
+	 */
 	public void setReturnBtnListener(ActionListener listener) {
-		btnReturn.addActionListener(listener);
+	    btnReturn.addActionListener(listener);
 	}
 
+	/**
+	 * Sets an ActionListener for the button.
+	 * @param listener The ActionListener to be added to the "Create Custom Machine" button.
+	 */
 	public void setCreateCustomMachineBtnListener(ActionListener listener) {
-		p5.addActionListener(listener);
+	    p5.addActionListener(listener);
 	}
 
+	/**
+	 * Gets the text entered in the first part field.
+	 * @return The text in the first part field as a String.
+	 */
 	public String getPart1() {
-		return p1.getText();
+	    return p1.getText();
 	}
 
+	/**
+	 * Gets the text entered in the second part field.
+	 * @return The text in the second part field as a String.
+	 */
 	public String getPart2() {
-		return p2.getText();
+	    return p2.getText();
 	}
 
+	/**
+	 * Gets the text entered in the third part field.
+	 * @return The text in the third part field as a String.
+	 */
 	public String getPart3() {
-		return p3.getText();
+	    return p3.getText();
 	}
 
+	/**
+	 * Gets the text entered in the fourth part field.
+	 * @return The text in the fourth part field as a String.
+	 */
 	public String getPart4() {
-		return p4.getText();
+	    return p4.getText();
 	}
 
+	/**
+	 * Shows customization fields on the GUI.
+	 */
 	public void showCustomizationFields() {
-		Name.setText("Input Customizations");
-		p1.setVisible(true);
-		p2.setVisible(true);
-		p3.setVisible(true);
-		p4.setVisible(true);
-		p5.setVisible(true);
-		p21.setVisible(true);
-		p22.setVisible(true);
-		p23.setVisible(true);
-		p24.setVisible(true);
-		productName.setVisible(true);
-		textField.setVisible(true);
-		btnNewButton.setVisible(true);
-		create.setVisible(false);
-		add.setVisible(false);
-		reset.setVisible(false);
+	    Name.setText("Input Customizations");
+	    p1.setVisible(true);
+	    p2.setVisible(true);
+	    p3.setVisible(true);
+	    p4.setVisible(true);
+	    p5.setVisible(true);
+	    p21.setVisible(true);
+	    p22.setVisible(true);
+	    p23.setVisible(true);
+	    p24.setVisible(true);
+	    productName.setVisible(true);
+	    textField.setVisible(true);
+	    btnNewButton.setVisible(true);
+	    create.setVisible(false);
+	    add.setVisible(false);
+	    reset.setVisible(false);
 	}
+
 }

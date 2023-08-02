@@ -12,6 +12,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+/**
+AddItem GUI.
+*/
 public class AddItemView extends JFrame {
 
 	private static final long serialVersionUID = 1962692694974479286L;
@@ -418,60 +421,122 @@ public class AddItemView extends JFrame {
         this.setLocationRelativeTo(null);
     }
     
+    /**
+     * Sets the ActionListener for the specified button.
+     * @param listener The ActionListener to be added to the button.
+     */
     public void returner(ActionListener listener) {
-    	btnNewButton_1_1_2_1.addActionListener(listener);
+        btnNewButton_1_1_2_1.addActionListener(listener);
     }
-    
+
+    /**
+     * Adds an ActionListener for the "Customize" button.
+     * @param listener The ActionListener to be added to the "Customize" button.
+     */
     public void addCustomizeButtonListener(ActionListener listener) {
         btnCustomize.addActionListener(listener);
     }
 
+    /**
+     * Adds an ActionListener for the "Add Item" button.
+     * @param listener The ActionListener to be added to the "Add Item" button.
+     */
     public void addAddItemButtonListener(ActionListener listener) {
         btnAdd.addActionListener(listener);
     }
 
+    /**
+     * Sets the customization mode of the vending machine.
+     * @param customizable True if the vending machine is in customization mode, false otherwise.
+     */
     public void setCustomizationMode(boolean customizable) {
-    	customize = customizable;
+        customize = customizable;
     }
 
+    /**
+     * Retrieves the item name from the GUI component.
+     * @return The item name as a String.
+     */
     public String getItemName() {
         return Name.getText();
     }
 
+    /**
+     * Retrieves the quantity from the GUI component.
+     * @return The quantity as a String.
+     */
     public String getQuantity() {
         return Qty.getText();
     }
 
+    /**
+     * Retrieves the price from the GUI component.
+     * @return The price as a String.
+     */
     public String getPrice() {
         return Price.getText();
     }
 
+    /**
+     * Retrieves the calories from the GUI component.
+     * @return The calories as a String.
+     */
     public String getCalories() {
         return Calories.getText();
     }
 
+    /**
+     * Checks if the vending machine is in customization mode.
+     * @return True if the vending machine is in customization mode, false otherwise.
+     */
     public boolean isCustomizationMode() {
         return customize;
     }
 
+    /**
+     * Updates the item list displayed on the GUI based on the given machine type.
+     * @param machineType The type of the vending machine, e.g., "Regular" or "Special".
+     */
     public void updateItemList(String machineType) {
         itemAdder(machineType);
     }
-    
+
+    /**
+     * Sets the current part.
+     * @param curNum The current number value to be set.
+     */
     public void setCurrentNumber(int curNum) {
         CurNum = curNum;
     }
 
+    /**
+     * Retrieves the current number used for the parts.
+     * @return The current number value.
+     */
     public int getCurrentNumber() {
         return CurNum;
     }
+
+    /**
+     * Sets the text of the "Customize" button.
+     * @param newText The new text for the "Customize" button.
+     */
     public void setCustomizeButtonText(String newText) {
-    	btnCustomize.setText(newText);
+        btnCustomize.setText(newText);
     }
-    
+
+    /**
+     * Sets the text of a GUI component used for displaying a part.
+     * @param newName The new text to be set.
+     */
     public void setPart(String newName) {
-    	Finish.setText(newName);
+        Finish.setText(newName);
     }
+
+    /**
+     * Helper method to update the item list displayed on the GUI based on the given machine type.
+     * @param machineType The type of the vending machine, e.g., "Regular" or "Special".
+     */
     public void itemAdder(String machineType) {
         int index = 0;
 	    JLabel[] labels = { one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve };

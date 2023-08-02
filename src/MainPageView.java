@@ -3,8 +3,12 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+/**
+The MainPageView class represents the main GUI window.
+*/
 public class MainPageView extends JFrame {
-    private JPanel contentPane;
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
     private JButton createBtn;
     private JButton testBtn;
     private JButton exitBtn;
@@ -17,7 +21,7 @@ public class MainPageView extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("BAKERY VENDING MACHINE");
+        JLabel lblNewLabel = new JLabel("VENDING MACHINE");
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
         lblNewLabel.setBounds(35, 10, 388, 90);
         contentPane.add(lblNewLabel);
@@ -43,14 +47,26 @@ public class MainPageView extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+    Sets the ActionListener for the "Create a Vending Machine" button.
+    @param listener the ActionListener to be set for the button.
+    */
     public void setCreateBtnListener(ActionListener listener) {
         createBtn.addActionListener(listener);
     }
 
+    /**
+    Sets the ActionListener for the "Test a Vending Machine" button.
+    @param listener the ActionListener to be set for the button.
+    */
     public void setTestBtnListener(ActionListener listener) {
         testBtn.addActionListener(listener);
     }
 
+    /**
+    Sets the ActionListener for the "EXIT" button.
+    @param listener the ActionListener to be set for the button.
+    */
     public void setExitBtnListener(ActionListener listener) {
         exitBtn.addActionListener(listener);
     }

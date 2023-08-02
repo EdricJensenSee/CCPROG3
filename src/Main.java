@@ -2,11 +2,11 @@ import java.util.*;
 
 
  /**
- * The Main class
+ * The Driver class
  */ 
 public class Main {
-    public static SpecialVendingMachine specialVendingMachine;
-    public static RegularVendingMachine regularVendingMachine;
+    public static SpecialVendingMachine specialVendingMachine = new SpecialVendingMachine();
+    public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     public static Item itemRegular;
     public static Item itemSpecial; 
     public static Item itemCustom; 
@@ -14,7 +14,7 @@ public class Main {
     public static CashBox specialCashBox;
 /** 
  *
- * The main class
+ * The Driver class
  *
  * @param args the args. 
  */
@@ -36,7 +36,7 @@ public class Main {
          	regularVendingMachine.getCashBox().getMoney()[3].replenish(1);  
          	regularVendingMachine.getCashBox().getMoney()[4].replenish(1);   
     	} catch (NullPointerException e) {
-    		
+    		System.out.println("No regular machine test values added");
     	}
     	
     	try {
@@ -72,7 +72,7 @@ public class Main {
         	specialVendingMachine.getCashBox().getMoney()[3].replenish(1);  
          	specialVendingMachine.getCashBox().getMoney()[4].replenish(1);
     	} catch (NullPointerException e) {
-    		
+    		System.out.println("No special machine test values added");
     	}
     	MainPageView mainPageView = new MainPageView();
     	new Controller(mainPageView);
