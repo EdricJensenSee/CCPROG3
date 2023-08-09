@@ -6,7 +6,7 @@ import java.util.*;
  */ 
 public class Main {
     public static SpecialVendingMachine specialVendingMachine;
-    public static RegularVendingMachine regularVendingMachine;
+    public static RegularVendingMachine regularVendingMachine = new RegularVendingMachine();
     public static Item itemRegular;
     public static Item itemSpecial; 
     public static Item itemCustom; 
